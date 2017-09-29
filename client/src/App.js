@@ -17,13 +17,15 @@ class Form extends Component {
             <input type="password" className="form-control" name="password" />
           </div>
         </form>
-        <br /><br /><br /><br />
+        <br /><br />
         <a href="/forgottenPassword">Mot de passe oublié ?</a>
+        <br /><br />
         <button className="btn login-button btn-submit btn-small" type="submit" autocomplete="off" tabindex="4" data-reactid="25">
           S'identifier
         </button>
+        <br /><br />
         <hr />
-        <a href="/loginWithFacebook">S'identifier avec Facebook ?</a>
+        <img src="/images/facebook.png" className="facebook-logo" />&nbsp;&nbsp;<a href="/loginWithFacebook">S'identifier avec Facebook ?</a>
         <p>Première visite sur Hypertube ? <a href="/SignUp">Inscrivez-vous</a>.</p>
         
       </div>
@@ -35,11 +37,11 @@ class App extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-sm-4"></div>
-        <div className="col-sm-4 form-box">
+        <div className="col-sm-3"></div>
+        <div className="col-sm-6 form-box">
           <Form />
         </div>
-        <div className="col-sm-4"></div>
+        <div className="col-sm-3"></div>
       </div>
     );
   }

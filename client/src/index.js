@@ -10,7 +10,7 @@ class Index extends Component {
     render() {
         return (
             <div>
-                <div><Header /></div>
+                <div class="container"><Header /></div>
                 <div class="container"><App /></div>
                 <div><Footer /></div>
             </div>
