@@ -36,7 +36,7 @@ class Form extends Component {
 class SignIn extends Component {
   render() {
     return (
-      <div className="row">
+      <div className="row signIn">
         <div className="col-sm-4"></div>
         <div className="col-sm-4 form-box">
           <Form />

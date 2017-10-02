@@ -9,9 +9,13 @@
 
 /* Links inside the navbar */
 .navbar a {
-    float: left;
+    float: right;
+    font-size: 15px;
+    font-weight: 5px;
+    color: #e50914;
+    margin: 3% 3%;
     display: block;
-    color: #f2f2f2;
+    /* color: #f2f2f2; */
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -19,7 +23,7 @@
 
 .logo {
   margin: 20px 50px;
-  height: 50px;
+  height: 85px;
 }
 
 .navbar-bottom {
