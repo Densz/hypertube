@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './form.css';
 
-class Signin extends Component {
+class Form extends Component {
   render() {
     return (
       <div>
@@ -33,19 +33,18 @@ class Signin extends Component {
   }
 }
 
-class Form extends Component {
+class SignIn extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-sm-3"></div>
-        <div className="col-sm-6 form-box">
-          {/* Routes */}
-          <Signin />
+        <div className="col-sm-4"></div>
+        <div className="col-sm-4 form-box">
+          <Form />
         </div>
-        <div className="col-sm-3"></div>
+        <div className="col-sm-4"></div>
       </div>
     );
   }
 }
 
-export default Form;
+export default SignIn;

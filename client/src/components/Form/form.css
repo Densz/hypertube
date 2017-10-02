@@ -17,3 +17,25 @@
 .facebook-logo {
   height: 20px;
 }
+
+.form-signUp {
+  display: inline-block;
+  font-size: inherit;
+  margin-top: 1em;
+}
+
+.form-label-signUp {
+  position: relative;
+  display: block;
+  padding-left: 1em;
+  transform: translateY(-1.85em);
+  transform-origin: left center;
+  opacity: .3;  
+  transition: transform .2s, opacity .2s;
+  pointer-events: none;
+}
+
+input:invalid + label {
+  transform: translateY(-4em) scale(.75, .75);
+  opacity: .8;
+}
