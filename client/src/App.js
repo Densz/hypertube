@@ -1,50 +1,22 @@
 import React, { Component } from 'react';
-import './App.css';
+//import Form from './components/Form/form.js';
+import Header from './templates/header.js';
+import Footer from './templates/footer.js';
+import './index.css';
 
-class Form extends Component {
-  render() {
-    return (
-      <div>
-        <h3>S'identifier</h3>
-        <form>
-          <div className="form-group">
-            <label for="exampleInputEmail1">E-mail</label>
-            <input type="email" className="form-control" aria-describedby="emailHelp" />
-            <small id="emailHelp" className="form-text text-muted">Nous garderons votre addresse email</small>
-          </div>
-          <div className="form-group">
-            <label for="exampleInputPassword1">Mot de passe</label>
-            <input type="password" className="form-control" name="password" />
-          </div>
-        </form>
-        <br /><br />
-        <a href="/forgottenPassword">Mot de passe oublié ?</a>
-        <br /><br />
-        <button className="btn login-button btn-submit btn-small" type="submit" autocomplete="off" tabindex="4" data-reactid="25">
-          S'identifier
-        </button>
-        <br /><br />
-        <hr />
-        <img src="/images/facebook.png" className="facebook-logo" />&nbsp;&nbsp;<a href="/loginWithFacebook">S'identifier avec Facebook ?</a>
-        <p>Première visite sur Hypertube ? <a href="/SignUp">Inscrivez-vous</a>.</p>
-        
-      </div>
-    );
-  }
-}
+import Routes from './routes';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="row">
-        <div className="col-sm-3"></div>
-        <div className="col-sm-6 form-box">
-          <Form />
-        </div>
-        <div className="col-sm-3"></div>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <Routes />
+                {/*<div class="container"><Header /></div>
+                <div class="container"><Form /></div>
+                <div><Footer /></div>*/}
+            </div>
+        );
+    }
 }
 
 export default App;

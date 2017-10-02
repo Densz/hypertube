@@ -1,0 +1,19 @@
+.form-box {
+  margin-top: 30px;
+  background-color: #f3f3f3;
+  display: block;
+  padding: 20px;
+}
+
+.login-button {
+    width: 100%;
+    border-radius: unset;
+    background-color: #e50914;
+    color: white;
+    height: 50px;
+    box-shadow: 1px 1px 1px black;
+}
+
+.facebook-logo {
+  height: 20px;
+}
