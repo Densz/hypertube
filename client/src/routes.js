@@ -11,7 +11,7 @@ class Routes extends Component {
         return (
             <Router>
                 <div>
-                    <Header />
+                    <Header signInLink={ (window.location.href.indexOf('SignUp') === -1 ? '' : "S'identifier") }/>
                     <Switch >
                         <Route exact path="/" component={ SignIn } />
                         <Route path="/signUp" component={ SignUp } />

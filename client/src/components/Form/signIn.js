@@ -9,18 +9,19 @@ class Form extends Component {
         <br />
         <form>
           <div className="form-group">
-            <label for="exampleInputEmail1">E-mail</label>
+            <label>E-mail</label>
             <input type="email" className="form-control" aria-describedby="emailHelp" />
           </div>
+          <br/>
           <div className="form-group">
-            <label for="exampleInputPassword1">Mot de passe</label>
+            <label>Mot de passe</label>
             <input type="password" className="form-control" name="password" />
           </div>
         </form>
         <br /><br />
         <a href="/forgottenPassword">Mot de passe oublié ?</a>
         <br /><br />
-        <button className="btn login-button btn-submit btn-small" type="submit" autocomplete="off" tabindex="4" data-reactid="25">
+        <button className="btn login-button btn-submit btn-small" type="submit" data-reactid="25">
           S'identifier
         </button>
         <br /><br />
@@ -34,17 +35,25 @@ class Form extends Component {
 }
 
 class SignIn extends Component {
-  render() {
-    return (
-      <div className="row signIn">
-        <div className="col-sm-4"></div>
-        <div className="col-sm-4 form-box">
-          <Form />
-        </div>
-        <div className="col-sm-4"></div>
-      </div>
-    );
-  }
+	constructor(props) {
+		super(props);
+		let bodyStyle = document.body.style;
+		bodyStyle.backgroundColor = 'black';
+		bodyStyle.backgroundSize = 'cover';
+		bodyStyle.backgroundImage = 'url("/images/narcos.jpg")';
+		bodyStyle.backgroundRepeat = 'no-repeat';
+	}
+	render() {
+		return (
+		<div className="row">
+			<div className="col-sm-4"></div>
+			<div className="col-sm-4 form-box">
+			<Form />
+			</div>
+			<div className="col-sm-4"></div>
+		</div>
+		);
+	}
 }
 
 export default SignIn;
