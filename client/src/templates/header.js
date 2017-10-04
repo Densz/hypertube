@@ -5,7 +5,7 @@ class Header extends Component {
         render() {
             let path = window.location.pathname;
             let button;
-            if (path === "/SignUp"){
+            if (path === "/SignUp" || path === "/forgottenPasswd"){
                 button = (<a href="/" id="sign-in-link">S'identifier</a>);
             }
             return(

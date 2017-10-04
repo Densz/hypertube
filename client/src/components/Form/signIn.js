@@ -19,7 +19,7 @@ class Form extends Component {
           </div>
         </form>
         <br /><br />
-        <a href="/forgottenPassword">Mot de passe oublié ?</a>
+        <a href="/forgottenPasswd">Mot de passe oublié ?</a>
         <br /><br />
         <button className="btn login-button btn-submit btn-small" type="submit" data-reactid="25">
           S'identifier
@@ -47,9 +47,9 @@ class SignIn extends Component {
 		return (
 		<div className="row">
 			<div className="col-sm-4"></div>
-			<div className="col-sm-4 form-box">
-			<Form />
-			</div>
+			  <div className="col-sm-4 form-box">
+			   <Form />
+		  	</div>
 			<div className="col-sm-4"></div>
 		</div>
 		);
