@@ -4,6 +4,7 @@ import SignIn from "./components/Form/signIn";
 import SignUp from "./components/Form/signUp";
 import ForgottenPasswd from "./components/Form/forgottenPasswd";
 import ResetPasswd from "./components/Form/resetPasswd";
+import Catalog from "./components/Homepage/catalog";
 import Layout from "./templates/layout";
 
 class Routes extends Component {
@@ -17,6 +18,7 @@ class Routes extends Component {
                             <Route path="/signUp" component={ SignUp } />
                             <Route path="/forgottenPasswd" component={ ForgottenPasswd } />
                             <Route path="/resetPasswd" component={ ResetPasswd } />
+                            <Route path="/catalog" component={ Catalog } />
                         </Switch>
                     </div>
                 </Router>

@@ -51,3 +51,11 @@
 body {
     margin: 0px;
 }
+
+.search-bar {
+    color: white;
+    margin-top: 45px;
+    position: absolute;
+    right: 10px;
+    font-size: 17px;
+}

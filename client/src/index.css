@@ -1,3 +1,7 @@
 input:focus {
     border: none;
 }
+
+.row {
+    margin-right: 0px;
+}
