@@ -15,6 +15,7 @@ class Form extends Component {
 	}
 
 	updateInputValue = (evt, name) => {
+		evt.preventDefault();
 		if (evt.target.value) {
 			this.setState({
 				[name + "Empty"]: false,
