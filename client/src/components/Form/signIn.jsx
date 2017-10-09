@@ -41,7 +41,7 @@ class SignIn extends Component {
 		bodyStyle.backgroundColor = 'black';
 		bodyStyle.backgroundSize = 'cover';
 		bodyStyle.backgroundImage = 'url("/images/narcos.jpg")';
-		bodyStyle.backgroundRepeat = 'no-repeat';
+    bodyStyle.backgroundRepeat = 'no-repeat';
 	}
 	render() {
 		return (
