@@ -3,3 +3,6 @@
 
 # Create React App with Server
 * https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/
+
+# International App by Yahoo
+* https://github.com/yahoo/react-intl/wiki#getting-started 
