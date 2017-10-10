@@ -1,0 +1,20 @@
+{
+    "fr": {
+      "form.email": "Addresse email",
+      "form.signin": "S'identifier",
+      "form.passwd": "Mot de passe",
+      "form.forgottenpasswd": "Mot de passe oublié",
+      "form.signup": "Inscrivez-vous",
+      "form.signupwithfacebook": "S'identifier avec Facebook ?",
+      "form.firstvisite": "Première visite sur Hypertube ?"
+    },
+    "en": {
+      "form.email": "Email address",
+      "form.signin": "Sign in",
+      "form.passwd": "Password",
+      "form.forgottenpasswd": "Forgotten password",
+      "form.signup": "Sign up",
+      "form.signupwithfacebook": "Sign in with Facebook?",
+      "form.firstvisite": "First visit on Hypertube?"      
+    }
+  }

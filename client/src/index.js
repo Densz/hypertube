@@ -2,11 +2,24 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import App from './App';
+import { IntlProvider, addLocaleData } from 'react-intl';
+import en from 'react-intl/locale-data/en';
+import fr from 'react-intl/locale-data/fr';
+
+import localeData from './intl/data.json';
+
+addLocaleData([...en, ...fr]);
+
+const language = (navigator.languages && navigator.languages[0]) || navigator.language || navigator.userLanguage;
+//const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
+const messages = localeData["en"];// || localeData[language] || localeData.en;
 
 class Index extends Component {
     render() {
         return (
-            <App />
+            <IntlProvider locale={language} messages={messages}>
+                <App />
+            </IntlProvider>
         );
     }
 }
