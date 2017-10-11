@@ -1,0 +1,8 @@
+2. Step
+
+A container component is just a react component that uses store.subscribe() 
+to read a part of the Redux state tree and supply props to a presentattional component it renders.
+
+You could write a container component by hand, but we suggest instead generating container components
+with the React Redux library's connect
+
