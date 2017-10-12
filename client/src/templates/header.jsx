@@ -23,7 +23,6 @@ class Header extends Component {
         this.state = {
             searchClicked: "search-bar",
             placeHolder: "Rechercher",
-//          input: React.createElement('input', { type: 'text' })
         }
     }
 

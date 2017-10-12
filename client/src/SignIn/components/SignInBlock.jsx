@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class SignInContainer extends Component {
+class SignInBlock extends Component {
     render() {
         return (
 			<div className="row">
@@ -15,8 +15,8 @@ class SignInContainer extends Component {
     }
 }
 
-SignInContainer.propTypes = {
+SignInBlock.propTypes = {
 	children: PropTypes.any
 }
 
-export default SignInContainer;
+export default SignInBlock;

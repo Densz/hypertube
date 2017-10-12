@@ -37,11 +37,11 @@ class Form extends Component {
 class SignIn extends Component {
 	constructor(props) {
 		super(props);
-		let bodyStyle = document.body.style;
-		bodyStyle.backgroundColor = 'black';
-		bodyStyle.backgroundSize = 'cover';
-		bodyStyle.backgroundImage = 'url("/images/narcos.jpg")';
-    bodyStyle.backgroundRepeat = 'no-repeat';
+		// let bodyStyle = document.body.style;
+		// bodyStyle.backgroundColor = 'black';
+		// bodyStyle.backgroundSize = 'cover';
+		// bodyStyle.backgroundImage = 'url("/images/narcos.jpg")';
+    // bodyStyle.backgroundRepeat = 'no-repeat';
 	}
 	render() {
 		return (
