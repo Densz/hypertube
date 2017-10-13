@@ -4,7 +4,6 @@ import InputForm from "../../General/components/InputForm";
 import "../css/signup.css";
 
 class SignUp extends Component {
-
     componentDidMount() {
         let bodyStyle = document.body.style;
         let navBarStyle = document.querySelector('.navbar').style;

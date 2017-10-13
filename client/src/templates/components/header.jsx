@@ -15,8 +15,6 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchClicked: "search-bar",
-            placeHolder: "Rechercher",
             signInBtn: false,
             searchBar: false,
         }

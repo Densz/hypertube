@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import InputForm from "../../General/components/InputForm";
 import "../css/signin.css";
 import SignInBlock from "./SignInBlock";
-
+import PropTypes from 'prop-types';
 
 const SignInForm = (props) => {    
     return(
@@ -96,6 +96,10 @@ class SignIn extends Component {
             <ComponentRendered handleRender={this.handleRstPwd} stateRender={this.state.resetPassword}/>
         );
     }
+}
+
+SignIn.propTypes = {
+    resetPassword: PropTypes.bool
 }
 
 export default SignIn;
