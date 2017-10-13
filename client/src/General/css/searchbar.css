@@ -27,7 +27,12 @@
     border: none;
     color: #f3f3f3;
     background: 0 0;
-    -webkit-transition: border .5s, width .5s;
-    -moz-transition: border .5s, width .5s;
-    transition: border .5s, width .5s;
+}
+
+.glyphicon {
+    padding: 0 6px;
+}
+
+#input-search {
+    width: 200px;
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchBar from '../../General/components/SearchBar';
 
 const ComponentRendered = (props) => {
-    let rendering = (<div></div>);
+    let rendering = (<div />);
     if (props.signInButton) {
         rendering = (<a href="/signIn" id="sign-in-link">S'identifier</a>);
     } else if (props.searchBar) {
