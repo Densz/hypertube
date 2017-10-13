@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './templates.css';
-import Header from "./header";
 import Footer from "./footer";
+import Header from "./header";
+import './templates.css';
 
 class Layout extends Component {
     render() {
@@ -9,7 +9,7 @@ class Layout extends Component {
             <div>
                 <Header />
                     { this.props.children }
-                <Footer />
+                <Footer changeLngToFr={this.props.changeLngToFr} changeLngToEn={ this.props.changeLngToEn } />
             </div>
         );
     }

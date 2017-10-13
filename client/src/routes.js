@@ -10,7 +10,7 @@ import Layout from "./templates/layout";
 class Routes extends Component {
     render() {
         return (
-            <Layout>
+            <Layout changeLngToFr={this.props.changeLngToFr} changeLngToEn={ this.props.changeLngToEn }>
                 <Router>
                     <div>
                         <Switch >
