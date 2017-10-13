@@ -7,7 +7,7 @@ class SignInBlock extends Component {
 			<div className="row">
 				<div className="col-sm-4"></div>
 					<div className="col-sm-4 form-box">
-						{this.props.children}
+							{this.props.children}
 					</div>
 				<div className="col-sm-4"></div>
 			</div>
