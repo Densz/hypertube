@@ -3,21 +3,17 @@ import "../css/searchbar.css";
 
 const SearchTab = (props) => {
     return (
-        <div className="search-box">
-            <button className="search-bar" onClick={props.event}>
-                <span className="glyphicon glyphicon-search"></span><span>&nbsp;&nbsp;Rechercher</span>
-            </button>
-        </div>
+        <button className="search-bar" onClick={props.event}>
+            <span className="glyphicon glyphicon-search"></span><span>&nbsp;&nbsp;Rechercher</span>
+        </button>
     );
 };
 
 const SearchInput = () => {
     return (
-        <div className="search-box">
-            <div className="search-input">
-                <span className="glyphicon glyphicon-search"></span>
-                <input autoFocus id="input-search" placeholder="Titres, personnes, genres" type="text" name="searchBar"/>
-            </div>
+        <div className="search-input">
+            <span className="glyphicon glyphicon-search"></span>
+            <input autoFocus id="input-search" placeholder="Titres, personnes, genres" type="text" name="searchBar"/>
         </div>
     );
 };
@@ -35,13 +31,15 @@ class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchClicked: false
+            searchClicked: false,
+            containerClass: 'container-bar'
         };
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
         this.setState({searchClicked: !this.state.searchClicked});
+        this.setState({containerClass: (this.state.containerClass === 'container-bar' ? 'container-search' : 'container-bar')});
     };
 
     componentDidUpdate() {
@@ -54,7 +52,9 @@ class SearchBar extends Component {
     
     render() {
         return (
-            <ComponentRendered tabOnClick={this.handleClick} searchBool={this.state.searchClicked} />
+            <div className={this.state.containerClass + " search-box"}>
+                <ComponentRendered tabOnClick={this.handleClick} searchBool={this.state.searchClicked} />
+            </div>
         );
     }
 }

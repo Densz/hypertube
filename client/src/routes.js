@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import SignIn from "./SignIn/components/SignIn";
 import SignUp from "./SignUp/components/SignUp";
-import Layout from "./templates/components/layout";
+import Layout from "./templates/components/Layout";
 import Catalog from "./Homepage/components/catalog";
 
 class Routes extends Component {
