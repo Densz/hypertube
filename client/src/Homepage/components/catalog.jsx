@@ -5,6 +5,7 @@ class Catalog extends Component {
     constructor(props) {
         super(props);
         let bodyStyle = document.body.style;
+        
 		bodyStyle.backgroundColor = 'black';
     }
 
