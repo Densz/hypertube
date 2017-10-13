@@ -31,13 +31,6 @@ class Header extends Component {
         }
     }
 
-    updateClassValue = () => {
-        this.setState({
-            searchClicked: "search-form",
-            placeHolder: "Titres, personnes, genres",
-        })
-    }
-
     render() {
         return(
             <nav className="navbar">
