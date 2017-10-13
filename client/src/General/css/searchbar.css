@@ -34,8 +34,8 @@
     border: none;
     background: 0 0;
     width: 150px;
-    -webkit-transition: border .5s, width .5s;
-    -moz-transition: border .5s, width .5s;
+    -webkit-transition: border 1s, width 1s;
+    -moz-transition: border 1s, width 1s;
     transition: border 1s, width 1s;
 }
 
@@ -44,7 +44,7 @@
     background: rgba(0, 0, 0, .75);
     width: 300px;
     white-space: nowrap;
-    -webkit-transition: border .5s, width .5s;
-    -moz-transition: border .5s, width .5s;
+    -webkit-transition: border 1s, width 1s;
+    -moz-transition: border 1s, width 1s;
     transition: border 1s, width 1s;
 }
