@@ -3,6 +3,7 @@
     position: absolute;
     right: 10px;
     font-size: 17px;
+    color: #f3f3f3;    
 }
 
 .search-input {
@@ -19,7 +20,6 @@
 .search-bar {
     outline: none;
     cursor: pointer;
-    color: #f3f3f3;
 }
 
 .glyphicon {
