@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import InputForm from "../../General/components/InputForm";
+import InputForm from "../../../General/components/InputForm";
 import "../css/signin.css";
 import SignInBlock from "./SignInBlock";
 import PropTypes from 'prop-types';
@@ -80,7 +80,9 @@ class SignIn extends Component {
     }
 
     handleRstPwd() {
-        this.setState({resetPassword: !this.state.resetPassword});
+        this.setState((prevState) => ({
+            resetPassword: !prevState.resetPassword
+        }));
     }
 
     componentDidMount() {

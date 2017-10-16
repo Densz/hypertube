@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SearchBar from '../../General/components/SearchBar';
+import SearchBar from '../../../General/components/SearchBar';
 
 const ComponentRendered = (props) => {
     let rendering = (<div />);

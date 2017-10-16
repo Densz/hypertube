@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-import SignIn from "./SignIn/components/SignIn";
-import SignUp from "./SignUp/components/SignUp";
-import Layout from "./templates/components/Layout";
-import Catalog from "./Homepage/components/catalog";
+import SignIn from "./Form/SignIn/components/SignIn";
+import SignUp from "./Form/SignUp/components/SignUp";
+import Layout from "./General/templates/components/Layout";
+import Catalog from "./Stream/Catalog/components/catalog";
 
 class Routes extends Component {
     render() {

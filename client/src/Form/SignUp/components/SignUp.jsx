@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SignUpBlock from './SignUpBlock';
-import InputForm from "../../General/components/InputForm";
+import InputForm from "../../../General/components/InputForm";
 import "../css/signup.css";
 
 class SignUp extends Component {

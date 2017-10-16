@@ -5,3 +5,7 @@ input:focus {
 .row {
     margin-right: 0px;
 }
+
+body {
+    background-color: #383A40;
+}

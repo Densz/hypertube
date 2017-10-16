@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './index.css';
+import './General/templates/css/index.css';
 import Routes from './routes';
 
 class App extends Component {
