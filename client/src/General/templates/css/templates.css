@@ -14,7 +14,7 @@
     font-size: 15px;
     font-weight: 5px;
     color: #67DAF9;
-    margin: 3% 3%;
+    /* margin: 3% 3%; */
     display: block;
     text-align: center;
     padding: 14px 16px;
@@ -26,7 +26,7 @@
   height: 70px;
 }
 
-#sign-in-link {
+.button-link {
     font-size: 17px;
     position: absolute;
     right: 10px;
@@ -38,6 +38,10 @@
     line-height: .5;
     background-color: #383A40;
     transition: color .5s;
+}
+
+#sign-out {
+    display: inline-block;
 }
 
 #sign-in-link:hover {

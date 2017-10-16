@@ -1,6 +1,7 @@
 .search-box {
     margin-top: 45px;
-    position: absolute;
+    /* position: absolute; */
+    display: inline-block;
     right: 10px;
     font-size: 17px;
     color: #f3f3f3;    
@@ -8,6 +9,7 @@
 
 .search-input {
     font-size: 14px;
+    background-color: rgb(32, 35, 42); 
     padding: 7px 14px 7px 7px;
 }
 

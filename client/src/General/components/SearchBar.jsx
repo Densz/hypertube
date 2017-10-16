@@ -9,18 +9,24 @@ const SearchTab = (props) => {
     );
 };
 
-const SearchInput = () => {
+const SearchInput = (props) => {
+    let placeHolder = (props.placeHolder ? 'Titres, personnes, genres' : '');
     return (
         <div className="search-input">
             <span className="glyphicon glyphicon-search"></span>
-            <input autoFocus id="input-search" placeholder="Titres, personnes, genres" type="text" name="searchBar"/>
+            <input autoFocus
+                id="input-search"
+                placeholder={placeHolder} 
+                type="text"
+                name="searchBar"
+            />
         </div>
     );
 };
 
 const ComponentRendered = (props) => {
     if (props.searchBool) {
-        return <SearchInput event={props.tabOnClick}/>
+        return <SearchInput event={props.tabOnClick} placeHolder={props.pH}/>
     } else {
         return <SearchTab event={props.tabOnClick}/>
     }
@@ -32,13 +38,19 @@ class SearchBar extends Component {
         super(props);
         this.state = {
             searchClicked: false,
-            containerClass: 'container-bar'
+            containerClass: 'container-bar',
+            placeHolder: false,
         };
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
-        this.setState({searchClicked: !this.state.searchClicked});
+        setTimeout(() => {
+            this.setState((prevState) => ({
+                placeHolder: !prevState.placeHolder
+            }));
+        }, 200);
+        this.setState((prevState) => ({searchClicked: !prevState.searchClicked}));
         this.setState({containerClass: (this.state.containerClass === 'container-bar' ? 'container-search' : 'container-bar')});
     };
 
@@ -53,7 +65,7 @@ class SearchBar extends Component {
     render() {
         return (
             <div className={this.state.containerClass + " search-box"}>
-                <ComponentRendered tabOnClick={this.handleClick} searchBool={this.state.searchClicked} />
+                <ComponentRendered tabOnClick={this.handleClick} searchBool={this.state.searchClicked} pH={this.state.placeHolder}/>
             </div>
         );
     }

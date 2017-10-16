@@ -6,7 +6,7 @@ class Catalog extends Component {
         super(props);
         let bodyStyle = document.body.style;
         
-		bodyStyle.backgroundColor = 'black';
+		bodyStyle.backgroundColor = '#20232a';
     }
 
     render() {

@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import SearchBar from '../../../General/components/SearchBar';
 
 const ComponentRendered = (props) => {
-    let rendering = (<div />);
+    let rendering = [];
     if (props.signInButton) {
-        rendering = (<a href="/signIn" id="sign-in-link">S'identifier</a>);
-    } else if (props.searchBar) {
-        rendering = (<SearchBar />);
+        rendering.push(<a href="/signIn" key={rendering.length} className="button-link">S'identifier</a>);
+    } else if (props.catalogPage) {
+        rendering.push(<SearchBar key={rendering.length} />);
+    } if (props.loggedIn) {
+        rendering.push(<a href="#" key={rendering.length} id="sign-out" className="button-link">Disconnect</a>);
     }
     return rendering;
 };
@@ -16,7 +18,8 @@ class Header extends Component {
         super(props);
         this.state = {
             signInBtn: false,
-            searchBar: false,
+            catalogPage: false,
+            loggedIn: true,
         }
     }
     
@@ -27,7 +30,7 @@ class Header extends Component {
             this.setState({ signInBtn: true });
         }
          else if (path === "/catalog") {
-            this.setState({ searchBar: true });
+            this.setState({ catalogPage: true });
         }
     }
 
@@ -35,7 +38,11 @@ class Header extends Component {
         return(
             <nav className="navbar">
                 <img src="/images/hypertube_logo.png" id="logo" className="navbar-brand" alt="hypertube"/> 
-                <ComponentRendered signInButton={this.state.signInBtn} searchBar={this.state.searchBar}/>
+                <ComponentRendered 
+                    loggedIn={this.state.loggedIn}
+                    signInButton={this.state.signInBtn}
+                    catalogPage={this.state.catalogPage}
+                />
             </nav>
         );
     }
