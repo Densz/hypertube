@@ -8,7 +8,7 @@ const ComponentRendered = (props) => {
     } else if (props.catalogPage) {
         rendering.push(<SearchBar key={rendering.length} />);
     } if (props.loggedIn) {
-        rendering.push(<a href="#" key={rendering.length} id="sign-out" className="button-link">Disconnect</a>);
+        rendering.push(<a href="/signOut" key={rendering.length} id="sign-out" className="button-link">Disconnect</a>);
     }
     return rendering;
 };
