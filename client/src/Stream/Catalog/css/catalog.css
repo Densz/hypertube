@@ -1,46 +1,25 @@
-.movie-container-normal {
-    display: inline-block;
-    width: 230px;
-    margin: 1%;
-    transition: all .5s;
-    vertical-align: top;
-}
-
-.movie-container-bigger {
-    display: inline-block;
-    transition: all .5s;
-    vertical-align: top;
-}
-
-.movie-container-bigger:hover {
-    display: inline-block;
-    vertical-align: top;
-    transform: scale(1.05);
-}
-
 .movie-details {
-    position: relative;
+    display: inline-block;
+    height: 345px;
+    width: 230px;
+    vertical-align: top;
+    margin: 1%;
 }
 
 .about-movie {
-    background-color: black;
-    width: 250px;
-    height: 80px;
-    opacity: 0.7;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 230px;
+    height: 345px;
     padding: 3%;
-}
-
-.movie-title {
-    font-size: 20px;
-    color: white;
-}
-
-.movie-rating {
-    font-size: 20px;
-    color: white;
+    margin-top: -345px;
 }
 
 .img-movie {
     width: 100%;
 }
 
+.movie-text {
+    font-size: 20px;
+    color: white;
+}
