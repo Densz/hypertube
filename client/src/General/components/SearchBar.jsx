@@ -15,10 +15,10 @@ const SearchInput = (props) => {
         <div className="search-input">
             <span className="glyphicon glyphicon-search"></span>
             <input autoFocus
-                id="input-search"
-                placeholder={placeHolder} 
-                type="text"
-                name="searchBar"
+				id="input-search"
+				placeholder={placeHolder} 
+				type="text"
+				name="searchBar"
             />
         </div>
     );
