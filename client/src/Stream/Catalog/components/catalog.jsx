@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Thumbnail from './thumbnail';
 import '../css/catalog.css';
 
 const catalogtest = {
@@ -8,45 +9,17 @@ const catalogtest = {
 }
 
 class Catalog extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isToggleOn: false
-        }
-        this.showInfo = this.showInfo.bind(this);
-
+    componentDidMount() {
         let bodyStyle = document.body.style;
-		bodyStyle.backgroundColor = '#20232a';
-    }
 
-    showInfo() {
-        this.setState((prevState) => ({
-            isToggleOn: !prevState.isToggleOn,
-        }))
+        bodyStyle.backgroundColor = '#20232a';
     }
-    
     
     render() {
         return (
-            <div className="row">
-                <div className="movie-container">
-                    <img alt={catalogtest.title} src={catalogtest.img} onMouseEnter={this.showInfo} onMouseLeave={this.showInfo}/>
-                    { this.state.isToggleOn &&
-                        <div className="about-movie" >
-                            <p className="movie-title">{catalogtest.title}</p>
-                            <p className="movie-rating">{catalogtest.rating}</p>
-                        </div>
-                    }
-                </div>
-                <div className="movie-container">
-                    <img alt={catalogtest.title} src={catalogtest.img} onMouseEnter={this.showInfo} onMouseLeave={this.showInfo}/>
-                    { this.state.isToggleOn &&
-                        <div className="about-movie" >
-                            <p className="movie-title">{catalogtest.title}</p>
-                            <p className="movie-rating">{catalogtest.rating}</p>
-                        </div>
-                    }
-                </div>
+            <div className="row ">
+                <Thumbnail infos={catalogtest}/>
+                <Thumbnail infos={catalogtest}/>
             </div>                
         )
     }
