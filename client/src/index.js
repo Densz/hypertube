@@ -4,11 +4,11 @@ import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 
 class Index extends Component {
-    render() {
+render() {
         return (
-            <App />
-        );
-    }
+        <App />
+    );
+}
 }
 
 ReactDOM.render(<Index />, document.getElementById('root'));
