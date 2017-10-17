@@ -11,7 +11,6 @@ const catalogtest = {
 class Catalog extends Component {
 	componentDidMount() {
 		const bodyStyle = document.body.style;
-
 		bodyStyle.backgroundColor = '#20232a';
 	}
 
@@ -21,7 +20,7 @@ class Catalog extends Component {
 				<Thumbnail infos={catalogtest} />
 				<Thumbnail infos={catalogtest} />
 			</div>
-        );
+		);
 	}
 }
 
