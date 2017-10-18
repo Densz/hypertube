@@ -1,3 +1,8 @@
 .block-container .container {
     width: 65%;
 }
+
+.error {
+	border: 1px solid #b92d2b;
+	/* background-color: rgba(255, 0, 0, 0.08); */
+}

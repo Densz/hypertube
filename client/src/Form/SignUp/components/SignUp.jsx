@@ -8,35 +8,43 @@ class SignUp extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			firstName: '',
-			lastName: '',
-			email: '',
-			login: '',
-			passwd: '',
-			passwdConfirm: ''
+			firstName: {value: '', error: false},
+			lastName: {value: '', error: false},
+			email: {value: '', error: false},
+			login: {value: '', error: false},
+			passwd: {value: '', error: false},
+			passwdConfirm: {value: '', error: false}
 		}
-        this.updateValue = this.updateValue.bind(this);
+        this.updateInputValue = this.updateInputValue.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	updateValue = (key, value) => {
+	updateInputValue = (key, value) => {			
 		this.setState({
-			[key]: value
+			[key]: {value: value, error: false}
 		})
 	}
 
     handleSubmit(event) {
-        const inputValues = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            email: this.state.email,
-            login: this.state.login,
-            password: this.state.passwd,
-            confirmPassword: this.state.passwdConfirm
-        }
         event.preventDefault();
-        callApi('/api/signUp/submit', 'post', inputValues);
-    }
+        const inputValues = {
+            firstName: this.state.firstName.value,
+            lastName: this.state.lastName.value,
+            email: this.state.email.value,
+            login: this.state.login.value,
+            password: this.state.passwd.value,
+            confirmPassword: this.state.passwdConfirm.value
+		}
+		let errorBool = false;
+        for (var elem in this.state) {
+            if (this.state[elem].value === '' || this.state[elem].value === undefined) {
+				this.setState({[elem]: {error: true}});
+				errorBool = true;
+			}
+		}
+		if (!errorBool)
+			callApi('/api/signUp/submit', 'post', inputValues);
+	}
 
     componentDidMount() {
         let bodyStyle = document.body.style;
@@ -59,9 +67,9 @@ class SignUp extends Component {
                                 containerClass="form-group col-md-12"
                                 textValue="E-mail"
                                 type="email"
-                                inputClass="form-control"
+                                inputClass={ this.state.email.error ? "form-control error" : "form-control" }
 								name="email"
-								onUpdate={this.updateValue}
+								onUpdate={this.updateInputValue}
                             />
                         </div>
                         <div className="row">
@@ -69,25 +77,25 @@ class SignUp extends Component {
                                 containerClass="form-group col-md-4"
                                 textValue="Login"
                                 type="text"
-                                inputClass="form-control"
+                                inputClass={ this.state.login.error ? "form-control error" : "form-control" }
 								name="login"
-								onUpdate={this.updateValue}
+								onUpdate={this.updateInputValue}
                             />
                             <InputForm
                                 containerClass="form-group col-md-4"
                                 textValue="Prénom"
                                 type="text"
-                                inputClass="form-control"
+                                inputClass={ this.state.firstName.error ? "form-control error" : "form-control" }
 								name="firstName"
-								onUpdate={this.updateValue}
+								onUpdate={this.updateInputValue}
                             />
                             <InputForm
                                 containerClass="form-group col-md-4"
                                 textValue="Nom"
                                 type="text"
-                                inputClass="form-control"
+                                inputClass={ this.state.lastName.error ? "form-control error" : "form-control" }
 								name="lastName"
-								onUpdate={this.updateValue}
+								onUpdate={this.updateInputValue}
                             />
                         </div>
                         <div className="row">
@@ -95,24 +103,25 @@ class SignUp extends Component {
                                 containerClass="form-group col-md-6"
                                 textValue="Mot de passe"
                                 type="password"
-                                inputClass="form-control"
+                                inputClass={ this.state.passwd.error ? "form-control error" : "form-control" }
 								name="passwd"
-								onUpdate={this.updateValue}
+								onUpdate={this.updateInputValue}
                             />
                             <InputForm
                                 containerClass="form-group col-md-6"
                                 textValue="Confirmer votre mot de passe"
                                 type="password"
-                                inputClass="form-control"
+                                inputClass={ this.state.passwdConfirm.error ? "form-control error" : "form-control" }
 								name="passwdConfirm"
-								onUpdate={this.updateValue}
+								onUpdate={this.updateInputValue}
                             />
                         </div>
                     </div>
+					<br/>
+					<button className="login-button" name="submit" value="submit" onClick={this.handleSubmit}>
+						Créer son compte
+					</button>
 				</form>
-                <button className="login-button" onClick={this.handleSubmit}>
-                    Créer son compte
-                </button>
                 <br/><br/>
                 <hr/>
                 <img src="/images/facebook.png" className="facebook-logo" alt="Facebook" />&nbsp;&nbsp;<a href="/loginWithFacebook">S'identifier avec Facebook ?</a>
