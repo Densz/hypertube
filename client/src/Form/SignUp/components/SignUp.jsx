@@ -4,6 +4,25 @@ import InputForm from "../../../General/components/InputForm";
 import "../css/signup.css";
 
 class SignUp extends Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			firstName: '',
+			lastName: '',
+			email: '',
+			login: '',
+			passwd: '',
+			passwdConfirmation: ''
+		}
+		this.updateValue = this.updateValue.bind(this);
+	}
+
+	updateValue = (key, value) => {
+		this.setState({
+			[key]: value
+		})
+	}
+
     componentDidMount() {
         let bodyStyle = document.body.style;
         let navBarStyle = document.querySelector('.navbar').style;
@@ -11,6 +30,10 @@ class SignUp extends Component {
         navBarStyle.background = '#20232a';
         bodyStyle.backgroundColor = '#f3f3f3';
     }
+
+	componentDidUpdate() {
+		console.log(this.state);
+	}
 
     render() {
         return (
@@ -26,6 +49,8 @@ class SignUp extends Component {
                                 textValue="E-mail"
                                 type="email"
                                 inputClass="form-control"
+								name="email"
+								onUpdate={this.updateValue}
                             />
                         </div>
                         <div className="row">
@@ -34,18 +59,24 @@ class SignUp extends Component {
                                 textValue="Login"
                                 type="text"
                                 inputClass="form-control"
+								name="login"
+								onUpdate={this.updateValue}
                             />
                             <InputForm
                                 containerClass="form-group col-md-4"
                                 textValue="Prénom"
                                 type="text"
                                 inputClass="form-control"
+								name="firstName"
+								onUpdate={this.updateValue}
                             />
                             <InputForm
                                 containerClass="form-group col-md-4"
                                 textValue="Nom"
                                 type="text"
                                 inputClass="form-control"
+								name="lastName"
+								onUpdate={this.updateValue}
                             />
                         </div>
                         <div className="row">
@@ -54,12 +85,16 @@ class SignUp extends Component {
                                 textValue="Mot de passe"
                                 type="password"
                                 inputClass="form-control"
+								name="passwd"
+								onUpdate={this.updateValue}
                             />
                             <InputForm
                                 containerClass="form-group col-md-6"
                                 textValue="Confirmer votre mot de passe"
                                 type="password"
                                 inputClass="form-control"
+								name="passwdConfirmation"
+								onUpdate={this.updateValue}
                             />
                         </div>
                     </div>

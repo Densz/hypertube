@@ -6,7 +6,7 @@ class SignUpBlock extends Component {
         return (
             <div className="block-container">
                 <div className="container">
-                    {this.props.children}
+                    { this.props.children }
                 </div>
             </div>
         );

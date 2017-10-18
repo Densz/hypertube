@@ -22,6 +22,7 @@ class InputForm extends Component {
 				textEmpty: true,
 			});
 		}
+		this.props.onUpdate(this.props.name, evt.target.value);
 	};
 
     render() {
@@ -32,6 +33,7 @@ class InputForm extends Component {
                     textValue={this.props.textValue}
                 />
                 <input
+					name={this.props.name}
                     type={this.props.type}
                     className={this.props.inputClass}
                     onChange={this.updateInputValue}
