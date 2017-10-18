@@ -1,0 +1,25 @@
+{
+  "name": "hypertube",
+  "version": "1.0.0",
+  "description": "* Ce projet vous propose de créer une application web permettant à un utilisateur de rechercher et visionner des vidéos. Le lecteur sera directement intégré au site, et les vidéos seront téléchargées au travers du protocole BitTorrent.",
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^3.5.0"
+  },
+  "scripts": {
+	"start": "concurrently \"npm run client\" \"npm run server\"",
+	"client": "cd client && npm start",
+	"server": "cd server && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Densz/hypertube.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Densz/hypertube/issues"
+  },
+  "homepage": "https://github.com/Densz/hypertube#readme"
+}
