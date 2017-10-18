@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SignUpBlock from './SignUpBlock';
 import InputForm from "../../../General/components/InputForm";
 import "../css/signup.css";
+import callApi from '../../../ApiCaller/apiCaller';
 
 class SignUp extends Component {
 	constructor(props){
@@ -12,9 +13,10 @@ class SignUp extends Component {
 			email: '',
 			login: '',
 			passwd: '',
-			passwdConfirmation: ''
+			passwdConfirm: ''
 		}
-		this.updateValue = this.updateValue.bind(this);
+        this.updateValue = this.updateValue.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	updateValue = (key, value) => {
@@ -23,6 +25,19 @@ class SignUp extends Component {
 		})
 	}
 
+    handleSubmit(event) {
+        const inputValues = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            login: this.state.login,
+            password: this.state.passwd,
+            confirmPassword: this.state.passwdConfirm
+        }
+        event.preventDefault();
+        callApi('/api/signUp/submit', 'post', inputValues);
+    }
+
     componentDidMount() {
         let bodyStyle = document.body.style;
         let navBarStyle = document.querySelector('.navbar').style;
@@ -30,10 +45,6 @@ class SignUp extends Component {
         navBarStyle.background = '#20232a';
         bodyStyle.backgroundColor = '#f3f3f3';
     }
-
-	componentDidUpdate() {
-		console.log(this.state);
-	}
 
     render() {
         return (
@@ -93,13 +104,13 @@ class SignUp extends Component {
                                 textValue="Confirmer votre mot de passe"
                                 type="password"
                                 inputClass="form-control"
-								name="passwdConfirmation"
+								name="passwdConfirm"
 								onUpdate={this.updateValue}
                             />
                         </div>
                     </div>
 				</form>
-                <button className="login-button">
+                <button className="login-button" onClick={this.handleSubmit}>
                     Créer son compte
                 </button>
                 <br/><br/>

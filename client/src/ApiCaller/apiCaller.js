@@ -1,4 +1,4 @@
-const callApi = (url, method = 'get', params = undefined) => {
+function callApi(url, method = 'get', params = undefined){
 	let json = {
 		method: method
 	}
@@ -6,9 +6,9 @@ const callApi = (url, method = 'get', params = undefined) => {
 		'Accept': 'application/json',
 		'Content-Type': 'application/json',
 	}
-	params ? json.body = JSON.stringify(params) : ''
+	json.body = params ? JSON.stringify(params) : undefined;
 	return fetch(url, json)
-	.then((response) => response.json())
+	.then((response) => console.log(response.json()))
 	.then((responseJson) => responseJson)
 	.catch((error) => {
 		console.error(error);
