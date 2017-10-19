@@ -24,6 +24,7 @@ class SignUp extends Component {
 			[key]: {
 				title: prevState[key].title,
 				value: value, 
+				
 				error: ''}
 		}))
 	}
@@ -78,7 +79,7 @@ class SignUp extends Component {
                         <div className="row">
                             <InputForm
                                 containerClass="form-group col-md-12"
-                                textValue="E-mail"
+                                textValue={this.state.email.title}
                                 type="email"
                                 inputClass={ this.state.email.error ? "form-control error" : "form-control" }
 								name="email"
