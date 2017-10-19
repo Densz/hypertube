@@ -31,8 +31,8 @@ userSchema.methods.generateHash = (password) => {
 };
 
 // checking if password is valid
-userSchema.methods.checkPassword = (password) => {
-    return bcrypt.compareSync(password, this.password);
+userSchema.methods.checkPassword = (candidatePwd, userPwd) => {
+    return bcrypt.compareSync(candidatePwd, userPwd);
 }
 
 module.exports = mongoose.model('User', userSchema);
