@@ -33,12 +33,13 @@ class InputForm extends Component {
                     textValue={this.props.textValue}
                 />
                 <input
-                    required='true'
 					name={this.props.name}
                     type={this.props.type}
                     className={this.props.inputClass}
                     onChange={this.updateInputValue}
                 />
+				{this.props.errorMessage !== '' &&
+				<span className="form-error-message">{ this.props.errorMessage }</span>}
             </div>
         );
     }

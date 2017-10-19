@@ -8,21 +8,33 @@ class SignUp extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			firstName: {value: '', error: false},
-			lastName: {value: '', error: false},
-			email: {value: '', error: false},
-			login: {value: '', error: false},
-			passwd: {value: '', error: false},
-			passwdConfirm: {value: '', error: false}
+			firstName: {title: 'Prénom', value: '', error: ''},
+			lastName: {title: 'Nom', value: '', error: ''},
+			email: {title: 'E-mail', value: '', error: ''},
+			login: {title: 'Login', value: '', error: ''},
+			passwd: {title: 'Mot de passe', value: '', error: ''},
+			passwdConfirm: {title: 'Confirmation du mot de passe', value: '', error: ''}
 		}
         this.updateInputValue = this.updateInputValue.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	updateInputValue = (key, value) => {			
-		this.setState({
-			[key]: {value: value, error: false}
-		})
+		this.setState((prevState) => ({
+			[key]: {
+				title: prevState[key].title,
+				value: value, 
+				error: ''}
+		}))
+	}
+
+	setErrorMessage = (elem, errorMessage) => {
+		this.setState((prevState) => ({
+			[elem]: {
+				title: prevState[elem].title,
+				error: errorMessage
+			}
+		}))
 	}
 
     handleSubmit(event) {
@@ -38,7 +50,8 @@ class SignUp extends Component {
 		let errorBool = false;
         for (var elem in this.state) {
             if (this.state[elem].value === '' || this.state[elem].value === undefined) {
-				this.setState({[elem]: {error: true}});
+				let title = this.state[elem].title.toLowerCase();
+				this.setErrorMessage(elem, 'Le champ ' + title + ' est vide.');
 				errorBool = true;
 			}
 		}
@@ -69,51 +82,57 @@ class SignUp extends Component {
                                 type="email"
                                 inputClass={ this.state.email.error ? "form-control error" : "form-control" }
 								name="email"
-								onUpdate={this.updateInputValue}
+								onUpdate={ this.updateInputValue }
+								errorMessage={ this.state.email.error }
                             />
                         </div>
                         <div className="row">
                             <InputForm
                                 containerClass="form-group col-md-4"
-                                textValue="Login"
+                                textValue={this.state.login.title}
                                 type="text"
                                 inputClass={ this.state.login.error ? "form-control error" : "form-control" }
 								name="login"
 								onUpdate={this.updateInputValue}
+								errorMessage={ this.state.login.error }
                             />
                             <InputForm
                                 containerClass="form-group col-md-4"
-                                textValue="Prénom"
+                                textValue={ this.state.firstName.title }
                                 type="text"
                                 inputClass={ this.state.firstName.error ? "form-control error" : "form-control" }
 								name="firstName"
 								onUpdate={this.updateInputValue}
+								errorMessage={ this.state.firstName.error }
                             />
                             <InputForm
                                 containerClass="form-group col-md-4"
-                                textValue="Nom"
+                                textValue={ this.state.lastName.title }
                                 type="text"
                                 inputClass={ this.state.lastName.error ? "form-control error" : "form-control" }
 								name="lastName"
 								onUpdate={this.updateInputValue}
+								errorMessage={ this.state.lastName.error }
                             />
                         </div>
                         <div className="row">
                             <InputForm
                                 containerClass="form-group col-md-6"
-                                textValue="Mot de passe"
+                                textValue={ this.state.passwd.title }
                                 type="password"
                                 inputClass={ this.state.passwd.error ? "form-control error" : "form-control" }
 								name="passwd"
 								onUpdate={this.updateInputValue}
+								errorMessage={ this.state.passwd.error }
                             />
                             <InputForm
                                 containerClass="form-group col-md-6"
-                                textValue="Confirmer votre mot de passe"
+                                textValue={ this.state.passwdConfirm.title }
                                 type="password"
                                 inputClass={ this.state.passwdConfirm.error ? "form-control error" : "form-control" }
 								name="passwdConfirm"
 								onUpdate={this.updateInputValue}
+								errorMessage={ this.state.passwdConfirm.error }
                             />
                         </div>
                     </div>
