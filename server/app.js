@@ -9,6 +9,7 @@ const passport = require('passport');
 const index = require('./routes/index');
 const signUp = require('./routes/signUp');
 const signIn = require('./routes/signIn');
+const catalog = require('./routes/catalog');
 
 const app = express();
 
@@ -30,6 +31,7 @@ require('./config/passport')(passport);
 app.use('/api/index', index);
 app.use('/api/signUp', signUp);
 app.use('/api/signIn', signIn);
+app.use('/api/catalog', catalog);
 
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
