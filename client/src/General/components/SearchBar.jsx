@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import "../css/searchbar.css";
 
+const onUpdateFunction = (props, evt) => {
+	props.updateValue(evt.target.value);
+}
+
 const SearchTab = (props) => {
     return (
         <button className="search-bar" onClick={props.event}>
             <span className="glyphicon glyphicon-search"></span><span>&nbsp;&nbsp;Rechercher</span>
-        </button>
+        </button>		
     );
-};
+};	
 
 const SearchInput = (props) => {
     let placeHolder = (props.placeHolder ? 'Titres, personnes, genres' : '');
@@ -19,6 +23,7 @@ const SearchInput = (props) => {
 				placeholder={placeHolder} 
 				type="text"
 				name="searchBar"
+				onChange={(evt) => { onUpdateFunction(props, evt)}}
             />
         </div>
     );
@@ -26,7 +31,7 @@ const SearchInput = (props) => {
 
 const ComponentRendered = (props) => {
     if (props.searchBool) {
-        return <SearchInput event={props.tabOnClick} placeHolder={props.pH}/>
+        return <SearchInput event={props.tabOnClick} placeHolder={props.pH} updateValue={props.updateValue} />
     } else {
         return <SearchTab event={props.tabOnClick}/>
     }
@@ -65,7 +70,7 @@ class SearchBar extends Component {
     render() {
         return (
             <div className={this.state.containerClass + " search-box"}>
-                <ComponentRendered tabOnClick={this.handleClick} searchBool={this.state.searchClicked} pH={this.state.placeHolder}/>
+                <ComponentRendered tabOnClick={this.handleClick} searchBool={this.state.searchClicked} pH={this.state.placeHolder} updateValue={this.props.updateValue}/>
             </div>
         );
     }

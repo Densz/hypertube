@@ -1,10 +1,8 @@
 .search-box {
-    margin-top: 45px;
-    /* position: absolute; */
     display: inline-block;
     right: 10px;
     font-size: 17px;
-    color: #f3f3f3;    
+	color: #f3f3f3;
 }
 
 .search-input {
