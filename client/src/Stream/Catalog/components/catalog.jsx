@@ -7,7 +7,8 @@ class Catalog extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			catalog: {}
+			catalog: {},
+			pages: 0
 		}
 	}
 
@@ -17,12 +18,14 @@ class Catalog extends Component {
 		callApi('/api/catalog/')
 		.then((catalogMovies) => {
 			this.setState({
-				catalog: catalogMovies.data.movies 
+				catalog: catalogMovies.data.movies,
+				pages: Math.floor(catalogMovies.data.movie_count / 16)
 			})
 		})
 	}
 
 	render() {
+		console.log(this.state);
 		return (
 			<div className="row">
 				{ this.state.catalog.length > 0 && this.state.catalog.map((movieData, index) => {
