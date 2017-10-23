@@ -9,29 +9,27 @@ class Catalog extends Component {
 		super(props);
 		this.state = {
 			catalog: [],
-			pages: 0,
+			pages: 1,
 		}
 	}
 
 	componentDidMount() {
 		const bodyStyle = document.body.style;
 		bodyStyle.backgroundColor = '#20232a';
-		// callApi('/api/catalog/')
-		// .then((catalogMovies) => {
-		// 	this.setState({
-		// 		catalog: catalogMovies.data.movies,
-		// 		pages: Math.floor(catalogMovies.data.movie_count / 16),
-		// 		currentPage: 1
-		// 	})
-		// })
 	}
 
 	callMoreMovies() {
 		callApi('/api/catalog/', 'post', { pages: this.state.pages })
 		.then((catalogMovies) => {
-			//let catalogArray = this.state.catalog;
+			let catalogArray = this.state.catalog;
+			catalogMovies.data.movies.map(
+				(movieData) => {
+					catalogArray.push(movieData);
+					return undefined;
+				}
+			);
 			this.setState((prevState) => ({
-				catalog: catalogMovies.data.movies,
+				catalog: catalogArray,
 				pages: prevState.pages + 1
 			}))
 		})
@@ -41,13 +39,12 @@ class Catalog extends Component {
 		let items = [];
 		this.state.catalog.map((movieData, index) => {
 			items.push(<Thumbnail key={index} infos={movieData} />);
-			return items;
+			return undefined;
 		})
 
 		return (
 			<div className="row">
 				<InfiniteScroll
-					pageStart={0}
 					loadMore={this.callMoreMovies.bind(this)}
 					hasMore={true}
 					loader={<div className="loader">Loading ...</div>}
