@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import SearchBar from '../../../General/components/SearchBar';
 
 const ComponentRendered = (props) => {
     let rendering = [];
     if (props.signInButton) {
         rendering.push(<a href="/signIn" key={rendering.length} className="button-link">S'identifier</a>);
-    } else if (props.catalogPage) {
-        rendering.push(<SearchBar key={rendering.length} />);
-    } if (props.loggedIn) {
+	}
+	if (props.loggedIn) {
         rendering.push(<a href="/signOut" key={rendering.length} id="sign-out" className="button-link">Disconnect</a>);
     }
     return rendering;

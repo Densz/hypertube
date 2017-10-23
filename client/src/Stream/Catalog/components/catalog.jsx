@@ -3,6 +3,7 @@ import Thumbnail from './thumbnail';
 import callApi from '../../../ApiCaller/apiCaller';
 import '../css/catalog.css';
 import InfiniteScroll from 'react-infinite-scroller';
+import SearchBar from '../../../General/components/SearchBar';
 
 class Catalog extends Component {
 	constructor(props) {
@@ -44,6 +45,7 @@ class Catalog extends Component {
 
 		return (
 			<div className="row">
+				<SearchBar />			
 				<InfiniteScroll
 					loadMore={this.callMoreMovies.bind(this)}
 					hasMore={true}
