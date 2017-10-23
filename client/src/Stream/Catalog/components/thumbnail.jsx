@@ -18,7 +18,7 @@ class Thumbnail extends Component {
 	render() {
 		return (
 			<div className="movie-details">
-				<img className="img-movie" alt={this.props.infos.title} src={this.props.infos.img} onMouseEnter={this.showInfo} />
+				<img className="img-movie" alt={this.props.infos.title_english} src={this.props.infos.medium_cover_image} onMouseEnter={this.showInfo} />
 				{this.state.infoToggled &&
 				<div className="about-movie" onMouseLeave={this.showInfo}>
 					<p className="movie-text">{this.props.infos.title}</p>

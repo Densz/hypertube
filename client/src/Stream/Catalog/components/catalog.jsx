@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
 import Thumbnail from './thumbnail';
+import callApi from '../../../ApiCaller/apiCaller';
 import '../css/catalog.css';
 
-const catalogtest = {
-	img: 'https://yts.ag/assets/images/movies/war_for_the_planet_of_the_apes_2017/medium-cover.jpg',
-	title: 'Planet des singes',
-	rating: '3',
-};
-
 class Catalog extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			catalog: {}
+		}
+	}
+
 	componentDidMount() {
 		const bodyStyle = document.body.style;
 		bodyStyle.backgroundColor = '#20232a';
+		callApi('/api/catalog/')
+		.then((catalogMovies) => {
+			this.setState({
+				catalog: catalogMovies.data.movies 
+			})
+		})
 	}
 
 	render() {
 		return (
 			<div className="row">
-				<Thumbnail infos={catalogtest} />
-				<Thumbnail infos={catalogtest} />
+				{ this.state.catalog.length > 0 && this.state.catalog.map((movieData, index) => {
+					return (<Thumbnail key={index} infos={movieData} />)
+				}) }
 			</div>
 		);
 	}

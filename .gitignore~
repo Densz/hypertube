@@ -60,4 +60,7 @@ typings/
 #.vscode
 .vscode
 
+# secret passport string
+config.js
+
 db
