@@ -8,18 +8,35 @@
 
 .about-movie {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     width: 230px;
-    height: 345px;
-    padding: 3%;
-    margin-top: -345px;
+	height: 345px;
+	padding-top: 3%;
+	margin-top: -345px;
+	text-align: center;
+	cursor: pointer;
 }
 
 .img-movie {
-    width: 100%;
+	width: 100%;
 }
 
-.movie-text {
-    font-size: 20px;
-    color: white;
+.movie-title {
+    font-size: 26px;
+	color: #81D8F5;
+}
+
+.movie-year {
+    font-size: 16px;
+	color: #81D8F5;
+}
+
+.movie-rating {
+	font-size: 26px;
+	color: #DBB246;
+}
+
+.imdb{
+	font-size: 16px;
+	color: #DBB246;
 }
