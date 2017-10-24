@@ -4,6 +4,7 @@ const db = require('../config/database');
 const User = require('../models/user');
 const jwt =require('jsonwebtoken');
 const config = require('../config/config');
+const validator = require('validator');
 
 router.post('/signIn/submit', (req, res, next) => {
 	const login = req.body.login;
@@ -38,7 +39,44 @@ router.post('/signIn/submit', (req, res, next) => {
 	});
 });
 
+function validateSignUpForm (payload) {
+	const errors = {};
+	let isFormValid = true;
+
+	if (typeof payload.email !== 'string' || !validator.isEmail(payload.email)) {
+		isFormValid = false;
+		errors.email = 'Please provide a correct email address';
+	}
+	if (typeof payload.password !== 'string' || payload.password.trim().length < 6) {
+		isFormValid = false;
+		errors.password = 'Password must have at least 8 characters';
+	}
+	if (payload.confirmPassword !== payload.password) {
+		isFormValid = false;
+		errors.password = 'Password confirmation must match Password';
+	}
+	if (typeof payload.login !== 'string' || payload.login.trim().length < 5){
+		isFormValid = false;
+		errors.login = 'Login must have at least 5 characters';
+	}
+	return {
+		success: isFormValid,
+		errors
+	}
+}
+router.post('/signUp/submit/' ,(req, res, next) => {
+	const validationResult = validateSignUpForm(req.body);
+	if (!validationResult.success) {
+		return res.json({
+			success: false,
+			errors: validationResult.errors
+		})
+	} else {
+		next();
+	}
+})
 router.post('/signUp/submit', (req, res, next) => {
+
 	let newUser = new User();
 	
 	newUser.firstName = req.body.firstName;
