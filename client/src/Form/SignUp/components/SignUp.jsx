@@ -57,7 +57,7 @@ class SignUp extends Component {
 			}
 		}
 		if (!errorBool)
-			callApi('/api/signUp/submit', 'post', inputValues);
+			callApi('/api/auth/signUp/submit', 'post', inputValues);
 	}
 
     componentDidMount() {
