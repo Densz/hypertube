@@ -7,8 +7,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 
 const index = require('./routes/index');
-const signUp = require('./routes/signUp');
-const signIn = require('./routes/signIn');
+const auth = require('./routes/auth');
 const catalog = require('./routes/catalog');
 
 const app = express();
@@ -29,8 +28,7 @@ require('./config/passport')(passport);
 
 // Routes
 app.use('/api/index', index);
-app.use('/api/signUp', signUp);
-app.use('/api/signIn', signIn);
+app.use('/api/auth', auth);
 app.use('/api/catalog', catalog);
 
 app.get('/robots.txt', function (req, res) {

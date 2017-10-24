@@ -52,6 +52,7 @@ typings/
 *.tgz
 
 # Yarn Integrity file
+yarn.lock
 .yarn-integrity
 
 # dotenv environment variables file
@@ -59,7 +60,5 @@ typings/
 
 #.vscode
 .vscode
-
 db
-
 .idea

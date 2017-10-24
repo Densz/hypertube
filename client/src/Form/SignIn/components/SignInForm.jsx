@@ -48,7 +48,7 @@ class SignInForm extends Component {
 			}
 		}
 		if (!errorBool)
-			callApi('/api/signIn/submit', 'post', inputValues);
+			callApi('/api/auth/signIn/submit', 'post', inputValues);
 	}
 
 	render() {
