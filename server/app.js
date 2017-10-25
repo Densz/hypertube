@@ -6,9 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 import { facebookStrategy, fortytwoStrategy } from './config/oAuth';
-// -----------------------------------------------------------------------Facebook Auth
-// const facebookStrategy = require('passport-facebook').Strategy;
-// const fortytwoStrategy = require('passport-42').Strategy;
+
 passport.use(facebookStrategy);
 passport.use(fortytwoStrategy);
 
@@ -41,11 +39,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/index', index);
 app.use('/api/auth', auth);
 app.use('/api/catalog', catalog);
-app.get('/', (req, res) => { res.json({ index: true } )})
 
 // Passport Authentication
 app.get('/api/login/facebook', passport.authenticate('facebook'));
+app.get('/api/login/facebookCallback', passport.authenticate('facebook', { failureRedirect: '/' }), function(req, res) {
+	res.redirect('http://localhost:3000/catalog');
+})
 app.get('/api/login/fortytwo', passport.authenticate('42'));
+app.get('/api/login/fortytwoCallback', passport.authenticate('42', { failureRedirect: '/' }), function(req, res) {
+	res.redirect('http://localhost:3000/catalog');
+})
 
 app.get('/robots.txt', function (req, res) {
 	res.type('text/plain');

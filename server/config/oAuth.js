@@ -5,17 +5,18 @@ const config = require('./config');
 const facebookStrategy = new fbStrategy({
 	clientID: config.facebookApi.clientID,
 	clientSecret: config.facebookApi.clientSecret,
-	callbackURL: 'http://localhost:3000/catalog',
+	callbackURL: '/api/login/facebookCallback',
 	profileFields: ['id', 'email', 'first_name']
 }, function(accessToken, refreshToken, profile, cb) {
 	console.log('Facebook Strategy');
+	console.log(profile);
 	return cb(null, profile);
 });
 
 const fortytwoStrategy = new ftStrategy({
 	clientID: config.fortytwoApi.clientID,
-	clientSecret: config.facebookApi.clientSecret,
-	callbackURL: 'http://localhost:3000/catalog',
+	clientSecret: config.fortytwoApi.clientSecret,
+	callbackURL: '/api/login/fortytwoCallback',
 	profileFields: {
 		'id': function (obj) { return String(obj.id); },
 		'username': 'login',
