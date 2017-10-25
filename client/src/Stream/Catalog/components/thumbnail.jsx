@@ -16,7 +16,6 @@ class Thumbnail extends Component {
 	}
 
 	render() {
-		console.log(this.props.infos);
 		return (
 			<div className="movie-details">
 				<img className="img-movie" alt={this.props.infos.title_english} src={this.props.infos.medium_cover_image} onMouseEnter={this.showInfo} />
