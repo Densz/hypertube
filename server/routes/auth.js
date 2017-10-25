@@ -76,7 +76,6 @@ router.post('/signUp/submit/' ,(req, res, next) => {
 	}
 })
 router.post('/signUp/submit', (req, res, next) => {
-
 	let newUser = new User();
 	
 	newUser.firstName = req.body.firstName;
