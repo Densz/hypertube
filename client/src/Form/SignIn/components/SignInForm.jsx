@@ -84,7 +84,7 @@ class SignInForm extends Component {
             <br/><br/>
             <br/><br/>
             <hr/>
-            <img src="/images/facebook.png" className="facebook-logo" alt="Facebook" />&nbsp;&nbsp;<a href="/loginWithFacebook">S'identifier avec Facebook ?</a>
+            <img src="/images/facebook.png" className="facebook-logo" alt="Facebook" />&nbsp;&nbsp;<a href="http://localhost:3001/api/login/facebook">S'identifier avec Facebook ?</a>
             <p>Première visite sur Hypertube ? <a href="/signUp">Inscrivez-vous</a>.</p>
         </SignInBlock>
 		)

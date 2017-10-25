@@ -10,7 +10,7 @@ class Routes extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isLogged: true
+			isLogged: false
 		}
 	}
 

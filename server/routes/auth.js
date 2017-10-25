@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/database');
 const User = require('../models/user');
-const jwt =require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 const validator = require('validator');
 
