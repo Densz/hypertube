@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/database');
-const User = require('../models/user');
+const validator = require('validator');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
-const validator = require('validator');
+const db = require('../config/database');
+const User = require('../models/user');
 
 router.post('/signIn/submit', (req, res, next) => {
 	const login = req.body.login;
@@ -39,7 +39,7 @@ router.post('/signIn/submit', (req, res, next) => {
 	});
 });
 
-function validateSignUpForm (payload) {
+function validateSignUpForm(payload) {
 	const errors = {};
 	let isFormValid = true;
 
