@@ -1,8 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import InputForm from "../../../General/components/InputForm";
+import React from 'react';
 import "../css/myprofile.css";
-import callApi from '../../../ApiCaller/apiCaller';
 
 class ProfileItem extends React.Component {
     constructor(props) {
@@ -32,7 +29,7 @@ class ProfileItem extends React.Component {
     };
 
     handleSubmit = (event) => {
-      // event.preventDefault();
+      event.preventDefault();
       console.log('handle submit');
       this.props.submitData(this.props.name, this.state.value);
       this.setState({
@@ -41,6 +38,7 @@ class ProfileItem extends React.Component {
     };
 
     handleBlur = () => {
+        console.log('setting inactive');
         this.setState({
             value: this.props.item.value,
             isActive: false
@@ -50,25 +48,27 @@ class ProfileItem extends React.Component {
     render() {
         let component = this.state.isActive ? (
                 <div>
-                    <div className="col-md-8">
-                        <input autoFocus name={this.props.name} onBlur={this.handleBlur} onInput={this.handleInput} type={this.props.type} value={this.state.value} placeholder={this.props.item.title} />
-                        {this.props.item.error !== '' && <span className="form-error-message">{ this.props.item.error }</span>}
-                    </div>
-                    <div className="col-md-4">
-                        <button type="submit">Change {this.props.item.title}</button>
+                    <div className="col-md-12" tabIndex="1" onBlur={this.handleBlur}>
+                        <div className="input-group">
+                            <input autoFocus className="form-control" name={this.props.name} onChange={this.handleInput} type={this.props.type} value={this.state.value} placeholder={this.props.item.title} />
+                            <span className="input-group-btn">
+                                <button onClick={this.handleSubmit} className="btn" type="submit">Change {this.props.item.title}</button>
+                            </span>
+                            {this.props.item.error !== '' && <span className="form-error-message">{ this.props.item.error }</span>}
+                        </div>
                     </div>
                 </div>
             ) : (
                 <div>
                     <div className="col-md-12" onClick={this.handleClick}>
-                        {this.props.item.value}
+                        <div className="text-left">{this.props.item.value}</div>
                     </div>
                 </div>
             );
 
         return (
             <form name={this.props.name} onSubmit={this.handleSubmit}>
-                <div className="form-row form-group">
+                <div className="row form-group align-middle detail-section">
                     {component}
                 </div>
             </form>
@@ -94,7 +94,7 @@ class MyProfile extends React.Component {
     submitData = (name, value) => {
         let error = '',
             item = this.state[name];
-
+        console.log('name = ' + name + ' value = ' + value);
         if (value === '' || value === undefined) {
             error = "Please enter updated " + item.title.toLowerCase();
         } else {
@@ -107,6 +107,7 @@ class MyProfile extends React.Component {
         this.setState({
             [name]: item
         });
+        console.log(this.state);
     };
 
     componentDidMount() {
@@ -118,6 +119,7 @@ class MyProfile extends React.Component {
     }
 
     render () {
+        console.log(this.state);
         return (
             <div className="block-container">
                 <div className="container">

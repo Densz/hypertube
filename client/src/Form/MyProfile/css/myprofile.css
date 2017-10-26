@@ -1,3 +1,9 @@
 .account-section {
     border-top: 1px solid #999;
 }
+
+.detail-section {
+    height: 3em;
+    display: flex;
+    align-items: center;
+}
