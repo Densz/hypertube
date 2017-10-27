@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
+import callApi from '../../../ApiCaller/apiCaller';
 import '../css/movie.css';
+import Movieview from './movieview';
+import Moviedescription from './moviedescription';
 
 class Movie extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			imdb_code: this.props.match.params.imdb
+			title: '',
+			poster: '',
+			genres: [],
+			budget: '',
+			description: '',
+			release_date: '',
+			vote_average: '',
+			vote_count: ''
 		}
 	}
 
@@ -14,11 +24,34 @@ class Movie extends Component {
 		bodyStyle.backgroundColor = '#20232a';
 	}
 
+	componentWillMount() {
+		this.callInfoMovie();
+	}
+
+	callInfoMovie() {
+		console.log(this.props.match);
+		callApi('/api/movie/', 'post', {imdb_code: this.props.match.params.imdb})
+		.then((infoMovie) => {
+			console.log(infoMovie);
+			this.setState((prevState) => ({
+				title: infoMovie.original_title,
+				poster: infoMovie.poster_path,
+				genres: infoMovie.genres,
+				budget: infoMovie.budget,
+				description: infoMovie.overview,
+				release_date: infoMovie.release_date,
+				vote_average: infoMovie.vote_average,
+				vote_count: infoMovie.vote_count
+			}))
+		})
+	}
+
 	render() {
 		return(
-			<div className="row">
-				<p>Imdb_code</p>
-				{this.state.imdb_code}
+			<div className="container">
+				<h1>{this.state.title}</h1>
+				<Movieview />
+				<Moviedescription states={this.state}/>
 			</div>
 		)
 	}
