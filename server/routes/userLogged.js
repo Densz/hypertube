@@ -4,7 +4,7 @@ const User = require('../models/user');
 
 router.get('/', (req, res, next) => {
 	res.json({
-		userLogged: req.isAuthenticated()
+		userLogged: req.user
 	})
 })
 

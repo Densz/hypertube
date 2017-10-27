@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import callApi from '../../../ApiCaller/apiCaller';
+import { callApi } from '../../../ApiCaller/apiCaller';
 import '../css/movie.css';
 import Movieview from './movieview';
 import Moviedescription from './moviedescription';

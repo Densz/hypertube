@@ -6,6 +6,7 @@ import MyProfile from "./Form/MyProfile/components/MyProfile";
 import Layout from "./General/templates/components/Layout";
 import Catalog from "./Stream/Catalog/components/catalog";
 import Video from "./Stream/Movie/components/movie";
+import { isLogged } from "./ApiCaller/apiCaller";
 
 class Routes extends Component {
 	constructor(props) {
@@ -15,6 +16,15 @@ class Routes extends Component {
 		}
 	}
 
+	componentDidMount() {
+		isLogged()
+		.then((response) => {
+			this.setState({
+				isLogged: response.userLogged
+			})
+		});
+	}
+
     render() {
         return (
             <Layout>
@@ -22,7 +32,10 @@ class Routes extends Component {
                     <div>
                         <Switch>
                             <Route exact path="/" render={() => (
-								this.state.isLogged ? (<Redirect to="/catalog"><Catalog /></Redirect>) : <SignIn />)} />
+								this.state.isLogged._id ?
+								( <Redirect to="/catalog"></Redirect> ) : 
+								( <SignIn /> )
+							)} />
                             <Route path="/signUp" component={SignUp} />
                             <Route path="/myProfile" component={MyProfile} />
                             <Route path="/catalog" component={Catalog} />

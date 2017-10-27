@@ -18,4 +18,19 @@ const callApi = (url, method = 'get', params = undefined) => {
 	})
 }
 
-export default callApi;
+const isLogged = () => {
+	return new Promise((res, rej) => {
+		fetch('/api/userLogged', { credentials: 'same-origin' })
+		.then((response) => {
+			res(response.json())
+		})
+		.catch((error) => {
+			rej(error);
+		});
+	})
+}
+
+module.exports = {
+	callApi: callApi,
+	isLogged: isLogged
+}

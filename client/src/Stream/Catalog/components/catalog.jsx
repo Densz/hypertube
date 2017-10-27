@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Thumbnail from './thumbnail';
-import callApi from '../../../ApiCaller/apiCaller';
+import { callApi } from '../../../ApiCaller/apiCaller';
 import '../css/catalog.css';
 import InfiniteScroll from 'react-infinite-scroller';
 import SearchBar from '../../../General/components/SearchBar';

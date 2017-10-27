@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SignUpBlock from './SignUpBlock';
 import InputForm from "../../../General/components/InputForm";
 import "../css/signup.css";
-import callApi from '../../../ApiCaller/apiCaller';
+import { callApi } from '../../../ApiCaller/apiCaller';
 
 class SignUp extends Component {
 	constructor(props){
