@@ -96,7 +96,8 @@ class MyProfile extends React.Component {
             item = this.state[name];
         console.log('name = ' + name + ' value = ' + value);
         if (value === '' || value === undefined) {
-            error = "Please enter updated " + item.title.toLowerCase();
+			error = "Please enter updated " + item.title.toLowerCase();
+			console.log(error);
         } else {
             //submit to database,
             //if success

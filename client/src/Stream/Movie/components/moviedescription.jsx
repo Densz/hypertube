@@ -18,7 +18,7 @@ class Moviedescription extends Component {
                    <p>Note : {this.props.states.vote_average} ({this.props.states.vote_count} Vote(s))</p>
                 </div>
                 <div className="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                    <img className="img-fluid img-thumbnail" src={"http://image.tmdb.org/t/p/original" + this.props.states.poster} />
+                    <img alt="faut mettre une alt sur toute les images" className="img-fluid img-thumbnail" src={"http://image.tmdb.org/t/p/original" + this.props.states.poster} />
                 </div>
             </div>
         )
