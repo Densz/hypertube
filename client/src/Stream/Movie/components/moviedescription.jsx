@@ -11,11 +11,11 @@ class Moviedescription extends Component {
         return (
             <div className="row">
                 <div className="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                   Genre : {genres}
-                   Budget : {this.props.states.budget + ' $'}
-                   Overview : {this.props.states.description}
-                   Release : {this.props.states.release_date}
-                   Note : {this.props.states.vote_average} ({this.props.states.vote_count} Vote(s))
+                   <p>Genre : {genres}</p>
+                   <p>Budget : {this.props.states.budget + ' $'}</p>
+                   <p>Overview : {this.props.states.description}</p>
+                   <p>Release : {this.props.states.release_date}</p>
+                   <p>Note : {this.props.states.vote_average} ({this.props.states.vote_count} Vote(s))</p>
                 </div>
                 <div className="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                     <img className="img-fluid img-thumbnail" src={"http://image.tmdb.org/t/p/original" + this.props.states.poster} />
