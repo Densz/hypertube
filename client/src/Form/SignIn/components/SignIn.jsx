@@ -39,7 +39,16 @@ class SignIn extends Component {
         bodyStyle.backgroundColor = 'black';
         bodyStyle.backgroundSize = 'cover';
     }
-    
+	
+	componentWillUnmount() {
+		let bodyStyle = document.body.style;
+
+        bodyStyle.backgroundImage = '';
+        bodyStyle.backgroundRepeat = '';
+        bodyStyle.backgroundColor = '';
+        bodyStyle.backgroundSize = '';
+	}
+
     render() {
         return (
             <ComponentRendered
