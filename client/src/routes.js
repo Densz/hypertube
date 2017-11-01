@@ -12,14 +12,14 @@ class Routes extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isLogged: false,
+			isLogged: true, // to acces to catalog
 			infos: {}
 		}
-		isLogged()
-		.then((response) => {
-			this.setState(response);
-			console.log(this.state);
-		})
+		// isLogged()
+		// .then((response) => {
+		// 	this.setState(response);
+		// 	console.log(this.state);
+		// })
 	}
 
     render() {
@@ -48,11 +48,7 @@ class Routes extends Component {
 								( <Redirect to="/"></Redirect> ) : 
 								( <Catalog /> )
 							)} />
-							<Route path="/video/:imdb" render={() => (
-								!this.state.isLogged ?
-								( <Redirect to="/"></Redirect> ) : 
-								( <Video /> )
-							)} />
+							<Route path="/video/:imdb" component={Video}/>
                         </Switch>
                     </div>
                 </Router>

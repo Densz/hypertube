@@ -29,7 +29,7 @@ class Movie extends Component {
 	}
 
 	callInfoMovie() {
-		console.log(this.props.match);
+		console.log(this.props.match.params);
 		callApi('/api/movie/', 'post', {imdb_code: this.props.match.params.imdb})
 		.then((infoMovie) => {
 			console.log(infoMovie);
