@@ -13,6 +13,7 @@ const auth = require('./routes/auth');
 const catalog = require('./routes/catalog');
 const userLogged = require('./routes/userLogged');
 const movie = require('./routes/movie');
+const torrent = require('./routes/torrent');
 // Import Strategies
 import { facebookStrategy, fortytwoStrategy } from './config/oAuth';
 // Import test
@@ -49,6 +50,7 @@ app.use('/api/index', index);
 app.use('/api/catalog', catalog);
 app.use('/api/userLogged', userLogged);
 app.use('/api/movie', movie);
+app.use('/api/torrent', torrent);
 
 // Authentication Routes using Passport
 app.use('/api/auth', auth);

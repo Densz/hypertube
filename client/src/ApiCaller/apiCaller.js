@@ -10,7 +10,11 @@ const callApi = (url, method = 'get', params = undefined) => {
 		};
 		fetch(url, json)
 		.then((response) => {
-			res(response.json())
+			if (response.status === 500) {
+				return ;
+			} else {
+				res(response.json())
+			}
 		})
 		.catch((error) => {
 			rej(error);

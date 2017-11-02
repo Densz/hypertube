@@ -20,7 +20,7 @@ class Thumbnail extends Component {
 			<div className="movie-details">
 				<img className="img-movie" alt={this.props.infos.title_english} src={this.props.infos.medium_cover_image} onMouseEnter={this.showInfo} />
 				{ this.state.infoToggled &&
-				<a href={"/video/" + this.props.infos.imdb_code}>
+				<a href={"/video/" + this.props.infos.imdb_code + "/" + this.props.infos.id}>
 					<div className="about-movie" onMouseLeave={this.showInfo}>
 						<p className="movie-title">{this.props.infos.title}</p>
 						<p className="movie-year">({this.props.infos.year})</p>

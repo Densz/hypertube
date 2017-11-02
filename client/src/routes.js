@@ -48,7 +48,7 @@ class Routes extends Component {
 								( <Redirect to="/"></Redirect> ) : 
 								( <Catalog /> )
 							)} />
-							<Route path="/video/:imdb" component={Video}/>
+							<Route path="/video/:imdb/:id" component={Video}/>
                         </Switch>
                     </div>
                 </Router>
