@@ -12,14 +12,15 @@ class Routes extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isLogged: true, // to acces to catalog
+			isLogged: false, // to acces to catalog
+			isFetching: false,
 			infos: {}
 		}
-		// isLogged()
-		// .then((response) => {
-		// 	this.setState(response);
-		// 	console.log(this.state);
-		// })
+		isLogged()
+		.then((response) => {
+			this.setState(response);
+			console.log(this.state);
+		})
 	}
 
     render() {
@@ -27,29 +28,31 @@ class Routes extends Component {
             <Layout>
                 <Router>
                     <div>
-                        <Switch>
-							<Route exact path="/" render={() => (
-								!this.state.isLogged ?
-								( <SignIn /> ) :
-								( <Redirect to="/catalog"></Redirect> )
-							)} />
-							<Route path="/signUp" render={() => (
-								!this.state.isLogged ?
-								( <SignUp /> ) :
-								( <Redirect to="/catalog"></Redirect> )
-							)} />
-							<Route path="/myProfile" render={() => (
-								this.state.isLogged ?
-								( <MyProfile /> ) :
-								( <Redirect to="/"></Redirect> )
-							)} />
-							<Route path="/catalog" render={() => (
-								!this.state.isLogged ?
-								( <Redirect to="/"></Redirect> ) : 
-								( <Catalog /> )
-							)} />
-							<Route path="/video/:imdb/:id" component={Video}/>
-                        </Switch>
+						{ this.state && this.state.isFetching &&
+							<Switch>
+								<Route exact path="/" render={() => (
+									!this.state.isLogged ?
+									( <SignIn /> ) :
+									( <Redirect to="/catalog"></Redirect> )
+								)} />
+								<Route path="/signUp" render={() => (
+									!this.state.isLogged ?
+									( <SignUp /> ) :
+									( <Redirect to="/catalog"></Redirect> )
+								)} />
+								<Route path="/myProfile" render={() => (
+									this.state.isLogged ?
+									( <MyProfile /> ) :
+									( <Redirect to="/"></Redirect> )
+								)} />
+								<Route path="/catalog" render={() => (
+									!this.state.isLogged ?
+									( <Redirect to="/"></Redirect> ) : 
+									( <Catalog /> )
+								)} />
+								<Route path="/video/:imdb/:id" component={Video}/>
+							</Switch>
+						}
                     </div>
                 </Router>
             </Layout>
