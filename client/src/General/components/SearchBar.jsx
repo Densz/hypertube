@@ -60,10 +60,14 @@ class SearchBar extends Component {
     };
 
     componentDidUpdate() {
-        let inputSearch = document.querySelector('#input-search');
+		let inputSearch = document.querySelector('#input-search');
 
-        if (inputSearch) {
-            inputSearch.addEventListener('focusout', this.handleClick);
+		if (inputSearch) {
+			if (inputSearch.value.length === 0) {
+				inputSearch.addEventListener('focusout', this.handleClick);				
+			} else {
+				inputSearch.removeEventListener('focusout', this.handleClick);
+			}
         }
     }
     
