@@ -64,3 +64,4 @@ db
 .idea
 *.DS_store*
 database
+.DS_Store

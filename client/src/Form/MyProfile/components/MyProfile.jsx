@@ -1,5 +1,6 @@
 import React from 'react';
 import "../css/myprofile.css";
+import ReactTooltip from 'react-tooltip';
 
 class ProfileItem extends React.Component {
     constructor(props) {
@@ -61,7 +62,8 @@ class ProfileItem extends React.Component {
             ) : (
                 <div>
                     <div className="col-md-12" onClick={this.handleClick}>
-                        <div className="text-left">{this.props.item.value}</div>
+                        <div className="text-left" data-tip="Click to change">{this.props.item.value}</div>
+                        <ReactTooltip place="right" type="dark" effect="solid"/>
                     </div>
                 </div>
             );
