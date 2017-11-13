@@ -84,12 +84,14 @@ class Catalog extends Component {
 					</div>
 				</div>
 				<div className="row">
-					<InfiniteScroll
-						loadMore={this.callMoreMovies.bind(this)}
-						hasMore= {this.state.hasMore}
-					>
-						{items}
-					</InfiniteScroll>
+					<div className="catalog-box">
+						<InfiniteScroll
+							loadMore={this.callMoreMovies.bind(this)}
+							hasMore= {this.state.hasMore}
+						>
+							{items}
+						</InfiniteScroll>
+					</div>
 				</div>
 			</div>
 		);
