@@ -34,7 +34,20 @@ const isLogged = () => {
 	})
 }
 
+const logOut = () => {
+	return new Promise((res, rej) => {
+		fetch('/api/auth/signOut', { credentials: 'same-origin' })
+		.then((response) => {
+			res(response.json());
+		})
+		.catch((error) => {
+			rej(error);
+		});
+	});
+};
+
 module.exports = {
 	callApi: callApi,
-	isLogged: isLogged
+	isLogged: isLogged,
+	logOut: logOut,
 }
