@@ -3,15 +3,20 @@ const router = express.Router();
 const User = require('../models/user');
 
 router.get('/', (req, res, next) => {
+	console.log('====================================');
+	console.log(req.user);
+	console.log('====================================');
 	if (!req.user){
 		res.json({
 			isLogged: false,
-			infos: {}
+			infos: {},
+			isFetching: true,
 		})	
 	} else {
 		res.json({
 			isLogged: true,
-			infos: req.user
+			infos: req.user,
+			isFetching: true,
 		})
 	}
 })

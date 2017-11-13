@@ -3,6 +3,9 @@ import { callApi } from '../../../ApiCaller/apiCaller';
 import '../css/movie.css';
 import Movieview from './movieview';
 import Moviedescription from './moviedescription';
+import fs from 'fs';
+import request from 'request';
+
 
 class Movie extends Component {
 	constructor(props) {
@@ -15,7 +18,9 @@ class Movie extends Component {
 			description: '',
 			release_date: '',
 			vote_average: '',
-			vote_count: ''
+			vote_count: '',
+			torrent720: '',
+			torrent1080: ''
 		}
 	}
 
@@ -26,7 +31,8 @@ class Movie extends Component {
 
 	componentWillMount() {
 		this.callInfoMovie();
-		// this.callInfoTorrent();
+		this.callInfoTorrent();
+		// this.testTest();
 	}
 
 	callInfoMovie() {
@@ -47,9 +53,20 @@ class Movie extends Component {
 	}
 
 	callInfoTorrent() {
-		callApi('/api/torrent/', 'post', {id : this.props.match.params.id})
+		callApi('/api/torrent/', 'post', {id: this.props.match.params.id})
 		.then((infoTorrent) => {
-			console.log(infoTorrent);
+			this.setState((prevState) => ({
+				torrent720: infoTorrent.data.movie.torrents[0].url,
+				torrent1080: infoTorrent.data.movie.torrents[1].url
+			}))
+			this.testTest();
+		})
+	}
+
+	testTest() {
+		callApi('/dlltorrent', 'post', {url: this.state.torrent720})
+		.then((test) => {
+			console.log(test);
 		})
 	}
 
