@@ -96,4 +96,9 @@ router.post('/signUp/submit', (req, res, next) => {
 	});
 });
 
+router.get('/signOut', (req, res, next) => {
+	req.logout();
+	res.json({success: true, msg: 'User disconnected'})
+});
+
 module.exports = router;
