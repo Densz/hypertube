@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
+const credentials = require('./mLab.js');
 
-mongoose.connect('mongodb://localhost:27017/hypertube', {useMongoClient: true});
+let mongoUri = "mongodb://" + credentials.username + ":" + credentials.password + "@ds159845.mlab.com:59845/dankertube";
+
+mongoose.connect(mongoUri, {useMongoClient: true});
 mongoose.Promise = global.Promise;
 
 var db = mongoose.connection;

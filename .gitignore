@@ -65,3 +65,4 @@ db
 *.DS_store*
 database
 .DS_Store
+server/config/mlab.js
