@@ -79,7 +79,7 @@ class Catalog extends Component {
 		return (
 			<div>
 				<div className="row">
-					<div className="col-sm-3">
+					<div className="col-sm-3 container-search-bar">
 						<SearchBar updateValue={this.updateSearchInput} />
 					</div>
 				</div>

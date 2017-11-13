@@ -21,6 +21,10 @@
 	width: 100%;
 }
 
+.container-search-bar {
+	height: 38px;
+}
+
 .movie-title {
     font-size: 26px;
 	color: #81D8F5;
