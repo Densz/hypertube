@@ -1,5 +1,5 @@
 .movie-details {
-    display: inline-block;
+	display: inline-block;
     height: 345px;
     width: 230px;
     vertical-align: top;
@@ -8,17 +8,21 @@
 
 .about-movie {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.8);
+	background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1),rgba(0, 0, 0, 0) 100%);
     width: 230px;
-	height: 345px;
+	height: 120px;
 	padding-top: 3%;
-	margin-top: -345px;
+	margin-top: -120px;
 	text-align: center;
 	cursor: pointer;
 }
 
 .img-movie {
 	width: 100%;
+}
+
+.container-search-bar {
+	height: 38px;
 }
 
 .movie-title {

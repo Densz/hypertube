@@ -3,6 +3,8 @@ const credentials = require('./mLab.js');
 
 let mongoUri = "mongodb://" + credentials.username + ":" + credentials.password + "@ds159845.mlab.com:59845/dankertube";
 
+console.log(mongoUri);
+
 mongoose.connect(mongoUri, {useMongoClient: true});
 mongoose.Promise = global.Promise;
 
