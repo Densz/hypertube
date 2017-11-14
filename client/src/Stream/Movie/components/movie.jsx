@@ -18,7 +18,8 @@ class Movie extends Component {
 			vote_average: '',
 			vote_count: '',
 			torrent720: '',
-			torrent1080: ''
+			torrent1080: '',
+			infoTorrent: {},
 		}
 	}
 
@@ -52,16 +53,15 @@ class Movie extends Component {
 	callInfoTorrent() {
 		callApi('/api/torrent/', 'post', {id: this.props.match.params.id})
 		.then((infoTorrent) => {
-			this.setState((prevState) => ({
-				torrent720: infoTorrent.data.movie.torrents[0].url,
-				torrent1080: infoTorrent.data.movie.torrents[1].url
-			}))
+			this.setState({
+				infoTorrent: infoTorrent,
+			});
 			this.testTest();
 		})
 	}
 
 	testTest() {
-		callApi('/api/dlltorrent', 'post', {url: this.state.torrent720})
+		callApi('/api/dlltorrent', 'post', {url: this.state.infoTorrent})
 		.then((test) => {
 			console.log(test);
 		})
