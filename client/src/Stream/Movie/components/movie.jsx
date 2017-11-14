@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { callApi } from '../../../ApiCaller/apiCaller';
 import '../css/movie.css';
-import Movieview from './movieview';
 import Moviedescription from './moviedescription';
 import fs from 'fs';
 import request from 'request';
-
 
 class Movie extends Component {
 	constructor(props) {
@@ -32,7 +30,6 @@ class Movie extends Component {
 	componentWillMount() {
 		this.callInfoMovie();
 		this.callInfoTorrent();
-		// this.testTest();
 	}
 
 	callInfoMovie() {
@@ -64,7 +61,7 @@ class Movie extends Component {
 	}
 
 	testTest() {
-		callApi('/dlltorrent', 'post', {url: this.state.torrent720})
+		callApi('/api/dlltorrent', 'post', {url: this.state.torrent720})
 		.then((test) => {
 			console.log(test);
 		})
@@ -73,8 +70,11 @@ class Movie extends Component {
 	render() {
 		return(
 			<div className="container">
-				<h1>{this.state.title}</h1>
-				<Movieview />
+				<h1 className="movie-title">{this.state.title}</h1>
+				<div className="MovieInfos">
+					<video width="800" controls>
+					</video>
+				</div>
 				<Moviedescription states={this.state}/>
 			</div>
 		)

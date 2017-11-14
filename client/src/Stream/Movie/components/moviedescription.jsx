@@ -9,7 +9,7 @@ class Moviedescription extends Component {
         })
         
         return (
-            <div className="row">
+            <div className="row movie-details-block">
                 <div className="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
                    <p>Genre : {genres}</p>
                    <p>Budget : {this.props.states.budget + ' $'}</p>

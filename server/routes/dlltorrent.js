@@ -8,9 +8,9 @@ router.post('/', (req, res, next) => {
     console.log(req.body.url);
     console.log('testooo');
     // var transmission = new Transmission({
-    //         port : 3000,
-    //         host : localhost
-    //     });
+    // 		port : 3000,
+    //      host : localhost
+    // });
 
     // transmission.addUrl(req.body.url, {
     //     "download-dir" : "."

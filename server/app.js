@@ -52,7 +52,7 @@ app.use('/api/catalog', catalog);
 app.use('/api/userLogged', userLogged);
 app.use('/api/movie', movie);
 app.use('/api/torrent', torrent);
-app.use('/dlltorrent', dlltorrent);
+app.use('/api/dlltorrent', dlltorrent);
 
 // Authentication Routes using Passport
 app.use('/api/auth', auth);
