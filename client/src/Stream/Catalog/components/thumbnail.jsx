@@ -8,6 +8,8 @@ class Thumbnail extends Component {
 		};
 		this.showInfo = this.showInfo.bind(this);
 		this.hideInfo = this.hideInfo.bind(this);
+		// this.title = (this.props.infos.title_english.length > 10) ? (this.props.infos.title_english.substring(0, 9) + '...') : (this.props.infos.title_english);
+		this.title = (this.props.infos.title_english);
 	}
 
 	showInfo() {
@@ -29,11 +31,14 @@ class Thumbnail extends Component {
 				{ this.state.infoToggled &&
 				<a href={"/video/" + this.props.infos.imdb_code + "/" + this.props.infos.id}>
 					<div className="about-movie">
-						<p className="movie-title">{this.props.infos.title}</p>
-						<p className="movie-year">({this.props.infos.year})</p>
-						<br/><br/>
-						<p className="movie-rating">{this.props.infos.rating}</p>
-						<span className="imdb">IMDB</span>
+						<img className="play-button-overlay" alt="play" src="/images/play-button-overlay.png" />					
+						<div className="about-movie-text">
+							<p className="about-movie-text-title">{this.title}</p>
+							<p className="about-movie-text-details">
+								<span className="about-movie-text-year">{this.props.infos.year}</span>
+								<span className="about-movie-text-rating"><img className="imdb-logo" alt="IMDB" src="/images/imdb.png" /> {this.props.infos.rating}</span>
+							</p>
+						</div>
 					</div>
 				</a>
 				}
