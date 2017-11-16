@@ -61,10 +61,7 @@ class Movie extends Component {
 	}
 
 	testTest() {
-		callApi('/api/dlltorrent', 'post', {url: this.state.infoTorrent})
-		.then((test) => {
-			console.log(test);
-		})
+		callApi('/api/downloadTorrent', 'post', {url: this.state.infoTorrent})
 	}
 
 	render() {
@@ -73,6 +70,7 @@ class Movie extends Component {
 				<h1 className="movie-title">{this.state.title}</h1>
 				<div className="MovieInfos">
 					<video width="800" controls>
+						<source src="http://localhost:3002/" type="video/mp4"/>>
 					</video>
 				</div>
 				<Moviedescription states={this.state}/>

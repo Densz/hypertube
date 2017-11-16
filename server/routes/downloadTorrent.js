@@ -6,9 +6,6 @@ import Client from 'node-torrent';
 import parseTorrent from 'parse-torrent';
 
 router.post('/', (req, res) => {
-	const hash = req.body.data.movie.torrents;
-
-	console.log(parseTorrent(hash[0].hash));
 	res.json({msg: 'ok'});
 })
 

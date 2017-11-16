@@ -66,3 +66,6 @@ db
 database
 .DS_Store
 server/config/mlab.js
+test.js
+test.mp4
+
