@@ -38,6 +38,7 @@ class Catalog extends Component {
 				catalogMovies.data.movies.map(
 					(movieData) => {
 						catalogArray.push(movieData);
+						return undefined;
 					}
 				)
 				this.setState((prevState) => ({

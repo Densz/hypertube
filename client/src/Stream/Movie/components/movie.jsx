@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { callApi } from '../../../ApiCaller/apiCaller';
 import '../css/movie.css';
 import Moviedescription from './moviedescription';
-import fs from 'fs';
-import request from 'request';
 
 class Movie extends Component {
 	constructor(props) {
@@ -69,7 +67,7 @@ class Movie extends Component {
 			<div className="container">
 				<h1 className="movie-title">{this.state.title}</h1>
 				<div className="MovieInfos">
-					<video width="800" controls>
+					<video width="1125" controls>
 						<source src="http://localhost:3002/" type="video/mp4"/>>
 					</video>
 				</div>
