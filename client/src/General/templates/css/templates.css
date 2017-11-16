@@ -16,7 +16,7 @@ body {
 }
 
 /* Links inside the navbar */
-.navbar a {
+.navbar a .navbar-logo {
     float: right;
     font-size: 15px;
     font-weight: 5px;
@@ -24,7 +24,6 @@ body {
     /* margin: 3% 3%; */
     display: block;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
 }
 
@@ -105,9 +104,14 @@ body {
     border: solid 1px rgba(255, 255, 255, .85);
 }
 
-.logout-logo {
+#logout-logo {
+	margin-right: 65px;
+}
+
+.navbar-logo {
     height: 17px;
     float: right;
-	margin: 19px;
+	margin-top: 19px;
+	margin-right: 19px;
 	cursor: pointer;
 }
