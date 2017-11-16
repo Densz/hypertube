@@ -20,7 +20,11 @@ class Catalog extends Component {
 
 	componentDidMount() {
 		const bodyStyle = document.body.style;
+		const containerStyle = document.querySelector('.container').style;
+
 		bodyStyle.backgroundColor = '#20232a';
+		containerStyle.paddingRight = '0px';
+		containerStyle.paddingLeft = '0px';
 	}
 
 	callMoreMovies() {
@@ -80,11 +84,13 @@ class Catalog extends Component {
 		return (
 			<div>
 				<div className="row">
-					<div className="col-sm-3 container-search-bar">
-						<SearchBar updateValue={this.updateSearchInput} />
-					</div>
 				</div>
-				<div className="row">
+				<div className="row catalog-row">
+					<div className="filter-box">
+						<div className="container-search-bar">
+							<SearchBar updateValue={this.updateSearchInput} />
+						</div>
+					</div>
 					<div className="catalog-box">
 						<InfiniteScroll
 							loadMore={this.callMoreMovies.bind(this)}

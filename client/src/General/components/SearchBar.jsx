@@ -8,7 +8,7 @@ const onUpdateFunction = (props, evt) => {
 const SearchTab = (props) => {
     return (
         <button className="search-bar" onClick={props.event}>
-            <span className="glyphicon glyphicon-search"></span><span>&nbsp;&nbsp;Rechercher</span>
+            <span className="glyphicon glyphicon-search"></span>
         </button>		
     );
 };	
