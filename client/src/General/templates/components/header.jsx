@@ -8,6 +8,7 @@ const ComponentRendered = (props) => {
 	}
 	if (props.isLogged) {
 		rendering.push(<img src="/icons/interface/logout.png" className="logout-logo" alt="hypertube" onClick={logOut} />)
+		rendering.push(<img src="/icons/multimedia/avatar.png" className="logout-logo" alt="hypertube" />)
         // rendering.push(<a href="/" onClick={logOut} key={rendering.length} id="sign-out" className="button-link">Disconnect</a>);
     }
     return rendering;
