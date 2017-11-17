@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import { logOut, isLogged } from '../../../ApiCaller/apiCaller';
 
+const handleRedirections = (pageName) => {
+	window.location.href = "http://localhost:3000/" + pageName;
+}
+
 const ComponentRendered = (props) => {
     let rendering = [];
     if (props.signInButton) {
         rendering.push(<a href="/" key={rendering.length} className="button-link">S'identifier</a>);
 	}
 	if (props.isLogged) {
-        rendering.push(<a href="/" onClick={logOut} key={rendering.length} id="sign-out" className="button-link">Disconnect</a>);
+		rendering.push(
+			<a href="/">
+				<img src="/icons/interface/logout.png" id="logout-logo" className="navbar-logo" alt="hypertube" onClick={logOut} />
+			</a >
+		);
+        rendering.push(
+            <a href="/myprofile">
+                <img src="/icons/multimedia/avatar.png" className="navbar-logo" alt="hypertube" />
+            </a >
+        );
+        // rendering.push(<a href="/" onClick={logOut} key={rendering.length} id="sign-out" className="button-link">Disconnect</a>);
     }
     return rendering;
 };
@@ -40,7 +54,9 @@ class Header extends Component {
     render() {
         return(
             <nav className="navbar">
-                <img src="/images/hypertube_logo.png" id="logo" className="navbar-brand" alt="hypertube"/> 
+				<a href="/">
+					<img src="/images/hypertube_logo.png" id="logo" className="navbar-brand" alt="hypertube"/> 
+                </a>
                 <ComponentRendered 
                     isLogged={this.state.isLogged}
                     signInButton={this.state.signInBtn}
