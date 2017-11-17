@@ -10,7 +10,8 @@ body {
     background-color: #21242b;
     overflow: hidden;
     top: -2px;
-    width: 100%;
+	width: 100%;
+	border-radius: 0px;
     margin-bottom: 0px;
 }
 
@@ -27,8 +28,9 @@ body {
 }
 
 #logo {
-  margin: 4px 50px;
-  height: 53px;
+    margin-top: 4px;
+    margin-left: 50px;
+    height: 53px;
 }
 
 .button-link {
@@ -103,14 +105,15 @@ body {
     border: solid 1px rgba(255, 255, 255, .85);
 }
 
-#logout-logo {
-	margin-right: 65px;
-}
-
 .navbar-logo {
-    height: 17px;
+	height: 17px;
     float: right;
 	margin-top: 19px;
 	margin-right: 19px;
 	cursor: pointer;
+}
+
+.log-logo {
+margin-right: 65px;
+height: 25px;
 }
