@@ -83,14 +83,9 @@ class Catalog extends Component {
 
 		return (
 			<div>
-				<div className="row">
+				<div className="row filter-row">
 				</div>
 				<div className="row catalog-row">
-					<div className="filter-box">
-						<div className="container-search-bar">
-							<SearchBar updateValue={this.updateSearchInput} />
-						</div>
-					</div>
 					<div className="catalog-box">
 						<InfiniteScroll
 							loadMore={this.callMoreMovies.bind(this)}

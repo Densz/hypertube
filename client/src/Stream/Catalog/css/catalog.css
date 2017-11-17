@@ -47,11 +47,16 @@
 
 .about-movie-text-title {
 	/* position: relative; */
-	/* display: block; */
-	font-size: 26pt;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	font-size: 25px;
+	-webkit-line-clamp: 2;
+	line-height: 35px;
+	max-height: 70px;
 	/* word-wrap: break-word; */
 	overflow: hidden;
 	width: 100%;
+	text-overflow: ellipsis;
 }
 
 .about-movie-text-details {
@@ -113,15 +118,17 @@
 	display: flex;
 }
 
+.filter-row {
+	height: 212px;
+    background-color: black;
+    border-bottom: 2px solid;
+}
+
 /* @media (min-width: 992px) { */
-	.filter-box {
+	.sidebar {
 		width: 230px;
-		position: sticky;
 		top: 10%;
-		left: 1%;
 		margin-top: 7px;
-		margin-right: 33px;
-		height: 345px;
-		background-color: #383A40;
+		background-color: #525252
 	}
 /* } */
