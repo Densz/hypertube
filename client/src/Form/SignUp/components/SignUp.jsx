@@ -4,6 +4,22 @@ import InputForm from "../../../General/components/InputForm";
 import "../css/signup.css";
 import { callApi } from '../../../ApiCaller/apiCaller';
 
+const ButtonForm = (props) => {
+	if (props.uploadDone) {
+		return(
+			<button className="login-button" name="submit" value="submit" onClick={props.submit}>
+				Créer son compte
+			</button>
+		);
+	} else {
+		return(
+			<button className="login-button" name="submit" value="submit" onClick={props.upload}>
+				Charger sa mère
+			</button>			
+		);
+	}
+}
+
 class SignUp extends Component {
 	constructor(props){
 		super(props);
@@ -13,10 +29,12 @@ class SignUp extends Component {
 			email: {title: 'E-mail', value: '', error: ''},
 			login: {title: 'Login', value: '', error: ''},
 			passwd: {title: 'Mot de passe', value: '', error: ''},
-			passwdConfirm: {title: 'Confirmation du mot de passe', value: '', error: ''}
+			passwdConfirm: {title: 'Confirmation du mot de passe', value: '', error: ''},
+			uploadDone: false
 		}
         this.updateInputValue = this.updateInputValue.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleUpload = this.handleUpload.bind(this);
 	}
 
 	updateInputValue = (key, value) => {			
@@ -36,6 +54,13 @@ class SignUp extends Component {
 				error: errorMessage
 			}
 		}))
+	}
+
+	handleUpload(event) {
+		event.preventDefault();
+		this.setState({
+			uploadDone: true
+		});
 	}
 
     handleSubmit(event) {
@@ -136,11 +161,12 @@ class SignUp extends Component {
 								errorMessage={ this.state.passwdConfirm.error }
                             />
                         </div>
+						<div className="row">
+						</div>
                     </div>
 					<br/>
-					<button className="login-button" name="submit" value="submit" onClick={this.handleSubmit}>
-						Créer son compte
-					</button>
+					<ButtonForm uploadDone={this.state.uploadDone} submit={this.handleSubmit} upload={this.handleUpload}/>
+					
 				</form>
                 <br/><br/>
                 <hr/>
