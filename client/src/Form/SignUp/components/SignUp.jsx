@@ -1,25 +1,9 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import SignUpBlock from './SignUpBlock';
 import InputForm from "../../../General/components/InputForm";
 import "../css/signup.css";
-import { callApi } from '../../../ApiCaller/apiCaller';
-
-const ButtonForm = (props) => {
-	if (props.uploadDone) {
-		return(
-			<button className="login-button" name="submit" value="submit" onClick={props.submit}>
-				Créer son compte
-			</button>
-		);
-	} else {
-		return(
-			<button className="login-button" name="submit" value="submit" onClick={props.upload}>
-				Charger sa mère
-			</button>			
-		);
-	}
-}
-
+import { callApi, callApiUpload } from '../../../ApiCaller/apiCaller';
 class SignUp extends Component {
 	constructor(props){
 		super(props);
@@ -30,7 +14,9 @@ class SignUp extends Component {
 			login: {title: 'Login', value: '', error: ''},
 			passwd: {title: 'Mot de passe', value: '', error: ''},
 			passwdConfirm: {title: 'Confirmation du mot de passe', value: '', error: ''},
-			uploadDone: false
+			picture: '/uploads/heisenberg.png',
+			picUploadedInfo: {},
+			uploadDone: false,
 		}
         this.updateInputValue = this.updateInputValue.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,13 +42,6 @@ class SignUp extends Component {
 		}))
 	}
 
-	handleUpload(event) {
-		event.preventDefault();
-		this.setState({
-			uploadDone: true
-		});
-	}
-
     handleSubmit(event) {
         event.preventDefault();
         const inputValues = {
@@ -71,18 +50,56 @@ class SignUp extends Component {
             email: this.state.email.value,
             login: this.state.login.value,
             password: this.state.passwd.value,
-            confirmPassword: this.state.passwdConfirm.value
+			confirmPassword: this.state.passwdConfirm.value
+			
 		}
 		let errorBool = false;
         for (var elem in this.state) {
-            if (this.state[elem].value === '' || this.state[elem].value === undefined) {
+            if (this.state[elem].title !== undefined && (this.state[elem].value === '' || this.state[elem].value === undefined)) {
 				let title = this.state[elem].title.toLowerCase();
 				this.setErrorMessage(elem, 'Le champ ' + title + ' est vide.');
 				errorBool = true;
 			}
 		}
-		if (!errorBool)
-			callApi('/api/auth/signUp/submit', 'post', inputValues);
+		if (!errorBool) {
+			const file = this.state.picUploadedInfo;
+			const login = this.state.login.value;
+			callApi('/api/auth/signUp/submit', 'post', inputValues)
+			.then((response) => {
+				if (!response.success) {
+					console.log('handle front error');
+					console.log(response.errors);
+				}
+				else {
+					callApiUpload(file, login)
+					.then((response) => {
+						if (!response.success) {
+							console.log('handle front error');
+							console.log(response.errors);
+						}
+						else {
+							console.log('all good');
+							this.setState({uploadDone: true});
+						}
+					})
+				}
+			})
+
+		}
+	}
+
+	handleUpload(event) {
+		event.preventDefault();
+		var reader = new FileReader();
+		let pictureFile = event.target.files[0];
+		console.log(pictureFile);
+		reader.onload = (e) => {
+			this.setState({
+				picture: e.target.result,
+				picUploadedInfo: pictureFile,
+			});
+		}
+		reader.readAsDataURL(pictureFile);
 	}
 
     componentDidMount() {
@@ -94,79 +111,96 @@ class SignUp extends Component {
     }
 
     render() {
+		if (this.state.uploadDone) {
+			return (
+				<Redirect to="/" />
+			);
+		}
         return (
 			<SignUpBlock>
-      			<h3>Inscrivez-vous pour profitez de vos films et séries préférées</h3>
-                <br/>
-				<form>
-                    <h4>Créez votre compte</h4>
-                    <div className="form-row">
-                        <div className="row">
-                            <InputForm
-                                containerClass="form-group col-md-12"
-                                textValue={this.state.email.title}
-                                type="email"
-                                inputClass={ this.state.email.error ? "form-control error" : "form-control" }
-								name="email"
-								onUpdate={ this.updateInputValue }
-								errorMessage={ this.state.email.error }
-                            />
-                        </div>
-                        <div className="row">
-                            <InputForm
-                                containerClass="form-group col-md-4"
-                                textValue={this.state.login.title}
-                                type="text"
-                                inputClass={ this.state.login.error ? "form-control error" : "form-control" }
-								name="login"
-								onUpdate={this.updateInputValue}
-								errorMessage={ this.state.login.error }
-                            />
-                            <InputForm
-                                containerClass="form-group col-md-4"
-                                textValue={ this.state.firstName.title }
-                                type="text"
-                                inputClass={ this.state.firstName.error ? "form-control error" : "form-control" }
-								name="firstName"
-								onUpdate={this.updateInputValue}
-								errorMessage={ this.state.firstName.error }
-                            />
-                            <InputForm
-                                containerClass="form-group col-md-4"
-                                textValue={ this.state.lastName.title }
-                                type="text"
-                                inputClass={ this.state.lastName.error ? "form-control error" : "form-control" }
-								name="lastName"
-								onUpdate={this.updateInputValue}
-								errorMessage={ this.state.lastName.error }
-                            />
-                        </div>
-                        <div className="row">
-                            <InputForm
-                                containerClass="form-group col-md-6"
-                                textValue={ this.state.passwd.title }
-                                type="password"
-                                inputClass={ this.state.passwd.error ? "form-control error" : "form-control" }
-								name="passwd"
-								onUpdate={this.updateInputValue}
-								errorMessage={ this.state.passwd.error }
-                            />
-                            <InputForm
-                                containerClass="form-group col-md-6"
-                                textValue={ this.state.passwdConfirm.title }
-                                type="password"
-                                inputClass={ this.state.passwdConfirm.error ? "form-control error" : "form-control" }
-								name="passwdConfirm"
-								onUpdate={this.updateInputValue}
-								errorMessage={ this.state.passwdConfirm.error }
-                            />
-                        </div>
-						<div className="row">
-						</div>
-                    </div>
+				<form onSubmit={this.handleSubmit} encType="multipart/form-data">
+					<input onChange={this.handleUpload} type="file" name="file" id="file" />
+					<h3>Inscrivez-vous pour profitez de vos films et séries préférées</h3>
 					<br/>
-					<ButtonForm uploadDone={this.state.uploadDone} submit={this.handleSubmit} upload={this.handleUpload}/>
-					
+						<h4>Créez votre compte</h4>
+						<br/>
+						<div className="form-row">
+							<div className="row">
+								<div className="col-md-2">
+									<div className="upload-container">
+										<label htmlFor="file">
+											<img src={this.state.picture} alt="Profile picture" className="profile-picture" />
+										</label>
+									</div>
+								</div>
+								<div className="col-md-10">
+									<div className="row">
+										<InputForm
+											containerClass="form-group col-md-6"
+											textValue={this.state.lastName.title}
+											type="text"
+											inputClass={this.state.lastName.error ? "form-control error" : "form-control"}
+											name="lastName"
+											onUpdate={this.updateInputValue}
+											errorMessage={this.state.lastName.error}
+										/>
+										<InputForm
+											containerClass="form-group col-md-6"
+											textValue={this.state.firstName.title}
+											type="text"
+											inputClass={this.state.firstName.error ? "form-control error" : "form-control"}
+											name="firstName"
+											onUpdate={this.updateInputValue}
+											errorMessage={this.state.firstName.error}
+										/>
+									</div>
+									<div className="row">
+										<InputForm
+											containerClass="form-group col-md-6"
+											textValue={this.state.login.title}
+											type="text"
+											inputClass={this.state.login.error ? "form-control error" : "form-control"}
+											name="login"
+											onUpdate={this.updateInputValue}
+											errorMessage={this.state.login.error}
+										/>
+										<InputForm
+											containerClass="form-group col-md-6"
+											textValue={this.state.email.title}
+											type="email"
+											inputClass={this.state.email.error ? "form-control error" : "form-control"}
+											name="email"
+											onUpdate={this.updateInputValue}
+											errorMessage={this.state.email.error}
+										/>
+									</div>
+								</div>
+							</div>
+							<div className="row">
+								<InputForm
+									containerClass="form-group col-md-6"
+									textValue={this.state.passwd.title}
+									type="password"
+									inputClass={this.state.passwd.error ? "form-control error" : "form-control"}
+									name="passwd"
+									onUpdate={this.updateInputValue}
+									errorMessage={this.state.passwd.error}
+								/>
+								<InputForm
+									containerClass="form-group col-md-6"
+									textValue={this.state.passwdConfirm.title}
+									type="password"
+									inputClass={this.state.passwdConfirm.error ? "form-control error" : "form-control"}
+									name="passwdConfirm"
+									onUpdate={this.updateInputValue}
+									errorMessage={this.state.passwdConfirm.error}
+								/>
+							</div>
+						</div>
+						<br/>
+						<button className="login-button" type="submit" name="submit" value="submit">
+							Créer son compte
+						</button>	
 				</form>
                 <br/><br/>
                 <hr/>

@@ -46,7 +46,7 @@ class Movie extends Component {
 				<h1 className="movie-title">{this.state.movieInfos.original_title}</h1>
 				<div className="MovieInfos">
 					<video width="1125" controls>
-						<source src="http://localhost:3001/api/downloadTorrent" type="video/mp4"/>>
+						<source src={"http://localhost:3001/api/torrent/" + this.props.match.params.id} type="video/mp4"/>>
 					</video>
 				</div>
 				<Moviedescription movieInfos={this.state.movieInfos}/>
