@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "create-torrent": "^3.29.2",
+    "rc-slider": "^8.4.0",
     "react": "^16.1.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.1.0",
