@@ -1,8 +1,23 @@
 const fbStrategy = require('passport-facebook').Strategy;
 const ftStrategy = require('passport-42').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const config = require('./config');
 const User = require('../models/user');
 
+const localStrategy = new LocalStrategy(
+	function(username, password, done) {
+	  User.findOne({ login: username }, function(err, user) {
+		if (err) { return done(err); }
+		if (!user) {
+			return done(null, false, { message: 'Incorrect username.' });
+		}
+		if (!user.checkPassword(password, user.password)) {
+			return done(null, false, { message: 'Incorrect password.' });
+		}
+		return done(err, user);
+	  });
+	}
+);
 
 const facebookStrategy = new fbStrategy({
 	clientID: config.facebookApi.clientID,
@@ -60,5 +75,6 @@ const fortytwoStrategy = new ftStrategy({
 
 module.exports = {
 	facebookStrategy: facebookStrategy,
-	fortytwoStrategy: fortytwoStrategy
+	fortytwoStrategy: fortytwoStrategy,
+	localStrategy: localStrategy
 }

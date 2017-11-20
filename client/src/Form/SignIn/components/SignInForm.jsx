@@ -9,6 +9,7 @@ class SignInForm extends Component {
 		this.state = {
 			login: {title: 'Login', value: '', error: ''},
 			passwd: {title: 'Mot de passe', value: '', error: ''},
+			loginDone: false
 		};
 		this.updateInputValue = this.updateInputValue.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,19 +37,25 @@ class SignInForm extends Component {
 	handleSubmit(event) {
         event.preventDefault();
         const inputValues = {
-            login: this.state.login.value,
+            username: this.state.login.value,
             password: this.state.passwd.value,
 		}
 		let errorBool = false;
         for (var elem in this.state) {
-            if (this.state[elem].value === '' || this.state[elem].value === undefined) {
+            if (this.state[elem].title !== undefined && (this.state[elem].value === '' || this.state[elem].value === undefined)) {
 				let title = this.state[elem].title.toLowerCase();
 				this.setErrorMessage(elem, 'Le champ ' + title + ' est vide.');
 				errorBool = true;
 			}
 		}
 		if (!errorBool)
-			callApi('/api/auth/signIn/submit', 'post', inputValues);
+			callApi('/api/login', 'post', inputValues)
+			.then((response) => {
+				this.props.checkIfIsLogged();
+			})
+			.catch((err) => {
+				console.log(err);
+			})
 	}
 
 	render() {

@@ -17,12 +17,13 @@ const torrent = require('./routes/torrent');
 
 
 // Import Strategies
-import { facebookStrategy, fortytwoStrategy } from './config/oAuth';
+import { facebookStrategy, fortytwoStrategy, localStrategy } from './config/oAuth';
 // Import test
 const User = require('./models/user');
 
 passport.use(facebookStrategy);
 passport.use(fortytwoStrategy);
+passport.use(localStrategy);
 
 passport.serializeUser(function(user, done) {
 	done(null, user);
@@ -56,9 +57,8 @@ app.use('/api/torrent', torrent);
 
 // Authentication Routes using Passport
 app.use('/api/auth', auth);
-app.get('/api/signIn/submit/successful', passport.authenticate('local'), (req, res) => {
-	console.log(req.user);
-	res.json({ok: 'oke'});
+app.post('/api/login', passport.authenticate('local',  { failureRedirect: '/' }), function(req, res) {
+	res.json({success: true, msg: 'Login succesfully done'})
 })
 app.get('/api/login/facebook', passport.authenticate('facebook'));
 app.get('/api/login/facebookCallback', passport.authenticate('facebook', { failureRedirect: '/' }), function(req, res) {

@@ -6,7 +6,8 @@ const callApi = (url, method = 'get', params = undefined) => {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',	
 			},
-			body: (params ? JSON.stringify(params) : undefined)
+			body: (params ? JSON.stringify(params) : undefined),
+			credentials: 'same-origin'
 		};
 		fetch(url, json)
 		.then((response) => {

@@ -16,10 +16,14 @@ class Routes extends Component {
 			isFetching: false,
 			infos: {}
 		}
+		this.checkIfIsLogged = this.checkIfIsLogged.bind(this);
+		this.checkIfIsLogged();
+	}
+
+	checkIfIsLogged() {
 		isLogged()
 		.then((response) => {
 			this.setState(response);
-			console.log(this.state);
 		})
 	}
 
@@ -32,7 +36,7 @@ class Routes extends Component {
 							<Switch>
 								<Route exact path="/" render={() => (
 									!this.state.isLogged ?
-									( <SignIn /> ) :
+									( <SignIn checkIfIsLogged={this.checkIfIsLogged} /> ) :
 									( <Redirect to="/catalog"></Redirect> )
 								)} />
 								<Route path="/signUp" render={() => (
@@ -41,7 +45,7 @@ class Routes extends Component {
 									( <Redirect to="/catalog"></Redirect> )
 								)} />
 								<Route path="/myProfile" render={() => (
-									this.state.isLogged ?
+									!this.state.isLogged ?
 									( <MyProfile /> ) :
 									( <Redirect to="/"></Redirect> )
 								)} />

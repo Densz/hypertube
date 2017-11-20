@@ -11,7 +11,7 @@ const ComponentRendered = (props) => {
     if (handleRender) {
 		return <RstPwdForm linkClicked={ handleRstPwd } />
     } else {
-		return <SignInForm linkClicked={ handleRstPwd } />
+		return <SignInForm linkClicked={ handleRstPwd } checkIfIsLogged={props.checkIfIsLogged} />
     }
 
 }
@@ -54,6 +54,7 @@ class SignIn extends Component {
             <ComponentRendered
 				handleRender={this.handleRstPwd} 
 				stateRender={this.state.resetPassword}
+				checkIfIsLogged={this.props.checkIfIsLogged}
 			/>
         );
     }
