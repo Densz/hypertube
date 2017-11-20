@@ -14,7 +14,7 @@ class SignUp extends Component {
 			login: {title: 'Login', value: '', error: ''},
 			passwd: {title: 'Mot de passe', value: '', error: ''},
 			passwdConfirm: {title: 'Confirmation du mot de passe', value: '', error: ''},
-			picture: '/uploads/heisenberg.png',
+			picture: '/images/heisenberg.png',
 			picUploadedInfo: {},
 			uploadDone: false,
 		}
