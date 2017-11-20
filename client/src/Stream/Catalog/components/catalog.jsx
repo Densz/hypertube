@@ -30,13 +30,7 @@ class Catalog extends Component {
 	}
 
 	callMoreMovies() {
-		this.setState((prevState) => ({
-			catalog: prevState.catalog,
-			pages: prevState.pages,
-			searchField: prevState.searchField,
-			filterBy: prevState.filterBy,
-			hasMore: false
-		}))
+		this.setState({ hasMore: false });
 		callApi('/api/catalog/', 'post', { pages: this.state.pages, filterBy: this.state.filterBy, searchField: this.state.searchField })
 		.then((catalogMovies) => {
 			let catalogArray = this.state.catalog;
@@ -48,20 +42,16 @@ class Catalog extends Component {
 					}
 				)
 				this.setState((prevState) => ({
-					catalog: catalogArray,
+					...this.state,
 					pages: prevState.pages + 1,
-					searchField: prevState.searchField,
-					filterBy: prevState.filterBy,
 					hasMore: catalogMovies.data.movies.length < 16 ? false : true
 				}))
 			} else {
-				this.setState((prevState) => ({
+				this.setState({
 					catalog: [],
 					pages: 1,
-					searchField: prevState.searchField,
-					filterBy: prevState.filterBy,
 					hasMore: false
-				}))
+				});
 			}
 		})
 	}
@@ -69,10 +59,10 @@ class Catalog extends Component {
 	updateSearchInput(event) {
 		let value = event.target.value;
 		this.setState((prevState) => ({
+			...this.state,
 			catalog: [],
 			pages: 1,
 			searchField: value,
-			filterBy: prevState.filterBy,
 			hasMore: true
 		}))
 	}
