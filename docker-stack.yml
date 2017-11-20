@@ -1,0 +1,20 @@
+version: "3"
+services:
+  torrent:
+    image: linuxserver/qbittorrent:latest
+    volumes:
+      - "torrent_config:/config"
+      - "torrent_storage:/downloads"
+    environment:
+      PGID: 20
+      PUID: 501
+      TZ: "Europe/Paris"
+      WEBUI_PORT: 30010
+    ports:
+      - "6881:6881"
+      - "6881:6881/udp"
+      - "30010:30010"
+
+volumes:
+  torrent_storage: 
+  torrent_config: 
