@@ -29,7 +29,7 @@ class Routes extends Component {
 
     render() {
         return (
-            <Layout>
+            <Layout isLogged={ this.state.isLogged }>
                 <Router>
                     <div>
 						{ this.state && this.state.isFetching &&

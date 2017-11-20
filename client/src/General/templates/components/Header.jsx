@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { logOut, isLogged } from '../../../ApiCaller/apiCaller';
+import { logOut } from '../../../ApiCaller/apiCaller';
 
 const ComponentRendered = (props) => {
     let rendering = [];
@@ -32,13 +32,17 @@ class Header extends Component {
         this.state = {
             signInBtn: false,
             catalogPage: false,
-            isLogged: true,
+            isLogged: false
 		}
-		isLogged()
-		.then((response) => {
-			this.setState({ isLogged: response.isLogged });
-		})
     }
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.isLogged === true) {
+			this.setState({
+				isLogged: true
+			})
+		}
+	}
 
     componentWillMount() {
         let path = window.location.pathname;
