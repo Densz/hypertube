@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { logOut, isLogged } from '../../../ApiCaller/apiCaller';
 
-const handleRedirections = (pageName) => {
-	window.location.href = "http://localhost:3000/" + pageName;
-}
-
 const ComponentRendered = (props) => {
     let rendering = [];
     if (props.signInButton) {

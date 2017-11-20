@@ -129,7 +129,7 @@ class SignUp extends Component {
 								<div className="col-md-2">
 									<div className="upload-container">
 										<label htmlFor="file">
-											<img src={this.state.picture} alt="Profile picture" className="profile-picture" />
+											<img src={this.state.picture} alt="Profile" className="profile-picture" />
 										</label>
 									</div>
 								</div>
