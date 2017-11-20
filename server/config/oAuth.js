@@ -3,6 +3,7 @@ const ftStrategy = require('passport-42').Strategy;
 const config = require('./config');
 const User = require('../models/user');
 
+
 const facebookStrategy = new fbStrategy({
 	clientID: config.facebookApi.clientID,
 	clientSecret: config.facebookApi.clientSecret,
