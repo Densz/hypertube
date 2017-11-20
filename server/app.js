@@ -14,7 +14,7 @@ const catalog = require('./routes/catalog');
 const userLogged = require('./routes/userLogged');
 const movie = require('./routes/movie');
 const torrent = require('./routes/torrent');
-const downloadTorrent = require('./routes/downloadTorrent');
+
 // Import Strategies
 import { facebookStrategy, fortytwoStrategy } from './config/oAuth';
 // Import test
@@ -52,7 +52,6 @@ app.use('/api/catalog', catalog);
 app.use('/api/userLogged', userLogged);
 app.use('/api/movie', movie);
 app.use('/api/torrent', torrent);
-app.use('/api/downloadTorrent', downloadTorrent);
 
 // Authentication Routes using Passport
 app.use('/api/auth', auth);
