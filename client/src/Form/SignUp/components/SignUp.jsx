@@ -78,8 +78,14 @@ class SignUp extends Component {
 							console.log(response.errors);
 						}
 						else {
-							console.log('all good');
-							this.setState({uploadDone: true});
+							const data = {
+								username: this.state.login.value,
+								password: this.state.passwd.value
+							}
+							callApi('/api/login', 'post', data)
+							.then((response) => {
+								this.props.checkIfIsLogged();
+							})
 						}
 					})
 				}
@@ -111,11 +117,11 @@ class SignUp extends Component {
     }
 
     render() {
-		if (this.state.uploadDone) {
-			return (
-				<Redirect to="/" />
-			);
-		}
+		// if (this.state.uploadDone) {
+		// 	return (
+		// 		<Redirect to="/" />
+		// 	);
+		// }
         return (
 			<SignUpBlock>
 				<form onSubmit={this.handleSubmit} encType="multipart/form-data">

@@ -53,7 +53,20 @@ class Header extends Component {
          else if (path === "/catalog") {
             this.setState({ catalogPage: true });
         }
-    }
+	}
+	
+	componentWillUpdate() {
+		let path = window.location.pathname;
+		
+		if (this.state.signInBtn) {
+			if (path !== "/signUp" || path !== "/forgottenPasswd")
+				this.setState({ signInBtn: false });
+		}
+		if (this.state.catalogPage) {
+			if (path !== "/catalog")
+				this.setState({ catalogPage: false });
+		}
+	}
 
     render() {
         return(

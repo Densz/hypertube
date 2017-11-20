@@ -41,7 +41,7 @@ class Routes extends Component {
 								)} />
 								<Route path="/signUp" render={() => (
 									!this.state.isLogged ?
-									( <SignUp /> ) :
+									( <SignUp checkIfIsLogged={this.checkIfIsLogged} /> ) :
 									( <Redirect to="/catalog"></Redirect> )
 								)} />
 								<Route path="/myProfile" render={() => (
