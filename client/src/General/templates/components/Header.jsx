@@ -9,19 +9,19 @@ const ComponentRendered = (props) => {
     let rendering = [];
     if (props.signInButton) {
         rendering.push(
-			<a href="/">
+			<a href="/" key={rendering.length}>
 				<img src="/icons/interface/login.png" alt="logout" className="navbar-logo log-logo" />
 			</a>
 		);
 	}
 	if (props.isLogged) {
 		rendering.push(
-			<a href="/">
+			<a href="/" key={rendering.length}>
 				<img src="/icons/interface/logout.png" className="navbar-logo log-logo" alt="hypertube" onClick={logOut} />
 			</a >
 		);
         rendering.push(
-            <a href="/myprofile">
+			<a href="/myprofile" key={rendering.length}>
                 <img src="/icons/multimedia/avatar.png" className="navbar-logo" alt="hypertube" />
             </a >
         );

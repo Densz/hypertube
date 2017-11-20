@@ -5,6 +5,34 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 const db = require('../config/database');
 const User = require('../models/user');
+const multer = require('multer');
+const path = require('path');
+
+/**
+ * multer configuration
+ */
+const imageFilter = (req, file, cb) => {
+	if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/) || file.size > 3145728) {
+		console.log('File too big!');
+		cb(null, false);
+	} else {
+		cb(null, true);
+	}
+}
+
+const storageMulter = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, '../client/public/uploads');
+	},
+	filename: function (req, file, cb) {
+		cb(null, Date.now() + path.extname(file.originalname).toLowerCase())
+	}
+})
+
+const upload = multer({
+	storage: storageMulter,
+	fileFilter: imageFilter
+}).single('file');
 
 router.post('/signIn/submit', (req, res, next) => {
 	const login = req.body.login;
@@ -20,19 +48,20 @@ router.post('/signIn/submit', (req, res, next) => {
 				user
 			}, config.secret, {
 				expiresIn: 3600
-			});
-			res.json({
-				success: true,
-				token: 'JWT ' + token,
-				msg: 'Welcome aboard',
-				user: {
-					id: user._id,
-					firstName: user.firstName,
-					lastName: user.lastName,
-					login: user.login,
-					email: user.email
-				}
-			});
+			});			
+			// res.json({
+			// 	success: true,
+			// 	token: 'JWT ' + token,
+			// 	msg: 'Welcome aboard',
+			// 	user: {
+			// 		id: user._id,
+			// 		firstName: user.firstName,
+			// 		lastName: user.lastName,
+			// 		login: user.login,
+			// 		email: user.email
+			// 	}
+			// });
+			res.redirect('/api/auth/signIn/submit/successful');
 		} else {			
 			return res.json({success: false, msg: 'Wrong password'});
 		}
@@ -75,6 +104,7 @@ router.post('/signUp/submit/' ,(req, res, next) => {
 		next();
 	}
 })
+
 router.post('/signUp/submit', (req, res, next) => {
 	let newUser = new User();
 	
@@ -99,6 +129,32 @@ router.post('/signUp/submit', (req, res, next) => {
 router.get('/signOut', (req, res, next) => {
 	req.logout();
 	res.json({success: true, msg: 'User disconnected'})
+});
+
+router.post('/updatePicture', function (req, res) {
+	upload(req, res, (err) => {
+		if (err) {
+			res.json({ success: false, msg: 'Upload failed' + err });
+		} else {
+			User.findOne({ login: req.body.login}, (err, user) => {
+				if (err) {
+					res.json({success: false, msg: 'Fail database' + err });
+				} else {
+					if (user.picturePath && user.picturePath !== undefined) {
+						user.removeFile('../client/public/uploads' + user.picturePath);
+					}
+				}
+			});
+			const pathPic = req.file.path.substr(25);
+			User.update({ login: req.body.login }, { $set: { picturePath: pathPic }}, (err, resutl) => {
+				if (err) {
+					res.json({success: false, msg: 'Fail database' + err});
+				} else {
+					res.json({success: true, msg: 'Image uploaded'});
+				}
+			})
+		}
+	});
 });
 
 module.exports = router;

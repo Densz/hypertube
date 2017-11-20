@@ -1,5 +1,6 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const fs = require('fs');
 
 const userSchema = mongoose.Schema({
     firstName: {
@@ -12,7 +13,7 @@ const userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: false
     },
     login: {
         type: String,
@@ -21,6 +22,10 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: false
+	},
+	picturePath: {
+		type: String,
+		required: false
 	},
 	facebookId: {
 		type: String,
@@ -41,6 +46,22 @@ userSchema.methods.generateHash = (password) => {
 // checking if password is valid
 userSchema.methods.checkPassword = (candidatePwd, userPwd) => {
     return bcrypt.compareSync(candidatePwd, userPwd);
+}
+
+userSchema.methods.removeFile = (src) => {
+	fs.stat(src, function (err, stats) {
+		if (err) {
+			console.log(err)
+			res.send(err)
+		}
+		fs.unlink(src, (err) => {
+			if (err) {
+				console.log(err)
+				res.send(err)
+			}
+			console.log('Item Deleted')
+		})
+	});
 }
 
 module.exports = mongoose.model('User', userSchema);
