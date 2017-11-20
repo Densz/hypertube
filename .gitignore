@@ -69,3 +69,4 @@ server/config/mlab.js
 test.js
 test.mp4
 server/torrent
+client/public/uploads/*
