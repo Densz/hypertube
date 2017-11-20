@@ -24,6 +24,7 @@
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",
     "serve-favicon": "~2.4.5",
+    "torrent-stream": "^1.0.3",
     "transmission": "^0.4.9",
     "validator": "^9.1.0"
   },
