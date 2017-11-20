@@ -6,13 +6,19 @@ import { createReadStream } from 'fs';
 const ts = require('torrent-stream');
 const options = require('../config/torrent');
 
+async function getInfo(id) {
+	let response = {};
+	try {
+		response = await rp('https://yts.ag/api/v2/movie_details.json?movie_id=' + id + '&with_images=true&with_cast=true');
+	} catch (e) {
+		console.error('Error retrieving API data from YTS: ' + e);
+	}
+	return (JSON.parse(response));
+}
 
-router.post('/', (req, res, next) => {
-    console.log(req.body.id);
-	request('https://yts.ag/api/v2/movie_details.json?movie_id=' + req.body.id + '&with_images=true&with_cast=true', function(error, response, body){
-		let infos = JSON.parse(body);
-		res.json(infos);
-	});
+router.post('/', async (req, res, next) => {
+	info = await getInfo(req.body.id);
+	res.json(info);
 });
 
 function compareSize(a, b) {
@@ -33,24 +39,29 @@ function compareSeeds(a, b) {
 
 router.get('/:id', async (req, res, next) => {
 	let hash = '',
-		torrents = [];
-	
-	let response = await rp('https://yts.ag/api/v2/movie_details.json?movie_id=' + req.params.id);
-	let data = JSON.parse(response);
+		torrents = [],
+		data = {};
+	// get data from the yify API, put torrent info in array called torrents
+	data = await getInfo(req.params.id);
 
 	torrents = data.data.movie.torrents;
 
 	if (torrents.length < 1)
 		next();
+	// sort torrents by number of seeds, in descending order, then get hash of torrent with most seeds
 	torrents.sort(compareSeeds);
 	hash = torrents[0].hash;
 	console.log(hash);
 
+	// register torrent with torrent-stream
 	let torrent = ts(hash, options);
+
+	// when torrent is ready to stream
 	torrent.on('ready', function () {
 		let files = torrent.files;
 
 		if (files.length < 1) {next();}
+		// sort files by size in descending order, assuming largest file is the video
 		files.sort(compareSize);
 
 		const header = {
