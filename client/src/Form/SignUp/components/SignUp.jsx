@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import SignUpBlock from './SignUpBlock';
 import InputForm from "../../../General/components/InputForm";
 import "../css/signup.css";
@@ -37,7 +36,8 @@ class SignUp extends Component {
 		this.setState((prevState) => ({
 			[elem]: {
 				title: prevState[elem].title,
-				error: errorMessage
+				error: errorMessage,
+				value: prevState[elem].value
 			}
 		}))
 	}
@@ -54,6 +54,10 @@ class SignUp extends Component {
 			
 		}
 		let errorBool = false;
+		if (!this.state.uploadDone) {
+			errorBool = true;
+			this.setErrorMessage('firstName', 'Vous devez choisir une photo pour vous inscrire');
+		}
         for (var elem in this.state) {
             if (this.state[elem].title !== undefined && (this.state[elem].value === '' || this.state[elem].value === undefined)) {
 				let title = this.state[elem].title.toLowerCase();
@@ -69,6 +73,10 @@ class SignUp extends Component {
 				if (!response.success) {
 					console.log('handle front error');
 					console.log(response.errors);
+					const errRes = response.errors;
+					for(var k in errRes) {
+						this.setErrorMessage(k, errRes[k]);
+					}
 				}
 				else {
 					callApiUpload(file, login)
@@ -103,6 +111,7 @@ class SignUp extends Component {
 			this.setState({
 				picture: e.target.result,
 				picUploadedInfo: pictureFile,
+				uploadDone: true
 			});
 		}
 		reader.readAsDataURL(pictureFile);
@@ -117,11 +126,6 @@ class SignUp extends Component {
     }
 
     render() {
-		// if (this.state.uploadDone) {
-		// 	return (
-		// 		<Redirect to="/" />
-		// 	);
-		// }
         return (
 			<SignUpBlock>
 				<form onSubmit={this.handleSubmit} encType="multipart/form-data">

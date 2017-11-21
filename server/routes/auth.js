@@ -44,11 +44,13 @@ function validateSignUpForm(payload) {
 	}
 	if (typeof payload.password !== 'string' || payload.password.trim().length < 6) {
 		isFormValid = false;
-		errors.password = 'Password must have at least 8 characters';
+		errors.passwd = 'Password must have at least 8 characters';
+		errors.passwdConfirm = 'Password must have at least 8 characters'
 	}
 	if (payload.confirmPassword !== payload.password) {
 		isFormValid = false;
-		errors.password = 'Password confirmation must match Password';
+		errors.passwd = 'Password must match Password confirmation ';
+		errors.passwdConfirm = 'Password confirmation must match Password';
 	}
 	if (typeof payload.login !== 'string' || payload.login.trim().length < 5){
 		isFormValid = false;
@@ -80,8 +82,12 @@ router.post('/signUp/submit', (req, res, next) => {
 	newUser.login = req.body.login;
 	newUser.password = newUser.generateHash(req.body.password);
 	User.findOne({ $or: [{ email: req.body.email }, { login: req.body.login }]}, (err, user) => {
+		if (err) {
+			res.json({ success: false, msg: 'Data base issue' })
+		}
 		if (user) {
-			res.json({ success: false, msg: 'Failed to add user email or username already taken' });
+			const msg = 'Failed to add user email or username already taken';
+			res.json({ success: false, errors: { 'email': msg, 'login': msg } });
 		} else {
 			newUser.save((err) => {
 				if (err)
