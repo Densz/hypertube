@@ -40,4 +40,5 @@
 	cursor: pointer;
 	width: 102px;
 	height: 142px;
+	object-fit: cover;
 }
