@@ -7,6 +7,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const flash = require('connect-flash');
 // Import Routes
 const index = require('./routes/index');
 const auth = require('./routes/auth');
@@ -35,7 +36,8 @@ passport.deserializeUser(function(user, done) {
 
 const app = express();
 
-//Passport Middlewares
+app.use(flash());
+//Passport Middlewares\
 app.use(session({secret: 'max', saveUninitialized: false, resave: false}));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -54,10 +56,16 @@ app.use('/api/catalog', catalog);
 app.use('/api/userLogged', userLogged);
 app.use('/api/movie', movie);
 app.use('/api/torrent', torrent);
+app.use('/api/auth', auth);
+
+app.get('/api/loginFailure', (req, res) => {
+	let error = req.flash().error[0]
+	let message = {message : error};
+	res.json(message);
+})
 
 // Authentication Routes using Passport
-app.use('/api/auth', auth);
-app.post('/api/login', passport.authenticate('local',  { failureRedirect: '/' }), function(req, res) {
+app.post('/api/login', passport.authenticate('local',  { failureRedirect: '/api/loginFailure', failureFlash: true }), function(req, res) {
 	res.json({success: true, msg: 'Login succesfully done'})
 })
 app.get('/api/login/facebook', passport.authenticate('facebook'));

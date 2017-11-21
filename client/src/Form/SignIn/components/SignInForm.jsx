@@ -29,6 +29,7 @@ class SignInForm extends Component {
 		this.setState((prevState) => ({
 			[elem]: {
 				title: prevState[elem].title,
+				value: prevState[elem].value,
 				error: errorMessage
 			}
 		}))
@@ -51,10 +52,33 @@ class SignInForm extends Component {
 		if (!errorBool)
 			callApi('/api/login', 'post', inputValues)
 			.then((response) => {
+				console.log('response de /api/login', response);
+				if (response.message) {
+					if (response.message.search('username') > 0) {
+						this.setState({
+							login: {
+								...this.state.login,
+								error: "The username does not exist"
+							},
+							passwd: {
+								...this.state.passwd,
+								error: ""
+							}
+						})
+					} else {
+						this.setState({
+							login: {
+								...this.state.login,
+								error: ""
+							},
+							passwd: {
+								...this.state.passwd,
+								error: "The password is incorrect"
+							}
+						})
+					}
+				}
 				this.props.checkIfIsLogged();
-			})
-			.catch((err) => {
-				console.log(err);
 			})
 	}
 
@@ -66,7 +90,7 @@ class SignInForm extends Component {
                 <InputForm
                     containerClass="form-group"
                     textValue={ this.state.login.title }
-                    type="email"
+                    type="text"
 					inputClass={ this.state.login.error ? "form-control error" : "form-control" }
 					name="login"
 					onUpdate={ this.updateInputValue }
@@ -94,7 +118,7 @@ class SignInForm extends Component {
             <img src="/images/42.png" className="facebook-logo" alt="42" />&nbsp;&nbsp;<a href="http://localhost:3001/api/login/fortytwo">S'identifier avec 42 - Born2Code ?</a>
 			<hr/>
             <p>Première visite sur Hypertube ? <a href="/signUp">Inscrivez-vous</a>.</p>
-        </SignInBlock>
+        	</SignInBlock>
 		)
 	}
 }

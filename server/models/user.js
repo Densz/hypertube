@@ -45,7 +45,10 @@ userSchema.methods.generateHash = (password) => {
 
 // checking if password is valid
 userSchema.methods.checkPassword = (candidatePwd, userPwd) => {
-    return bcrypt.compareSync(candidatePwd, userPwd);
+	if (!userPwd)
+		return null;
+	else
+    	return bcrypt.compareSync(candidatePwd, userPwd);
 }
 
 userSchema.methods.removeFile = (src) => {
