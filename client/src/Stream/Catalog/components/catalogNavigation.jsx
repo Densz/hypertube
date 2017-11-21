@@ -7,6 +7,29 @@ const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
 class CatalogNavigation extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			categorie: this.props.categorie
+		}
+		this.changeCategorie = this.changeCategorie.bind(this);
+		this.changeSelectInput = this.changeSelectInput.bind(this);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			categorie: nextProps.categorie
+		})
+	}
+
+	changeCategorie(event) {
+		this.props.changeCategorie(event.target.id);
+	}
+
+	changeSelectInput(event) {
+		this.props.changeOptionInput(event.target.id, event.target.value);
+	}
+
 	render() {
 		return (
 		<div className="row filter-row">
@@ -15,7 +38,7 @@ class CatalogNavigation extends Component {
 					<div className="col-sm-3"></div>
 					<div className="col-sm-6">
 						<div className="form-group">
-							<h3 className="blue-font">Search</h3>
+							<h4 className="blue-font">Are you looking for something specific?</h4>
 							<input type="text" onChange={this.props.updateSearchInput} className="form-control catalog-search" placeholder="Search..." />
 						</div>
 					</div>
@@ -28,7 +51,7 @@ class CatalogNavigation extends Component {
 					<div className="col-sm-3">
 						<div className="form-group">
 						<label className="blue-font">Sort by</label>
-							<select className="form-control black" id="sel1">
+							<select className="form-control black" id="sortBy" onChange={this.changeSelectInput}>
 								<option>Rating</option>
 								<option>Name</option>
 								<option>Year</option>
@@ -37,7 +60,7 @@ class CatalogNavigation extends Component {
 					</div>
 					<div className="col-sm-3">
 						<label className="blue-font">Genre</label>
-						<select className="form-control black" id="sel1" name="Genre">
+						<select className="form-control black" id="genre" name="Genre" onChange={this.changeSelectInput}>
 							<option value="all">All</option>
 							<option value="action">Action</option>
 							<option value="adventure">Adventure</option>
@@ -93,10 +116,15 @@ class CatalogNavigation extends Component {
 				<div className="searchbar-catalog">
 					<div className="col-sm-3"></div>
 					<div className="col-sm-3">
-						<h4 className="categories selected-categorie">Movies</h4>
+						<h4 
+							id="movies" 
+							className={"categories " + (this.state.categorie === "movies" ? " selected-categorie" : "")}
+							onClick={this.changeCategorie}>Movies</h4>
 					</div>
 					<div className="col-sm-3">
-						<h4 className="categories">TV Shows</h4>
+						<h4 id="tv_shows"
+						className={"categories " + (this.state.categorie === "tv_shows" ? " selected-categorie" : "")}
+						onClick={this.changeCategorie}>TV Shows</h4>
 					</div>
 					<div className="col-sm-3"></div>
 				</div>

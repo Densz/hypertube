@@ -13,11 +13,17 @@ class Catalog extends Component {
 			pages: 1,
 			searchField: '',
 			hasMore: true,
-			filterBy: 'like_count',
+			sortBy: 'rating',
+			genre: 'All',
+			yearInterval: [1900, 2018],
+			ratingInterval: [0, 10],
+			categorie: "movies"
 		}
 		this.updateSearchInput = this.updateSearchInput.bind(this);
 		this.onSliderChangeYear = this.onSliderChangeYear.bind(this);
 		this.onSliderChangeRating = this.onSliderChangeRating.bind(this);
+		this.changeCategorie = this.changeCategorie.bind(this);
+		this.changeOptionInput = this.changeOptionInput.bind(this);
 	}
 
 	componentDidMount() {
@@ -59,7 +65,6 @@ class Catalog extends Component {
 	updateSearchInput(event) {
 		let value = event.target.value;
 		this.setState((prevState) => ({
-			...this.state,
 			catalog: [],
 			pages: 1,
 			searchField: value,
@@ -68,26 +73,45 @@ class Catalog extends Component {
 	}
 
 	onSliderChangeYear(value) {
-		console.log(value);
+		this.setState({
+			yearInterval: value
+		})
 	}
 
 	onSliderChangeRating(value) {
-		console.log(value);
+		this.setState({
+			ratingInterval: value
+		})
+	}
+
+	changeOptionInput(id, value) {
+		this.setState({
+			[id]: value
+		});
+	}
+
+	changeCategorie(categorieClicked) {
+		this.setState({
+			categorie: categorieClicked
+		})
 	}
 
 	render() {
+		console.log(this.state);
 		let items = [];
 		this.state.catalog.map((movieData, index) => {
 			items.push(<Thumbnail key={index} infos={movieData} />);
 			return undefined;
 		})
-
 		return (
 			<div>
 				<CatalogNavigation 
 					updateSearchInput={this.updateSearchInput}
 					onSliderChangeRating={this.onSliderChangeRating}
 					onSliderChangeYear={this.onSliderChangeYear}
+					changeOptionInput={this.changeOptionInput}
+					changeCategorie={this.changeCategorie}
+					categorie={this.state.categorie}
 				/>
 				<div className="row">
 					<div className="catalog-box">
