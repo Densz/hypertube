@@ -2,6 +2,10 @@
 	display: none;
 }
 
+.form-right {
+	padding-right: 0px;
+}
+
 .block-container .container {
     width: 65%;
 }

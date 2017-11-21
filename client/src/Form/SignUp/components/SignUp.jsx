@@ -130,20 +130,21 @@ class SignUp extends Component {
 			<SignUpBlock>
 				<form onSubmit={this.handleSubmit} encType="multipart/form-data">
 					<input onChange={this.handleUpload} type="file" name="file" id="file" />
+					<br/>
 					<h3>Inscrivez-vous pour profitez de vos films et séries préférées</h3>
 					<br/>
 						<h4>Créez votre compte</h4>
 						<br/>
 						<div className="form-row">
 							<div className="row">
-								<div className="col-md-2">
+								<div className="col-md-3">
 									<div className="upload-container">
 										<label htmlFor="file">
 											<img src={this.state.picture} alt="Profile" className="profile-picture" />
 										</label>
 									</div>
 								</div>
-								<div className="col-md-10">
+								<div className="col-md-9 form-right">
 									<div className="row">
 										<InputForm
 											containerClass="form-group col-md-6"
