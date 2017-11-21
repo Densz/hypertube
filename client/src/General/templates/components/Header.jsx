@@ -57,9 +57,9 @@ class Header extends Component {
 	
 	componentWillUpdate() {
 		let path = window.location.pathname;
-		
+
 		if (this.state.signInBtn) {
-			if (path !== "/signUp" || path !== "/forgottenPasswd")
+			if (path !== "/signUp" && path !== "/forgottenPasswd")
 				this.setState({ signInBtn: false });
 		}
 		if (this.state.catalogPage) {
