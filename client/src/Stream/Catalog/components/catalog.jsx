@@ -62,6 +62,10 @@ class Catalog extends Component {
 		})
 	}
 
+	callMoreTvShows() {
+		console.log('tu rentres bien dans TvShows et commencer a charger plus de films');
+	}
+
 	updateSearchInput(event) {
 		let value = event.target.value;
 		this.setState((prevState) => ({
@@ -92,7 +96,10 @@ class Catalog extends Component {
 
 	changeCategorie(categorieClicked) {
 		this.setState({
-			categorie: categorieClicked
+			categorie: categorieClicked,
+			catalog:[],
+			pages: 1,
+			hasMore: true
 		})
 	}
 
@@ -115,12 +122,22 @@ class Catalog extends Component {
 				/>
 				<div className="row">
 					<div className="catalog-box">
+					{ this.state.categorie === "movies" &&
 						<InfiniteScroll
 							loadMore={this.callMoreMovies.bind(this)}
 							hasMore= {this.state.hasMore}
 						>
 							{items}
 						</InfiniteScroll>
+					}
+					{ this.state.categorie === "tv_shows" &&
+						<InfiniteScroll
+							loadMore={this.callMoreTvShows.bind(this)}
+							hasMore= {this.state.hasMore}
+						>
+							{items}
+						</InfiniteScroll>
+					}
 					</div>
 				</div>
 			</div>
