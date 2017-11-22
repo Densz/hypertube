@@ -52,9 +52,9 @@ class CatalogNavigation extends Component {
 						<div className="form-group">
 						<label className="blue-font">Sort by</label>
 							<select className="form-control black" id="sortBy" onChange={this.changeSelectInput}>
-								<option>Rating</option>
-								<option>Name</option>
-								<option>Year</option>
+								<option value="rating">Rating</option>
+								<option value="year">Time</option>
+								<option value="date_added">Date added</option>
 							</select>
 						</div>
 					</div>
@@ -96,7 +96,7 @@ class CatalogNavigation extends Component {
 					<div className="col-sm-3"></div>
 					<div className="col-sm-3">
 						<label className="blue-font">Year of Production</label>
-						<Range min={1900} max={2018} defaultValue={[1900, 2018]} onChange={this.props.onSliderChangeYear} pushable
+						<Range min={1900} max={2018} defaultValue={[1900, 2018]} onAfterChange={this.props.onSliderChangeYear} pushable
 							trackStyle={[{ backgroundColor: 'grey' }, { backgroundColor: 'black' }]}
 							handleStyle={[{ backgroundColor: 'white' }, { backgroundColor: 'grey' }]}
 							railStyle={{ backgroundColor: 'white' }}
@@ -104,7 +104,7 @@ class CatalogNavigation extends Component {
 					</div>
 					<div className="col-sm-3">
 						<label className="blue-font">IMDB Rating</label>
-						<Range min={0} max={10} defaultValue={[0, 10]} onChange={this.props.onSliderChangeRating} pushable
+						<Range min={0} max={10} defaultValue={[0, 10]} onAfterChange={this.props.onSliderChangeRating} pushable
 							trackStyle={[{ backgroundColor: 'grey' }, { backgroundColor: 'black' }]}
 							handleStyle={[{ backgroundColor: 'white' }, { backgroundColor: 'grey' }]}
 							railStyle={{ backgroundColor: 'white' }}/>

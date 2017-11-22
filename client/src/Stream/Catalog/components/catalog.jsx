@@ -14,7 +14,7 @@ class Catalog extends Component {
 			searchField: '',
 			hasMore: true,
 			sortBy: 'rating',
-			genre: 'All',
+			genre: 'all',
 			yearInterval: [1900, 2018],
 			ratingInterval: [0, 10],
 			categorie: "movies"
@@ -37,10 +37,20 @@ class Catalog extends Component {
 
 	callMoreMovies() {
 		this.setState({ hasMore: false });
-		callApi('/api/catalog/', 'post', { pages: this.state.pages, filterBy: this.state.filterBy, searchField: this.state.searchField })
+		var json = {
+			pages: this.state.pages,
+			searchField: this.state.searchField,
+			sortBy: this.state.sortBy,
+			genre: this.state.genre,
+			yearInterval: this.state.yearInterval,
+			ratingInterval: this.state.ratingInterval,
+			categorie: this.state.categorie
+		}
+		callApi('/api/catalog/movies', 'post', json)
 		.then((catalogMovies) => {
 			let catalogArray = this.state.catalog;
-			if (catalogMovies.data.movies && catalogMovies.data.movies.length > 0) {
+			if ((catalogMovies.data.movies && catalogMovies.data.movies.length > 0) || catalogMovies.data.moviesIncoming === true ) {
+				// Load movies and switch to the next page
 				catalogMovies.data.movies.map(
 					(movieData) => {
 						catalogArray.push(movieData);
@@ -50,14 +60,21 @@ class Catalog extends Component {
 				this.setState((prevState) => ({
 					...this.state,
 					pages: prevState.pages + 1,
-					hasMore: catalogMovies.data.movies.length < 16 ? false : true
+					hasMore: true
 				}))
+			} else if (catalogMovies.data.movie_count > 0){
+				// When you there is result in the catalog but there is no more movies to load
+				this.setState({
+					hasMore: false
+				});
 			} else {
+				// When you there is value in search field and there is no result
+				console.log("second");				
 				this.setState({
 					catalog: [],
 					pages: 1,
 					hasMore: false
-				});
+				})
 			}
 		})
 	}
@@ -78,19 +95,28 @@ class Catalog extends Component {
 
 	onSliderChangeYear(value) {
 		this.setState({
-			yearInterval: value
+			yearInterval: value,
+			catalog: [],
+			pages: 1,
+			hasMore: true
 		})
 	}
 
 	onSliderChangeRating(value) {
 		this.setState({
-			ratingInterval: value
+			ratingInterval: value,
+			catalog: [],
+			pages: 1,
+			hasMore: true
 		})
 	}
 
 	changeOptionInput(id, value) {
 		this.setState({
-			[id]: value
+			[id]: value,
+			catalog: [],
+			pages: 1,
+			hasMore: true
 		});
 	}
 
@@ -126,6 +152,7 @@ class Catalog extends Component {
 						<InfiniteScroll
 							loadMore={this.callMoreMovies.bind(this)}
 							hasMore= {this.state.hasMore}
+							loader={<div>Loading ...</div>}
 						>
 							{items}
 						</InfiniteScroll>
@@ -134,6 +161,7 @@ class Catalog extends Component {
 						<InfiniteScroll
 							loadMore={this.callMoreTvShows.bind(this)}
 							hasMore= {this.state.hasMore}
+							loader={<div className="loader">Loading ...</div>}							
 						>
 							{items}
 						</InfiniteScroll>
