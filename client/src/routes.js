@@ -14,6 +14,7 @@ class Routes extends Component {
 		this.state = {
 			isLogged: false, // to acces to catalog
 			isFetching: false,
+			subscriber: true,
 			infos: {}
 		}
 		this.checkIfIsLogged = this.checkIfIsLogged.bind(this);
@@ -29,7 +30,7 @@ class Routes extends Component {
 
     render() {
         return (
-            <Layout isLogged={ this.state.isLogged }>
+            <Layout isLogged={ this.state.isLogged } subscriber={ this.state.subscriber }>
                 <Router>
                     <div>
 						{ this.state && this.state.isFetching &&
