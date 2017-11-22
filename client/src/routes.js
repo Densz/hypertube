@@ -24,7 +24,6 @@ class Routes extends Component {
 		isLogged()
 		.then((response) => {
 			this.setState(response);
-			this.setState({ isLogged: true }); // Line to delete
 		})
 	}
 
