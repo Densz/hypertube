@@ -35,18 +35,17 @@ const checkNewEmail = (newEmail) =>  {
 router.post('/update', async (req, res, next) => {
 	const key = req.body.key;
 	const value = req.body.value;
-	const set = {[key]: value};
-	if ( key === 'email') {
+	if (key === 'email') {
 		await checkNewEmail(value)
 		.then((response) => {
 			if (!response.success) {
 				res.json({success: false, msg: 'Email already exists', oldValue: { name: 'email', value: req.user.email } });
 			} else {
+				const set = {[key]: value};
 				User.update({ _id: req.user._id }, {$set: set }, (err, result) => {
 					if (err) { 
 						res.json({ success: false, msg: 'Database fail' + err });
-					}
-					else {
+					} else {
 						req.user[key] = value;
 						res.json({ success: true, msg: 'User data in db updated' });
 					}
@@ -56,6 +55,16 @@ router.post('/update', async (req, res, next) => {
 		.catch((rejection) => {
 			if (rejection) {
 				res.json({ success: false, msg: 'Database issue' })
+			}
+		});
+	} else {
+		const set = ((key === 'firstName' || key === 'lastName') ? { [key]: value.capitalize() } : {[key]: value});
+		User.update({ _id: req.user._id}, {$set: set}, (err, result) => {
+			if (err) {
+				res.json({ success: false, msg: 'Database fail' + err });
+			} else {
+				req.user[key] = value.capitalize();
+				res.json({ success: true, msg: 'User data in db updated' });
 			}
 		});
 	}

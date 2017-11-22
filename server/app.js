@@ -16,7 +16,6 @@ const userLogged = require('./routes/userLogged');
 const movie = require('./routes/movie');
 const torrent = require('./routes/torrent');
 
-
 // Import Strategies
 import { facebookStrategy, fortytwoStrategy, localStrategy } from './config/oAuth';
 // Import test
@@ -100,5 +99,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// Adding string methods
+String.prototype.capitalize = function () {
+	return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
+}
 
 module.exports = app;

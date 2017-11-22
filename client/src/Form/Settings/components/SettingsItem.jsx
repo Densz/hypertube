@@ -7,7 +7,8 @@ class ProfileItem extends Component {
 		this.state = {
 			isActive: false,
 			value: this.props.item.value,
-			tmpValue : this.props.item.value
+			tmpValue : this.props.item.value,
+			type: { password: false, value: '' }
 		};
 		this.handleClick = this.handleClick.bind(this);
 		this.handleInput = this.handleInput.bind(this);
@@ -17,8 +18,9 @@ class ProfileItem extends Component {
 	handleInput = (event) => {
 		event.preventDefault();
 		this.setState({
-			tmpValue: event.target.value
+			tmpValue: event.target.value,
 		});
+		this.props.item.error = ''
 	};
 
 	handleClick = () => {
@@ -28,11 +30,25 @@ class ProfileItem extends Component {
 		});
 	};
 
-	handleSubmit(event){
+	async handleSubmit(event){
 		event.preventDefault();
-		console.log('handle submit');
-		if (this.props.submitData(this.props.name, this.state.tmpValue)) {
-			this.setState({value : this.state.tmpValue});
+		const ret = await this.props.submitData(this.props.name, this.state.tmpValue);
+		console.log(ret);
+		if (ret.success === true) {
+			let capValue = '';
+			if (this.props.name === 'firstName' || this.props.name === 'lastName') {
+				capValue = this.props.capitalize(this.state.tmpValue);
+			} else {
+				capValue = this.state.tmpValue;
+			}
+			if (this.props.name === 'passwd') {
+				const starValue  = '*'.repeat(capValue.length);
+				console.log(starValue);
+				setTimeout(() => {
+					this.setState({ value: starValue, tmpValue: starValue })
+				}, 3000);
+			}
+			this.setState({value : capValue, tmpValue: capValue});
 		} else {
 			this.setState({tmpValue: this.state.value});
 		}
@@ -40,6 +56,14 @@ class ProfileItem extends Component {
 			isActive: false
 		});
 	};
+
+	componentDidMount() {
+		if (this.props.type === 'password') {
+			this.setState({type: { password: true, value: 'text' } });
+		} else {
+			this.setState({type: { password: false, value: this.props.type } });
+		}
+	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.item.value !== this.props.item.value){
@@ -52,18 +76,19 @@ class ProfileItem extends Component {
 			<div>
 				<div className="col-md-12" tabIndex="1" >
 					<div className="input-group">
-						<input autoFocus className="form-control" name={this.props.name} onChange={this.handleInput} type={this.props.type} value={this.state.tmpValue} placeholder={this.props.item.title} />
+						<input autoFocus className="form-control" name={this.props.name} onChange={this.handleInput} type={this.state.type.value} value={this.state.tmpValue} placeholder={this.props.item.title} />
 						<span className="input-group-btn">
 							<button onClick={this.handleSubmit} className="btn" type="submit">Change {this.props.item.title}</button>
 						</span>
-						{this.props.item.error !== '' && <span className="form-error-message">{this.props.item.error}</span>}
 					</div>
 				</div>
 			</div>
 		) : (
 				<div>
 					<div className="col-md-12" onClick={this.handleClick}>
-						<div className="text-left" data-tip="Click to change">{this.state.value}</div>
+						<label>{this.props.title}</label>
+						{this.props.item.error && <div className="error-message" >{this.props.item.error}</div>}
+						<div className="text-left text-value" data-tip="Click to change">{this.state.value}</div>
 						<ReactTooltip place="right" type="dark" effect="solid" />
 					</div>
 				</div>

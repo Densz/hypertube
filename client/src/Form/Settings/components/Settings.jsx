@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import validator from 'validator';
 import "../css/settings.css";
 import SettingsItem from './SettingsItem';
 import { callApi, isLogged, callApiUpload } from '../../../ApiCaller/apiCaller';
@@ -10,38 +11,66 @@ class MyProfile extends Component {
             firstName: {title: 'First Name', value: 'Fake', error: ''},
             lastName: {title: 'Last Name', value: 'Person', error: ''},
             email: {title: 'Email', value: 'fake@spam.com', error: ''},
-            login: {title: 'Login', value: 'fakeperson69', error: ''},
+            login: {title: 'Login', value: 'fakeperson69', error: 'heyyyyy'},
             passwd: {title: 'Password', value: '**********', error: ''},
             passwdConfirm: {title: 'Confirm Password', value: '', error: ''},
-			language: {title: 'Language', value: 'English', error: ''},
 			picturePath: { value: '/images/heisenberg.png'}
         };
 		this.submitData = this.submitData.bind(this);
 		this.handleUpload = this.handleUpload.bind(this);
     }
 
+	stringCapitalize(value) {
+		return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+	}
+
     submitData = (name, value) => {
-        let error = '',
-            item = this.state[name];
-        console.log('name = ' + name + ' value = ' + value);
-        if (value === '' || value === undefined) {
-			error = "Please enter updated " + item.title.toLowerCase();
-			console.log(error);
-        } else {
-			this.updateBackData(name, value, (stateReturn) => {
-				if (stateReturn) {
-					this.setState({
-						[name]: {
-							...this.state[name],
-							value: value
-						}
-					})
-					return false;
-				} else {
-					return true;
+		return new Promise((res, rej) => {
+			let errorBool = false;
+			let error = '',
+				item = this.state[name];
+			if (value === '' || value === undefined) {
+				errorBool = true;
+				error = "Please enter updated " + item.title.toLowerCase();
+			} else if (name === 'email') {
+				if (!validator.isEmail(value)) {
+					errorBool = true;
+					error = 'Please provide a correct email address';
 				}
-			});
-		}
+			} else if (name === 'passwd') {
+				console.log(value);
+				if (value.trim().length < 6) {
+					errorBool = true;
+					error = 'Password must have at least 6 characters';
+				}
+			}
+			if (errorBool) {
+				this.setState({
+					[name]: {
+						...item,
+						error: error
+					}
+				})
+				 res({ success: false });
+			} else {
+				this.updateBackData(name, value, (stateReturn) => {
+					if (stateReturn) {
+						if (name !== 'email' && name !== 'passwd') {
+							value = this.stringCapitalize(value);	
+							this.setState({
+								[name]: {
+									...item,
+									value: value
+								}
+							});
+						}
+						res({ success: true });
+					} else {
+						res({ success: false });						
+					}
+				});
+			}
+		})
 	};
 	
 	updateBackData(key, value, cb) {
@@ -51,7 +80,7 @@ class MyProfile extends Component {
 			if (response.success) {
 				cb(true);
 			} else {
-				cb(false)
+				cb(false);
 			}
 		});
 	}
@@ -127,20 +156,28 @@ class MyProfile extends Component {
 								<div className="col-md-3">
 									<h4>User Details</h4>
 								</div>
-								<div className="col-md-9">
-									<SettingsItem name='login' type='text' item={this.state.login} submitData={this.submitData} />
-									<SettingsItem name='firstName' type='text' item={this.state.firstName} submitData={this.submitData} />
-									<SettingsItem name='lastName' type='text' item={this.state.lastName} submitData={this.submitData} />
+								<div className="col-md-9 top-margin">
+									<div className="row form-group align-middle detail-section">
+										<div>
+											<div className="col-md-12" onClick={this.handleClick}>
+												<label>{this.state.login.title} :</label>
+												<div className="text-value">
+													{this.state.login.value}
+												</div>
+											</div>
+										</div>
+									</div>
+									<SettingsItem name='firstName' type='text' capitalize={this.stringCapitalize} title={this.state.firstName.title + ' :'} item={this.state.firstName} submitData={this.submitData} />
+									<SettingsItem name='lastName' type='text' capitalize={this.stringCapitalize} title={this.state.lastName.title + ' :'} item={this.state.lastName} submitData={this.submitData} />
 								</div>
 							</div>
 							<div className="row account-section">
 								<div className="col-md-3">
 									<h4>Account Details</h4>
 								</div>
-								<div className="col-md-9">
-									<SettingsItem name='email' type='email' item={this.state.email} submitData={this.submitData} />
-									<SettingsItem name='password' type='password' item={this.state.passwd} submitData={this.submitData} />
-									<SettingsItem name='language' type='text' item={this.state.language} submitData={this.submitData} />
+								<div className="col-md-9 top-margin">
+									<SettingsItem name='email' type='email' capitalize={this.stringCapitalize} title={this.state.email.title + ' :'} item={this.state.email} submitData={this.submitData} />
+									<SettingsItem name='passwd' type='password' capitalize={this.stringCapitalize} title={this.state.passwd.title + ' :'} item={this.state.passwd} submitData={this.submitData} />
 								</div>
 							</div>
 						</div>
