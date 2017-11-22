@@ -51,7 +51,6 @@ class SignUp extends Component {
             login: this.state.login.value,
             password: this.state.passwd.value,
 			confirmPassword: this.state.passwdConfirm.value
-			
 		}
 		let errorBool = false;
 		if (!this.state.uploadDone) {

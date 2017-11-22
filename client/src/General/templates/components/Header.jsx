@@ -17,8 +17,8 @@ const ComponentRendered = (props) => {
 			</a >
 		);
         rendering.push(
-			<a href="/myprofile" key={rendering.length}>
-                <img src="/icons/multimedia/avatar.png" className="navbar-logo" alt="hypertube" />
+			<a href="/settings" key={rendering.length}>
+                <img src="/icons/multimedia/settings.png" className="navbar-logo" alt="hypertube" />
             </a >
         );
         // rendering.push(<a href="/" onClick={logOut} key={rendering.length} id="sign-out" className="button-link">Disconnect</a>);

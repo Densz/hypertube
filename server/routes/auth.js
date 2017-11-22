@@ -113,16 +113,16 @@ router.post('/updatePicture', function (req, res) {
 					res.json({success: false, msg: 'Fail database' + err });
 				} else {
 					if (user.picturePath && user.picturePath !== undefined) {
-						user.removeFile('../client/public/uploads' + user.picturePath);
+						user.removeFile('../client/public/' + user.picturePath);
 					}
 				}
 			});
-			const pathPic = req.file.path.substr(25);
-			User.update({ login: req.body.login }, { $set: { picturePath: pathPic }}, (err, resutl) => {
+			const namePic = '/uploads/' + req.file.filename;
+			User.update({ login: req.body.login }, { $set: { picturePath: namePic }}, (err, result) => {
 				if (err) {
 					res.json({success: false, msg: 'Fail database' + err});
 				} else {
-					res.json({success: true, msg: 'Image uploaded'});
+					res.json({success: true, msg: 'Image uploaded', namePic: namePic });
 				}
 			})
 		}

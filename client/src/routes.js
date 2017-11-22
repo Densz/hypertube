@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
 import SignIn from "./Form/SignIn/components/SignIn";
 import SignUp from "./Form/SignUp/components/SignUp";
-import MyProfile from "./Form/MyProfile/components/MyProfile";
+import Settings from "./Form/Settings/components/Settings";
 import Layout from "./General/templates/components/Layout";
 import Catalog from "./Stream/Catalog/components/catalog";
 import Video from "./Stream/Movie/components/movie";
@@ -44,9 +44,9 @@ class Routes extends Component {
 									( <SignUp checkIfIsLogged={this.checkIfIsLogged} /> ) :
 									( <Redirect to="/catalog"></Redirect> )
 								)} />
-								<Route path="/myProfile" render={() => (
-									!this.state.isLogged ?
-									( <MyProfile /> ) :
+								<Route path="/Settings" render={() => (
+									this.state.isLogged ?
+									( <Settings /> ) :
 									( <Redirect to="/"></Redirect> )
 								)} />
 								<Route path="/catalog" render={() => (

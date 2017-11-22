@@ -11,3 +11,12 @@
 .text-left {
     cursor: pointer;
 }
+
+.picture-box {
+	cursor: pointer;
+	width: 142px;
+	height: 142px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-bottom: 10px;
+}
