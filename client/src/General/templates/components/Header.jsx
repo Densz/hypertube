@@ -39,7 +39,8 @@ class Header extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.isLogged === true) {
 			this.setState({
-				isLogged: true
+				isLogged: true,
+				signInBtn: false
 			})
 		}
 	}
