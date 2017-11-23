@@ -80,7 +80,7 @@ router.post('/signUp/submit', (req, res, next) => {
 	newUser.lastName = req.body.lastName;
 	newUser.email = req.body.email;
 	newUser.login = req.body.login;
-	newUser.password = User.generateHash(req.body.password);
+	newUser.password = newUser.generateHash(req.body.password);
 	User.findOne({ $or: [{ email: req.body.email }, { login: req.body.login }]}, (err, user) => {
 		if (err) {
 			res.json({ success: false, msg: 'Data base issue' })
