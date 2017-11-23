@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
 import SignIn from "./Form/SignIn/components/SignIn";
 import SignUp from "./Form/SignUp/components/SignUp";
-import Settings from "./Form/Settings/components/Settings";
+import Settings from "./UserInfo/Settings/components/Settings";
 import Layout from "./General/templates/components/Layout";
 import Catalog from "./Stream/Catalog/components/catalog";
+import Profile from "./UserInfo/Profile/components/Profile";
 import Video from "./Stream/Movie/components/movie";
 import { isLogged } from "./ApiCaller/apiCaller";
 
@@ -31,7 +32,7 @@ class Routes extends Component {
 
     render() {
         return (
-            <Layout isLogged={ this.state.isLogged } subscriber={ this.state.subscriber }>
+            <Layout userInfo={this.state.infos} isLogged={ this.state.isLogged } subscriber={ this.state.subscriber }>
                 <Router>
                     <div>
 						{ this.state && this.state.isFetching &&
@@ -46,10 +47,15 @@ class Routes extends Component {
 									( <SignUp checkIfIsLogged={this.checkIfIsLogged} /> ) :
 									( <Redirect to="/catalog"></Redirect> )
 								)} />
-								<Route path="/Settings" render={() => (
+								<Route path="/settings" render={() => (
 									this.state.isLogged ?
 									( <Settings /> ) :
 									( <Redirect to="/"></Redirect> )
+								)} />
+								<Route path="/profile" render={() => (
+									!this.state.isLogged ?
+										(<Redirect to="/"></Redirect>) :
+										(<Profile userInfo={this.state.infos} />)
 								)} />
 								<Route path="/catalog" render={() => (
 									!this.state.isLogged ?

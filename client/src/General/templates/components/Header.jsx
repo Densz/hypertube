@@ -23,7 +23,7 @@ const ComponentRendered = (props) => {
 				</a >
 			);
 			rendering.push(
-				<a href="/myprofile" key={rendering.length}>
+				<a href={"/profile?login=" + props.userInfo.login} key={rendering.length}>
 					<img src="/icons/multimedia/avatar.png" className="navbar-logo" alt="hypertube" />
 				</a >
 			)
@@ -81,12 +81,13 @@ class Header extends Component {
 				<a href="/">
 					<img src="/images/hypertube_logo.png" id="logo" className="navbar-brand" alt="hypertube"/> 
                 </a>
-                <ComponentRendered 
+				<ComponentRendered
                     isLogged={this.state.isLogged}
                     signInButton={this.state.signInBtn}
 					catalogPage={this.state.catalogPage}
 					logOutMethod={this.logOut}
 					subscriber={this.props.subscriber}
+					userInfo={this.props.userInfo}
                 />
             </nav>
         );

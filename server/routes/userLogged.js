@@ -32,6 +32,40 @@ const checkNewEmail = (newEmail) =>  {
 	});
 }
 
+router.get('/getUsers', async (req, res, next) => {
+	if (!req.query.value) {
+		res.json([]);
+	} else {
+		User.find({
+			$or: [
+				{ login: { $regex: ".*" + req.query.value + ".*" } },
+				{ lastName: { $regex: ".*" + req.query.value + ".*" } },
+				{ firstName: { $regex: ".*" + req.query.value + ".*" } },
+				{ login: { $regex: ".*" + req.query.value.charAt(0).toUpperCase() + req.query.value.slice(1) + ".*" } },
+				{ lastName: { $regex: ".*" + req.query.value.charAt(0).toUpperCase() + req.query.value.slice(1) + ".*" } },
+				{ firstName: { $regex: ".*" + req.query.value.charAt(0).toUpperCase() + req.query.value.slice(1) + ".*" } }
+			],
+			facebookId: { $exists: false },
+			fortytwoId: { $exists: false }
+		}, {_id: 0, login: 1, firstName: 1, lastName: 1}, (err, result) => {
+			res.json(result);
+		});
+	}
+});
+
+router.get('/getInfoUser', (req, res, next) => {
+	const login = req.query.login;
+	User.findOne({login: login}, {email: 0}, (err, result) => {
+		console.log(result)
+		if (err) res.json({success: false, msg: 'database', data: undefined});
+		if (result) {
+			res.json({success: true, msg: 'User found', data: result});
+		} else {
+			res.json({success: false, msg: 'User not found', data: undefined});
+		}
+	});
+});
+
 router.post('/update', async (req, res, next) => {
 	const key = req.body.key;
 	const value = req.body.value;
