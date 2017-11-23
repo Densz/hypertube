@@ -26,7 +26,7 @@ class Catalog extends Component {
 		this.changeCategorie = this.changeCategorie.bind(this);
 		this.changeOptionInput = this.changeOptionInput.bind(this);
 		// Uncomment the line below if you want to refresh all the tv shows
-		//callApi('/api/catalog/refreshTvShowsCatalog', 'post')
+		// callApi('/api/catalog/refreshTvShowsCatalog', 'post')
 	}
 
 	componentDidMount() {

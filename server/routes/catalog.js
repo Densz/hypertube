@@ -4,6 +4,7 @@ import request from 'request';
 const config = require('../config/config');
 const db = require('../config/database');
 const Eztv = require('../models/eztv');
+const EztvDb = require('../models/eztvDb');
 const moviedb = require('moviedb')('531e95f829b079916094fa5c7f0a60ce');
 
 /* GET users listing. */
@@ -30,7 +31,7 @@ router.post('/movies', (req, res) => {
 });
 
 router.post('/tvshows', (req, res) => {
-	Eztv.find({}, [], {
+	EztvDb.find({}, [], {
 		skip: (req.body.pages - 1) * 16,
 		limit: 16,
 		sort: { imdb_rating: -1 }
@@ -42,27 +43,31 @@ router.post('/tvshows', (req, res) => {
 
 const updateEztvDatabase = (json) => {
 	json.map((x) => {
-		let newShow = new Eztv();
+		let newShow = new EztvDb();
 		newShow.imdb_id = x.imdb_id;
-		newShow.title = x.title;
-		newShow.year = x.year;
-		newShow.last_updated = x.last_updated;
-		request('http://www.theimdbapi.org/api/movie?movie_id=' + x.imdb_id, function(error, response, body) {
-			if (error) console.log(error);
-			try {
-				let json = JSON.parse(body);
-				newShow.imdb_rating = json.rating;
-				newShow.cover_url = json.poster.thumb;
-				newShow.genre = json.genre;
-				newShow.save((err) => {
-					if (err) {
-						console.log("Error when saving show");
+		EztvDb.findOne({imdb_id: x.imdb_id}, function(err, result){
+			if (result === null) {
+				newShow.title = x.title;
+				newShow.year = x.year;
+				newShow.last_updated = x.last_updated;
+				request('http://www.theimdbapi.org/api/movie?movie_id=' + x.imdb_id, function(error, response, body) {
+					if (error) console.log(error);
+					try {
+						let json = JSON.parse(body);
+						newShow.imdb_rating = json.rating;
+						newShow.cover_url = json.poster.thumb;
+						newShow.genre = json.genre;
+						newShow.save((err) => {
+							if (err) {
+								console.log("Error when saving show");
+							}
+							console.log("tv show saved");
+						})
+					} catch(e) {
+						console.log("error");
+						return false;
 					}
-					console.log("tv show saved");
 				})
-			} catch(e) {
-				console.log('Une erreur est survenue');
-				return false;
 			}
 		})
 	})
@@ -82,6 +87,7 @@ router.post('/refreshTvShowsCatalog', (req, res) => {
 			})
 		})
 	})
+	console.log("Normalement c'est terminé");
 })
 
 
