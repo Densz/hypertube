@@ -25,8 +25,10 @@ class Routes extends Component {
 	checkIfIsLogged() {
 		isLogged()
 		.then((response) => {
+			if (response.infos.fortytwoId || response.infos.facebookId) {
+				this.setState({subscriber: false});
+			}
 			this.setState(response);
-			this.setState({ isLogged: true });
 		})
 	}
 
@@ -39,28 +41,28 @@ class Routes extends Component {
 							<Switch>
 								<Route exact path="/" render={() => (
 									!this.state.isLogged ?
-									( <SignIn checkIfIsLogged={this.checkIfIsLogged} /> ) :
-									( <Redirect to="/catalog"></Redirect> )
+										( <SignIn checkIfIsLogged={this.checkIfIsLogged} /> ) :
+										( <Redirect to="/catalog"></Redirect> )
 								)} />
 								<Route path="/signUp" render={() => (
 									!this.state.isLogged ?
-									( <SignUp checkIfIsLogged={this.checkIfIsLogged} /> ) :
-									( <Redirect to="/catalog"></Redirect> )
+										( <SignUp checkIfIsLogged={this.checkIfIsLogged} /> ) :
+										( <Redirect to="/catalog"></Redirect> )
 								)} />
 								<Route path="/settings" render={() => (
-									this.state.isLogged ?
-									( <Settings /> ) :
-									( <Redirect to="/"></Redirect> )
+									!this.state.isLogged  || !this.state.subscriber ?
+										( <Redirect to="/"></Redirect> ) :
+										( <Settings /> )
 								)} />
 								<Route path="/profile" render={() => (
-									!this.state.isLogged ?
+									!this.state.isLogged || !this.state.subscriber ?
 										(<Redirect to="/"></Redirect>) :
 										(<Profile userInfo={this.state.infos} />)
 								)} />
 								<Route path="/catalog" render={() => (
 									!this.state.isLogged ?
-									( <Redirect to="/"></Redirect> ) : 
-									( <Catalog /> )
+										( <Redirect to="/"></Redirect> ) : 
+										( <Catalog /> )
 								)} />
 								<Route path="/video/:imdb/:id" component={Video}/>
 							</Switch>

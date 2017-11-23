@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
 var ObjectId = require('mongoose').Types.ObjectId;
 const User = require('../models/user');
 
@@ -67,8 +68,8 @@ router.get('/getInfoUser', (req, res, next) => {
 });
 
 router.post('/update', async (req, res, next) => {
-	const key = req.body.key;
-	const value = req.body.value;
+	let key = req.body.key;
+	let value = req.body.value;
 	if (key === 'email') {
 		await checkNewEmail(value)
 		.then((response) => {
@@ -92,8 +93,14 @@ router.post('/update', async (req, res, next) => {
 			}
 		});
 	} else {
-		const set = ((key === 'firstName' || key === 'lastName') ? { [key]: value.capitalize() } : {[key]: value});
-		User.update({ _id: req.user._id}, {$set: set}, (err, result) => {
+		if (key === 'passwd') {
+			key = 'password';
+			value = bcrypt.hashSync(value, bcrypt.genSaltSync(8), null);
+		} else if (key === 'firstName' || key === 'lastName') {
+			value = value.capitalize();
+		}
+		const set = {[key]: value};
+		User.update({ login: req.user.login }, {$set: set}, (err, result) => {
 			if (err) {
 				res.json({ success: false, msg: 'Database fail' + err });
 			} else {
