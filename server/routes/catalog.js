@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
 import request from 'request';
+const config = require('../config/config');
+const db = require('../config/database');
+const Eztv = require('../models/eztv');
+const moviedb = require('moviedb')('531e95f829b079916094fa5c7f0a60ce');
 
 /* GET users listing. */
-router.post('/movies', (req, res, next) => {
+router.post('/movies', (req, res) => {
 	let url = 'https://yts.ag/api/v2/list_movies.json?limit=16&page=' + req.body.pages + '&sort_by=' + req.body.sortBy + '&query_term=' + req.body.searchField + '&genre=' + req.body.genre;
-	console.log(url);
+	// console.log(url);
 	request(url, function(error, response, body){
 			if (error)
 				res.json({error: error})
@@ -24,5 +28,50 @@ router.post('/movies', (req, res, next) => {
 			res.json(infos);
 	})
 });
+
+const updateEztvDatabase = (json) => {
+	json.map((x) => {
+		let newShow = new Eztv();
+		newShow.imdb_id = x.imdb_id;
+		newShow.title = x.title;
+		newShow.year = x.year;
+		newShow.last_updated = x.last_updated;
+		request('http://www.theimdbapi.org/api/movie?movie_id=' + x.imdb_id, function(error, response, body) {
+			if (error) console.log(error);
+			try {
+				let json = JSON.parse(body);
+				newShow.imdb_rating = json.rating;
+				newShow.cover_url = json.poster.thumb;
+				newShow.genre = json.genre;
+				console.log("tu rentres jamais dedans")
+				newShow.save((err) => {
+					if (err) {
+						console.log("Error when saving show");
+					}
+					console.log("tv show saved");
+				})
+			} catch(e) {
+				console.log('Une erreur est survenue');
+				return false;
+			}
+		})
+	})
+}
+
+router.post('/refreshTvShowsCatalog', (req, res) => {
+	request('https://eztvapi.ml/shows', function(error, response, body) {
+		let listOfPages = JSON.parse(body);
+		listOfPages.map((x) => {
+			request('https://eztvapi.ml/' + x, function (err, res, body) {
+				try {
+					let json = JSON.parse(body);
+					updateEztvDatabase(json);
+				} catch (e) {
+					console.log("is not an object");
+				}
+			})
+		})
+	})
+})
 
 module.exports = router;

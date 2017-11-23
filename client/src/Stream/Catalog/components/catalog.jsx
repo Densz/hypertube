@@ -24,6 +24,8 @@ class Catalog extends Component {
 		this.onSliderChangeRating = this.onSliderChangeRating.bind(this);
 		this.changeCategorie = this.changeCategorie.bind(this);
 		this.changeOptionInput = this.changeOptionInput.bind(this);
+		// Uncomment the line below if you want to refresh all the tv shows
+		//callApi('/api/catalog/refreshTvShowsCatalog', 'post')
 	}
 
 	componentDidMount() {
@@ -80,6 +82,11 @@ class Catalog extends Component {
 	}
 
 	callMoreTvShows() {
+		// this.setState({ hasMore: false });
+		// callApi('/api/catalog/tvshows', 'post')
+		// .then((catalogTvShows) => {
+		// 	console.log(catalogTvShows);
+		// })
 		console.log('tu rentres bien dans TvShows et commencer a charger plus de films');
 	}
 
