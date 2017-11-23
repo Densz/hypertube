@@ -7,7 +7,7 @@ class Layout extends Component {
     render() {
         return (
             <div>
-                <Header isLogged={this.props.isLogged} subscriber={this.props.subscriber} />
+                <Header userInfo={this.props.userInfo} isLogged={this.props.isLogged} subscriber={this.props.subscriber} />
                     <div className="container">
                         { this.props.children }
                     </div>
