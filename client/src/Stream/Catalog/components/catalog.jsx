@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Thumbnail from './thumbnail';
+import ThumbnailEztv from './ThumbnailEztv';
 import { callApi } from '../../../ApiCaller/apiCaller';
 import '../css/catalog.css';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -82,12 +83,33 @@ class Catalog extends Component {
 	}
 
 	callMoreTvShows() {
-		// this.setState({ hasMore: false });
-		// callApi('/api/catalog/tvshows', 'post')
-		// .then((catalogTvShows) => {
-		// 	console.log(catalogTvShows);
-		// })
-		console.log('tu rentres bien dans TvShows et commencer a charger plus de films');
+		this.setState({ hasMore: false });
+		var json = {
+			pages: this.state.pages,
+			searchField: this.state.searchField,
+			sortBy: this.state.sortBy,
+			genre: this.state.genre,
+			yearInterval: this.state.yearInterval,
+			ratingInterval: this.state.ratingInterval,
+			categorie: this.state.categorie
+		}
+		callApi('/api/catalog/tvshows', 'post', json)
+		.then((catalogTvShows) => {
+			let catalogArray = this.state.catalog;
+			if (catalogTvShows.length > 0) {
+				catalogTvShows.map(
+					(movieData) => {
+						catalogArray.push(movieData);
+						return undefined;
+					}
+				)
+				this.setState((prevState) => ({
+					...this.state,
+					pages: prevState.pages + 1,
+					hasMore: true
+				}))
+			}
+		})
 	}
 
 	updateSearchInput(event) {
@@ -139,10 +161,18 @@ class Catalog extends Component {
 	render() {
 		console.log(this.state);
 		let items = [];
-		this.state.catalog.map((movieData, index) => {
-			items.push(<Thumbnail key={index} infos={movieData} />);
-			return undefined;
-		})
+		{ this.state.categorie === 'movies' &&
+			this.state.catalog.map((movieData, index) => {
+				items.push(<Thumbnail key={index} infos={movieData} />);
+				return undefined;
+			})
+		}
+		{ this.state.categorie === 'tv_shows' &&
+			this.state.catalog.map((movieData, index) => {
+				items.push(<ThumbnailEztv key={index} infos={movieData} />);
+				return undefined;
+			})
+		}
 		return (
 			<div>
 				<CatalogNavigation 

@@ -29,6 +29,17 @@ router.post('/movies', (req, res) => {
 	})
 });
 
+router.post('/tvshows', (req, res) => {
+	Eztv.find({}, [], {
+		skip: (req.body.pages - 1) * 16,
+		limit: 16,
+		sort: { imdb_rating: -1 }
+	}, (err, result) => {
+		if (err) { console.log(err) }
+		res.json(result);
+	})
+})
+
 const updateEztvDatabase = (json) => {
 	json.map((x) => {
 		let newShow = new Eztv();
@@ -43,7 +54,6 @@ const updateEztvDatabase = (json) => {
 				newShow.imdb_rating = json.rating;
 				newShow.cover_url = json.poster.thumb;
 				newShow.genre = json.genre;
-				console.log("tu rentres jamais dedans")
 				newShow.save((err) => {
 					if (err) {
 						console.log("Error when saving show");
@@ -73,5 +83,6 @@ router.post('/refreshTvShowsCatalog', (req, res) => {
 		})
 	})
 })
+
 
 module.exports = router;
