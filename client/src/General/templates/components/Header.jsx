@@ -16,12 +16,18 @@ const ComponentRendered = (props) => {
 				<img src="/icons/interface/logout.png" className="navbar-logo log-logo" alt="hypertube" onClick={logOut} />
 			</a >
 		);
-        rendering.push(
-			<a href="/settings" key={rendering.length}>
-                <img src="/icons/multimedia/settings.png" className="navbar-logo" alt="hypertube" />
-            </a >
-        );
-        // rendering.push(<a href="/" onClick={logOut} key={rendering.length} id="sign-out" className="button-link">Disconnect</a>);
+		if (props.subscriber) {
+			rendering.push(
+				<a href="/settings" key={rendering.length}>
+					<img src="/icons/multimedia/settings.png" className="navbar-logo" alt="hypertube" />
+				</a >
+			);
+			rendering.push(
+				<a href="/myprofile" key={rendering.length}>
+					<img src="/icons/multimedia/avatar.png" className="navbar-logo" alt="hypertube" />
+				</a >
+			)
+		}
     }
     return rendering;
 };
@@ -39,7 +45,8 @@ class Header extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.isLogged === true) {
 			this.setState({
-				isLogged: true
+				isLogged: true,
+				signInBtn: false
 			})
 		}
 	}
@@ -79,6 +86,7 @@ class Header extends Component {
                     signInButton={this.state.signInBtn}
 					catalogPage={this.state.catalogPage}
 					logOutMethod={this.logOut}
+					subscriber={this.props.subscriber}
                 />
             </nav>
         );

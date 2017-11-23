@@ -1,3 +1,12 @@
+label {
+	margin-bottom: 0px;
+}
+
+.error-message {
+	color: red;
+	font-size: 11px;
+}
+
 .account-section {
     border-top: 1px solid #999;
 }
@@ -19,4 +28,12 @@
 	border-radius: 50%;
 	object-fit: cover;
 	margin-bottom: 10px;
+}
+
+.top-margin {
+	margin-top: 10px;
+}
+
+.text-value {
+	margin-left: 10px;
 }
