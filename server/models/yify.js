@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const eztvDbSchema = mongoose.Schema({
+const yifySchema = mongoose.Schema({
 	imdb_id: {
 		type: String,
 		required: true
@@ -31,4 +31,4 @@ const eztvDbSchema = mongoose.Schema({
 	}
 })
 
-module.exports = mongoose.model('EztvDb', eztvDbSchema);
+module.exports = mongoose.model('Yify', yifySchema);
