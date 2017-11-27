@@ -1,10 +1,10 @@
-const Eztv = require('../models/eztv');
+const Eztv = require('../../models/eztv');
 const db = require('../../config/database');
 const request = require('request');
 
 const updateEztvDatabase = (json) => {
 	json.map((x) => {
-		let newShow = new EztvDb();
+		let newShow = new Eztv();
 		newShow.imdb_id = x.imdb_id;
 		Eztv.findOne({imdb_id: x.imdb_id}, function(err, result){
 			if (result === null) {
@@ -37,15 +37,16 @@ const updateEztvDatabase = (json) => {
 request('https://eztvapi.ml/shows', function(error, response, body) {
 	let listOfPages = JSON.parse(body);
 	listOfPages.map((x) => {
-		request('https://eztvapi.ml/' + x, function (err, res, body) {
+		let url = 'https://eztvapi.ml/' + x;
+		// console.log(url);
+		request(url, function (err, res, body) {
 			try {
 				let json = JSON.parse(body);
 				updateEztvDatabase(json);
 			} catch (e) {
-				console.log("is not an object");
+				console.log("is not an object " + url);
 			}
 		})
 	})
+	console.log("Normalement c'est terminé");
 })
-
-console.log("Normalement c'est terminé");
