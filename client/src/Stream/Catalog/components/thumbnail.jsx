@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Thumbnail extends Component {
+class ThumbnailEztv extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -9,7 +9,7 @@ class Thumbnail extends Component {
 		this.showInfo = this.showInfo.bind(this);
 		this.hideInfo = this.hideInfo.bind(this);
 		// this.title = (this.props.infos.title_english.length > 10) ? (this.props.infos.title_english.substring(0, 9) + '...') : (this.props.infos.title_english);
-		this.title = (this.props.infos.title_english);
+		// this.title = (this.props.infos.title_english);
 	}
 
 	showInfo() {
@@ -27,16 +27,16 @@ class Thumbnail extends Component {
 	render() {
 		return (
 			<div className="movie-details" onMouseEnter={this.showInfo} onMouseLeave={this.hideInfo}>
-				<img className="img-movie" alt={this.props.infos.title_english} src={this.props.infos.medium_cover_image}/>
+				<img className="img-movie" alt={this.props.infos.title} src={this.props.infos.cover_url}/>
 				{ this.state.infoToggled &&
-					<a href={"/video/" + this.props.infos.imdb_code + "/" + this.props.infos.id}>
+					<a href={"/video/" + this.props.infos.imdb_code + "/" + this.props.infos.title + '/eztv'}>
 						<div className="about-movie">
 							<img className="play-button-overlay" alt="play" src="/images/play-button-overlay.png" />					
 							<div className="about-movie-text">
-								<p className="about-movie-text-title">{this.title}</p>
+								<p className="about-movie-text-title">{this.props.infos.title}</p>
 								<p className="about-movie-text-details">
 									<span className="about-movie-text-year">{this.props.infos.year}</span>
-									<span className="about-movie-text-rating"><img className="imdb-logo" alt="IMDB" src="/images/imdb.png" /> {this.props.infos.rating}</span>
+									<span className="about-movie-text-rating"><img className="imdb-logo" alt="IMDB" src="/images/imdb.png" /> {this.props.infos.imdb_rating}</span>
 								</p>
 							</div>
 						</div>
@@ -47,4 +47,4 @@ class Thumbnail extends Component {
 	}
 }
 
-export default Thumbnail;
+export default ThumbnailEztv;
