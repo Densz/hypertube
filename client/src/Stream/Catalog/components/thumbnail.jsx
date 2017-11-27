@@ -29,7 +29,7 @@ class ThumbnailEztv extends Component {
 			<div className="movie-details" onMouseEnter={this.showInfo} onMouseLeave={this.hideInfo}>
 				<img className="img-movie" alt={this.props.infos.title} src={this.props.infos.cover_url}/>
 				{ this.state.infoToggled &&
-					<a href={"/video/" + this.props.infos.imdb_code + "/" + this.props.infos.title + '/eztv'}>
+					<a href={"/video/" + this.props.categorie + "/" + this.props.infos.imdb_id}>
 						<div className="about-movie">
 							<img className="play-button-overlay" alt="play" src="/images/play-button-overlay.png" />					
 							<div className="about-movie-text">
