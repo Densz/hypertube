@@ -29,9 +29,9 @@ class Routes extends Component {
 				this.setState({subscriber: false});
 			}
 			this.setState(response);
-			this.setState({
-				isLogged: true
-			});
+			// this.setState({
+			// 	isLogged: true
+			// });
 		})
 	}
 
