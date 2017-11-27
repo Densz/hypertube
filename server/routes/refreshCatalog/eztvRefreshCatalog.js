@@ -1,4 +1,4 @@
-const EztvDb = require('../models/eztvDb');
+const Eztv = require('../models/eztv');
 const db = require('../../config/database');
 const request = require('request');
 
@@ -6,7 +6,7 @@ const updateEztvDatabase = (json) => {
 	json.map((x) => {
 		let newShow = new EztvDb();
 		newShow.imdb_id = x.imdb_id;
-		EztvDb.findOne({imdb_id: x.imdb_id}, function(err, result){
+		Eztv.findOne({imdb_id: x.imdb_id}, function(err, result){
 			if (result === null) {
 				newShow.title = x.title;
 				newShow.year = x.year;
