@@ -8,6 +8,7 @@ class RstPwdForm extends Component {
 		super(props);
 		this.state = {
 			email: {title: 'E-mail', value: '', error: ''},
+			done: ''
 		};
 		this.updateInputValue = this.updateInputValue.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,22 +34,27 @@ class RstPwdForm extends Component {
 	}
 
 	handleSubmit(event) {
-        event.preventDefault();
+		event.preventDefault();
+		this.setState({ done: '' });
         const inputValues = {
             email: this.state.email.value,
 		}
 		let errorBool = false;
-        for (var elem in this.state) {
-            if (this.state[elem].value === '' || this.state[elem].value === undefined) {
-				let title = this.state[elem].title.toLowerCase();
-				this.setErrorMessage(elem, 'Le champ ' + title + ' est vide.');
-				errorBool = true;
-			}
+		if (this.state.email.value === '' || this.state.email.value === undefined) {
+			let title = this.state.email.title.toLowerCase();
+			this.setErrorMessage('email', 'Le champ ' + title + ' est vide.');
+			errorBool = true;
 		}
 		if (!errorBool) {
 			callApi('/api/auth/sendEmail', 'post', inputValues)
 			.then((response) => {
-				console.log(response);
+				if (!response.success) {
+					this.setErrorMessage('email', 'L\'adresse email n\'existe pas.');
+					errorBool = true;
+				}
+				else {
+					this.setState({done: 'Un email a été envoyé.'});
+				}
 			})
 		}
 	}
@@ -57,6 +63,8 @@ class RstPwdForm extends Component {
 		return(
 			<SignInBlock>
 				<h3>Mot de passe oublié</h3>
+				{this.state.done !== '' && 
+					<div className="alert alert-info">{this.state.done}</div>}
 				<form onSubmit={this.handleSubmit}>
 					<InputForm
 						containerClass="form-group"
