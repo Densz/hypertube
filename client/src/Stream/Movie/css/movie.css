@@ -1,7 +1,16 @@
 .movie-details-block {
 	color:white;
+	margin-top: 30px;
 }
 
 .movie-title {
 	color: white;
+}
+
+.MovieInfos {
+	margin-top: 50px;
+}
+
+#available {
+	margin-top: 32px;
 }

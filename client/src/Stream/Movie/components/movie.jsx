@@ -43,13 +43,12 @@ class Movie extends Component {
 	render() {
 		return(
 			<div className="container">
-				<h1 className="movie-title">{this.state.movieInfos.original_title}</h1>
-				<div className="MovieInfos">
-					<video width="1125" controls>
+				<Moviedescription movieInfos={this.state.movieInfos}/>
+				<div className="MovieInfos embed-responsive embed-responsive-16by9">
+					<video className="embed-responsive-item" controls>
 						<source src={"http://localhost:3001/api/torrent/" + this.props.match.params.id} type="video/mp4"/>>
 					</video>
 				</div>
-				<Moviedescription movieInfos={this.state.movieInfos}/>
 			</div>
 		)
 	}
