@@ -45,15 +45,19 @@ class RstPwdForm extends Component {
 				errorBool = true;
 			}
 		}
-		if (!errorBool)
-			callApi('/api/signUp/submit', 'post', inputValues);
+		if (!errorBool) {
+			callApi('/api/auth/sendEmail', 'post', inputValues)
+			.then((response) => {
+				console.log(response);
+			})
+		}
 	}
 
 	render() {
 		return(
 			<SignInBlock>
 				<h3>Mot de passe oublié</h3>
-				<form>
+				<form onSubmit={this.handleSubmit}>
 					<InputForm
 						containerClass="form-group"
 						textValue={ this.state.email.title }
@@ -64,12 +68,12 @@ class RstPwdForm extends Component {
 						errorMessage={ this.state.email.error }
 					/>
 					<br />
-					<button className="login-button" type="submit" name="submit" value="submit" onClick={this.handleSubmit}>
+					<button className="login-button" type="submit" name="submit" value="submit">
 						Envoyer
 					</button>
 				</form>
 				<br/>
-				<a onClick={this.props.linkClicked}>Connectez-vous</a>
+				<a className="link-reset-password" onClick={this.props.linkClicked}>Connectez-vous</a>
 				<br/><br/>
 			</SignInBlock>
 		)

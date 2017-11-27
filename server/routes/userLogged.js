@@ -57,12 +57,23 @@ router.get('/getUsers', async (req, res, next) => {
 router.get('/getInfoUser', (req, res, next) => {
 	const login = req.query.login;
 	User.findOne({login: login}, {email: 0}, (err, result) => {
-		console.log(result)
 		if (err) res.json({success: false, msg: 'database', data: undefined});
 		if (result) {
 			res.json({success: true, msg: 'User found', data: result});
 		} else {
 			res.json({success: false, msg: 'User not found', data: undefined});
+		}
+	});
+});
+
+router.get('/userExists',(req, res, next) => {
+	const id = req.query.id;
+	User.findOne({ _id: id }, (err, result) => {
+		if (err) res.json({ success: false, msg: 'database'});
+		if (result) {
+			res.json({ success: true, msg: 'User found'});
+		} else {
+			res.json({ success: false, msg: 'User not found'});
 		}
 	});
 });

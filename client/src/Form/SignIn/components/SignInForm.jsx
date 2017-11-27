@@ -111,7 +111,7 @@ class SignInForm extends Component {
 				</button>
             </form>
             <br/><br/>
-            <a onClick={this.props.linkClicked}>Mot de passe oublié ?</a>
+            <a className="link-reset-password" onClick={this.props.linkClicked}>Mot de passe oublié ?</a>
             <br/><br/>
             <hr/>
             <img src="/images/facebook.png" className="facebook-logo" alt="Facebook" />&nbsp;&nbsp;<a href="http://localhost:3001/api/login/facebook">S'identifier avec Facebook ?</a><br/>
