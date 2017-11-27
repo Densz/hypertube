@@ -9,7 +9,8 @@ import RstPwdPage from "./RstPwdPage";
 const ComponentRendered = (props) => {
 	const handleRenderForm = props.stateRender.resetPassword;
 	const handleRenderPage = props.stateRender.rstPwdPage;
-    const handleRstPwd = props.handleRender;
+	const handleRstPwd = props.handleRender;
+	const rstPwdDone = props.stateRender.rstPwdDone;
 	const idResetPassword = props.idResetPassword;
 
 	if (handleRenderPage) {
@@ -18,7 +19,7 @@ const ComponentRendered = (props) => {
     if (handleRenderForm) {
 		return <RstPwdForm linkClicked={handleRstPwd} />
     } else {
-		return <SignInForm linkClicked={ handleRstPwd } checkIfIsLogged={props.checkIfIsLogged} />
+		return <SignInForm linkClicked={handleRstPwd} checkIfIsLogged={props.checkIfIsLogged} rstPwdDone={rstPwdDone}/>
     }
 
 }
@@ -28,7 +29,8 @@ class SignIn extends Component {
         super(props);
         this.state = {
 			resetPassword: false,
-			rstPwdPage: false
+			rstPwdPage: false,
+			rstPwdDone: false
 		};
 		this.handleRstPwd = this.handleRstPwd.bind(this);
 		this.handleRstDone = this.handleRstDone.bind(this);
@@ -41,8 +43,7 @@ class SignIn extends Component {
 	}
 	
 	handleRstDone() {
-		console.log(this.state);
-		this.setState({ resetPassword: false, rstPwdPage: false });
+		this.setState({ resetPassword: false, rstPwdPage: false , rstPwdDone: true });
 	}
 
     componentDidMount() {
