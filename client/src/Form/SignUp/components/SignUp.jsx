@@ -81,6 +81,7 @@ class SignUp extends Component {
 					callApiUpload(file, login)
 					.then((response) => {
 						if (!response.success) {
+							// Upload error
 							console.log('handle front error');
 							console.log(response.errors);
 						}
