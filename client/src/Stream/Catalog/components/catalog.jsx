@@ -25,8 +25,6 @@ class Catalog extends Component {
 		this.onSliderChangeRating = this.onSliderChangeRating.bind(this);
 		this.changeCategorie = this.changeCategorie.bind(this);
 		this.changeOptionInput = this.changeOptionInput.bind(this);
-		// Uncomment the line below if you want to refresh all the tv shows
-		// callApi('/api/catalog/refreshTvShowsCatalog', 'post')
 	}
 
 	componentDidMount() {
@@ -49,12 +47,11 @@ class Catalog extends Component {
 			ratingInterval: this.state.ratingInterval,
 			categorie: this.state.categorie
 		}
-		callApi('/api/catalog/movies', 'post', json)
+		callApi('/api/catalog/callMoreItems', 'post', json)
 		.then((catalogMovies) => {
 			let catalogArray = this.state.catalog;
-			if ((catalogMovies.data.movies && catalogMovies.data.movies.length > 0) || catalogMovies.data.moviesIncoming === true ) {
-				// Load movies and switch to the next page
-				catalogMovies.data.movies.map(
+			if (catalogMovies.length > 0) {
+				catalogMovies.map(
 					(movieData) => {
 						catalogArray.push(movieData);
 						return undefined;
@@ -65,48 +62,10 @@ class Catalog extends Component {
 					pages: prevState.pages + 1,
 					hasMore: true
 				}))
-			} else if (catalogMovies.data.movie_count > 0){
-				// When you there is result in the catalog but there is no more movies to load
-				this.setState({
-					hasMore: false
-				});
 			} else {
-				// When you there is value in search field and there is no result
-				console.log("second");				
-				this.setState({
-					catalog: [],
-					pages: 1,
-					hasMore: false
-				})
-			}
-		})
-	}
-
-	callMoreTvShows() {
-		this.setState({ hasMore: false });
-		var json = {
-			pages: this.state.pages,
-			searchField: this.state.searchField,
-			sortBy: this.state.sortBy,
-			genre: this.state.genre,
-			yearInterval: this.state.yearInterval,
-			ratingInterval: this.state.ratingInterval,
-			categorie: this.state.categorie
-		}
-		callApi('/api/catalog/tvshows', 'post', json)
-		.then((catalogTvShows) => {
-			let catalogArray = this.state.catalog;
-			if (catalogTvShows.length > 0) {
-				catalogTvShows.map(
-					(movieData) => {
-						catalogArray.push(movieData);
-						return undefined;
-					}
-				)
 				this.setState((prevState) => ({
 					...this.state,
-					pages: prevState.pages + 1,
-					hasMore: true
+					hasMore: false
 				}))
 			}
 		})
@@ -161,18 +120,10 @@ class Catalog extends Component {
 	render() {
 		console.log(this.state);
 		let items = [];
-		{ this.state.categorie === 'movies' &&
-			this.state.catalog.map((movieData, index) => {
-				items.push(<Thumbnail key={index} infos={movieData} />);
-				return undefined;
-			})
-		}
-		{ this.state.categorie === 'tv_shows' &&
-			this.state.catalog.map((movieData, index) => {
-				items.push(<ThumbnailEztv key={index} infos={movieData} />);
-				return undefined;
-			})
-		}
+		this.state.catalog.map((movieData, index) => {
+			items.push(<ThumbnailEztv key={index} infos={movieData} />);
+			return undefined;
+		})
 		return (
 			<div>
 				<CatalogNavigation 
@@ -185,24 +136,13 @@ class Catalog extends Component {
 				/>
 				<div className="row">
 					<div className="catalog-box">
-					{ this.state.categorie === "movies" &&
-						<InfiniteScroll
-							loadMore={this.callMoreMovies.bind(this)}
-							hasMore= {this.state.hasMore}
-							loader={<div>Loading ...</div>}
-						>
-							{items}
-						</InfiniteScroll>
-					}
-					{ this.state.categorie === "tv_shows" &&
-						<InfiniteScroll
-							loadMore={this.callMoreTvShows.bind(this)}
-							hasMore= {this.state.hasMore}
-							loader={<div className="loader">Loading ...</div>}							
-						>
-							{items}
-						</InfiniteScroll>
-					}
+					<InfiniteScroll
+						loadMore={this.callMoreMovies.bind(this)}
+						hasMore= {this.state.hasMore}
+						loader={<div>Loading ...</div>}
+					>
+						{items}
+					</InfiniteScroll>
 					</div>
 				</div>
 			</div>

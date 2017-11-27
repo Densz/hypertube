@@ -53,7 +53,7 @@ class CatalogNavigation extends Component {
 						<label className="blue-font">Sort by</label>
 							<select className="form-control black" id="sortBy" onChange={this.changeSelectInput}>
 								<option value="rating">Rating</option>
-								<option value="year">Time</option>
+								<option value="year">Released date</option>
 								{/* <option value="date_added">Date added</option> */}
 							</select>
 						</div>

@@ -10,11 +10,11 @@ const yifySchema = mongoose.Schema({
 		required: true
 	},
 	year: {
-		type: String,
+		type: Number,
 		required: true	
 	},
 	imdb_rating: {
-		type: String,
+		type: Number,
 		required: true
 	},
 	cover_url: {
