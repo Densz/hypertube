@@ -3,6 +3,7 @@ import SignUpBlock from './SignUpBlock';
 import InputForm from "../../../General/components/InputForm";
 import "../css/signup.css";
 import { callApi, callApiUpload } from '../../../ApiCaller/apiCaller';
+
 class SignUp extends Component {
 	constructor(props){
 		super(props);
@@ -13,7 +14,7 @@ class SignUp extends Component {
 			login: {title: 'Login', value: '', error: ''},
 			passwd: {title: 'Mot de passe', value: '', error: ''},
 			passwdConfirm: {title: 'Confirmation du mot de passe', value: '', error: ''},
-			picture: '/images/heisenberg.png',
+			picture: {value: '/images/heisenberg.png', error: ''},
 			picUploadedInfo: {},
 			uploadDone: false,
 		}
@@ -52,7 +53,12 @@ class SignUp extends Component {
             password: this.state.passwd.value,
 			confirmPassword: this.state.passwdConfirm.value
 		}
+		const file = this.state.picUploadedInfo;
+		const login = this.state.login.value;
+		const extName = file.name.slice((file.name.lastIndexOf(".") - 1 >>> 0) + 2);
+		const extAllowed = ['jpg', 'jpeg', 'png'];
 		let errorBool = false;
+
 		if (!this.state.uploadDone) {
 			errorBool = true;
 			this.setErrorMessage('firstName', 'Vous devez choisir une photo pour vous inscrire');
@@ -64,9 +70,15 @@ class SignUp extends Component {
 				errorBool = true;
 			}
 		}
+		if (file.size > 1) {
+			this.setState({ picture: { error: 'Image trop volumineuse' } });
+			errorBool = true;
+		}
+		if (extAllowed.indexOf(extName.toLowerCase()) === -1) {
+			this.setState({ picture: { error: 'Extension d\'image non pris en charge'}});
+			errorBool = true;
+		}
 		if (!errorBool) {
-			const file = this.state.picUploadedInfo;
-			const login = this.state.login.value;
 			callApi('/api/auth/signUp/submit', 'post', inputValues)
 			.then((response) => {
 				if (!response.success) {
@@ -97,8 +109,7 @@ class SignUp extends Component {
 						}
 					})
 				}
-			})
-
+			});
 		}
 	}
 
@@ -107,14 +118,24 @@ class SignUp extends Component {
 		var reader = new FileReader();
 		let pictureFile = event.target.files[0];
 		console.log(pictureFile);
-		reader.onload = (e) => {
-			this.setState({
-				picture: e.target.result,
-				picUploadedInfo: pictureFile,
-				uploadDone: true
-			});
+		if (pictureFile) {
+			document.querySelector('.upload-container').style.border = '4px solid #ffffff';
+			reader.onload = (e) => {
+				this.setState({
+					picture: {value: e.target.result, error: ''},
+					picUploadedInfo: pictureFile,
+					uploadDone: true
+				});
+			}
+			reader.readAsDataURL(pictureFile);
 		}
-		reader.readAsDataURL(pictureFile);
+	}
+
+	componentDidUpdate() {
+		console.log(this.state.picture.error);
+		if(this.state.picture.error !== '') {
+			document.querySelector('.upload-container').style.border = '1px solid #ff0000';
+		}
 	}
 
     componentDidMount() {
@@ -140,9 +161,12 @@ class SignUp extends Component {
 								<div className="col-md-3">
 									<div className="upload-container">
 										<label htmlFor="file">
-											<img src={this.state.picture} alt="Profile" className="profile-picture" />
+											<img src={this.state.picture.value} alt="Profile" className="profile-picture" />
 										</label>
+										{this.state.picture.error !== '' &&
+										<span className="error-msg-picture">{this.state.picture.error}</span>}
 									</div>
+									<br />
 								</div>
 								<div className="col-md-9 form-right">
 									<div className="row">
