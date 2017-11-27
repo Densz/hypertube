@@ -29,9 +29,6 @@ class Routes extends Component {
 				this.setState({subscriber: false});
 			}
 			this.setState(response);
-			// this.setState({
-			// 	isLogged: true
-			// });
 		})
 	}
 
@@ -67,7 +64,10 @@ class Routes extends Component {
 										( <Redirect to="/"></Redirect> ) : 
 										( <Catalog /> )
 								)} />
-								<Route path="/video/:imdb/:id" component={Video}/>
+								<Route path="/resetPassword/:id?" render={(props) => (
+								<SignIn checkIfIsLogged={this.checkIfIsLogged} idResetPassword={props.match.params.id} />
+								)}/>
+ 								<Route path="/video/:imdb/:id" component={Video}/>
 							</Switch>
 						}
                     </div>

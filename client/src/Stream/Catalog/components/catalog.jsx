@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Thumbnail from './thumbnail';
-import ThumbnailEztv from './ThumbnailEztv';
+import Thumbnail from './Thumbnail';
 import { callApi } from '../../../ApiCaller/apiCaller';
 import '../css/catalog.css';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -121,7 +120,7 @@ class Catalog extends Component {
 		console.log(this.state);
 		let items = [];
 		this.state.catalog.map((movieData, index) => {
-			items.push(<ThumbnailEztv key={index} infos={movieData} />);
+			items.push(<Thumbnail key={index} infos={movieData} />);
 			return undefined;
 		})
 		return (
