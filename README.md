@@ -9,7 +9,6 @@
 
 ## TO DO LIST
 * Proteger l'upload dans la Profile Page + mieux gerer les erreurs
-* Reset password - Block access to this page for Facebook and 42 users
 * Page Video - Resume / Casting / Producteur, realisateur, acteurs principaux / Year / Durée / La note / Cover
 * Commentaire
 * Catalogue - Trier par nom - Video vue non vue - Video page

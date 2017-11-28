@@ -49,7 +49,7 @@ class RstPwdForm extends Component {
 			callApi('/api/auth/sendEmail', 'post', inputValues)
 			.then((response) => {
 				if (!response.success) {
-					this.setErrorMessage('email', 'L\'adresse email n\'existe pas.');
+					this.setErrorMessage('email', response.msg);
 					errorBool = true;
 				}
 				else {
