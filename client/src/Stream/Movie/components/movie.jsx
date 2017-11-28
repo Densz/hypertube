@@ -42,7 +42,7 @@ class Movie extends Component {
 
 	render() {
 		return(
-			<div className="container">
+			<div>
 				<Moviedescription movieInfos={this.state.movieInfos}/>
 				<div className="MovieInfos embed-responsive embed-responsive-16by9">
 					<video className="embed-responsive-item" controls>

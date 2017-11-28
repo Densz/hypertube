@@ -8,15 +8,14 @@
 * https://github.com/yahoo/react-intl/wiki#getting-started 
 
 ## TO DO LIST
-### React
-* Catalog page - to finish
-* Video page
-* Profil page
-* Other profil page
-* Header links - Need to shrink the header
-* Intl EN / FR
-
-### Node.js (Express)
-* Authentification (Facebook / 42 Intra)
-* Catalog (Crawl)
-* Streaming
+* Proteger l'upload dans la Profile Page + mieux gerer les erreurs
+* Reset password - Block access to this page for Facebook and 42 users
+* Page Video - Resume / Casting / Producteur, realisateur, acteurs principaux / Year / Durée / La note / Cover
+* Commentaire
+* Catalogue - Trier par nom - Video vue non vue - Video page
+* Sous titre correspondant à la langue preferée 
+* Convertir les vidéo MKV
+* Supprimer le torrent après un mois de non visionnage
+* Langue traduction - Stockée de base dans la base de données
+* Footer
+* Firefox
