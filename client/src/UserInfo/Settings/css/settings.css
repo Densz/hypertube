@@ -37,3 +37,8 @@ label {
 .text-value {
 	margin-left: 10px;
 }
+
+.fix-alert-danger {
+	margin-bottom: 0px;
+	margin-top: 20px;
+}

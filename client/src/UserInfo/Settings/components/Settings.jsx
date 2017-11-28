@@ -14,7 +14,8 @@ class MyProfile extends Component {
             login: {title: 'Login', value: 'fakeperson69', error: 'heyyyyy'},
             passwd: {title: 'Password', value: '**********', error: ''},
             passwdConfirm: {title: 'Confirm Password', value: '', error: ''},
-			picturePath: { value: '/images/heisenberg.png'}
+			picturePath: { value: '/images/heisenberg.png'},
+			pictureError: ''
         };
 		this.submitData = this.submitData.bind(this);
 		this.handleUpload = this.handleUpload.bind(this);
@@ -86,17 +87,31 @@ class MyProfile extends Component {
 	}
 
 	handleUpload(event) {
+		let errorBool = false;
 		const pictureFile = event.target.files[0];
+		const extName = pictureFile.name.slice((pictureFile.name.lastIndexOf(".") - 1 >>> 0) + 2);
+		const extAllowed = ['jpg', 'jpeg', 'png'];
 		const login = this.state.login.value;
 		const submit = () => {
 			document.getElementsByTagName('form')[0].submit();
 		}
-		callApiUpload(pictureFile, login)
-		.then((response) => {
-			if (response.success) {
-				this.updateBackData('picturePath', response.namePic, submit, () => {});
-			}
-		})
+
+		if (pictureFile.size > 3145728) {
+			this.setState({ pictureError: 'Image trop volumineuse' });
+			errorBool = true;
+		}
+		if (extAllowed.indexOf(extName.toLowerCase()) === -1) {
+			this.setState({ pictureError: 'Extension d\'image non pris en charge' });
+			errorBool = true;
+		}
+		if (!errorBool) {
+			callApiUpload(pictureFile, login)
+			.then((response) => {
+				if (response.success) {
+					this.updateBackData('picturePath', response.namePic, submit, () => {});
+				}
+			})
+		}
 	}
 
     componentDidMount() {
@@ -140,6 +155,10 @@ class MyProfile extends Component {
 				<input onChange={this.handleUpload} type="file" name="file" id="file"/>
 			</form>
                 <div className="container">
+					{this.state.pictureError !== '' &&
+					<div className="alert alert-danger fix-alert-danger">
+						{this.state.pictureError}
+					</div>}
 					<div className="col-md-3" />
 					<div className="col-md-9">
 						<h1>Settings</h1>
