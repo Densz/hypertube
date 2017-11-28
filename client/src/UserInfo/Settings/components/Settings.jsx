@@ -39,7 +39,6 @@ class MyProfile extends Component {
 					error = 'Please provide a correct email address';
 				}
 			} else if (name === 'passwd') {
-				console.log(value);
 				if (value.trim().length < 6) {
 					errorBool = true;
 					error = 'Password must have at least 6 characters';
@@ -54,7 +53,7 @@ class MyProfile extends Component {
 				})
 				 res({ success: false });
 			} else {
-				this.updateBackData(name, value, (stateReturn) => {
+				this.updateBackData(name, value, (stateReturn, err) => {
 					if (stateReturn) {
 						if (name !== 'email' && name !== 'passwd') {
 							value = this.stringCapitalize(value);	
@@ -67,6 +66,12 @@ class MyProfile extends Component {
 						}
 						res({ success: true });
 					} else {
+						if (name === 'email') {
+							this.setState({email: {
+								...this.state.email,
+								error: err
+							}})
+						}
 						res({ success: false });						
 					}
 				});
@@ -81,7 +86,7 @@ class MyProfile extends Component {
 			if (response.success) {
 				cb(true);
 			} else {
-				cb(false);
+				cb(false, response.msg);
 			}
 		});
 	}
