@@ -8,7 +8,6 @@
 * https://github.com/yahoo/react-intl/wiki#getting-started 
 
 ## TO DO LIST
-* Proteger l'upload dans la Profile Page + mieux gerer les erreurs
 * Page Video - Resume / Casting / Producteur, realisateur, acteurs principaux / Year / Durée / La note / Cover
 * Commentaire
 * Catalogue - Trier par nom - Video vue non vue - Video page
