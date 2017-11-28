@@ -15,6 +15,7 @@ const catalog = require('./routes/catalog');
 const userLogged = require('./routes/userLogged');
 const movie = require('./routes/movie');
 const torrent = require('./routes/torrent');
+const comment = require('./routes/comment');
 
 // Import Strategies
 import { facebookStrategy, fortytwoStrategy, localStrategy } from './config/oAuth';
@@ -54,6 +55,7 @@ app.use('/api/index', index);
 app.use('/api/catalog', catalog);
 app.use('/api/userLogged', userLogged);
 app.use('/api/movie', movie);
+app.use('/api/comment', comment);
 app.use('/api/torrent', torrent);
 app.use('/api/auth', auth);
 

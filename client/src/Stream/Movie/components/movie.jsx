@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../css/movie.css';
 import Description from './Description';
 import LinksAvailable from './LinksAvailable';
-import Comments from './Comments';
+import CommentBlock from './CommentBlock';
 
 class Movie extends Component {
 	constructor(props) {
@@ -25,13 +25,17 @@ class Movie extends Component {
 					<Description />
 					<LinksAvailable />
 				</div>
-				<div className="MovieInfos embed-responsive embed-responsive-16by9">
+				<div className="MovieInfos embed-responsive embed-responsive-16by9 row">
 					<video className="embed-responsive-item" controls>
-						<source src={"http://localhost:3001/api/torrent/" + this.props.match.params.id} type="video/mp4"/>>
+						{/* <source src={"http://localhost:3001/api/torrent/" + this.props.match.params.id} type="video/mp4"/>> */}
 					</video>
 				</div>
-				<div>
-					<Comments />
+				<div className="row">
+					<div className="col-md-6">
+						<CommentBlock idMovie={this.props.match.params.imdb}/>
+					</div>
+					<div className="col-md-6">
+					</div>
 				</div>
 			</div>
 		)
