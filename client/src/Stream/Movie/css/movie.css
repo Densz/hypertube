@@ -38,7 +38,12 @@
 	padding: 3%;;
 	min-height: 300px;
 	color: white;
-	background-color: #21242b;
+	/* background-color: #21242b; */
+}
+
+.cast-box {
+	min-height: 200px;
+	background-color: rgba(0, 0, 0, 0.3);
 }
 
 .comment-box {
@@ -63,4 +68,8 @@
 
 .imdb_rating {
 	font-size: 20px;
+}
+
+.embed-responsive-item {
+	background-color: black;
 }

@@ -12,15 +12,25 @@ router.post('/description/:imdb', (req, res) => {
 })
 
 router.post('/getDataFromDatabase', (req, res) => {
-	Yify.findOne({imdb_id: req.body.imdb}, async (err, result) => {
-		try {
-			let returnValue = await addTmdbInfo(result.toJSON(), req.body.imdb);
-			console.log(returnValue);
-			res.json(returnValue);
-		} catch(e) {
-			console.log(e);
-		}
-	})
+	if (req.body.categorie === "movies") {
+		Yify.findOne({imdb_id: req.body.imdb}, async (err, result) => {
+			try {
+				let returnValue = await addTmdbInfo(result.toJSON(), req.body.imdb);
+				res.json(returnValue);
+			} catch(e) {
+				console.log(e);
+			}
+		})
+	} else {
+		Eztv.findOne({imdb_id: req.body.imdb}, async (err, result) => {
+			try {
+				let returnValue = await addTmdbInfo(result.toJSON(), req.body.imdb);
+				res.json(returnValue);
+			} catch(e) {
+				console.log(e);
+			}
+		})
+	}
 })
 
 const addTmdbInfo = (resultats, imdb) => {
@@ -32,11 +42,13 @@ const addTmdbInfo = (resultats, imdb) => {
 				concat.overview = json.movie_results[0].overview;
 				concat.categorieTmdb = "movie";
 				concat.tmdbId = json.movie_results[0].id;
+				concat.backdrop_path = json.movie_results[0].backdrop_path;
 				res(concat);
 			} else {
 				concat.overview = json.tv_results[0].overview;
 				concat.categorieTmdb = "tv";
 				concat.tmdbId = json.tv_results[0].id;
+				concat.backdrop_path = json.tv_results[0].backdrop_path;
 				res(concat);
 			}
 		})

@@ -4,6 +4,7 @@ import '../css/movie.css';
 import Description from './Description';
 import LinksAvailable from './LinksAvailable';
 import CommentBlock from './CommentBlock';
+import Cast from './Cast';
 
 class Movie extends Component {
 	constructor(props) {
@@ -20,7 +21,7 @@ class Movie extends Component {
 	}
 
 	componentWillMount() {
-		callApi("/api/movie/getDataFromDatabase", "post", { imdb: this.props.match.params.imdb })
+		callApi("/api/movie/getDataFromDatabase", "post", { imdb: this.props.match.params.imdb, categorie: this.props.match.params.categorie })
 		.then((response) => {
 			this.setState({
 				movieInfo: response
@@ -38,7 +39,7 @@ class Movie extends Component {
 					<LinksAvailable movie={ this.state.movieInfo }/>
 				</div>
 				<div className="MovieInfos embed-responsive embed-responsive-16by9 row">
-					<video className="embed-responsive-item" controls>
+					<video className="embed-responsive-item" controls poster={"https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}>
 						{/* <source src={"http://localhost:3001/api/torrent/" + this.props.match.params.id} type="video/mp4"/>> */}
 					</video>
 				</div>
@@ -47,6 +48,7 @@ class Movie extends Component {
 						<CommentBlock idMovie={this.props.match.params.imdb}/>
 					</div>
 					<div className="col-md-6">
+						<Cast />
 					</div>
 				</div>
 			</div>
