@@ -8,13 +8,14 @@
 * https://github.com/yahoo/react-intl/wiki#getting-started 
 
 ## TO DO LIST
-* Reset password - Block access to this page for Facebook and 42 users
-* Footer
-* Firefox
 * Proteger l'upload dans la Profile Page + mieux gerer les erreurs
-* Langue traduction - Stockée de base dans la base de données
-* Catalogue - Trier par nom - Video vue non vue - Video page
+* Reset password - Block access to this page for Facebook and 42 users
 * Page Video - Resume / Casting / Producteur, realisateur, acteurs principaux / Year / Durée / La note / Cover
 * Commentaire
+* Catalogue - Trier par nom - Video vue non vue - Video page
 * Sous titre correspondant à la langue preferée 
+* Convertir les vidéo MKV
 * Supprimer le torrent après un mois de non visionnage
+* Langue traduction - Stockée de base dans la base de données
+* Footer
+* Firefox
