@@ -42,3 +42,12 @@
 	height: 142px;
 	object-fit: cover;
 }
+
+.error-msg-picture {
+	top: 90%;
+    left: 50%;
+    position: absolute;
+    font-size: 11px;
+    margin-left: -60px;
+    color: red;
+}

@@ -9,12 +9,18 @@ class SignInForm extends Component {
 		this.state = {
 			login: {title: 'Login', value: '', error: ''},
 			passwd: {title: 'Mot de passe', value: '', error: ''},
-			loginDone: false
+			loginDone: false,
+			rstPwdDone: false
 		};
 		this.updateInputValue = this.updateInputValue.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-	
+
+	componentDidMount() {
+		console.log(this.props.rstPwdDone);
+			this.setState({	rstPwdDone: this.props.rstPwdDone });
+	}
+
 	updateInputValue = (key, value) => {			
 		this.setState((prevState) => ({
 			[key]: {
@@ -86,6 +92,8 @@ class SignInForm extends Component {
 		return(
 			<SignInBlock>
             <h3>S'identifier</h3>
+			{this.state.rstPwdDone &&
+				<div className="alert alert-info">Mot de passe mis a jour.</div>}
             <form>
                 <InputForm
                     containerClass="form-group"
