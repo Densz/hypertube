@@ -13,9 +13,8 @@ class CommentBlock extends Component {
 		this.handlePostComment = this.handlePostComment.bind(this);
 	}
 
-	handlePostComment(event) {
-		event.preventDefault();
-		const commentValue = event.target.value;
+	handlePostComment(value) {
+		const commentValue = value;
 		const data = { idMovie: this.props.idMovie, value: commentValue };
 		callApi('/api/comment/postComment', 'post', data)
 		.then((response) => {
