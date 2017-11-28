@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import { callApi } from '../../../ApiCaller/apiCaller';
 
 class Description extends Component {
-	constructor(props) {
-		super(props);
-	}
-
     render () {
 		let genres = [];
 		if (this.props.movie.genre !== undefined) {
@@ -30,9 +25,8 @@ class Description extends Component {
 					<br/>
 					<br/>
 					<p>{ this.props.movie.overview }</p>
-					<p className="imdb_rating"><img className="imdb-logo" src="/images/imdb.png"/>&nbsp;&nbsp;{this.props.movie.imdb_rating}</p>
+					<p className="imdb_rating"><img alt="imdb_logo" className="imdb-logo" src="/images/imdb.png"/>&nbsp;&nbsp;{this.props.movie.imdb_rating}</p>
 				</div>
-				
 			</div>
         )
     }

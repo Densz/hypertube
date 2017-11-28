@@ -35,20 +35,20 @@ class Movie extends Component {
 		return(
 			<div>
 				<div className="row movie-details-block">
-					<Description movie={ this.state.movieInfo }/>
-					<LinksAvailable movie={ this.state.movieInfo }/>
+					<Description movie={ this.state.movieInfo } />
+					<LinksAvailable movie={ this.state.movieInfo } />
 				</div>
 				<div className="MovieInfos embed-responsive embed-responsive-16by9 row">
-					<video className="embed-responsive-item" controls poster={"https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}>
+					<video className="embed-responsive-item" controls poster={this.state.movieInfo.backdrop_path && "https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}>
 						{/* <source src={"http://localhost:3001/api/torrent/" + this.props.match.params.id} type="video/mp4"/>> */}
 					</video>
 				</div>
 				<div className="row">
 					<div className="col-md-6">
-						<CommentBlock idMovie={this.props.match.params.imdb}/>
+						<CommentBlock idMovie={this.props.match.params.imdb} />
 					</div>
 					<div className="col-md-6">
-						<Cast />
+						<Cast movie={ this.state.movieInfo } />
 					</div>
 				</div>
 			</div>

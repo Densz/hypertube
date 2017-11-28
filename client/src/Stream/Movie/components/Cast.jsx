@@ -4,6 +4,15 @@ import { callApi } from '../../../ApiCaller/apiCaller';
 class Cast extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			cast: {},
+			crew: {}
+		}
+	}
+
+	componentWillMount() {
+		console.log(this.props.movie);
+		// callApi("api/movie/getPeople", )
 	}
 
 	render() {
