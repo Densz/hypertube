@@ -11,6 +11,19 @@ class LinksAvailable extends Component {
 		}
 	}
 
+	componentWillMount() {
+		// this.callInfoTorrent();
+	}
+
+	// callInfoTorrent() {
+	// 	callApi('/api/torrent/', 'post', {id: this.props.match.params.id})
+	// 	.then((infoTorrent) => {
+	// 		this.setState({
+	// 			infoTorrent: infoTorrent
+	// 		});
+	// 	})
+	// }
+
 	render() {
 		return(
 			<div className="col-md-4">

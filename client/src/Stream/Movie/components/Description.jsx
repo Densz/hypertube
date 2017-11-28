@@ -1,45 +1,36 @@
 import React, { Component } from 'react';
+import { callApi } from '../../../ApiCaller/apiCaller';
 
 class Description extends Component {
-	componentWillMount() {
-		// this.callInfoMovie()
-		// this.callInfoTorrent()
+	constructor(props) {
+		super(props);
 	}
-	
-	// callInfoMovie() {
-	// 	callApi('/api/movie/', 'post', {imdb_code: this.props.match.params.imdb})
-	// 	.then((infoMovie) => {
-	// 		console.log(infoMovie);
-	// 		this.setState({
-	// 			movieInfos: infoMovie
-	// 		})
-	// 	})
-	// }
-
-	// callInfoTorrent() {
-	// 	callApi('/api/torrent/', 'post', {id: this.props.match.params.id})
-	// 	.then((infoTorrent) => {
-	// 		this.setState({
-	// 			infoTorrent: infoTorrent
-	// 		});
-	// 	})
-	// }
 
     render () {
+		let genres = [];
+		if (this.props.movie.genre !== undefined) {
+			this.props.movie.genre.map((item, index) => {
+				if (index > 0)
+					genres.push(' / ' + item);
+				else 
+					genres.push(item);
+				return undefined;
+			})
+		}
         return (
 			<div className="col-md-8">
 				<div className="col-md-5 coverImg">
-					{/* <img  /> */}
+					<img src={this.props.movie.cover_url} alt={this.props.movie.title}/>
 				</div>
 				<div className="col-md-7">
-					<h1>  </h1>
-					<p className="GenreStyle"></p>
+					<h1> { this.props.movie.title } </h1>
+					<p className="GenreStyle">{genres}</p>
+					<h3> {this.props.movie.year }</h3>
 					_
 					<br/>
 					<br/>
-					<p>Overview : </p>
-					<p>Release : </p>
-					<p>Note : </p>
+					<p>{ this.props.movie.overview }</p>
+					<p className="imdb_rating"><img className="imdb-logo" src="/images/imdb.png"/>&nbsp;&nbsp;{this.props.movie.imdb_rating}</p>
 				</div>
 				
 			</div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { callApi } from '../../../ApiCaller/apiCaller';
+import { callApi } from '../../../ApiCaller/apiCaller';
 import '../css/movie.css';
 import Description from './Description';
 import LinksAvailable from './LinksAvailable';
@@ -9,6 +9,7 @@ class Movie extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			movieInfo: {},
 			torrentToRead: ""
 		}
 	}
@@ -18,12 +19,23 @@ class Movie extends Component {
 		bodyStyle.backgroundColor = '#20232a';
 	}
 
+	componentWillMount() {
+		callApi("/api/movie/getDataFromDatabase", "post", { imdb: this.props.match.params.imdb })
+		.then((response) => {
+			this.setState({
+				movieInfo: response
+			})
+		})		
+	}
+
 	render() {
+		console.log("movieInfo");
+		console.log(this.state.movieInfo);
 		return(
 			<div>
 				<div className="row movie-details-block">
-					<Description />
-					<LinksAvailable />
+					<Description movie={ this.state.movieInfo }/>
+					<LinksAvailable movie={ this.state.movieInfo }/>
 				</div>
 				<div className="MovieInfos embed-responsive embed-responsive-16by9 row">
 					<video className="embed-responsive-item" controls>
