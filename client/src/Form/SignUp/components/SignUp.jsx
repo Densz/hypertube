@@ -70,7 +70,7 @@ class SignUp extends Component {
 				errorBool = true;
 			}
 		}
-		if (file.size > 1) {
+		if (file.size > 3145728) {
 			this.setState({ picture: { error: 'Image trop volumineuse' } });
 			errorBool = true;
 		}
