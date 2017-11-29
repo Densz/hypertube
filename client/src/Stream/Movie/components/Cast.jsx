@@ -7,8 +7,10 @@ class Cast extends Component {
 		super(props);
 		this.state = {
 			cast: {},
-			crew: {}
+			crew: {},
+			buttonSelected: "Casting"
 		}
+		this.switchPeople = this.switchPeople.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -28,23 +30,45 @@ class Cast extends Component {
 		})
 	}
 
+	switchPeople(e) {
+		let string = e.target.innerHTML;
+		this.setState({
+			buttonSelected: string
+		})
+	}
+
 	render() {
+		console.log(this.state.buttonSelected);
 		let castItem = [];
-		if (this.state.cast && this.state.cast.length > 0) {
+		if (this.state.cast && this.state.cast.length > 0 && this.state.buttonSelected === "Casting") {
 			this.state.cast.map((element, index)=> {
+				if (index > 0 ){
+					castItem.push(<hr className="hr_cast_item"/>);
+				}
 				castItem.push(<CastItem cast={element}/>);
-				castItem.push(<hr className="hr_cast_item"/>);
 				return undefined;
 			})
+		} else if (this.state.crew && this.state.crew.length > 0 && this.state.buttonSelected === "Staff") {
+			this.state.crew.map((element, index)=> {
+				if (index > 0 ){
+					castItem.push(<hr className="hr_cast_item"/>);
+				}
+				castItem.push(<CastItem crew={element}/>);
+				return undefined;
+			})
+		} else {
+			castItem.push(<h6>Cast and crew not found</h6>);
 		}
 
 		return(
 			<div className="row comment-block">
 				<div className="col-md-12">
-					<h3>Casting</h3>
+					<h3>
+						<div onClick={this.switchPeople} className={this.state.buttonSelected === "Casting" ? "cast-button selected-people" : "cast-button"}>Casting</div>
+						<div onClick={this.switchPeople} className={this.state.buttonSelected === "Staff" ? "cast-button staff selected-people" : "cast-button staff"}>Staff</div>
+					</h3>
 					<div className="cast-box">
 						{ castItem }	
-						
 					</div>
 				</div>
 			</div>

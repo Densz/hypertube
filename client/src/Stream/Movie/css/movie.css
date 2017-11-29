@@ -44,7 +44,26 @@
 .cast-box {
 	height: 584px;
 	background-color: rgba(0, 0, 0, 0.3);
-	overflow: scroll;
+	overflow: auto;
+	padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.cast-button {
+	display: inline;
+	margin-left: -10px;
+	padding: 7px;
+	padding-left: 30px;
+	padding-right: 30px;
+	cursor: pointer;
+}
+
+.staff {
+	margin-left: 0px;
+}
+
+.selected-people {
+	background-color: rgba(0, 0, 0, 0.3);
 }
 
 .comment-box {
@@ -84,12 +103,14 @@
     width: 70px;
 	height: 70px;
 	border-radius: 50%;
-	object-fit: contain;
+	object-fit: cover;
 	margin-left: 30px;
+}
+
+.cast-infos {
 	margin-top: 10px;
 }
 
-.cast_infos {
-	margin-top: 40px;
-	margin-left: 30px;
+.infos-people {
+	margin-top: 20px;
 }
