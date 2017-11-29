@@ -4,11 +4,16 @@ const Yify = require('../models/yify');
 const Eztv = require('../models/eztv');
 import request from 'request';
 
-router.post('/description/:imdb', (req, res) => {
-	// when you spam the api IMDB
-	// {"status_code":25,"status_message":"Your request count (42) is over the allowed limit of 40."}
-	console.log(req.query.imdb);
-	res.json({status: ok});
+router.post('/getPeople', (req, res) => {
+	let url = "https://api.themoviedb.org/3/" + req.body.categorie + "/" + req.body.id + "/credits?api_key=531e95f829b079916094fa5c7f0a60ce";
+	request(url, (error, response, body) => {
+		let json = JSON.parse(body);
+		if (json.status_code === 34) {
+			res.json({result: null});
+		} else {
+			res.json(json);
+		}
+	})
 })
 
 router.post('/getDataFromDatabase', (req, res) => {

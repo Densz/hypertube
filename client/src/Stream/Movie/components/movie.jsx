@@ -30,8 +30,6 @@ class Movie extends Component {
 	}
 
 	render() {
-		console.log("movieInfo");
-		console.log(this.state.movieInfo);
 		return(
 			<div>
 				<div className="row movie-details-block">
@@ -48,7 +46,7 @@ class Movie extends Component {
 						<CommentBlock idMovie={this.props.match.params.imdb} />
 					</div>
 					<div className="col-md-6">
-						<Cast movie={ this.state.movieInfo } />
+						<Cast id={ this.state.movieInfo.tmdbId } categorie={ this.state.movieInfo.categorieTmdb } />
 					</div>
 				</div>
 			</div>

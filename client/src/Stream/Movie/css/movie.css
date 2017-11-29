@@ -20,9 +20,9 @@
 }
 
 .links_available {
-	min-width: 100%;
-	height: 100px;
-	background-color: #171717;
+    min-width: 100%;
+    height: 275px;
+    background-color: #16181D;
 }
 
 .coverImg {
@@ -42,8 +42,9 @@
 }
 
 .cast-box {
-	min-height: 200px;
+	height: 584px;
 	background-color: rgba(0, 0, 0, 0.3);
+	overflow: scroll;
 }
 
 .comment-box {
@@ -72,4 +73,23 @@
 
 .embed-responsive-item {
 	background-color: black;
+}
+
+.hr_cast_item {
+	width: 80%;
+	border-top: 1px solid rgb(61, 61, 61);
+}
+
+.img_cast_item {
+    width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	object-fit: contain;
+	margin-left: 30px;
+	margin-top: 10px;
+}
+
+.cast_infos {
+	margin-top: 40px;
+	margin-left: 30px;
 }
