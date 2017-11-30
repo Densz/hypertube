@@ -15,7 +15,11 @@ const commentSchema = mongoose.Schema({
 	},
 	posted: {
 		type: String,
-		required: false
+		required: true
+	},
+	picturePoster: {
+		type: String,
+		require: true
 	}
 });
 

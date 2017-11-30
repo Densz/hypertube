@@ -22,7 +22,9 @@
 .links_available {
     min-width: 100%;
     height: 275px;
-    background-color: #16181D;
+	background-color: #16181D;
+	padding: 20px;
+    overflow: auto;
 }
 
 .coverImg {
@@ -42,7 +44,7 @@
 }
 
 .cast-box {
-	height: 584px;
+	max-height: 584px;
 	background-color: rgba(0, 0, 0, 0.3);
 	overflow: auto;
 	padding-top: 20px;
@@ -113,4 +115,40 @@
 
 .infos-people {
 	margin-top: 20px;
+}
+
+<<<<<<< HEAD
+.comment-title { 
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.comment-exists {
+	padding-bottom: 20px;
+	padding-top: 30px;
+}
+
+.post-date {
+	color: darkslategrey;
+}
+
+.post-login {
+	margin-top: 0px;
+=======
+.season-button {
+    display: inline-block;
+    width: 85px;
+	font-size: 15px;
+	text-align: center;
+	cursor: pointer;
+	height: 25px;
+}
+
+.selected {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.episode_div {
+	cursor: pointer;
+	height: 35px;
+>>>>>>> 99e833feecff99b2af14815add678765593fc95e
 }

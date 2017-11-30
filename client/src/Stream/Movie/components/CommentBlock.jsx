@@ -8,7 +8,8 @@ class CommentBlock extends Component {
 		super(props);
 		this.state = {
 			comment: [],
-			commentNumber: 0
+			commentNumber: 0,
+			infoUser: {}
 		}
 		this.handlePostComment = this.handlePostComment.bind(this);
 	}
@@ -29,7 +30,7 @@ class CommentBlock extends Component {
 		.then((response) => {
 			if (response.success) {
 				console.log(response);
-				this.setState({ comment: response.value, commentNumber: response.value.length });
+				this.setState({ comment: response.value, commentNumber: response.value.length, infoUser: response.infoUser });
 			} 
 		})
 	}
@@ -38,8 +39,12 @@ class CommentBlock extends Component {
 		return(
 			<div className="row comment-block">
 				<div className="col-md-12">
-					<h3>{this.state.commentNumber} Comments</h3>
-					<CommentBox commentsInfo={this.state.comment} postComment={this.handlePostComment}/>
+					<h3>
+						<div className="cast-button comment-title">
+							{this.state.commentNumber} Comments
+						</div>
+					</h3>
+					<CommentBox commentsInfo={this.state.comment} postComment={this.handlePostComment} infoUser={this.state.infoUser} />
 				</div>
 			</div>
 		)
