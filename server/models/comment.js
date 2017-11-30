@@ -13,8 +13,8 @@ const commentSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
-	date: {
-		type: Date,
+	posted: {
+		type: String,
 		required: false
 	}
 });
