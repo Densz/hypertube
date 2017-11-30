@@ -18,9 +18,9 @@ class CommentBlock extends Component {
 		const data = { idMovie: this.props.idMovie, value: commentValue };
 		callApi('/api/comment/postComment', 'post', data)
 		.then((response) => {
-			console.log(response);
-			// const tmpComment = this.state.comment.push(response.comment);
-			// this.setState({ comment: tmpComment });
+			const tmpComment = this.state.comment;
+			tmpComment.push(response.comment);
+			this.setState({ comment: tmpComment, commentNumber: tmpComment.length });
 		})
 	}
 
