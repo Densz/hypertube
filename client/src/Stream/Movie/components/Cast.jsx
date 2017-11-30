@@ -38,7 +38,6 @@ class Cast extends Component {
 	}
 
 	render() {
-		console.log(this.state.buttonSelected);
 		let castItem = [];
 		if (this.state.cast && this.state.cast.length > 0 && this.state.buttonSelected === "Casting") {
 			this.state.cast.map((element, index)=> {
