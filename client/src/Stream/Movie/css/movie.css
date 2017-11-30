@@ -22,7 +22,9 @@
 .links_available {
     min-width: 100%;
     height: 275px;
-    background-color: #16181D;
+	background-color: #16181D;
+	padding: 20px;
+    overflow: auto;
 }
 
 .coverImg {
@@ -113,4 +115,22 @@
 
 .infos-people {
 	margin-top: 20px;
+}
+
+.season-button {
+    display: inline-block;
+    width: 85px;
+	font-size: 15px;
+	text-align: center;
+	cursor: pointer;
+	height: 25px;
+}
+
+.selected {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.episode_div {
+	cursor: pointer;
+	height: 35px;
 }

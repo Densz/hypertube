@@ -60,11 +60,39 @@ const addTmdbInfo = (resultats, imdb) => {
 	})
 }
 
+const getAvailableSeasons = episodes => {
+	let seasonAvailable = [];
+	
+	episodes.forEach(element => {
+		if (seasonAvailable.indexOf(element.season) === -1) {
+			seasonAvailable.push(element.season);
+		}
+	});
+	return seasonAvailable.sort();
+}
+
+const formatJsonForFront = (seasons, episodes) => {
+	let json = {};
+	seasons.forEach(element => {
+		json[element] = []
+	})
+	episodes.forEach(element => {
+		json[element.season].push(element);
+	})
+	return json;
+}
+
 router.post('/getEpisodes',(req, res) => {
-	console.log(req.body.imdb_id);
-	request("https://eztvapi.ml/show/" + req.body.imdb_id, (err, response, body, result) => {
-		let json = JSON.parse(body);
-		res.json(json);
+	Eztv.findOne({imdb_id: req.body.imdb_id}, (error, result) => {
+		if (error) { console.log(e) }
+		if (result === null) {
+			console.log("No result in Eztv Database fetching episodes");
+			res.json({ result: null })
+		} else {
+			let formattedJsonseasons = getAvailableSeasons(result.episodes);
+			let formattedJson = formatJsonForFront(formattedJsonseasons, result.episodes);
+			res.json(formattedJson);
+		}
 	})
 });
 
