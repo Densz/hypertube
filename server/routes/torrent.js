@@ -3,8 +3,7 @@ const router = express.Router();
 import request from 'request';
 const rp = require('request-promise-native');
 import { createReadStream } from 'fs';
-const ts = require('torrent-stream');
-const options = require('../config/torrent');
+const torrentOptions = require('../config/torrent');
 
 async function getInfo(id) {
 	let response = {};

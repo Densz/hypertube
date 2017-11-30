@@ -16,6 +16,7 @@ const userLogged = require('./routes/userLogged');
 const movie = require('./routes/movie');
 const torrent = require('./routes/torrent');
 const comment = require('./routes/comment');
+const db = require('./config/database.js');
 
 // Import Strategies
 import { facebookStrategy, fortytwoStrategy, localStrategy } from './config/oAuth';

@@ -33,6 +33,31 @@ const eztvSchema = mongoose.Schema({
 		type: Array,
 		required: false
 	}
-})
+});
 
-module.exports = mongoose.model('Eztv', eztvSchema);
+let Eztv = mongoose.model('Eztv', eztvSchema);
+
+Eztv.getEpisode = (id, seasonNum, episodeNum) => {
+	return new Promise((resolve, reject) => {		
+		Eztv.findOne({
+			imdb_id: id
+		})
+		.catch((err) => {
+			reject(err);
+		})
+		.then((doc) => {
+			if (doc) {
+				let episodes = doc.episodes;
+				episodes.forEach((episode) => {
+					if (episode.season == seasonNum && episode.episode == episodeNum)
+						resolve(episode);
+				});
+				reject(new Error('Could not find specified episode.'));
+			}
+			else
+				reject(new Error('Could not find specified series.'));
+		});
+	});
+};
+
+module.exports = Eztv;
