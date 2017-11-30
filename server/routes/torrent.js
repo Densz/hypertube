@@ -44,6 +44,7 @@ router.get('/:id', async (req, res, next) => {
 	// get data from the yify API, put torrent info in array called torrents
 	data = await getInfo(req.params.id);
 
+	console.log(data.data.movie.torrents);
 	torrents = data.data.movie.torrents;
 
 	if (torrents.length < 1)

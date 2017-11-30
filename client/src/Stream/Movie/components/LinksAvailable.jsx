@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-// import { callApi } from '../../../ApiCaller/apiCaller';
+import { callApi } from '../../../ApiCaller/apiCaller';
 import '../css/movie.css';
 
 class LinksAvailable extends Component {
@@ -11,26 +11,40 @@ class LinksAvailable extends Component {
 		}
 	}
 
-	componentWillMount() {
-		// this.callInfoTorrent();
+	componentDidMount() {
+		if (this.props.categorie === "movies") {
+			this.setState({
+				linksAvailable: undefined
+			})
+		} else {
+			this.callInfosEpisodes(this.props.imdb);
+		}
 	}
 
-	// callInfoTorrent() {
-	// 	callApi('/api/torrent/', 'post', {id: this.props.match.params.id})
-	// 	.then((infoTorrent) => {
-	// 		this.setState({
-	// 			infoTorrent: infoTorrent
-	// 		});
-	// 	})
-	// }
+	callInfosEpisodes(id) {
+		callApi('/api/movie/getEpisodes', 'post', { imdb_id: id })
+		.then((infoTorrent) => {
+			this.setState({
+				linksAvailable: infoTorrent
+			});
+		})
+	}
 
 	render() {
-		return(
-			<div className="col-md-4">
-				<h3 id="available">Available in :</h3>
-				<div className="links_available"></div>
-			</div>
-		)
+		console.log(this.state);
+		if (this.props.categorie === "tv_shows") {
+			return(
+				<div className="col-md-4">
+					<h3 id="available">Available in :</h3>
+					<div className="links_available"></div>
+				</div>
+			)
+		} else {
+			return(
+				<div>
+				</div>
+			)
+		}
 	}
 }
 

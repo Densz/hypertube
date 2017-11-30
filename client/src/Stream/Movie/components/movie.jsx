@@ -6,7 +6,7 @@ import LinksAvailable from './LinksAvailable';
 import CommentBlock from './CommentBlock';
 import Cast from './Cast';
 
-class Movie extends Component {
+export default class Movie extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -23,10 +23,12 @@ class Movie extends Component {
 	componentWillMount() {
 		callApi("/api/movie/getDataFromDatabase", "post", { imdb: this.props.match.params.imdb, categorie: this.props.match.params.categorie })
 		.then((response) => {
+			console.log(this.state.movieInfo);
 			this.setState({
 				movieInfo: response
 			})
-		})		
+			console.log(this.state.movieInfo);
+		})
 	}
 
 	render() {
@@ -34,7 +36,7 @@ class Movie extends Component {
 			<div>
 				<div className="row movie-details-block">
 					<Description movie={ this.state.movieInfo } />
-					<LinksAvailable movie={ this.state.movieInfo } />
+					<LinksAvailable movie={ this.state.movieInfo } imdb={this.props.match.params.imdb} categorie={this.props.match.params.categorie} />
 				</div>
 				<div className="MovieInfos embed-responsive embed-responsive-16by9 row">
 					<video className="embed-responsive-item" controls poster={this.state.movieInfo.backdrop_path && "https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}>
@@ -54,4 +56,3 @@ class Movie extends Component {
 	}
 }
 
-export default Movie;

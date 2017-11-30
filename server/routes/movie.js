@@ -60,4 +60,12 @@ const addTmdbInfo = (resultats, imdb) => {
 	})
 }
 
+router.post('/getEpisodes',(req, res) => {
+	console.log(req.body.imdb_id);
+	request("https://eztvapi.ml/show/" + req.body.imdb_id, (err, response, body, result) => {
+		let json = JSON.parse(body);
+		res.json(json);
+	})
+});
+
 module.exports = router;
