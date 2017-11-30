@@ -28,6 +28,10 @@ const eztvSchema = mongoose.Schema({
 	genre: {
 		type: Array,
 		required: true
+	},
+	episodes: {
+		type: Array,
+		required: false
 	}
 })
 

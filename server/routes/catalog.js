@@ -24,6 +24,10 @@ router.post('/callMoreItems', (req, res) => {
 			res.json(result);
 		})
 	} else {
+		query.episodes = {
+			$exists: true,
+			$not: { $size: 0 }
+		};
 		Eztv.find(query, [], sort, (err, result) => {
 			if (err) { console.log(err) }
 			res.json(result);
