@@ -8,9 +8,7 @@
 * https://github.com/yahoo/react-intl/wiki#getting-started 
 
 ## TO DO LIST
-* Page Video - Resume / Casting / Producteur, realisateur, acteurs principaux / Year / Durée / La note / Cover
-* Commentaire
-* Catalogue - Trier par nom - Video vue non vue - Video page
+* Catalogue - Video vue non vue
 * Sous titre correspondant à la langue preferée 
 * Convertir les vidéo MKV
 * Supprimer le torrent après un mois de non visionnage
