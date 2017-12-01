@@ -11,7 +11,8 @@ export default class Movie extends Component {
 		super(props);
 		this.state = {
 			movieInfo: {},
-			torrentToRead: ""
+			selectedMovieQuality: undefined, 
+			selectedEpisode: undefined
 		}
 	}
 

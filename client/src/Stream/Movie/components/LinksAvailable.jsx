@@ -10,9 +10,13 @@ class LinksAvailable extends Component {
 			linksAvailable: undefined,
 			seasonSelected: 0,
 			seasonClassName: "season-button",
-			seasonClassNameSelected: "season-button selected"
+			seasonClassNameSelected: "season-button selected",
+			qualitySelected: undefined,
+			episodeSelected: undefined
 		}
 		this.switchSeason = this.switchSeason.bind(this);
+		this.setQuality = this.setQuality.bind(this);
+		this.setEpisode = this.setEpisode.bind(this);
 	}
 
 	componentDidMount() {
@@ -36,8 +40,20 @@ class LinksAvailable extends Component {
 		})
 	}
 
+	setQuality(e) {
+		this.setState({
+			qualitySelected: e.target.innerHTML
+		})
+	}
+
+	setEpisode(e) {
+		let value = parseInt(e.target.id);
+		this.setState({
+			episodeSelected: value
+		})
+	}
+
 	render() {
-		console.log(this.state);
 		let seasons = [];
 		if (this.state.linksAvailable && this.props.categorie === "tv_shows") {
 			Object.keys(this.state.linksAvailable).forEach(element => {
@@ -53,13 +69,30 @@ class LinksAvailable extends Component {
 		}
 		let episodes = [];
 		let json = this.state.linksAvailable;
+		// Series Part
 		if (this.state.seasonSelected !== 0 && this.props.categorie === "tv_shows") {
 			json[this.state.seasonSelected].forEach((element, index) => {
-				episodes.push(<div className="episode_div" id={element.tvdb_id} key={index}>Episode {element.episode}: {element.title}</div>);
+				episodes.push(
+					<div 
+						className={this.state.episodeSelected === element.tvdb_id ? "episode_div_selected" : "episode_div"}
+						id={element.tvdb_id} 
+						key={element.episode}
+						onClick={this.setEpisode}
+					>
+						Episode {element.episode}: {element.title}
+					</div>
+				);
 			});
+		// Movies Part
 		} else if (this.props.categorie === "movies" && this.props.movie.torrents) {
 			this.props.movie.torrents.forEach((element, index) => {
-				episodes.push(<div className="episode_div" id={element.quality} key={index}>{element.quality}</div> )
+				episodes.push(<div 
+						className={this.state.qualitySelected === element.quality ? "episode_div_selected" : "episode_div"}
+						id={element.quality}
+						key={index}
+						onClick={this.setQuality}
+					>{element.quality}</div>
+				)
 			});
 		}
 		if (this.props.categorie === "tv_shows") {
