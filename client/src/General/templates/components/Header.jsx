@@ -27,6 +27,13 @@ const ComponentRendered = (props) => {
 					<img src="/icons/multimedia/avatar.png" className="navbar-logo" alt="hypertube" />
 				</a >
 			)
+		} else {
+			rendering.push(
+				<p className="navbar-guest-text">
+					Guest Profile
+					<img src="/icons/essential/info.png" className="navbar-guest-logo" alt="hypertube"/>
+				</p>
+			);
 		}
     }
     return rendering;

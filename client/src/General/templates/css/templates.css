@@ -16,7 +16,7 @@ body {
 }
 
 /* Links inside the navbar */
-.navbar a .navbar-logo {
+.navbar .navbar-logo {
     float: right;
     font-size: 15px;
     font-weight: 5px;
@@ -24,6 +24,23 @@ body {
     display: block;
     text-align: center;
     text-decoration: none;
+}
+
+.navbar-guest-text {
+    height: 17px;
+    float: right;
+    color: #67DAF9;
+    margin-top: 17px;
+    margin-left: 19px;
+    margin-right: 19px
+}
+
+.navbar-guest-logo {
+    height: 17px;
+    float: right;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-left: 19px;
 }
 
 #logo {
@@ -113,5 +130,5 @@ body {
 }
 
 .log-logo {
-	margin-right: 65px;
+	margin-right: 50px;
 }
