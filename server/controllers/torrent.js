@@ -4,7 +4,7 @@ const mimeTypes = require('./mimeTypes');
 const path = require('path');
 
 module.exports = class Torrent {
-    constructor(magnet, onEnd) {
+    constructor(magnet) {
         this.engine = ts(magnet, options);
     }
 

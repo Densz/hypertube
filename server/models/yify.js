@@ -33,6 +33,6 @@ const yifySchema = mongoose.Schema({
 		type: Array,
 		required: true
 	}
-})
+});
 
 module.exports = mongoose.model('Yify', yifySchema);
