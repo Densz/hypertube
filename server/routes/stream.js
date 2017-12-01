@@ -6,7 +6,7 @@ const User = require('../models/user');
 import request from 'request';
 const Torrent = require('../controllers/torrent')
 
-function filterTorrents(torrents, quality = "") {
+function filterTorrents(torrents, quality) {
 	let correct = [];
 	torrents.forEach(function(torrent) {
 		if (quality === torrent.quality)
@@ -32,10 +32,11 @@ function markDownloaded(id) {
 
 router.get('/film/:id/:quality', async (req, res) => {
 	let id = req.params.id,
-		quality = req.params.quality,
+		quality = req.params.quality || "",
 		torrents = [],
 		torrent,
-		file;
+		file,
+		stream;
 
 	console.log("IMDB ID: " + id + ", Quality: " + quality);
 	
@@ -52,17 +53,20 @@ router.get('/film/:id/:quality', async (req, res) => {
 				console.log(torrents);				
 				if (torrents[0].hash) {
 					torrent = new Torrent(torrents[0].hash);
-					// torrent.onFinished(markDownloaded(id));
+					torrent.onFinished(markDownloaded);
 					try {
 						file = await torrent.get();
-						console.log(file.path);
+						console.log(file.name);
+						console.log(file);
 						const header = {
 							'Content-Length': file.length,
 							'Content-Type': 'video/mp4'
 						};
 						stream = file.createReadStream();
+						res.writeHead(200, header);
 						stream.pipe(res);
 					} catch (err) {
+						console.log(err);
 						res.status(204);
 						res.send(err);
 					}
