@@ -13,17 +13,6 @@ const CommentList = (props) => {
 	return (<div className="cast-box">{commentNodes}</div>);
 }
 
-const CommentForm = (props) => {
-	return (
-		<div className="input-group">
-			<input type="text" name="Add comment" onChange={this.handleUpdateValue} className="form-control" placeholder="Your comment..." aria-label="Your comment..." />
-			<span className="input-group-btn">
-				<button className="btn btn-primary" type="button" onClick={() => { this.props.postComment(this.state.currValue) }} >Add</button>
-			</span>
-		</div>
-	);
-}
-
 class CommentBox extends Component {
 	constructor(props) {
 		super(props);

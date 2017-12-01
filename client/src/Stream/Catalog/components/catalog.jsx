@@ -126,7 +126,6 @@ class Catalog extends Component {
 		console.log(this.state);
 		let items = [];
 		this.state.catalog.map((movieData, index) => {
-			console.log(movieData);
 			items.push(<Thumbnail key={index} infos={movieData} categorie={this.state.categorie}/>);
 			return undefined;
 		})
