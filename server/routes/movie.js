@@ -82,7 +82,7 @@ const formatJsonForFront = (seasons, episodes) => {
 	return json;
 }
 
-router.post('/getEpisodes',(req, res) => {
+router.post('/getEpisodes', (req, res) => {
 	Eztv.findOne({imdb_id: req.body.imdb_id}, (error, result) => {
 		if (error) { console.log(e) }
 		if (result === null) {

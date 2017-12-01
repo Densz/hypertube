@@ -16,11 +16,7 @@ class LinksAvailable extends Component {
 	}
 
 	componentDidMount() {
-		if (this.props.categorie === "movies") {
-			this.setState({
-				linksAvailable: undefined
-			})
-		}  else if (this.props.categorie === "tv_shows") {
+		if (this.props.categorie === "tv_shows") {
 			this.callInfosEpisodes(this.props.imdb);
 		}
 	}
@@ -43,7 +39,7 @@ class LinksAvailable extends Component {
 	render() {
 		console.log(this.state);
 		let seasons = [];
-		{ this.state.linksAvailable &&
+		if (this.state.linksAvailable && this.props.categorie === "tv_shows") {
 			Object.keys(this.state.linksAvailable).forEach(element => {
 				seasons.push(
 				<div 
@@ -57,9 +53,13 @@ class LinksAvailable extends Component {
 		}
 		let episodes = [];
 		let json = this.state.linksAvailable;
-		if (this.state.seasonSelected !== 0) {
+		if (this.state.seasonSelected !== 0 && this.props.categorie === "tv_shows") {
 			json[this.state.seasonSelected].forEach((element, index) => {
 				episodes.push(<div className="episode_div" id={element.tvdb_id} key={index}>Episode {element.episode}: {element.title}</div>);
+			});
+		} else if (this.props.categorie === "movies" && this.props.movie.torrents) {
+			this.props.movie.torrents.forEach((element, index) => {
+				episodes.push(<div className="episode_div" id={element.quality} key={index}>{element.quality}</div> )
 			});
 		}
 		if (this.props.categorie === "tv_shows") {
@@ -76,7 +76,13 @@ class LinksAvailable extends Component {
 			)
 		} else if (this.props.categorie === "movies") {
 			return(
-				<div>
+				<div className="col-md-4">
+					<div>
+						<h3 id="available">Links</h3>
+						<div className="links_available">
+							{ episodes }
+						</div>
+					</div>
 				</div>
 			)
 		}
