@@ -26,11 +26,9 @@ export default class Movie extends Component {
 	componentWillMount() {
 		callApi("/api/movie/getDataFromDatabase", "post", { imdb: this.props.match.params.imdb, categorie: this.props.match.params.categorie })
 		.then((response) => {
-			console.log(this.state.movieInfo);
 			this.setState({
 				movieInfo: response
 			})
-			console.log(this.state.movieInfo);
 		})
 	}
 

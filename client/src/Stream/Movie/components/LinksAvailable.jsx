@@ -47,7 +47,7 @@ class LinksAvailable extends Component {
 	}
 
 	setEpisode(e) {
-		let value = parseInt(e.target.id);
+		let value = parseInt(e.target.id, 10);
 		this.setState({
 			episodeSelected: value
 		})
@@ -60,7 +60,8 @@ class LinksAvailable extends Component {
 				seasons.push(
 				<div 
 					onClick={this.switchSeason} 
-					id={element} 
+					id={element}
+					key={element}
 					className={ element === this.state.seasonSelected ? this.state.seasonClassNameSelected : this.state.seasonClassName }
 				>
 					Season {element}

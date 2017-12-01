@@ -29,7 +29,6 @@ class CommentBlock extends Component {
 		callApi('/api/comment/getComments?idMovie=' + this.props.idMovie)
 		.then((response) => {
 			if (response.success) {
-				console.log(response);
 				this.setState({ comment: response.value, commentNumber: response.value.length, infoUser: response.infoUser });
 			} 
 		})
