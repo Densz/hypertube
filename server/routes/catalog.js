@@ -17,7 +17,7 @@ router.post('/callMoreItems', (req, res) => {
 	let sort = {};
 	sort.skip = (req.body.pages - 1) * 16;
 	sort.limit = 16;
-	req.body.sortBy === "rating" ? sort.sort = { imdb_rating: -1 } : sort.sort = { year: -1 };
+	req.body.sortBy === "rating" ? sort.sort = { imdb_rating: -1 } : req.body.sortBy === "title" ? sort.sort = { title: 1} : sort.sort = { year: -1 };
 	if (req.body.categorie === "movies") {
 		Yify.find(query, [], sort, (err, result) => {
 			if (err) { console.log(err) }
