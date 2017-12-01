@@ -21,6 +21,7 @@ request('https://yts.ag/api/v2/list_movies.json', (error, response, body) => {
 							newMovie.cover_url = element.medium_cover_image;
 							newMovie.last_updated = element.date_uploaded;
 							newMovie.genre = element.genres;
+							newMovie.torrents = element.torrents;
 							newMovie.save((err) => {
 								if (err) {
 									console.log(err);

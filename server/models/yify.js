@@ -28,6 +28,10 @@ const yifySchema = mongoose.Schema({
 	genre: {
 		type: Array,
 		required: true
+	},
+	torrents: {
+		type: Array,
+		required: true
 	}
 })
 
