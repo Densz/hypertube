@@ -7,7 +7,6 @@ const Yify = require('../models/yify');
 import request from 'request';
 
 router.post('/callMoreItems', (req, res) => {
-	console.log(req.body);
 	let query = {};
 	query.title = { $regex: ".*" + req.body.searchField + ".*" };
 	query.title = { $regex: ".*" + req.body.searchField.charAt(0).toUpperCase() + req.body.searchField.slice(1) + ".*" };
