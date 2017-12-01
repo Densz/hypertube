@@ -50,7 +50,7 @@ router.post('/getDataFromDatabase', (req, res) => {
 			}
 		})
 	}
-})
+});
 
 const addTmdbInfo = (resultats, imdb) => {
 	return new Promise((res, rej) => {
