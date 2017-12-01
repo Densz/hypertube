@@ -24,6 +24,7 @@ class Catalog extends Component {
 		this.onSliderChangeRating = this.onSliderChangeRating.bind(this);
 		this.changeCategorie = this.changeCategorie.bind(this);
 		this.changeOptionInput = this.changeOptionInput.bind(this);
+		this.searchFieldQueryOnClick = this.searchFieldQueryOnClick.bind(this);
 	}
 
 	componentDidMount() {
@@ -72,12 +73,17 @@ class Catalog extends Component {
 
 	updateSearchInput(event) {
 		let value = event.target.value;
-		this.setState((prevState) => ({
+		this.setState({
+			searchField: value
+		})
+	}
+	
+	searchFieldQueryOnClick() {
+		this.setState({
 			catalog: [],
 			pages: 1,
-			searchField: value,
 			hasMore: true
-		}))
+		})
 	}
 
 	onSliderChangeYear(value) {
@@ -133,6 +139,7 @@ class Catalog extends Component {
 					changeOptionInput={this.changeOptionInput}
 					changeCategorie={this.changeCategorie}
 					categorie={this.state.categorie}
+					onSearchFieldClick={this.searchFieldQueryOnClick}
 				/>
 				<div className="row">
 					<div className="catalog-box">

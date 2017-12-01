@@ -10,7 +10,8 @@ class CatalogNavigation extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			categorie: this.props.categorie
+			categorie: this.props.categorie,
+			searchInput: ""
 		}
 		this.changeCategorie = this.changeCategorie.bind(this);
 		this.changeSelectInput = this.changeSelectInput.bind(this);
@@ -39,7 +40,13 @@ class CatalogNavigation extends Component {
 					<div className="col-sm-6">
 						<div className="form-group">
 							<h4 className="blue-font">Are you looking for something specific?</h4>
-							<input type="text" onChange={this.props.updateSearchInput} className="form-control catalog-search" placeholder="Search..." />
+							<div class="input-group">
+								<input type="text" class="form-control catalog-search" onChange={this.props.updateSearchInput} placeholder="Search for..." />
+								<span className="input-group-btn">
+									<button type="submit" onClick={this.props.onSearchFieldClick} className="btn btn-secondary" type="button">Go!</button>
+								</span>
+							</div>
+							
 						</div>
 					</div>
 					<div className="col-sm-3"></div>
