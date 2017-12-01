@@ -7,7 +7,7 @@ class CommentItem extends Component {
 			<div className="row cast_item">
 				<div className="col-sm-3">
 					<img
-						src={this.props.data.picturePoster === undefined ? "/images/heisenberg.png" : this.props.data.picturePoster}
+						src={this.props.data.defaultPicture === true ? "/images/heisenberg.png" : this.props.data.picturePoster}
 						alt={this.props.data.login}
 						className="img_cast_item"
 					/>

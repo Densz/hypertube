@@ -6,9 +6,9 @@ const CommentList = (props) => {
 	let commentNodes = [];
 	props.comments.map((elem, index) => {
 		if (index > 0) {
-			commentNodes.push(<hr className="hr_cast_item" />);
+			commentNodes.unshift(<hr className="hr_cast_item" key={"hr." + index} />);
 		}
-		commentNodes.push(<CommentItem data={elem} infoUser={props.infoUser} key={index}/>);
+		commentNodes.unshift(<CommentItem data={elem} infoUser={props.infoUser} key={index}/>);
 	});
 	return (<div className="cast-box">{commentNodes}</div>);
 }
@@ -64,7 +64,6 @@ class CommentBox extends Component {
 				<div className="comment-box empty-box">
 					<p>This video doens't have any comment yet.</p>
 					<p>Add yours !</p>
-					{/* <CommentForm /> */}
 					<div className="input-group">
 						<input type="text" name="Add comment" onChange={this.handleUpdateValue} className="form-control" placeholder="Your comment..." aria-label="Your comment..." />
 						<span className="input-group-btn">

@@ -20,6 +20,10 @@ const commentSchema = mongoose.Schema({
 	picturePoster: {
 		type: String,
 		require: true
+	},
+	defaultPicture: {
+		type: Boolean,
+		default: false
 	}
 });
 

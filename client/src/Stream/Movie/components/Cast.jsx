@@ -42,21 +42,21 @@ class Cast extends Component {
 		if (this.state.cast && this.state.cast.length > 0 && this.state.buttonSelected === "Casting") {
 			this.state.cast.map((element, index)=> {
 				if (index > 0 ){
-					castItem.push(<hr className="hr_cast_item"/>);
+					castItem.push(<hr className="hr_cast_item" key={"hr." + index} />);
 				}
-				castItem.push(<CastItem cast={element}/>);
+				castItem.push(<CastItem cast={element} key={index} />);
 				return undefined;
 			})
 		} else if (this.state.crew && this.state.crew.length > 0 && this.state.buttonSelected === "Staff") {
 			this.state.crew.map((element, index)=> {
 				if (index > 0 ){
-					castItem.push(<hr className="hr_cast_item"/>);
+					castItem.push(<hr className="hr_cast_item" key={"hr." + index} />);
 				}
-				castItem.push(<CastItem crew={element}/>);
+				castItem.push(<CastItem crew={element} key={index} />);
 				return undefined;
 			})
 		} else {
-			castItem.push(<h6>Cast and crew not found</h6>);
+			castItem.push(<h6 key={0}>Cast and crew not found</h6>);
 		}
 
 		return(
