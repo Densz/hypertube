@@ -99,11 +99,13 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
+  console.log('Errors !', err, err.message)
   res.status(err.status || 500);
-  res.render('error');
+  res.json({msg: err.message, error: err});
 });
 
 // Adding string methods
+
 String.prototype.capitalize = function () {
 	return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
 }

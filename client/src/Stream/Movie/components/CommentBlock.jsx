@@ -41,7 +41,7 @@ class CommentBlock extends Component {
 				<div className="col-md-12">
 					<h3>
 						<div className="cast-button comment-title">
-							{this.state.commentNumber} Comments
+							{this.state.commentNumber} Comment{this.state.commentNumber > 1 ? 's': ''}
 						</div>
 					</h3>
 					<CommentBox commentsInfo={this.state.comment} postComment={this.handlePostComment} infoUser={this.state.infoUser} />
