@@ -151,3 +151,12 @@
 .post-login {
 	margin-top: 0px;
 }
+
+@media(max-width: 768px) {
+	.img_cast_item {
+		margin-left: 0px;
+	}
+	.cast_item {
+		text-align: center;
+	}
+}
