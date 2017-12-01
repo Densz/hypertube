@@ -29,9 +29,9 @@ const ComponentRendered = (props) => {
 			)
 		} else {
 			rendering.push(
-				<p className="navbar-guest-text">
+				<p className="navbar-guest-text" key={rendering.length}>
 					Guest Profile
-					<img src="/icons/essential/info.png" className="navbar-guest-logo" alt="hypertube"/>
+					<img src="/icons/essential/info.png" className="navbar-guest-logo" alt="hypertube" onMouseOver={() => {console.log('here')}} />
 				</p>
 			);
 		}
