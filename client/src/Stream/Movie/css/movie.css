@@ -117,23 +117,6 @@
 	margin-top: 20px;
 }
 
-<<<<<<< HEAD
-.comment-title { 
-	background-color: rgba(0, 0, 0, 0.3);
-}
-
-.comment-exists {
-	padding-bottom: 20px;
-	padding-top: 30px;
-}
-
-.post-date {
-	color: darkslategrey;
-}
-
-.post-login {
-	margin-top: 0px;
-=======
 .season-button {
     display: inline-block;
     width: 85px;
@@ -150,5 +133,21 @@
 .episode_div {
 	cursor: pointer;
 	height: 35px;
->>>>>>> 99e833feecff99b2af14815add678765593fc95e
+}
+
+.comment-title { 
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.comment-exists {
+	padding-bottom: 20px;
+	padding-top: 30px;
+}
+
+.post-date {
+	color: darkslategrey;
+}
+
+.post-login {
+	margin-top: 0px;
 }

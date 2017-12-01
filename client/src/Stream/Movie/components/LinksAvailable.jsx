@@ -7,8 +7,12 @@ class LinksAvailable extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			linksAvailable: {}
+			linksAvailable: undefined,
+			seasonSelected: 0,
+			seasonClassName: "season-button",
+			seasonClassNameSelected: "season-button selected"
 		}
+		this.switchSeason = this.switchSeason.bind(this);
 	}
 
 	componentDidMount() {
@@ -16,9 +20,15 @@ class LinksAvailable extends Component {
 			this.setState({
 				linksAvailable: undefined
 			})
-		} else {
+		}  else if (this.props.categorie === "tv_shows") {
 			this.callInfosEpisodes(this.props.imdb);
 		}
+	}
+
+	switchSeason(e) {
+		this.setState({
+			seasonSelected: e.target.id
+		})
 	}
 
 	callInfosEpisodes(id) {
@@ -32,14 +42,39 @@ class LinksAvailable extends Component {
 
 	render() {
 		console.log(this.state);
+		let seasons = [];
+		{ this.state.linksAvailable &&
+			Object.keys(this.state.linksAvailable).forEach(element => {
+				seasons.push(
+				<div 
+					onClick={this.switchSeason} 
+					id={element} 
+					className={ element === this.state.seasonSelected ? this.state.seasonClassNameSelected : this.state.seasonClassName }
+				>
+					Season {element}
+				</div>);
+			})
+		}
+		let episodes = [];
+		let json = this.state.linksAvailable;
+		if (this.state.seasonSelected !== 0) {
+			json[this.state.seasonSelected].forEach((element, index) => {
+				episodes.push(<div className="episode_div" id={element.tvdb_id} key={index}>Episode {element.episode}: {element.title}</div>);
+			});
+		}
 		if (this.props.categorie === "tv_shows") {
 			return(
 				<div className="col-md-4">
-					<h3 id="available">Available in :</h3>
-					<div className="links_available"></div>
+					<h3 id="available">Links</h3>
+					{seasons}
+					{ this.state.linksAvailable &&
+ 						<div className="links_available">
+ 							{ episodes }
+ 						</div>
+ 					}
 				</div>
 			)
-		} else {
+		} else if (this.props.categorie === "movies") {
 			return(
 				<div>
 				</div>
