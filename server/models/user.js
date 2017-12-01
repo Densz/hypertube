@@ -34,6 +34,10 @@ const userSchema = mongoose.Schema({
 	fortytwoId: {
 		type: String,
 		require: false
+	},
+	videoSeen: {
+		type: Array,
+		required: false
 	}
 })
 

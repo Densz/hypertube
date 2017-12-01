@@ -2,7 +2,21 @@ const express = require('express');
 const router = express.Router();
 const Yify = require('../models/yify');
 const Eztv = require('../models/eztv');
+const User = require('../models/user');
 import request from 'request';
+
+router.get('/', (req, res) => {
+	const videoSeenTmp = req.user.videoSeen;
+	if (videoSeenTmp.indexOf(req.query.idMovie) === -1) {
+		videoSeenTmp.push(req.query.idMovie);
+		User.update({login: req.user.login}, {videoSeen: videoSeenTmp}, (err) => {
+			if (err) res.json({ success: false, msg: 'Database error ' + err });
+			else res.json({ success: true, msg: 'This movie is now seen !' })
+		});
+	} else {
+		res.json({ success: true, msg: 'Movie already seen' });
+	}
+});
 
 router.post('/getPeople', (req, res) => {
 	let url = "https://api.themoviedb.org/3/" + req.body.categorie + "/" + req.body.id + "/credits?api_key=531e95f829b079916094fa5c7f0a60ce";

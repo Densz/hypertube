@@ -18,6 +18,11 @@ export default class Movie extends Component {
 	componentDidMount() {
 		const bodyStyle = document.body.style;
 		bodyStyle.backgroundColor = '#20232a';
+
+		callApi('/api/movie?idMovie=' + this.props.match.params.imdb)
+		.then((response) => {
+			console.log(response);
+		});
 	}
 
 	componentWillMount() {
