@@ -4,7 +4,7 @@ import CommentItem from './CommentItem';
 
 const CommentList = (props) => {
 	let commentNodes = [];
-	props.comments.map((elem, index) => {
+	props.comments.forEach((elem, index) => {
 		if (index > 0) {
 			commentNodes.unshift(<hr className="hr_cast_item" key={"hr." + index} />);
 		}

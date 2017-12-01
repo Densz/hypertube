@@ -40,8 +40,8 @@ class Profile extends Component {
 
 	render() {
 		let whitebox = [];
-		this.state.resultSearch.map((elem) => {
-			whitebox.push(<div key={whitebox.length} ><a href={"/profile?login=" + elem.login}>{elem.firstName} {elem.lastName} ({elem.login})</a></div>)
+		this.state.resultSearch.forEach((elem, index) => {
+			whitebox.push(<div key={index} ><a href={"/profile?login=" + elem.login}>{elem.firstName} {elem.lastName} ({elem.login})</a></div>)
 		})
 		return (
 			<div>
