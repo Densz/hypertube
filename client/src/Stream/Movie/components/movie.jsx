@@ -41,9 +41,27 @@ export default class Movie extends Component {
 	}
 
 	render() {
-		let url = "";
-		if (this.state.qualitySelected)
-			url = "http://localhost:3001/api/stream/film/" + this.props.match.params.imdb + "/" + this.state.qualitySelected;
+		let video = [];
+		if (this.state.qualitySelected){
+			video.push(
+				<video
+					className="embed-responsive-item" 
+					controls poster={this.state.movieInfo.backdrop_path && "https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}
+					src={"http://localhost:3001/api/stream/film/" + this.props.match.params.imdb + "/" + this.state.qualitySelected}
+					type="video/mp4"
+				>
+				</video>
+			)
+		} else {
+			video.push(
+				<video
+					className="embed-responsive-item" 
+					controls poster={this.state.movieInfo.backdrop_path && "https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}
+					type="video/mp4"
+				>
+				</video>
+			)
+		}
 		return(
 			<div>
 				<div className="row movie-details-block">
@@ -56,9 +74,7 @@ export default class Movie extends Component {
 					/>
 				</div>
 				<div className="MovieInfos embed-responsive embed-responsive-16by9 row">
-					<video className="embed-responsive-item" controls poster={this.state.movieInfo.backdrop_path && "https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}>
-						<source src={url} type="video/mp4"/>>
-					</video>
+					{ video }
 				</div>
 				<div className="row">
 					<div className="col-md-6">
