@@ -102,6 +102,46 @@ router.post('/signUp/submit', (req, res, next) => {
 	});
 });
 
+router.get('/guestSignUp/getInfo', (req, res) => {
+	console.log(req.user);
+	User.find({email: req.user.email}, (err, user) => {
+		if (err) res.json({ success: false, msg: 'Database error ' + err })
+		if (user) {
+			res.json({ success: true, value: { firstName: req.user.firstName, lastName: req.user.lastName }, error: 'Votre email est déjà utilisé'});
+		} else {
+			res.json({ success: true, value: { firstName: req.user.firstName, lastName: req.user.lastName, email: req.user.email }});
+		}
+	})
+});
+
+router.post('/guestSignUp/submit/', (req, res, next) => {
+	const validationResult = validateSignUpForm(req.body);
+	if (!validationResult.success) {
+		return res.json({
+			success: false,
+			errors: validationResult.errors
+		})
+	} else {
+		next();
+	}
+})
+
+router.post('/guestSignUp/submit', (req, res) => {
+	console.log(req.user)
+	const password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8), null);
+	User.update({_id: req.user.id}, { $set: {
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			login: req.body.login,
+			email: req.body.email,
+			password: password
+		}}, (err) => {
+			if (err) res.json({ success: false, msg: 'Failed to add user' });
+			res.json({ success: true, msg: 'User account updated not a guest anymore' });
+		}
+	);
+});
+
 router.get('/signOut', (req, res, next) => {
 	req.logout();
 	res.json({success: true, msg: 'User disconnected'})
@@ -112,11 +152,13 @@ router.post('/updatePicture', function (req, res) {
 		if (err) {
 			res.json({ success: false, msg: 'Upload failed' + err });
 		} else {
+			console.log('upload successed');
 			User.findOne({ login: req.body.login}, (err, user) => {
 				if (err) {
 					res.json({success: false, msg: 'Fail database' + err });
 				} else {
-					if (user.picturePath && user.picturePath !== undefined) {
+					console.log(user);
+					if (user.picturePath !== undefined && user.picturePath) {
 						user.removeFile('../client/public/' + user.picturePath);
 					}
 				}

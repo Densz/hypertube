@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
 import SignIn from "./Form/SignIn/components/SignIn";
 import SignUp from "./Form/SignUp/components/SignUp";
+import GuestSignUp from "./Form/SignUp/components/GuestSignUp";
 import Settings from "./UserInfo/Settings/components/Settings";
 import Layout from "./General/templates/components/Layout";
 import Catalog from "./Stream/Catalog/components/catalog";
@@ -42,26 +43,31 @@ class Routes extends Component {
 								<Route exact path="/" render={() => (
 									!this.state.isLogged ?
 										( <SignIn checkIfIsLogged={this.checkIfIsLogged} /> ) :
-										( <Redirect to="/catalog"></Redirect> )
+										( <Redirect to="/catalog" /> )
 								)} />
 								<Route path="/signUp" render={() => (
 									!this.state.isLogged ?
 										( <SignUp checkIfIsLogged={this.checkIfIsLogged} /> ) :
-										( <Redirect to="/catalog"></Redirect> )
+										( <Redirect to="/catalog" /> )
+								)} />
+								<Route path="/guestSignUp" render={() => (
+									!this.state.isLogged ?
+										( <Redirect to="/" />) :
+										( <GuestSignUp checkifIsLogged={this.checkIfIsLogged} />)
 								)} />
 								<Route path="/settings" render={() => (
 									!this.state.isLogged  || !this.state.subscriber ?
-										( <Redirect to="/"></Redirect> ) :
+										( <Redirect to="/" /> ) :
 										( <Settings /> )
 								)} />
 								<Route path="/profile" render={() => (
 									!this.state.isLogged || !this.state.subscriber ?
-										(<Redirect to="/"></Redirect>) :
+										(<Redirect to="/" />) :
 										(<Profile userInfo={this.state.infos} />)
 								)} />
 								<Route path="/catalog" render={() => (
 									!this.state.isLogged ?
-										( <Redirect to="/"></Redirect> ) : 
+										( <Redirect to="/" /> ) : 
 										( <Catalog /> )
 								)} />
 								<Route path="/resetPassword/:id?" render={(props) => (

@@ -7,5 +7,9 @@ module.exports = {
 	facebookApi: {
 		clientID: '522965928046280',
 		clientSecret: 'b66006fab4f380fdaf264637722376ba'
+	},
+	githubApi: {
+		clientID: '2c3cac4bc098a169e05c',
+		clientSecret: 'cbf83108b5735134a501f0592f537b1515c79e58'
 	}
 }

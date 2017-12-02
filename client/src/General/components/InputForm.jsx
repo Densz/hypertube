@@ -6,9 +6,25 @@ class InputForm extends Component {
     constructor(props) {
 		super(props);
 		this.state = {
-            textEmpty: true
+			textEmpty: true,
+			inputValue: ''
         }
         this.updateInputValue = this.updateInputValue.bind(this);
+	}
+
+	componentDidMount() {
+		if (this.props.value !== undefined) {
+			this.setState({
+				textEmpty: false,
+				inputValue: this.props.value
+			})
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.value !== this.state.inputValue) {
+			this.setState({ inputValue: nextProps.value });
+		}
 	}
 
     updateInputValue = (evt) => {
@@ -34,7 +50,8 @@ class InputForm extends Component {
                 />
                 <input
 					name={this.props.name}
-                    type={this.props.type}
+					type={this.props.type}
+					value={this.state.inputValue}
                     className={this.props.inputClass}
                     onChange={this.updateInputValue}
                 />

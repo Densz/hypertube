@@ -5,10 +5,10 @@ const LocalStrategy = require('passport-local').Strategy;
 const config = require('./config');
 const User = require('../models/user');
 
-const githubStrategy = new githubStrategy({
+const githubStrategy = new ghStrategy({
 		clientID: config.githubApi.clientID,
 		clientSecret: config.githubApi.clientSecret,
-		callbackURL: '/api/login/githubCallback',
+		callbackURL: '/api/login/github/callback',
 		profileFields: ['id', 'email', 'first_name', 'last_name']
 	}, (accessToken, refreshToken, profile, done) => {
 		User.findOne({ githubId: profile._json.id }, function (err, user) {

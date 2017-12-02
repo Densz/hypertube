@@ -82,9 +82,9 @@ app.get('/api/login/fortytwoCallback', passport.authenticate('42', { failureRedi
 	res.redirect('http://localhost:3000/catalog');
 })
 app.get('/api/login/github', passport.authenticate('github'));
-app.get('/api/login/githubCallback', passport.authenticate('github', { failureRedirect: '/' }, (req, res) => {
+app.get('/api/login/github/callback', passport.authenticate('github', { failureRedirect: '/' }), function(req, res) {
 	res.redirect('http://localhost:3000/catalog');
-}))
+});
 
 // Handle error with robot.txt
 app.get('/robots.txt', function (req, res) {

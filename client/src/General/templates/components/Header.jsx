@@ -6,7 +6,7 @@ const InfoGuest = (props) => {
 		<div className="info-guest">
 			<img src="/icons/multimedia/cancel.png" alt="cancel" className="close-info-guest" onClick={() => { props.infoGuest(false) }} />
 			<span>{props.guestInfoText}</span><br/>
-			<a href="/signUp">Cliquez ici !</a>
+			<a href="/guestSignUp">Cliquez ici !</a>
 		</div>
 	);
 }
@@ -57,7 +57,7 @@ class Header extends Component {
             catalogPage: false,
 			isLogged: false,
 			infoGuestOn: false,
-			guestInfoText: 'Pour avoir accès à toutes les fonctionnalités du site créer vous un compte'
+			guestInfoText: 'Pour avoir accès à toutes les fonctionnalités du site créez-vous un compte'
 		}
 		this.handleInfoGuest = this.handleInfoGuest.bind(this);
     }
