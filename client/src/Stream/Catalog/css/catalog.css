@@ -151,3 +151,11 @@ h3 {
 .blue-font {
 	color: #CAF2FD;
 }
+
+.video-seen-mention {
+    position: inherit;
+    top: -350px;
+    color: white;
+    left: 110px;
+    height: 20px;
+}
