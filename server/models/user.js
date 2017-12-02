@@ -35,6 +35,10 @@ const userSchema = mongoose.Schema({
 		type: String,
 		require: false
 	},
+	githubId: {
+		type: String,
+		require: false
+	},
 	videoSeen: {
 		type: Array,
 		required: false

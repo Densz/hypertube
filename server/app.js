@@ -19,10 +19,11 @@ const comment = require('./routes/comment');
 const db = require('./config/database.js');
 
 // Import Strategies
-import { facebookStrategy, fortytwoStrategy, localStrategy } from './config/oAuth';
+import { facebookStrategy, fortytwoStrategy, localStrategy, githubStrategy } from './config/oAuth';
 // Import test
 const User = require('./models/user');
 
+passport.use(githubStrategy);
 passport.use(facebookStrategy);
 passport.use(fortytwoStrategy);
 passport.use(localStrategy);
@@ -78,6 +79,10 @@ app.get('/api/login/fortytwo', passport.authenticate('42'));
 app.get('/api/login/fortytwoCallback', passport.authenticate('42', { failureRedirect: '/' }), function(req, res) {
 	res.redirect('http://localhost:3000/catalog');
 })
+app.get('/api/login/github', passport.authenticate('github'));
+app.get('/api/login/githubCallback', passport.authenticate('github', { failureRedirect: '/' }, (req, res) => {
+	res.redirect('http://localhost:3000/catalog');
+}))
 
 // Handle error with robot.txt
 app.get('/robots.txt', function (req, res) {

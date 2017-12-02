@@ -1,8 +1,35 @@
 const fbStrategy = require('passport-facebook').Strategy;
 const ftStrategy = require('passport-42').Strategy;
+const ghStrategy = require('passport-github').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const config = require('./config');
 const User = require('../models/user');
+
+const githubStrategy = new githubStrategy({
+		clientID: config.githubApi.clientID,
+		clientSecret: config.githubApi.clientSecret,
+		callbackURL: '/api/login/githubCallback',
+		profileFields: ['id', 'email', 'first_name', 'last_name']
+	}, (accessToken, refreshToken, profile, done) => {
+		User.findOne({ githubId: profile._json.id }, function (err, user) {
+			if (err) { return done(err) }
+			if (!user) {
+				user = new User({
+					firstName: profile._json.first_name,
+					lastName: profile._json.last_name,
+					email: profile._json.email,
+					githubId: profile._json.id
+				})
+				user.save(function (err) {
+					if (err) { console.log(err) };
+					return done(err, user);
+				})
+			} else {
+				return done(err, user);
+			}
+		})
+	}
+);
 
 const localStrategy = new LocalStrategy({
 		usernameField: 'username',
@@ -48,7 +75,7 @@ const facebookStrategy = new fbStrategy({
 		} else {
 			return done (err, user);
 		}
-	})
+	});
 });
 
 const fortytwoStrategy = new ftStrategy({
@@ -83,5 +110,6 @@ const fortytwoStrategy = new ftStrategy({
 module.exports = {
 	facebookStrategy: facebookStrategy,
 	fortytwoStrategy: fortytwoStrategy,
+	githubStrategy: githubStrategy,
 	localStrategy: localStrategy
 }
