@@ -132,3 +132,48 @@ body {
 .log-logo {
 	margin-right: 50px;
 }
+
+.info-guest {
+	height: 100px;
+    top: 58px;
+    border: 2px solid #333;
+    color: white;
+	padding: 2%;
+	padding-top: 27px;
+    position: fixed;
+    background-color: #21242b;
+    text-align: center;
+	right: 10px;
+}
+
+.close-info-guest {
+	height: 12px;
+    position: fixed;
+	top: 67px;
+	cursor: pointer;
+    right: 22px;
+}
+
+@media(max-width: 417px) {
+	.info-guest {
+		padding: 2%;
+		right: 0px;
+		top: 81px;
+	}
+	.close-info-guest {
+		right: 10px;
+		top: 86px;
+	}
+}
+
+@media(max-width: 348px) {
+	.info-guest {
+		padding: 2%;
+		right: 0px;
+		top: 102px;
+	}
+	.close-info-guest {
+		right: 6px;
+		top: 107px;
+	}
+}

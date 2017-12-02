@@ -14,5 +14,4 @@
 * Convertir les vidéo MKV
 * Supprimer le torrent après un mois de non visionnage
 * Langue traduction - Stockée de base dans la base de données
-* Footer
 * Firefox
