@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 	const videoSeenTmp = req.user.videoSeen;
 	if (videoSeenTmp.indexOf(req.query.idMovie) === -1) {
 		videoSeenTmp.push(req.query.idMovie);
-		User.update({login: req.user.login}, {videoSeen: videoSeenTmp}, (err) => {
+		User.update({email: req.user.email}, {videoSeen: videoSeenTmp}, (err) => {
 			if (err) res.json({ success: false, msg: 'Database error ' + err });
 			else res.json({ success: true, msg: 'This movie is now seen !' })
 		});
