@@ -135,6 +135,12 @@
 	height: 35px;
 }
 
+.episode_div_selected {
+	cursor: pointer;
+	height: 35px;
+	color: #81D8F5;
+}
+
 .comment-title { 
 	background-color: rgba(0, 0, 0, 0.3);
 }

@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import { logOut } from '../../../ApiCaller/apiCaller';
 
+const InfoGuest = (props) => {
+	return(
+		<div className="info-guest">
+			<img src="/icons/multimedia/cancel.png" alt="cancel" className="close-info-guest" onClick={() => { props.infoGuest(false) }} />
+			<span>{props.guestInfoText}</span><br/>
+			<a href="/signUp">Cliquez ici !</a>
+		</div>
+	);
+}
+
 const ComponentRendered = (props) => {
     let rendering = [];
     if (props.signInButton) {
@@ -29,9 +39,9 @@ const ComponentRendered = (props) => {
 			)
 		} else {
 			rendering.push(
-				<p className="navbar-guest-text">
+				<p className="navbar-guest-text" key={rendering.length}>
 					Guest Profile
-					<img src="/icons/essential/info.png" className="navbar-guest-logo" alt="hypertube"/>
+					<img src="/icons/essential/info.png" className="navbar-guest-logo" alt="hypertube" onClick={() => { props.infoGuest(true) }} />
 				</p>
 			);
 		}
@@ -45,9 +55,18 @@ class Header extends Component {
         this.state = {
             signInBtn: false,
             catalogPage: false,
-            isLogged: false
+			isLogged: false,
+			infoGuestOn: false,
+			guestInfoText: 'Pour avoir accès à toutes les fonctionnalités du site créer vous un compte'
 		}
+		this.handleInfoGuest = this.handleInfoGuest.bind(this);
     }
+
+	handleInfoGuest(nextState) {
+		this.setState((prevState) => ({
+			infoGuestOn: nextState
+		}))
+	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.isLogged === true) {
@@ -95,7 +114,9 @@ class Header extends Component {
 					logOutMethod={this.logOut}
 					subscriber={this.props.subscriber}
 					userInfo={this.props.userInfo}
+					infoGuest={this.handleInfoGuest}
                 />
+				{this.state.infoGuestOn && <InfoGuest guestInfoText={this.state.guestInfoText} infoGuest={this.handleInfoGuest}/>}
             </nav>
         );
     }

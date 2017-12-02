@@ -40,10 +40,10 @@ class CatalogNavigation extends Component {
 					<div className="col-sm-6">
 						<div className="form-group">
 							<h4 className="blue-font">Are you looking for something specific?</h4>
-							<div class="input-group">
-								<input type="text" class="form-control catalog-search" onChange={this.props.updateSearchInput} placeholder="Search for..." />
+							<div className="input-group">
+								<input type="text" className="form-control catalog-search" onChange={this.props.updateSearchInput} placeholder="Search for..." />
 								<span className="input-group-btn">
-									<button type="submit" onClick={this.props.onSearchFieldClick} className="btn btn-secondary" type="button">Go!</button>
+									<button type="submit" onClick={this.props.onSearchFieldClick} className="btn btn-secondary">Go!</button>
 								</span>
 							</div>
 							
