@@ -44,6 +44,7 @@ class LinksAvailable extends Component {
 		this.setState({
 			qualitySelected: e.target.innerHTML
 		})
+		this.props.ifIsMovieGetQuality(e.target.innerHTML);
 	}
 
 	setEpisode(e) {

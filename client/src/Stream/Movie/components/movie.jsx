@@ -12,8 +12,10 @@ export default class Movie extends Component {
 		this.state = {
 			movieInfo: {},
 			selectedMovieQuality: undefined, 
-			selectedEpisode: undefined
+			selectedEpisode: undefined,
+			qualitySelected: undefined
 		}
+		this.ifIsMovieGetQuality = this.ifIsMovieGetQuality.bind(this);
 	}
 
 	componentDidMount() {
@@ -32,16 +34,30 @@ export default class Movie extends Component {
 		})
 	}
 
+	ifIsMovieGetQuality(quality) {
+		this.setState({
+			qualitySelected: quality
+		})
+	}
+
 	render() {
+		let url = "";
+		if (this.state.qualitySelected)
+			url = "http://localhost:3001/api/stream/film/" + this.props.match.params.imdb + "/" + this.state.qualitySelected;
 		return(
 			<div>
 				<div className="row movie-details-block">
 					<Description movie={ this.state.movieInfo } />
-					<LinksAvailable movie={ this.state.movieInfo } imdb={this.props.match.params.imdb} categorie={this.props.match.params.categorie} />
+					<LinksAvailable 
+						movie={ this.state.movieInfo }
+						imdb={this.props.match.params.imdb}
+						categorie={this.props.match.params.categorie}
+						ifIsMovieGetQuality={this.ifIsMovieGetQuality}
+					/>
 				</div>
 				<div className="MovieInfos embed-responsive embed-responsive-16by9 row">
 					<video className="embed-responsive-item" controls poster={this.state.movieInfo.backdrop_path && "https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}>
-						{/* <source src={"http://localhost:3001/api/torrent/" + this.props.match.params.id} type="video/mp4"/>> */}
+						<source src={url} type="video/mp4"/>>
 					</video>
 				</div>
 				<div className="row">
