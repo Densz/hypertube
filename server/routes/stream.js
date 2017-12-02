@@ -31,11 +31,7 @@ function markDownloaded(id) {
 	console.log("Torrent " + id + " successfully downloaded.");
 }
 
-function getMagnet(hash) {
-	return `magnet:?xt=urn:btih:${hash}`;
-}
-
-router.get('/film/:id/:quality', async (req, res) => {
+router.get('/film/:id/:quality?', async (req, res) => {
 	let id = req.params.id,
 		quality = req.params.quality || "",
 		torrents = [],
@@ -71,6 +67,9 @@ router.get('/film/:id/:quality', async (req, res) => {
 							torrent = new Torrent(torrents[0].hash);
 							try {
 								file = await torrent.get();
+								torrent.onFinished(function() {
+									console.log("Torrent " + id + " has downloaded.");
+								});
 								console.log(file.name);
 								console.log(file);
 								const header = {
@@ -104,8 +103,30 @@ router.get('/film/:id/:quality', async (req, res) => {
 	}
 });
 
-// router.get('/series/:id/:season/:episode', (req, res) => {
+router.get('/series/:id/:season/:episode', (req, res) => {
+	res.status(404);
+	res.send("nique ta mere")
+});
 
-// });
+// router.get('/film/:id/:quality?', async (req, res) => {
+// 	let id = req.params.id,
+// 		quality = req.params.quality || "",
+// 		torrents = [],
+// 		torrent,
+// 		info,
+// 		file,
+// 		magnet,
+// 		stream;
+	
+// 	Yify.findOne({ imdb_id: id })
+// 	.then((info) => {
+
+// 	})
+// 	.catch((err) => {
+// 		console.log(err);
+// 		res.status(204);
+// 		res.send("Unable to find selected film.");
+// 	});
+// }
 
 module.exports = router;
