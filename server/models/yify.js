@@ -32,6 +32,16 @@ const yifySchema = mongoose.Schema({
 	torrents: {
 		type: Array,
 		required: true
+	},
+	downloaded: {
+		type: Boolean,
+		required: true,
+		default: false
+	},
+	path: {
+		type: String,
+		required: true,
+		default: ''
 	}
 });
 
