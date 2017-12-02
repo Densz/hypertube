@@ -29,7 +29,7 @@ class ThumbnailEztv extends Component {
 			<div className="movie-details" onMouseEnter={this.showInfo} onMouseLeave={this.hideInfo}>
 				<img className="img-movie" alt={this.props.infos.title} src={this.props.infos.cover_url}/>
 				{ this.props.videoSeen === true &&
-					<img src="/icons/essential/success.png" className="video-seen-mention"/>
+					<img src="/icons/essential/success.png" className="video-seen-mention" alt="checked"/>
 				}
 				{ this.state.infoToggled &&
 					<a href={"/video/" + this.props.categorie + "/" + this.props.infos.imdb_id}>
