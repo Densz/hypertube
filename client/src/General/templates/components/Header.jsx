@@ -41,7 +41,7 @@ const ComponentRendered = (props) => {
 			rendering.push(
 				<p className="navbar-guest-text" key={rendering.length}>
 					Guest Profile
-					<img src="/icons/essential/info.png" className="navbar-guest-logo" alt="hypertube" onClick={() => { props.infoGuest(true) }} />
+					<img src="/icons/essential/info.png" className="navbar-guest-logo" alt="question-mark" onClick={() => { props.infoGuest(true) }} />
 				</p>
 			);
 		}

@@ -20,6 +20,14 @@ class InputForm extends Component {
 		}
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.value !== undefined && nextProps.value !== '') {
+			this.setState({
+				textEmpty: false
+			});
+		}
+	}
+
     updateInputValue = (evt) => {
 		evt.preventDefault();
 		if (evt.target.value) {
