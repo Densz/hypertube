@@ -248,16 +248,10 @@ class SignUp extends Component {
 											onUpdate={this.updateInputValue}
 											errorMessage={this.state.login.error}
 										/>
-										<InputForm
-											containerClass="form-group col-md-6"
-											textValue={this.state.email.title}
-											value={this.state.email.value}
-											type="text"
-											inputClass={this.state.email.error ? "form-control error" : "form-control"}
-											name="email"
-											onUpdate={this.updateInputValue}
-											errorMessage={this.state.email.error}
-										/>
+										<div className="col-md-6">
+											<label className="input-filled">{this.state.email.title}</label><br />
+											<span>{this.state.email.value}</span><br/>
+										</div>
 									</div>
 								</div>
 							</div>

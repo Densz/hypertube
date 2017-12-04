@@ -46,8 +46,7 @@ router.get('/getUsers', async (req, res, next) => {
 				{ lastName: { $regex: ".*" + req.query.value.charAt(0).toUpperCase() + req.query.value.slice(1) + ".*" } },
 				{ firstName: { $regex: ".*" + req.query.value.charAt(0).toUpperCase() + req.query.value.slice(1) + ".*" } }
 			],
-			facebookId: { $exists: false },
-			fortytwoId: { $exists: false }
+			login: { $exists: true }
 		}, {_id: 0, login: 1, firstName: 1, lastName: 1}, (err, result) => {
 			res.json(result);
 		});
@@ -109,6 +108,8 @@ router.post('/update', async (req, res, next) => {
 			value = bcrypt.hashSync(value, bcrypt.genSaltSync(8), null);
 		} else if (key === 'firstName' || key === 'lastName') {
 			value = value.capitalize();
+		} else {
+			value = value.toLowerCase();
 		}
 		const set = {[key]: value};
 		User.update({ login: req.user.login }, {$set: set}, (err, result) => {

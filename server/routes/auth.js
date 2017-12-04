@@ -68,7 +68,7 @@ function validateSignUpForm(payload) {
 router.post('/signUp/submit/' ,(req, res, next) => {
 	const validationResult = validateSignUpForm(req.body);
 	if (!validationResult.success) {
-		return res.json({
+		res.json({
 			success: false,
 			errors: validationResult.errors
 		})
@@ -80,17 +80,18 @@ router.post('/signUp/submit/' ,(req, res, next) => {
 router.post('/signUp/submit', (req, res, next) => {
 	let newUser = new User();
 	
-	newUser.firstName = req.body.firstName;
-	newUser.lastName = req.body.lastName;
+	
+	newUser.firstName = req.body.firstName.capitalize();
+	newUser.lastName = req.body.lastName.capitalize();
 	newUser.email = req.body.email;
-	newUser.login = req.body.login;
+	newUser.login = req.body.login.toLowerCase();
 	newUser.password = newUser.generateHash(req.body.password);
 	User.findOne({ $or: [{ email: req.body.email }, { login: req.body.login }]}, (err, user) => {
 		if (err) {
 			res.json({ success: false, msg: 'Data base issue' })
 		}
 		if (user) {
-			const msg = 'Failed to add user email or username already taken';
+			const msg = 'Failed to add user email or login already taken';
 			res.json({ success: false, errors: { 'email': msg, 'login': msg } });
 		} else {
 			newUser.save((err) => {
@@ -110,9 +111,11 @@ router.get('/guestSignUp/getInfo', (req, res) => {
 });
 
 router.post('/guestSignUp/submit/', (req, res, next) => {
+	console.log(req.body);
 	const validationResult = validateSignUpForm(req.body);
+	console.log(validationResult);
 	if (!validationResult.success) {
-		return res.json({
+		res.json({
 			success: false,
 			errors: validationResult.errors
 		})
@@ -122,19 +125,28 @@ router.post('/guestSignUp/submit/', (req, res, next) => {
 })
 
 router.post('/guestSignUp/submit', (req, res) => {
-	console.log(req.user)
+
 	const password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8), null);
-	User.update({_id: req.user._id}, { $set: {
-			firstName: req.body.firstName,
-			lastName: req.body.lastName,
-			login: req.body.login,
-			email: req.body.email,
-			password: password
-		}}, (err) => {
-			if (err) res.json({ success: false, msg: 'Failed to add user' });
-			res.json({ success: true, msg: 'User account updated not a guest anymore' });
+	User.findOne({ login: req.body.login }, (err, result) => {
+		if (err) res.json({ success: false, msg: 'Database fail ' + err });
+		if (result) {
+			const msg = 'Failed to add user login already taken';
+			res.json({ success: false, errors: { 'login': msg } });
+		} else {
+			User.update({_id: req.user._id}, { $set: {
+					firstName: req.body.firstName.capitalize(),
+					lastName: req.body.lastName.capitalize(),
+					login: req.body.login.toLowerCase(),
+					email: req.body.email,
+					password: password
+				}}, (err) => {
+					if (err) res.json({ success: false, msg: 'Failed to add user' });
+					res.json({ success: true, msg: 'User account updated not a guest anymore' });
+				}
+			);
 		}
-	);
+			
+	});
 });
 
 router.get('/signOut', (req, res, next) => {

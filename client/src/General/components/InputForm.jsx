@@ -12,16 +12,11 @@ class InputForm extends Component {
 	}
 
 	componentDidMount() {
-		if (this.props.value !== undefined) {
+		console.log(this.props);
+		if (this.props.value !== undefined && this.props.value !== '') {
 			this.setState({
 				textEmpty: false,
 			})
-		}
-	}
-
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.value !== this.state.inputValue) {
-			this.setState({ inputValue: nextProps.value });
 		}
 	}
 
