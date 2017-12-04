@@ -54,7 +54,7 @@ class SignIn extends Component {
         bodyStyle.backgroundColor = 'black';
 		bodyStyle.backgroundSize = 'cover';
 		if (this.props.idResetPassword !== undefined) {
-			callApi('/api/userLogged/userExists?id=' + this.props.idResetPassword)
+			callApi('/api/user/userExists?id=' + this.props.idResetPassword)
 			.then((response) => {
 				if (response.success) {
 					this.setState({ rstPwdPage: true });

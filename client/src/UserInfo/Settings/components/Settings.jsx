@@ -81,7 +81,7 @@ class MyProfile extends Component {
 	
 	updateBackData(key, value, cb) {
 		const data = {key: key, value: value};
-		callApi('/api/userLogged/update', 'post', data)
+		callApi('/api/user/update', 'post', data)
 		.then((response) => {
 			if (response.success) {
 				cb(true);

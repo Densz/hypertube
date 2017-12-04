@@ -25,7 +25,7 @@ const callApi = (url, method = 'get', params = undefined) => {
 
 const isLogged = () => {
 	return new Promise((res, rej) => {
-		fetch('/api/userLogged', { credentials: 'same-origin' })
+		fetch('/api/user', { credentials: 'same-origin' })
 		.then((response) => {
 			res(response.json())
 		})

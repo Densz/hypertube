@@ -14,7 +14,7 @@ const setInterval = require('timers').setInterval;
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const catalog = require('./routes/catalog');
-const userLogged = require('./routes/userLogged');
+const user = require('./routes/user');
 const movie = require('./routes/movie');
 const torrent = require('./routes/torrent');
 const comment = require('./routes/comment');
@@ -58,7 +58,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.use('/api/index', index);
 app.use('/api/catalog', catalog);
-app.use('/api/userLogged', userLogged);
+app.use('/api/user', user);
 app.use('/api/movie', movie);
 app.use('/api/comment', comment);
 app.use('/api/torrent', torrent);

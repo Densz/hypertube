@@ -18,7 +18,7 @@ class Profile extends Component {
 		const url = new URL(url_string);
 		const userLogin = url.searchParams.get("login");
 		this.setState({login: userLogin});
-		callApi('/api/userLogged/getInfoUser?login=' + userLogin)
+		callApi('/api/user/getInfoUser?login=' + userLogin)
 		.then((response) => {
 			if (response.success) {
 				this.setState({userInfo: response.data})
@@ -27,7 +27,7 @@ class Profile extends Component {
 	}
 
 	handleUpdateSearch(event, whitebox) {
-		callApi('/api/userLogged/getUsers?value=' + event.target.value)
+		callApi('/api/user/getUsers?value=' + event.target.value)
 		.then((response) => {
 			if (!response.noData) {
 				this.setState({resultSearch: response});
