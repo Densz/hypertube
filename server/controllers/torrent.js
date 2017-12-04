@@ -26,6 +26,10 @@ module.exports = class Torrent {
         });
     }
 
+    deleteData(cb) {
+        this.engine.remove(null, cb);
+    }
+
     getVideo() {
         return new Promise((resolve, reject) => {
             let files = [],
