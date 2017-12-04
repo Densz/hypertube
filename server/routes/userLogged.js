@@ -104,7 +104,7 @@ router.post('/update', async (req, res, next) => {
 			}
 		});
 	} else {
-		if (key === 'passwd') {
+		if (key === 'passwd' || key === 'password') {
 			key = 'password';
 			value = bcrypt.hashSync(value, bcrypt.genSaltSync(8), null);
 		} else if (key === 'firstName' || key === 'lastName') {

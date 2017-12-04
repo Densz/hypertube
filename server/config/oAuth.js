@@ -11,7 +11,7 @@ const githubStrategy = new ghStrategy({
 		callbackURL: '/api/login/github/callback',
 		profileFields: ['id', 'email', 'first_name', 'last_name']
 	}, (accessToken, refreshToken, profile, done) => {
-		User.findOne({ githubId: profile._json.id }, function (err, user) {
+		User.findOne({ $or: [{ fortytwoId: profile._json.id }, { email: profile._json.email }] }, function (err, user) {
 			if (err) { return done(err) }
 			if (!user) {
 				user = new User({
@@ -59,7 +59,7 @@ const facebookStrategy = new fbStrategy({
 	callbackURL: '/api/login/facebookCallback',
 	profileFields: ['id', 'email', 'first_name', 'last_name']
 }, function(accessToken, refreshToken, profile, done) {
-	User.findOne({facebookId: profile._json.id}, function(err, user) {
+	User.findOne({ $or: [{ fortytwoId: profile._json.id }, { email: profile._json.email }] }, function(err, user) {
 		if (err) { return done(err) }
 		if (!user) { 
 			user = new User({
@@ -88,7 +88,7 @@ const fortytwoStrategy = new ftStrategy({
 		'name.givenName': 'first_name',
 		'emails.0.value': 'email'
 	}}, function(accessToken, refreshToken, profile, done) {
-		User.findOne({fortytwoId: profile._json.id}, function(err, user) {
+		User.findOne({ $or: [{ fortytwoId: profile._json.id }, {email: profile._json.email }] }, function(err, user) {
 			if (err) { return done(err) }
 			if (!user) { 
 				user = new User({
