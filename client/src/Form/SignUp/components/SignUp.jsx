@@ -239,7 +239,6 @@ class SignUp extends Component {
 				</form>
                 <br/><br/>
                 <hr/>
-                <img src="/images/facebook.png" className="facebook-logo" alt="Facebook" />&nbsp;&nbsp;<a href="/loginWithFacebook">S'identifier avec Facebook ?</a>
 			</SignUpBlock>
         );
     }
