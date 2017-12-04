@@ -127,7 +127,7 @@ router.post('/guestSignUp/submit/', (req, res, next) => {
 router.post('/guestSignUp/submit', (req, res) => {
 
 	const password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8), null);
-	User.findOne({ login: req.body.login }, (err, result) => {
+	User.findOne({ login: req.body.login.toLowerCase() }, (err, result) => {
 		if (err) res.json({ success: false, msg: 'Database fail ' + err });
 		if (result) {
 			const msg = 'Failed to add user login already taken';
@@ -169,9 +169,9 @@ router.post('/updatePicture', function (req, res) {
 				}
 			});
 			const namePic = '/uploads/' + req.file.filename;
-			User.update({ login: req.body.login }, { $set: { picturePath: namePic }}, (err, result) => {
+			User.update({ login: req.body.login.toLowerCase() }, { $set: { picturePath: namePic }}, (err) => {
 				if (err) {
-					res.json({success: false, msg: 'Fail database' + err});
+					res.json({success: false, msg: 'Fail database ' + err});
 				} else {
 					res.json({success: true, msg: 'Image uploaded', namePic: namePic });
 				}
