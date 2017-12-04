@@ -13,9 +13,12 @@
     color: #3d84c1;
 }
 
-.facebook-logo {
-    height: 20px;
-  }
+.oAuth-logo {
+	height: 20px;
+}
+.oAuth-text {
+	font-size: 11px;
+}
 
   .form-box {
     margin-top: 30px;

@@ -122,9 +122,9 @@ class SignInForm extends Component {
             <a className="link-reset-password" onClick={this.props.linkClicked}>Mot de passe oublié ?</a>
             <br/><br/>
             <hr/>
-            <img src="/images/facebook.png" className="facebook-logo" alt="Facebook" />&nbsp;&nbsp;<a href="http://localhost:3001/api/login/facebook">S'identifier avec Facebook ?</a><br/>
-            <img src="/images/42.png" className="facebook-logo" alt="42" />&nbsp;&nbsp;<a href="http://localhost:3001/api/login/fortytwo">S'identifier avec 42 - Born2Code ?</a>
-            <img src="/images/42.png" className="facebook-logo" alt="42" />&nbsp;&nbsp;<a href="http://localhost:3001/api/login/github">S'identifier avec 42 - Born2Code ?</a>
+            <img src="/images/facebook.png" className="oAuth-logo" alt="Facebook" />&nbsp;&nbsp;<a className="oAuth-text" href="http://localhost:3001/api/login/facebook">S'identifier avec Facebook ?</a><br/>
+            <img src="/images/42.png" className="oAuth-logo" alt="42" />&nbsp;&nbsp;<a className="oAuth-text" href="http://localhost:3001/api/login/fortytwo">S'identifier avec 42 - Born2Code ?</a><br/>
+            <img src="/images/github.png" className="oAuth-logo" alt="42" />&nbsp;&nbsp;<a className="oAuth-text" href="http://localhost:3001/api/login/github">S'identifier avec Github ?</a>
 			<hr/>
             <p>Première visite sur Hypertube ? <a href="/signUp">Inscrivez-vous</a>.</p>
         	</SignInBlock>
