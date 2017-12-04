@@ -9,15 +9,21 @@ const githubStrategy = new ghStrategy({
 		clientID: config.githubApi.clientID,
 		clientSecret: config.githubApi.clientSecret,
 		callbackURL: '/api/login/github/callback',
-		profileFields: ['id', 'email', 'first_name', 'last_name']
+		profileFields: ['id', 'email', 'first_name', 'last_name'],
+		scope: ['user:email']
 	}, (accessToken, refreshToken, profile, done) => {
 		User.findOne({ $or: [{ fortytwoId: profile._json.id }, { email: profile._json.email }] }, function (err, user) {
 			if (err) { return done(err) }
 			if (!user) {
+				let indexPrimary = -1;
+				profile.emails.forEach((elem, index) => {
+					console.log(elem);
+					if (elem.primary === true) indexPrimary = index;
+				});
 				user = new User({
 					firstName: profile._json.first_name,
 					lastName: profile._json.last_name,
-					email: profile._json.email,
+					email: profile.emails[indexPrimary].value,
 					githubId: profile._json.id
 				})
 				user.save(function (err) {
