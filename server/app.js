@@ -19,6 +19,7 @@ const movie = require('./routes/movie');
 const torrent = require('./routes/torrent');
 const comment = require('./routes/comment');
 const stream = require('./routes/stream');
+const subtitles = require('./routes/subtitles');
 const maintenance = require('./controllers/maintenance');
 
 // Import Strategies
@@ -64,6 +65,7 @@ app.use('/api/comment', comment);
 app.use('/api/torrent', torrent);
 app.use('/api/auth', auth);
 app.use('/api/stream', stream);
+app.use('/api/subtitles', subtitles);
 
 app.get('/api/loginFailure', (req, res) => {
 	let error = req.flash().error[0]
