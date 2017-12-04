@@ -6,6 +6,9 @@ const path = require('path');
 module.exports = class Torrent {
     constructor(magnet) {
         this.engine = ts(magnet, options);
+        // this.engine.on('download', function(pieceIndex) {
+        //     console.log("Piece " + pieceIndex + " downloaded.");
+        // });
     }
 
     static compareSize(a, b) {
@@ -17,10 +20,13 @@ module.exports = class Torrent {
     }
 
     onFinished(cb) {
-        this.engine.on('idle', cb);
+        this.engine.on('idle', () => {
+            cb();
+            this.engine.destroy();
+        });
     }
 
-    get() {
+    getVideo() {
         return new Promise((resolve, reject) => {
             let files = [],
                 length = 0;
@@ -38,8 +44,9 @@ module.exports = class Torrent {
 
                 // find largest video file and return it for use
                 files.forEach((file) => {
-                    if (mimeTypes[path.extname(file.path)])
-                        resolve(file);
+                    let ext = path.extname(file.path)
+                    if (mimeTypes[ext])
+                        resolve({ file: file, ext: ext });
                 });
 
                 // throw error if torrent has no video files
