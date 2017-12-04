@@ -16,13 +16,15 @@ const firstPromise = (req, subtitles) => {
     return new Promise((resolve, reject) => {
         request(subtitles.en.url, function (error, response, body) {
             const name = req.body.imdb + 'en';
-            const pathsrt = 'subtitles/' + name + '.srt';
+            const pathsrt = '../client/public/subtitles/' + name + '.srt';
             fs.writeFile(pathsrt, body, (err) => {
-                if (err) { reject({success : false, msg: "write file failed " + err}) }
+                if (err) {
+                    reject({success : false, msg: "write file failed " + err})
+                }
                 else {
                     const srtData = fs.readFileSync(pathsrt);
                     srt2vtt(srtData, (err, vttData) => {
-                        const pathvtt = 'subtitles/' + name + '.vtt'
+                        const pathvtt = '../client/public/subtitles/' + name + '.vtt'
                         if (err)
                         throw new Error(err);
                         else {
@@ -33,7 +35,7 @@ const firstPromise = (req, subtitles) => {
                                     reject(err)
                                 }
                             })
-                            resolve(pathvtt);
+                            resolve(name + '.vtt');
                         }
                     });
                 }
@@ -46,16 +48,17 @@ const secondPromise = (req, subtitles) => {
     return new Promise((resolve, reject) => {
         request(subtitles.fr.url, function (error, response, body) {
             const name = req.body.imdb + 'fr';
-            const pathsrt = 'subtitles/' + name + '.srt';
+            const pathsrt = '../client/public/subtitles/' + name + '.srt';
             fs.writeFile(pathsrt, body, (err) => {
                 if (err) reject({success : false, msg: "write file failed " + err});
                 else {
                     const srtData = fs.readFileSync(pathsrt);
                     srt2vtt(srtData, (err, vttData) => {
-                        const pathvtt = 'subtitles/' + name + '.vtt'
-                        if (err)
+                        const pathvtt = '../client/public/subtitles/' + name + '.vtt'
+                        if (err) {
+                            console.log("tU RENTRES DEDANS ?")
                             throw new Error(err);
-                        else {
+                        } else {
                             fs.writeFileSync(pathvtt, vttData);
                             fs.unlink(pathsrt, (err) => {
                                 if (err) {
@@ -63,7 +66,7 @@ const secondPromise = (req, subtitles) => {
                                     reject(err)
                                 }
                             })
-                            resolve(pathvtt);
+                            resolve(name + '.vtt');
                         }
                     });
                 }
@@ -81,7 +84,7 @@ router.post('/', (req, res) => {
             season: '',
             episode: ''
         }).then(async (subtitles) => {
-            console.log(subtitles);
+            // console.log(subtitles);
             if (subtitles.en || subtitles.fr) {
                 let Eng = undefined;
                 let Fra = undefined;

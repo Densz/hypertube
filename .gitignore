@@ -73,3 +73,4 @@ client/public/uploads/*.jpg
 client/public/uploads/*.png
 client/public/uploads/*.gif
 client/public/uploads/*.jpeg
+client/public/subtitles/*.vtt
