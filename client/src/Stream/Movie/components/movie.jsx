@@ -13,7 +13,9 @@ export default class Movie extends Component {
 			movieInfo: {},
 			selectedMovieQuality: undefined, 
 			selectedEpisode: undefined,
-			qualitySelected: undefined
+			qualitySelected: undefined,
+			subtitlesEn: undefined,
+			subtitlesFr: undefined
 		}
 		this.ifIsMovieGetQuality = this.ifIsMovieGetQuality.bind(this);
 	}
@@ -32,6 +34,19 @@ export default class Movie extends Component {
 				movieInfo: response
 			})
 		})
+		callApi("/api/subtitles", "post", { imdb: this.props.match.params.imdb, categorie: this.props.match.params.categorie })
+		.then((response) => {
+			console.log(response);
+			console.log(response.en);
+			console.log(response.msg);
+			if (response.en || response.fr) {
+				this.setState({
+					subtitlesEn: "http://localhost:3001/" + response.en,
+					subtitlesFr: "../../../../../server/" + response.fr
+				})
+			}
+			console.log('bite');
+		})
 	}
 
 	ifIsMovieGetQuality(quality) {
@@ -42,7 +57,20 @@ export default class Movie extends Component {
 
 	render() {
 		let video = [];
+		let subtitle = [];
 		if (this.state.qualitySelected){
+			if (this.state.subtitlesEn) {
+				subtitle.push(
+					<track label="English" kind="subtitles" srclang="en" src={ this.state.subtitlesEn }></track>
+				)
+				console.log("nate");
+			}
+			if (this.state.subtitlesFr) {
+				subtitle.push(
+					<track label="French" kind="subtitles" srclang="fr" src={ this.state.subtitlesFr }></track>
+				)
+				console.log("bait");
+			}
 			video.push(
 				<video
 					className="embed-responsive-item" 
@@ -50,6 +78,9 @@ export default class Movie extends Component {
 					src={"http://localhost:3001/api/stream/film/" + this.props.match.params.imdb + "/" + this.state.qualitySelected}
 					type="video/mp4"
 				>
+					<track label="English" kind="subtitles" srclang="en" src="http://localhost:3001/subtitles/tt0111161en.vtt" default></track>
+					<track label="French" kind="subtitles" srclang="fr" src="http://localhost:3001/subtitles/tt0111161en.vtt"></track>
+					<track label="Korean" kind="subtitles" srclang="kr" src="http://localhost:3001/subtitles/tt0111161en.vtt"></track>
 				</video>
 			)
 		} else {
