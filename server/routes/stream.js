@@ -5,7 +5,6 @@ const Eztv = require('../models/eztv');
 const User = require('../models/user');
 const Video = require('../models/video');
 import request from 'request';
-import { setInterval } from 'timers';
 const Torrent = require('../controllers/torrent');
 const torrentOptions = require('../config/torrent');
 const fs = require('fs');
