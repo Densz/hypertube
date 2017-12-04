@@ -8,6 +8,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const flash = require('connect-flash');
+const db = require('./config/database.js');
+const setInterval = require('timers').setInterval;
 // Import Routes
 const index = require('./routes/index');
 const auth = require('./routes/auth');
@@ -17,7 +19,7 @@ const movie = require('./routes/movie');
 const torrent = require('./routes/torrent');
 const comment = require('./routes/comment');
 const stream = require('./routes/stream');
-const db = require('./config/database.js');
+const maintenance = require('./controllers/maintenance');
 
 // Import Strategies
 import { facebookStrategy, fortytwoStrategy, localStrategy, githubStrategy } from './config/oAuth';
@@ -84,6 +86,10 @@ app.get('/api/login/fortytwoCallback', passport.authenticate('42', { failureRedi
 app.get('/api/login/github', passport.authenticate('github'));
 app.get('/api/login/github/callback', passport.authenticate('github', { failureRedirect: '/' }), function(req, res) {
 	res.redirect('http://localhost:3000/catalog');
+});
+
+app.use(function() {
+	setInterval(maintenance.removeOld, 86400000);
 });
 
 // Handle error with robot.txt
