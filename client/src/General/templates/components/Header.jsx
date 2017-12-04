@@ -57,6 +57,7 @@ class Header extends Component {
             catalogPage: false,
 			isLogged: false,
 			infoGuestOn: false,
+			subscriber: this.props.subscriber,
 			guestInfoText: 'Pour avoir accès à toutes les fonctionnalités du site créez-vous un compte'
 		}
 		this.handleInfoGuest = this.handleInfoGuest.bind(this);
@@ -73,6 +74,11 @@ class Header extends Component {
 			this.setState({
 				isLogged: true,
 				signInBtn: false
+			})
+		}
+		if (nextProps.subscriber !== this.state.subscriber) {
+			this.setState({
+				subscriber: nextProps.subscriber
 			})
 		}
 	}
@@ -112,7 +118,7 @@ class Header extends Component {
                     signInButton={this.state.signInBtn}
 					catalogPage={this.state.catalogPage}
 					logOutMethod={this.logOut}
-					subscriber={this.props.subscriber}
+					subscriber={this.state.subscriber}
 					userInfo={this.props.userInfo}
 					infoGuest={this.handleInfoGuest}
                 />

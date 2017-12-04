@@ -7,7 +7,6 @@ class InputForm extends Component {
 		super(props);
 		this.state = {
 			textEmpty: true,
-			inputValue: ''
         }
         this.updateInputValue = this.updateInputValue.bind(this);
 	}
@@ -16,7 +15,6 @@ class InputForm extends Component {
 		if (this.props.value !== undefined) {
 			this.setState({
 				textEmpty: false,
-				inputValue: this.props.value
 			})
 		}
 	}
@@ -51,7 +49,7 @@ class InputForm extends Component {
                 <input
 					name={this.props.name}
 					type={this.props.type}
-					value={this.state.inputValue}
+					value={this.props.value}
                     className={this.props.inputClass}
                     onChange={this.updateInputValue}
                 />
@@ -66,7 +64,8 @@ InputForm.propTypes = {
     containerClass: PropTypes.string,
     textValue: PropTypes.string,
     type: PropTypes.string,
-    inputClass: PropTypes.string
+	inputClass: PropTypes.string,
+	value: PropTypes.string
 }
 
 export default InputForm;

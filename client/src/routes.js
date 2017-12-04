@@ -26,8 +26,11 @@ class Routes extends Component {
 	checkIfIsLogged() {
 		isLogged()
 		.then((response) => {
-			if (response.infos.fortytwoId || response.infos.facebookId) {
-				this.setState({subscriber: false});
+			console.log(response);
+			if (response.infos.login === undefined) {
+				this.setState({ subscriber: false });
+			} else {
+				this.setState({ subscriber: true });
 			}
 			this.setState(response);
 		})
@@ -51,9 +54,9 @@ class Routes extends Component {
 										( <Redirect to="/catalog" /> )
 								)} />
 								<Route path="/guestSignUp" render={() => (
-									!this.state.isLogged ?
+									!this.state.isLogged || this.state.subscriber ?
 										( <Redirect to="/" />) :
-										( <GuestSignUp checkifIsLogged={this.checkIfIsLogged} />)
+										( <GuestSignUp checkIfIsLogged={this.checkIfIsLogged} />)
 								)} />
 								<Route path="/settings" render={() => (
 									!this.state.isLogged  || !this.state.subscriber ?
