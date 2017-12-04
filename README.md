@@ -8,7 +8,6 @@
 * https://github.com/yahoo/react-intl/wiki#getting-started 
 
 ## TO DO LIST
-* Log in - Github Strategy
 * Catalogue - Video vue non vue
 * Sous titre correspondant à la langue preferée 
 * Convertir les vidéo MKV
