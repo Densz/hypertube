@@ -54,7 +54,7 @@ class Routes extends Component {
 										( <Redirect to="/catalog" /> )
 								)} />
 								<Route path="/guestSignUp" render={() => (
-									!this.state.isLogged ?
+									!this.state.isLogged || this.state.subscriber ?
 										( <Redirect to="/" />) :
 										( <GuestSignUp checkIfIsLogged={this.checkIfIsLogged} />)
 								)} />
