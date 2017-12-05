@@ -9,7 +9,7 @@ const githubStrategy = new ghStrategy({
 		clientID: config.githubApi.clientID,
 		clientSecret: config.githubApi.clientSecret,
 		callbackURL: '/api/login/github/callback',
-		profileFields: ['id', 'email', 'first_name', 'last_name'],
+		profileFields: ['id', 'first_name', 'last_name'],
 		scope: ['user:email']
 	}, (accessToken, refreshToken, profile, done) => {
 		User.findOne({ $or: [{ githubId: profile._json.id }, { email: profile._json.email }] }, function (err, user) {

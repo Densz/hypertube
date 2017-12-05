@@ -49,7 +49,6 @@ const logOut = () => {
 
 const callApiUpload = (file, login) => {
 	return new Promise((res, rej) => {
-		console.log(file);
 		const formData = new FormData();
 		formData.append('file', file);
 		formData.append('login', login);

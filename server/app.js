@@ -77,7 +77,7 @@ app.get('/api/loginFailure', (req, res) => {
 app.post('/api/login', passport.authenticate('local',  { failureRedirect: '/api/loginFailure', failureFlash: true }), function(req, res) {
 	res.json({success: true, msg: 'Login succesfully done'})
 })
-app.get('/api/login/facebook', passport.authenticate('facebook'));
+app.get('/api/login/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 app.get('/api/login/facebookCallback', passport.authenticate('facebook', { failureRedirect: '/' }), function(req, res) {
 	res.redirect('http://localhost:3000/catalog');
 })

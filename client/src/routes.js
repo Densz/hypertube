@@ -26,7 +26,6 @@ class Routes extends Component {
 	checkIfIsLogged() {
 		isLogged()
 		.then((response) => {
-			console.log(response);
 			if (response.infos.login === undefined) {
 				this.setState({ subscriber: false });
 			} else {

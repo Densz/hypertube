@@ -76,7 +76,6 @@ const secondPromise = (req, subtitles) => {
 }
 
 router.post('/', (req, res) => {
-    console.log(req.body);
     OpenSubtitles.api.LogIn('username', 'password', 'en', 'UserAgent')
     .then(() => {
         OpenSubtitles.search({

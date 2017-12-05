@@ -12,7 +12,6 @@ class InputForm extends Component {
 	}
 
 	componentDidMount() {
-		console.log(this.props);
 		if (this.props.value !== undefined && this.props.value !== '') {
 			this.setState({
 				textEmpty: false,

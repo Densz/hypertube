@@ -123,4 +123,22 @@ router.post('/update', async (req, res, next) => {
 	}
 })
 
+router.post('/updatePassport', (req, res) => {
+	const data = req.body;
+	console.log(data);
+	for(var key in data) {
+		console.log(key, data[key]);
+		if (key === 'passwd' || key === 'password') {
+			key = 'password';
+			data[key] = bcrypt.hashSync(data[key], bcrypt.genSaltSync(8), null);
+		} else if (key === 'firstName' || key === 'lastName') {
+			data[key] = data[key].capitalize();
+		} else if (key !== 'email') {
+			data[key] = data[key].toLowerCase();
+		}
+		req.user[key] = data[key]
+	}
+	res.json({ success: true, msg: 'Done' });
+});
+
 module.exports = router;

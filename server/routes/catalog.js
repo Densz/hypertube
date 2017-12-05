@@ -8,9 +8,7 @@ const Users = require('../models/user');
 import request from 'request';
 
 router.post('/callMoreItems', (req, res) => {
-	console.log(req.user);
 	Users.findOne({email: req.user.email}, (error, resultUserVideo) => {
-		console.log(resultUserVideo);
 		let query = {};
 		query.title = { $regex: ".*" + req.body.searchField + ".*" };
 		query.title = { $regex: ".*" + req.body.searchField.charAt(0).toUpperCase() + req.body.searchField.slice(1) + ".*" };

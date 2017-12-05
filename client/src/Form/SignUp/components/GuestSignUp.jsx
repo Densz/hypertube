@@ -37,14 +37,15 @@ class SignUp extends Component {
 		}))
 	}
 
-	updateBackData(key, value, cb) {
-		const data = { key: key, value: value };
-		callApi('/api/user/update', 'post', data)
+	updateBackData(data, cb) {
+		console.log('test');
+		console.log(data);
+		callApi('/api/user/updatePassport', 'post', data)
 			.then((response) => {
 				if (response.success) {
 					cb(true);
 				} else {
-					cb(false, response.msg);
+					cb(false);
 				}
 			});
 	}
@@ -61,7 +62,7 @@ class SignUp extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		const inputValues = {
+		let inputValues = {
 			firstName: this.state.firstName.value,
 			lastName: this.state.lastName.value,
 			email: this.state.email.value,
@@ -113,19 +114,15 @@ class SignUp extends Component {
 									console.log('handle front error');
 									console.log(response.errors);
 								} else {
-									this.updateBackData('firstName', inputValues.firstName, () => {
-										this.updateBackData('lastName', inputValues.lastName, () => {
-											this.updateBackData('login', inputValues.login, () => {
-												this.updateBackData('email', inputValues.email, () => {
-													this.updateBackData('password', inputValues.password, () => {
-														this.updateBackData('picturePath', response.namePic, () => {
-															this.props.checkIfIsLogged();
-															this.setState({ submitDone: true });
-														})
-													});
-												});
-											});
-										});
+									inputValues.picturePath = response.namePic;
+									this.updateBackData(inputValues, (resp) => {
+										if (resp === true) {
+											console.log('Passport data updated');
+											this.props.checkIfIsLogged();
+											this.setState({submitDone: true});
+										} else {
+											console.log('Error updating passport data ' + resp.msg);
+										}
 									});
 								}
 							})
@@ -138,7 +135,6 @@ class SignUp extends Component {
 		event.preventDefault();
 		var reader = new FileReader();
 		let pictureFile = event.target.files[0];
-		console.log(pictureFile);
 		if (pictureFile) {
 			document.querySelector('.upload-container').style.border = '4px solid #ffffff';
 			reader.onload = (e) => {
@@ -169,7 +165,6 @@ class SignUp extends Component {
 	componentWillMount() {
 		callApi('/api/auth/guestSignUp/getInfo')
 			.then((response) => {
-				console.log(response)
 				if (response.success) {
 					this.setState({
 						firstName: {
@@ -185,7 +180,6 @@ class SignUp extends Component {
 							value: response.value.email
 						}
 					})
-					console.log(this.state)
 				}
 			});
 	}

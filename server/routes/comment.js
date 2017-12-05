@@ -23,7 +23,6 @@ router.get('/getComments', (req, res) => {
 		if (err) res.json({ success: false, msg: 'Database error ' + err });
 		else {
 			result = await pictureExists(result);
-			console.log(result)
 			res.json({ success: true, msg: 'Comment list in value field', value: result});
 		}
 	});

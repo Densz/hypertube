@@ -80,7 +80,6 @@ router.post('/signUp/submit/' ,(req, res, next) => {
 router.post('/signUp/submit', (req, res, next) => {
 	let newUser = new User();
 	
-	
 	newUser.firstName = req.body.firstName.capitalize();
 	newUser.lastName = req.body.lastName.capitalize();
 	newUser.email = req.body.email;
@@ -111,9 +110,7 @@ router.get('/guestSignUp/getInfo', (req, res) => {
 });
 
 router.post('/guestSignUp/submit/', (req, res, next) => {
-	console.log(req.body);
 	const validationResult = validateSignUpForm(req.body);
-	console.log(validationResult);
 	if (!validationResult.success) {
 		res.json({
 			success: false,
@@ -125,7 +122,6 @@ router.post('/guestSignUp/submit/', (req, res, next) => {
 })
 
 router.post('/guestSignUp/submit', (req, res) => {
-
 	const password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8), null);
 	User.findOne({ login: req.body.login.toLowerCase() }, (err, result) => {
 		if (err) res.json({ success: false, msg: 'Database fail ' + err });
@@ -133,13 +129,13 @@ router.post('/guestSignUp/submit', (req, res) => {
 			const msg = 'Failed to add user login already taken';
 			res.json({ success: false, errors: { 'login': msg } });
 		} else {
-			User.update({_id: req.user._id}, { $set: {
+			User.update({email: req.body.email}, { $set: {
 					firstName: req.body.firstName.capitalize(),
 					lastName: req.body.lastName.capitalize(),
 					login: req.body.login.toLowerCase(),
 					email: req.body.email,
 					password: password
-				}}, (err) => {
+				}}, {multi: false}, (err, result) => {
 					if (err) res.json({ success: false, msg: 'Failed to add user' });
 					res.json({ success: true, msg: 'User account updated not a guest anymore' });
 				}
