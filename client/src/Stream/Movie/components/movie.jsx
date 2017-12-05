@@ -25,8 +25,8 @@ export default class Movie extends Component {
 		const bodyStyle = document.body.style;
 		bodyStyle.backgroundColor = '#20232a';
 
-		callApi('/api/movie?idMovie=' + this.props.match.params.imdb);
-		// callApi("/api/subtitles", "post", { imdb: this.props.match.params.imdb, categorie: this.props.match.params.categorie })
+		callApi('/api/movie?idMovie=' + this.props.imdb);
+		// callApi("/api/subtitles", "post", { imdb: this.props.imdb, categorie: this.props.categorie })
 		// .then((response) => {
 		// 	console.log(response);
 		// 	console.log(response.en);
@@ -42,7 +42,7 @@ export default class Movie extends Component {
 	}
 
 	componentWillMount() {
-		callApi("/api/movie/getDataFromDatabase", "post", { imdb: this.props.match.params.imdb, categorie: this.props.match.params.categorie })
+		callApi("/api/movie/getDataFromDatabase", "post", { imdb: this.props.imdb, categorie: this.props.categorie })
 		.then((response) => {
 			this.setState({
 				movieInfo: response
@@ -88,7 +88,7 @@ export default class Movie extends Component {
 					movie="movie"
 					className="embed-responsive-item" 
 					controls poster={this.state.movieInfo.backdrop_path && "https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}
-					src={"http://localhost:3001/api/stream/film/" + this.props.match.params.imdb + "/" + this.state.qualitySelected}
+					src={"http://localhost:3001/api/stream/film/" + this.props.imdb + "/" + this.state.qualitySelected}
 					type="video/mp4"
 				>
 					{/* <track label="English" kind="subtitles" srclang="en" src="http://localhost:3000/subtitles/tt0109830en.vtt"></track>
@@ -128,8 +128,8 @@ export default class Movie extends Component {
 					<Description movie={ this.state.movieInfo } />
 					<LinksAvailable 
 						movie={ this.state.movieInfo }
-						imdb={this.props.match.params.imdb}
-						categorie={this.props.match.params.categorie}
+						imdb={this.props.imdb}
+						categorie={this.props.categorie}
 						ifIsMovieGetQuality={this.ifIsMovieGetQuality}
 						ifIsSerieGetEpisode={this.ifIsSerieGetEpisode}
 					/>
@@ -139,7 +139,7 @@ export default class Movie extends Component {
 				</div>
 				<div className="row">
 					<div className="col-md-6">
-						<CommentBlock idMovie={this.props.match.params.imdb} />
+						<CommentBlock idMovie={this.props.imdb} subscriber={this.props.subscriber} />
 					</div>
 					<div className="col-md-6">
 						<Cast id={ this.state.movieInfo.tmdbId } categorie={ this.state.movieInfo.categorieTmdb } />

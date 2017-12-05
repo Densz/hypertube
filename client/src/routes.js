@@ -75,7 +75,11 @@ class Routes extends Component {
 								<Route path="/resetPassword/:id?" render={(props) => (
 								<SignIn checkIfIsLogged={this.checkIfIsLogged} idResetPassword={props.match.params.id} />
 								)}/>
- 								<Route path="/video/:categorie/:imdb" component={Video}/>
+ 								<Route path="/video/:categorie/:imdb" render={(props) => (
+									this.props.isLogged ? 
+									(<Redirect to="/" />) :
+									(<Video subscriber={this.state.subscriber} categorie={props.match.params.categorie} imdb={props.match.params.imdb} />)
+								)} />
 							</Switch>
 						}
                     </div>

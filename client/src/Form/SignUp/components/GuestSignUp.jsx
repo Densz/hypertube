@@ -193,9 +193,9 @@ class SignUp extends Component {
 					<form onSubmit={this.handleSubmit} encType="multipart/form-data">
 						<input onChange={this.handleUpload} type="file" name="file" id="file" />
 						<br />
-						<h3>Inscrivez-vous pour profitez de vos films et séries préférées</h3>
+						<h3>Finaliser votre inscription pour profiter de toutes les fonctionnalités du site</h3>
 						<br />
-						<h4>Créez votre compte</h4>
+						<h4>Mettez à jour votre compte</h4>
 						<br />
 						<div className="form-row">
 							<div className="row">

@@ -43,7 +43,7 @@ class CommentBlock extends Component {
 							{this.state.commentNumber} Comment{this.state.commentNumber > 1 ? 's': ''}
 						</div>
 					</h3>
-					<CommentBox commentsInfo={this.state.comment} postComment={this.handlePostComment} infoUser={this.state.infoUser} />
+					<CommentBox commentsInfo={this.state.comment} postComment={this.handlePostComment} infoUser={this.state.infoUser} subscriber={this.props.subscriber} />
 				</div>
 			</div>
 		)
