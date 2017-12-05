@@ -9,6 +9,12 @@ const Torrent = require('../controllers/torrent');
 const torrentOptions = require('../config/torrent');
 const fs = require('fs');
 const path = require('path');
+const parseTorrent = require('parse-torrent');
+
+function getHash(magnet) {
+	let info = parseTorrent(magnet);
+	return info.infoHash;
+}
 
 function filterTorrents(torrents, quality) {
 	let correct = [];
@@ -92,7 +98,7 @@ function findEpisode(id, seasonNum, episodeNum) {
 						if (episode.season === seasonNum && episode.episode === episodeNum) {
 							console.log("Found!");
 							if (episode["torrents"] && episode["torrents"]["0"])
-								resolve(episode["torrents"]["0"]["url"]);
+								resolve(getHash(episode["torrents"]["0"]["url"]));
 						}
 					});
 				}
