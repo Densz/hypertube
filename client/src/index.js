@@ -32,7 +32,6 @@ class Index extends Component {
 	}
 
     render() {
-		console.log(this.state.messages);
         return (
 			<IntlProvider locale={language} messages={this.state.messages}>
 				<Routes changeLngToFr={this.changeLangToFr} changeLngToEn={this.changeLangToEn} />

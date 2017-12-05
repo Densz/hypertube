@@ -62,12 +62,4 @@ class InputForm extends Component {
     }
 }
 
-InputForm.propTypes = {
-    containerClass: PropTypes.string,
-    textValue: PropTypes.string,
-    type: PropTypes.string,
-	inputClass: PropTypes.string,
-	value: PropTypes.string
-}
-
 export default InputForm;

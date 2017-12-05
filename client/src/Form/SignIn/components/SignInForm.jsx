@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import SignInBlock from "./SignInBlock";
 import InputForm from "../../../General/components/InputForm";
 import { callApi } from '../../../ApiCaller/apiCaller';
+import { FormattedMessage } from 'react-intl';
 
 class SignInForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			login: {title: 'Login', value: '', error: ''},
-			passwd: {title: 'Mot de passe', value: '', error: ''},
+			passwd: {title: <FormattedMessage id={'form.passwd'} />, value: '', error: ''},
 			loginDone: false,
 			rstPwdDone: false
 		};
@@ -17,8 +18,7 @@ class SignInForm extends Component {
 	}
 
 	componentDidMount() {
-		console.log(this.props.rstPwdDone);
-			this.setState({	rstPwdDone: this.props.rstPwdDone });
+		this.setState({	rstPwdDone: this.props.rstPwdDone });
 	}
 
 	updateInputValue = (key, value) => {			
@@ -58,7 +58,6 @@ class SignInForm extends Component {
 		if (!errorBool)
 			callApi('/api/login', 'post', inputValues)
 			.then((response) => {
-				console.log('response de /api/login', response);
 				if (response.message) {
 					if (response.message.search('username') > 0) {
 						this.setState({
@@ -91,7 +90,7 @@ class SignInForm extends Component {
 	render() {
 		return(
 			<SignInBlock>
-            <h3>S'identifier</h3>
+				<h3><FormattedMessage id={'form.signin'}/></h3>
 			{this.state.rstPwdDone &&
 				<div className="alert alert-info">Mot de passe mis a jour.</div>}
             <form>
@@ -115,18 +114,34 @@ class SignInForm extends Component {
                 />
 				<br/>
 				<button className="login-button" onClick={this.handleSubmit} name="submit" value="submit" type="submit" data-reactid="25">
-					S'identifier
+					<FormattedMessage id={'form.signin'} />
 				</button>
             </form>
             <br/><br/>
-            <a className="link-reset-password" onClick={this.props.linkClicked}>Mot de passe oublié ?</a>
+            <a className="link-reset-password" onClick={this.props.linkClicked}>
+				<FormattedMessage id={'form.forgottenpasswd'} />
+			</a>
             <br/><br/>
             <hr/>
-            <img src="/images/facebook.png" className="oAuth-logo" alt="Facebook" />&nbsp;&nbsp;<a className="oAuth-text" href="http://localhost:3001/api/login/facebook">S'identifier avec Facebook ?</a><br/>
-            <img src="/images/42.png" className="oAuth-logo" alt="42" />&nbsp;&nbsp;<a className="oAuth-text" href="http://localhost:3001/api/login/fortytwo">S'identifier avec 42 - Born2Code ?</a><br/>
-            <img src="/images/github.png" className="oAuth-logo" alt="42" />&nbsp;&nbsp;<a className="oAuth-text" href="http://localhost:3001/api/login/github">S'identifier avec Github ?</a>
+            <img src="/images/facebook.png" className="oAuth-logo" alt="Facebook" />&nbsp;&nbsp;
+			<a className="oAuth-text" href="http://localhost:3001/api/login/facebook">
+				<FormattedMessage id={'form.signupwithfacebook'} />
+			</a><br/>
+            <img src="/images/42.png" className="oAuth-logo" alt="42" />&nbsp;&nbsp;
+			<a className="oAuth-text" href="http://localhost:3001/api/login/fortytwo">
+				<FormattedMessage id={'form.signupwithfortytwo'} />
+			</a><br/>
+            <img src="/images/github.png" className="oAuth-logo" alt="42" />&nbsp;&nbsp;
+			<a className="oAuth-text" href="http://localhost:3001/api/login/github">
+				<FormattedMessage id={'form.signupwithgithub'} />
+			</a>
 			<hr/>
-            <p>Première visite sur Hypertube ? <a href="/signUp">Inscrivez-vous</a>.</p>
+            <p>
+				<FormattedMessage id={'form.firstvisit'} /><br />
+				<a href="/signUp">
+					<FormattedMessage id={'form.signup'} />					
+				</a>.
+			</p>
         	</SignInBlock>
 		)
 	}

@@ -3,18 +3,22 @@
 		"form.email": "Adresse email",
 		"form.signin": "S'identifier",
 		"form.passwd": "Mot de passe",
-		"form.forgottenpasswd": "Mot de passe oublié",
+		"form.forgottenpasswd": "Mot de passe oublié ?",
 		"form.signup": "Inscrivez-vous",
 		"form.signupwithfacebook": "S'identifier avec Facebook ?",
-		"form.firstvisite": "Première visite sur Hypertube ?"
+		"form.signupwithfortytwo": "S'identifier avec 42 - Born2Code?",
+		"form.signupwithgithub": "S'identifier avec Github ?",
+		"form.firstvisit": "Première visite sur Hypertube ?"
 	},
 	"en": {
 		"form.email": "Email address",
 		"form.signin": "Sign in",
 		"form.passwd": "Password",
-		"form.forgottenpasswd": "Forgotten password",
+		"form.forgottenpasswd": "Forgotten password?",
 		"form.signup": "Sign up",
 		"form.signupwithfacebook": "Sign in with Facebook?",
-		"form.firstvisite": "First visit on Hypertube?"
+		"form.signupwithfortytwo": "Sign in with 42 - Born2Code?",
+		"form.signupwithgithub": "Sign in with Github?",
+		"form.firstvisit": "First visit on Hypertube?"
 	}
 }
