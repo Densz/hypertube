@@ -37,7 +37,13 @@ class Routes extends Component {
 
     render() {
         return (
-            <Layout userInfo={this.state.infos} isLogged={ this.state.isLogged } subscriber={ this.state.subscriber }>
+			<Layout 
+				userInfo={this.state.infos}
+				isLogged={ this.state.isLogged }
+				subscriber={ this.state.subscriber }
+				changeLngToFr={this.props.changeLngToFr}
+				changeLngToEn={this.props.changeLngToEn}
+			>
                 <Router>
                     <div>
 						{ this.state && this.state.isFetching &&
