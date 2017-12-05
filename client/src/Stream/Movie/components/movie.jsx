@@ -72,19 +72,20 @@ export default class Movie extends Component {
 		let subtitles = [];
 		if (this.state.subtitlesEn) {
 			subtitles.push(
-				<track label="English" kind="subtitles" srclang="en" src={ this.state.subtitlesEn }></track>
+				<track key="en" label="English" kind="subtitles" srclang="en" src={ this.state.subtitlesEn }></track>
 			)
 			console.log("nate");
 		}
 		if (this.state.subtitlesFr) {
 			subtitles.push(
-				<track label="French" kind="subtitles" srclang="fr" src={ this.state.subtitlesFr }></track>
+				<track key="fr" label="French" kind="subtitles" srclang="fr" src={ this.state.subtitlesFr }></track>
 			)
 			console.log("bait");
 		}
 		if (this.state.qualitySelected){
 			video.push(
 				<video
+					movie="movie"
 					className="embed-responsive-item" 
 					controls poster={this.state.movieInfo.backdrop_path && "https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}
 					src={"http://localhost:3001/api/stream/film/" + this.props.match.params.imdb + "/" + this.state.qualitySelected}
@@ -98,6 +99,7 @@ export default class Movie extends Component {
 		} else if (this.state.selectedSerie) {
 			video.push(
 				<video
+					key="serie"
 					className="embed-responsive-item" 
 					controls poster={this.state.movieInfo.backdrop_path && "https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}
 					src={"http://localhost:3001/api/series/" + this.state.selectedSerie.tvdb_id + "/" + this.state.selectedSerie.season + "/" + this.state.selectedSerie.episode}
@@ -111,6 +113,7 @@ export default class Movie extends Component {
 		} else {
 			video.push(
 				<video
+					key="video"
 					className="embed-responsive-item" 
 					controls poster={this.state.movieInfo.backdrop_path && "https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}
 					type="video/mp4"
