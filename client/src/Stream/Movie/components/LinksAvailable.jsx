@@ -48,10 +48,15 @@ class LinksAvailable extends Component {
 	}
 
 	setEpisode(e) {
-		let value = parseInt(e.target.id, 10);
+		let value = e.target.id
 		this.setState({
 			episodeSelected: value
 		})
+		let array = value.split('/');
+		let tvdb_id = array[0];
+		let episode = array[1];
+		let season = array[2];
+		this.props.ifIsSerieGetEpisode(episode, season, tvdb_id);
 	}
 
 	render() {
@@ -76,8 +81,8 @@ class LinksAvailable extends Component {
 			json[this.state.seasonSelected].forEach((element, index) => {
 				episodes.push(
 					<div 
-						className={this.state.episodeSelected === element.tvdb_id ? "episode_div_selected" : "episode_div"}
-						id={element.tvdb_id} 
+						className={this.state.episodeSelected === element.tvdb_id + "/" + element.episode + "/" + this.state.seasonSelected ? "episode_div_selected" : "episode_div"}
+						id={element.tvdb_id + "/" + element.episode + "/" + this.state.seasonSelected} 
 						key={element.episode}
 						onClick={this.setEpisode}
 					>
