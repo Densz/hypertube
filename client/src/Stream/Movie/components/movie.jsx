@@ -19,6 +19,7 @@ export default class Movie extends Component {
 		}
 		this.ifIsMovieGetQuality = this.ifIsMovieGetQuality.bind(this);
 		this.ifIsSerieGetEpisode = this.ifIsSerieGetEpisode.bind(this);
+		this.getSubtitles = this.getSubtitles.bind(this);
 	}
 
 	componentDidMount() {
@@ -26,21 +27,8 @@ export default class Movie extends Component {
 		bodyStyle.backgroundColor = '#20232a';
 
 		callApi('/api/movie?idMovie=' + this.props.imdb);
-		// callApi("/api/subtitles", "post", { imdb: this.props.imdb, categorie: this.props.categorie })
-		// .then((response) => {
-		// 	console.log(response);
-		// 	console.log(response.en);
-		// 	console.log(response.msg);
-		// 	if (response.en || response.fr) {
-		// 		this.setState({
-		// 			subtitlesEn: "http://localhost:3000/subtitles/" + response.en,
-		// 			subtitlesFr: "http://localhost:3000/subtitles/" + response.fr
-		// 		})
-		// 	}
-		// 	console.log('bite');
-		// })
 	}
-
+	
 	componentWillMount() {
 		callApi("/api/movie/getDataFromDatabase", "post", { imdb: this.props.imdb, categorie: this.props.categorie })
 		.then((response) => {
@@ -48,23 +36,42 @@ export default class Movie extends Component {
 				movieInfo: response
 			})
 		})
-		
 	}
 
 	ifIsMovieGetQuality(quality) {
 		this.setState({
 			qualitySelected: quality
 		})
+		this.getSubtitles();
 	}
 
 	ifIsSerieGetEpisode(episode, season, tvdb_id) {
+		var series = {
+			episode: episode,
+			season: season,
+			tvdb_id: tvdb_id
+		};
 		this.setState({
-			selectedSerie: {
-				episode: episode,
-				season: season,
-				tvdb_id: tvdb_id
-			}
-		})
+			selectedSerie: series
+		});
+		this.getSubtitles(series);
+	}
+
+	getSubtitles(series){
+		var en, fr;
+		callApi("/api/subtitles", "post", { imdb: this.props.imdb, categorie: this.props.categorie, serie: series})
+		.then((res) => {
+			if (res.en)
+				en = "http://localhost:3000/subtitles/" + res.en;
+			if (res.fr)
+				fr = "http://localhost:3000/subtitles/" + res.fr;
+			this.setState({
+				subtitlesEn: en,
+				subtitlesFr: fr
+			});
+			console.log(this.state.subtitlesEn);
+			console.log(this.state.subtitlesFr);
+		});
 	}
 
 	render() {
@@ -74,13 +81,11 @@ export default class Movie extends Component {
 			subtitles.push(
 				<track key="en" label="English" kind="subtitles" srclang="en" src={ this.state.subtitlesEn }></track>
 			)
-			console.log("nate");
 		}
 		if (this.state.subtitlesFr) {
 			subtitles.push(
 				<track key="fr" label="French" kind="subtitles" srclang="fr" src={ this.state.subtitlesFr }></track>
 			)
-			console.log("bait");
 		}
 		if (this.state.qualitySelected){
 			video.push(
@@ -91,8 +96,6 @@ export default class Movie extends Component {
 					src={"http://localhost:3001/api/stream/film/" + this.props.imdb + "/" + this.state.qualitySelected}
 					type="video/mp4"
 				>
-					{/* <track label="English" kind="subtitles" srclang="en" src="http://localhost:3000/subtitles/tt0109830en.vtt"></track>
-					<track label="French" kind="subtitles" srclang="fr" src="http://localhost:3000/subtitles/tt0109830fr.vtt"></track> */}
 					{ subtitles }
 				</video>
 			)
@@ -105,9 +108,7 @@ export default class Movie extends Component {
 					src={"http://localhost:3001/api/series/" + this.state.selectedSerie.tvdb_id + "/" + this.state.selectedSerie.season + "/" + this.state.selectedSerie.episode}
 					type="video/mp4"
 				>
-					{/* <track label="English" kind="subtitles" srclang="en" src="http://localhost:3000/subtitles/tt0109830en.vtt"></track>
-					<track label="French" kind="subtitles" srclang="fr" src="http://localhost:3000/subtitles/tt0109830fr.vtt"></track> */}
-					{/* { subtitles } */}
+					{ subtitles }
 				</video>
 			)
 		} else {
