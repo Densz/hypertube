@@ -181,8 +181,8 @@ router.post('/sendEmail', (req, res, next) => {
 	User.findOne({email: email}, (err, result) => {
 		if (err) res.json({success: false, msg: 'Database fail' + err});
 		if (result) {
-			if (result.facebookId !== undefined || result.fortytwoId !== undefined) {
-				res.json({success: false, msg: 'Please log you in with your social network account.'});
+			if (result.facebookId !== undefined || result.fortytwoId !== undefined || result.githubId !== undefined) {
+				res.json({success: false, guest: true, msg: 'Please log you in with your social network account.'});
 			}
 			else {
 				let transporter = nodemailer.createTransport(smtpTransport({
@@ -212,7 +212,7 @@ router.post('/sendEmail', (req, res, next) => {
 				res.json({success: true, msg: 'Email sent'});
 			}
 		} else {
-			res.json({success: false, msg: 'No user registered with this email address.'});
+			res.json({success: false, guest: false, msg: 'No user registered with this email address.'});
 		}
 	});
 });

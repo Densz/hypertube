@@ -43,14 +43,14 @@ class RstPwdForm extends Component {
 		let errorBool = false;
 		if (this.state.email.value === '' || this.state.email.value === undefined) {
 			let title = this.state.email.title.toLowerCase();
-			this.setErrorMessage('email', 'error.email.missing');
+			this.setErrorMessage('email', 'form.email.isMissing');
 			errorBool = true;
 		}
 		if (!errorBool) {
 			callApi('/api/auth/sendEmail', 'post', inputValues)
 			.then((response) => {
 				if (!response.success) {
-					this.setErrorMessage('email', 'user.notRegistered');
+					this.setErrorMessage('email', (response.guest ? "user.guest" : 'user.notRegistered'));
 					errorBool = true;
 				}
 				else {
