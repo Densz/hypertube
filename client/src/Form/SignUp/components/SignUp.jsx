@@ -3,17 +3,19 @@ import SignUpBlock from './SignUpBlock';
 import InputForm from "../../../General/components/InputForm";
 import "../css/signup.css";
 import { callApi, callApiUpload } from '../../../ApiCaller/apiCaller';
+import { FormattedMessage } from 'react-intl';
+//<FormattedMessage id={''} />
 
 class SignUp extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			firstName: {title: 'Prénom', value: '', error: ''},
-			lastName: {title: 'Nom', value: '', error: ''},
-			email: {title: 'E-mail', value: '', error: ''},
-			login: {title: 'Login', value: '', error: ''},
-			passwd: {title: 'Mot de passe', value: '', error: ''},
-			passwdConfirm: {title: 'Confirmation du mot de passe', value: '', error: ''},
+			firstName: {title: 'form.firstName', value: '', error: ''},
+			lastName: {title: 'form.lastName', value: '', error: ''},
+			email: {title: 'form.email', value: '', error: ''},
+			login: {title: 'form.login', value: '', error: ''},
+			passwd: {title: 'form.passwd', value: '', error: ''},
+			passwdConfirm: {title: 'form.passwdConfirmation', value: '', error: ''},
 			picture: {value: '/images/heisenberg.png', error: ''},
 			picUploadedInfo: {},
 			uploadDone: false,
@@ -28,8 +30,8 @@ class SignUp extends Component {
 			[key]: {
 				title: prevState[key].title,
 				value: value, 
-				
-				error: ''}
+				error: ''
+			}
 		}))
 	}
 
@@ -55,35 +57,35 @@ class SignUp extends Component {
 		}
 		const file = this.state.picUploadedInfo;
 		const login = this.state.login.value;
-		const extName = file.name.slice((file.name.lastIndexOf(".") - 1 >>> 0) + 2);
+		let extName = '';
 		const extAllowed = ['jpg', 'jpeg', 'png'];
 		let errorBool = false;
-
-		if (!this.state.uploadDone) {
-			errorBool = true;
-			this.setErrorMessage('firstName', 'Vous devez choisir une photo pour vous inscrire');
+		if (file.name) {
+			extName = file.name.slice((file.name.lastIndexOf(".") - 1 >>> 0) + 2);
+			if (file.size > 3145728) {
+				this.setState({ picture: {value: this.state.picture.value, error: 'picture.tooBig' } });
+				errorBool = true;
+			}
+			if (extAllowed.indexOf(extName.toLowerCase()) === -1) {
+				this.setState({ picture: {
+					value: this.state.picture.value,
+					error: 'picture.invalidExtension'
+				}});
+				errorBool = true;
+			}
+		} else {
+			this.setState({ picture: {value: this.state.picture.value, error: 'picture.missingPicture' } });
 		}
         for (var elem in this.state) {
             if (this.state[elem].title !== undefined && (this.state[elem].value === '' || this.state[elem].value === undefined)) {
-				let title = this.state[elem].title.toLowerCase();
-				this.setErrorMessage(elem, 'Le champ ' + title + ' est vide.');
+				this.setErrorMessage(elem, this.state[elem].title + ".isMissing");
 				errorBool = true;
 			}
-		}
-		if (file.size > 3145728) {
-			this.setState({ picture: { error: 'Image trop volumineuse' } });
-			errorBool = true;
-		}
-		if (extAllowed.indexOf(extName.toLowerCase()) === -1) {
-			this.setState({ picture: { error: 'Extension d\'image non pris en charge'}});
-			errorBool = true;
 		}
 		if (!errorBool) {
 			callApi('/api/auth/signUp/submit', 'post', inputValues)
 			.then((response) => {
 				if (!response.success) {
-					console.log('handle front error');
-					console.log(response.errors);
 					const errRes = response.errors;
 					for(var k in errRes) {
 						this.setErrorMessage(k, errRes[k]);
@@ -117,22 +119,39 @@ class SignUp extends Component {
 		event.preventDefault();
 		var reader = new FileReader();
 		let pictureFile = event.target.files[0];
-		console.log(pictureFile);
 		if (pictureFile) {
-			document.querySelector('.upload-container').style.border = '4px solid #ffffff';
-			reader.onload = (e) => {
-				this.setState({
-					picture: {value: e.target.result, error: ''},
-					picUploadedInfo: pictureFile,
-					uploadDone: true
-				});
+			const extAllowed = ['jpg', 'jpeg', 'png'];
+			const extName = pictureFile.name.slice((pictureFile.name.lastIndexOf(".") - 1 >>> 0) + 2);
+			if (extAllowed.indexOf(extName) !== -1) {
+				document.querySelector('.upload-container').style.border = '4px solid #ffffff';
+				reader.onload = (e) => {
+					const hexaResult = e.target.result.substring(e.target.result.indexOf(',') + 1);
+					const buf = new Buffer(hexaResult, 'base64').toString('hex', 0, 4);
+					const hexMask = ['ffd8ffe0', 'ffd8ffe1', '89504e47'];
+					if (hexMask.indexOf(buf) !== -1) {
+						this.setState({
+							picture: {value: e.target.result, error: ''},
+							picUploadedInfo: pictureFile,
+							uploadDone: true
+						});
+					} else {
+						this.setState({ picture: {
+							value: this.state.picture.value,
+							error: 'picture.invalidExtension'
+						}});
+					}
+				}
+				reader.readAsDataURL(pictureFile);
+			} else {
+				this.setState({ picture: {
+					value: this.state.picture.value,
+					error: 'picture.invalidExtension'
+				}});
 			}
-			reader.readAsDataURL(pictureFile);
 		}
 	}
 
 	componentDidUpdate() {
-		console.log(this.state.picture.error);
 		if(this.state.picture.error !== '') {
 			document.querySelector('.upload-container').style.border = '1px solid #ff0000';
 		}
@@ -146,15 +165,15 @@ class SignUp extends Component {
         bodyStyle.backgroundColor = '#f3f3f3';
     }
 
-    render() {
+    render() {		
         return (
 			<SignUpBlock>
 				<form onSubmit={this.handleSubmit} encType="multipart/form-data">
 					<input onChange={this.handleUpload} type="file" name="file" id="file" />
 					<br/>
-					<h3>Inscrivez-vous pour profitez de vos films et séries préférées</h3>
+					<h3><FormattedMessage id={"form.signup.title"} /></h3>
 					<br/>
-						<h4>Créez votre compte</h4>
+						<h4><FormattedMessage id={"form.signup.createNewAccount"} /></h4>
 						<br/>
 						<div className="form-row">
 							<div className="row">
@@ -164,7 +183,9 @@ class SignUp extends Component {
 											<img src={this.state.picture.value} alt="Profile" className="profile-picture" />
 										</label>
 										{this.state.picture.error !== '' &&
-										<span className="error-msg-picture">{this.state.picture.error}</span>}
+										<span className="error-msg-picture">
+											<FormattedMessage id={this.state.picture.error} />
+										</span>}
 									</div>
 									<br />
 								</div>
@@ -234,7 +255,7 @@ class SignUp extends Component {
 						</div>
 						<br/>
 						<button className="login-button" type="submit" name="submit" value="submit">
-							Créer son compte
+							<FormattedMessage id={"form.signup.createNewAccount"} />
 						</button>	
 				</form>
                 <br/><br/>

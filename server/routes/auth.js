@@ -16,7 +16,7 @@ const smtpTransport = require('nodemailer-smtp-transport');
  * multer configuration
  */
 const imageFilter = (req, file, cb) => {
-	if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/) || file.size > 3145728) {
+	if (!file.originalname.match(/\.(jpg|jpeg|png)$/) || file.size > 3145728) {
 		console.log('File too big!');
 		cb(null, false);
 	} else {

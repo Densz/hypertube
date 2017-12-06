@@ -50,11 +50,7 @@ class SignInForm extends Component {
 		let errorBool = false;
         for (var elem in this.state) {
             if (this.state[elem].intlId !== undefined && (this.state[elem].value === '' || this.state[elem].value === undefined)) {
-				if (this.state[elem].intlId === 'form.passwd') {
-					this.setErrorMessage(elem, 'error.password.missing');
-				} else {
-					this.setErrorMessage(elem, 'error.login.missing');
-				}
+					this.setErrorMessage(elem, this.state[elem].intlId + ".isMissing");
 				errorBool = true;
 			}
 		}
