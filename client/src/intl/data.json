@@ -3,22 +3,32 @@
 		"form.email": "Adresse email",
 		"form.signin": "S'identifier",
 		"form.passwd": "Mot de passe",
+		"form.login": "Login",
 		"form.forgottenpasswd": "Mot de passe oublié ?",
 		"form.signup": "Inscrivez-vous",
 		"form.signupwithfacebook": "S'identifier avec Facebook ?",
 		"form.signupwithfortytwo": "S'identifier avec 42 - Born2Code?",
 		"form.signupwithgithub": "S'identifier avec Github ?",
-		"form.firstvisit": "Première visite sur Hypertube ?"
+		"form.firstvisit": "Première visite sur Hypertube ?",
+		"error.password.missing": "Le champ mot de passe est vide",
+		"error.password.incorrect": "Le mot de passe est incorrect",
+		"error.login.missing": "Le champ login est vide",
+		"error.login.invalid": "Le login n'existe pas"
 	},
 	"en": {
 		"form.email": "Email address",
 		"form.signin": "Sign in",
 		"form.passwd": "Password",
+		"form.login": "Login",
 		"form.forgottenpasswd": "Forgotten password?",
 		"form.signup": "Sign up",
 		"form.signupwithfacebook": "Sign in with Facebook?",
 		"form.signupwithfortytwo": "Sign in with 42 - Born2Code?",
 		"form.signupwithgithub": "Sign in with Github?",
-		"form.firstvisit": "First visit on Hypertube?"
+		"form.firstvisit": "First visit on Hypertube?",
+		"error.password.missing": "Password field is missing",
+		"error.password.incorrect": "Wrong password",
+		"error.login.missing": "Login field is missing",
+		"error.login.invalid": "Login does not exist"
 	}
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 class DynLabel extends Component {
 	render() {
@@ -7,7 +8,7 @@ class DynLabel extends Component {
 			<label 
 				className={ this.props.isEmpty ? 'input-empty' : 'input-filled' }
 			>
-				{ this.props.textValue }
+				<FormattedMessage id={ this.props.textValue } />
 			</label>
 		);
 	}

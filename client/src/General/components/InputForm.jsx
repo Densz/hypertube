@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DynLabel from '../../General/components/DynLabel';
+import { FormattedMessage } from 'react-intl';
 
 class InputForm extends Component {
     constructor(props) {
@@ -56,7 +57,7 @@ class InputForm extends Component {
                     onChange={this.updateInputValue}
                 />
 				{this.props.errorMessage !== '' &&
-				<span className="form-error-message">{ this.props.errorMessage }</span>}
+				<span className="form-error-message"><FormattedMessage id={this.props.errorMessage} /></span>}
             </div>
         );
     }

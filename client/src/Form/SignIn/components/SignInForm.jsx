@@ -8,8 +8,8 @@ class SignInForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			login: {title: 'Login', value: '', error: ''},
-			passwd: {title: <FormattedMessage id={'form.passwd'} />, value: '', error: ''},
+			login: {intlId: 'form.login', value: '', error: ''},
+			passwd: {intlId: 'form.passwd', value: '', error: ''},
 			loginDone: false,
 			rstPwdDone: false
 		};
@@ -24,7 +24,7 @@ class SignInForm extends Component {
 	updateInputValue = (key, value) => {			
 		this.setState((prevState) => ({
 			[key]: {
-				title: prevState[key].title,
+				intlId: prevState[key].intlId,
 				value: value,
 				error: ''
 			}
@@ -34,7 +34,7 @@ class SignInForm extends Component {
 	setErrorMessage = (elem, errorMessage) => {
 		this.setState((prevState) => ({
 			[elem]: {
-				title: prevState[elem].title,
+				intlId: prevState[elem].intlId,
 				value: prevState[elem].value,
 				error: errorMessage
 			}
@@ -49,9 +49,12 @@ class SignInForm extends Component {
 		}
 		let errorBool = false;
         for (var elem in this.state) {
-            if (this.state[elem].title !== undefined && (this.state[elem].value === '' || this.state[elem].value === undefined)) {
-				let title = this.state[elem].title.toLowerCase();
-				this.setErrorMessage(elem, 'Le champ ' + title + ' est vide.');
+            if (this.state[elem].intlId !== undefined && (this.state[elem].value === '' || this.state[elem].value === undefined)) {
+				if (this.state[elem].intlId === 'form.passwd') {
+					this.setErrorMessage(elem, 'error.password.missing');
+				} else {
+					this.setErrorMessage(elem, 'error.login.missing');
+				}
 				errorBool = true;
 			}
 		}
@@ -63,7 +66,7 @@ class SignInForm extends Component {
 						this.setState({
 							login: {
 								...this.state.login,
-								error: "The username does not exist"
+								error: "error.login.invalid"
 							},
 							passwd: {
 								...this.state.passwd,
@@ -78,7 +81,7 @@ class SignInForm extends Component {
 							},
 							passwd: {
 								...this.state.passwd,
-								error: "The password is incorrect"
+								error: "error.password.incorrect"
 							}
 						})
 					}
@@ -96,7 +99,7 @@ class SignInForm extends Component {
             <form>
                 <InputForm
                     containerClass="form-group"
-                    textValue={ this.state.login.title }
+                    textValue={ this.state.login.intlId }
                     type="text"
 					inputClass={ this.state.login.error ? "form-control error" : "form-control" }
 					name="login"
@@ -105,7 +108,7 @@ class SignInForm extends Component {
                 />
                 <InputForm
                     containerClass="form-group"
-					textValue={ this.state.passwd.title }
+					textValue={ this.state.passwd.intlId }
                     type="password"
 					inputClass={ this.state.passwd.error ? "form-control error" : "form-control" }
 					name="passwd"
