@@ -60,7 +60,7 @@ class SignUp extends Component {
 		let extName = '';
 		const extAllowed = ['jpg', 'jpeg', 'png'];
 		let errorBool = false;
-		
+
 		if (file.name) {
 			extName = file.name.slice((file.name.lastIndexOf(".") - 1 >>> 0) + 2);
 			if (file.size > 3145728) {
@@ -75,6 +75,7 @@ class SignUp extends Component {
 				errorBool = true;
 			}
 		} else {
+			errorBool = true;
 			this.setState({ picture: {value: this.state.picture.value, error: 'picture.missingPicture' } });
 		}
         for (var elem in this.state) {

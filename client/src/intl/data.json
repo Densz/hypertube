@@ -22,6 +22,7 @@
 		
 		"form.login.isMissing": "Le champ login est vide",
 		"form.login.alreadyTaken": "Login ou email déjà utilisé",
+		"form.guestLogin.alreadyTaken": "Login déjà utilisé",
 		"form.login.length": "Votre login doit faire au moins 5 caractères",		
 
 		"form.firstName.isMissing": "Le champ prénom est vide",
@@ -32,6 +33,9 @@
 		"form.signup.title": "Inscrivez-vous pour profitez de vos films et séries préférées",
 		"form.signup.createNewAccount": "Créez votre compte",
 
+		"form.guestSignup.title": "Finalisez votre inscription pour profiter de toutes les fonctionnalités du site",
+		"form.guestSignup.createNewAccount": "Mettez à jour votre compte",
+		
 		"picture.missingPicture": "Vous devez choisir une photo pour vous inscrire",
 		"picture.invalidExtension": "Extension d'image non pris en charge",
 		"picture.tooBig": "Fichier trop volumineux",
@@ -72,7 +76,8 @@
 		"form.login.isMissing": "Login is missing",
 		"form.login.alreadyTaken": "Login or email already taken",
 		"form.login.length": "Login must have at least 5 characters",
-
+		"form.guestLogin.alreadyTaken": "Login already used",
+		
 		"form.firstName.isMissing": "First name is missing",
 		"form.lastName.isMissing": "Last name is missing",
 		
@@ -80,6 +85,9 @@
 		"form.signup": "Sign up",
 		"form.signup.title": "Sign up to discover all the new movies and series",
 		"form.signup.createNewAccount": "Create a new account",
+
+		"form.guestSignup.title": "Complete the form below to fully enjoy the website features",
+		"form.guestSignup.createNewAccount": "Update your infos",
 		
 		"picture.missingPicture": "You need to upload a picture to sign up",
 		"picture.invalidExtension": "Wrong file extension",

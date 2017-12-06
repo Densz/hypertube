@@ -125,8 +125,7 @@ router.post('/guestSignUp/submit', (req, res) => {
 	User.findOne({ login: req.body.login.toLowerCase() }, (err, result) => {
 		if (err) res.json({ success: false, msg: 'Database fail ' + err });
 		if (result) {
-			const msg = 'Failed to add user login already taken';
-			res.json({ success: false, errors: { 'login': msg } });
+			res.json({ success: false, errors: { 'login': 'form.login.alreadyTaken' } });
 		} else {
 			User.update({email: req.body.email}, { $set: {
 					firstName: req.body.firstName.capitalize(),
