@@ -11,7 +11,6 @@
 * Convertir les vidéo MKV
 * Langue traduction - Stockée de base dans la base de données 
   * RstPwdPage
-  * Catalog
   * Movie
   * Profile
   * Settings
