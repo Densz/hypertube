@@ -10,10 +10,14 @@
 		"form.signupwithfortytwo": "S'identifier avec 42 - Born2Code?",
 		"form.signupwithgithub": "S'identifier avec Github ?",
 		"form.firstvisit": "Première visite sur Hypertube ?",
-		"error.password.missing": "Le champ mot de passe est vide",
-		"error.password.incorrect": "Le mot de passe est incorrect",
 		"error.login.missing": "Le champ login est vide",
-		"error.login.invalid": "Le login n'existe pas"
+		"error.password.missing": "Le champ mot de passe est vide",
+		"error.email.missing": "Le champ e-mail est vide",
+		"error.login.invalid": "Le login n'existe pas",
+		"error.password.incorrect": "Le mot de passe est incorrect",
+		"email.sent": "Un email a été envoyé.",
+		"send": "Envoyer",
+		"user.notRegistered": "L'utilisateur n'est pas enregistré dans la base de données."
 	},
 	"en": {
 		"form.email": "Email address",
@@ -26,9 +30,13 @@
 		"form.signupwithfortytwo": "Sign in with 42 - Born2Code?",
 		"form.signupwithgithub": "Sign in with Github?",
 		"form.firstvisit": "First visit on Hypertube?",
-		"error.password.missing": "Password field is missing",
-		"error.password.incorrect": "Wrong password",
 		"error.login.missing": "Login field is missing",
-		"error.login.invalid": "Login does not exist"
+		"error.password.missing": "Password field is missing",
+		"error.email.missing": "E-mail is missing",
+		"error.login.invalid": "Login does not exist",
+		"error.password.incorrect": "Wrong password",
+		"email.sent": "Email sent to your inbox.",
+		"send": "Send",
+		"user.notRegistered": "No user registered with this email address."
 	}
 }

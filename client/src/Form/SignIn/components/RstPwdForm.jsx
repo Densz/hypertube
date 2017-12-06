@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SignInBlock from "./SignInBlock";
 import InputForm from "../../../General/components/InputForm";
 import { callApi } from '../../../ApiCaller/apiCaller';
+import { FormattedMessage } from 'react-intl';
 
 class RstPwdForm extends Component {
 	constructor(props) {
@@ -42,18 +43,18 @@ class RstPwdForm extends Component {
 		let errorBool = false;
 		if (this.state.email.value === '' || this.state.email.value === undefined) {
 			let title = this.state.email.title.toLowerCase();
-			this.setErrorMessage('email', 'Le champ ' + title + ' est vide.');
+			this.setErrorMessage('email', 'error.email.missing');
 			errorBool = true;
 		}
 		if (!errorBool) {
 			callApi('/api/auth/sendEmail', 'post', inputValues)
 			.then((response) => {
 				if (!response.success) {
-					this.setErrorMessage('email', response.msg);
+					this.setErrorMessage('email', 'user.notRegistered');
 					errorBool = true;
 				}
 				else {
-					this.setState({done: 'Un email a été envoyé.'});
+					this.setState({done: 'email.sent'});
 				}
 			})
 		}
@@ -62,9 +63,12 @@ class RstPwdForm extends Component {
 	render() {
 		return(
 			<SignInBlock>
-				<h3>Mot de passe oublié</h3>
+				<h3><FormattedMessage id={'form.forgottenpasswd'} /></h3>
 				{this.state.done !== '' && 
-					<div className="alert alert-info">{this.state.done}</div>}
+					<div className="alert alert-info">
+						<FormattedMessage id={this.state.done} />
+					</div>
+				}
 				<form onSubmit={this.handleSubmit}>
 					<InputForm
 						containerClass="form-group"
@@ -77,11 +81,13 @@ class RstPwdForm extends Component {
 					/>
 					<br />
 					<button className="login-button" type="submit" name="submit" value="submit">
-						Envoyer
+						<FormattedMessage id={'send'} />
 					</button>
 				</form>
 				<br/>
-				<a className="link-reset-password" onClick={this.props.linkClicked}>Connectez-vous</a>
+				<a className="link-reset-password" onClick={this.props.linkClicked}>
+					<FormattedMessage id={'form.signin'} />
+				</a>
 				<br/><br/>
 			</SignInBlock>
 		)
