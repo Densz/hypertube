@@ -60,6 +60,7 @@ class SignUp extends Component {
 		let extName = '';
 		const extAllowed = ['jpg', 'jpeg', 'png'];
 		let errorBool = false;
+		
 		if (file.name) {
 			extName = file.name.slice((file.name.lastIndexOf(".") - 1 >>> 0) + 2);
 			if (file.size > 3145728) {

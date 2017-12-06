@@ -9,11 +9,23 @@
 		"form.passwdConfirmation": "Confirmation du mot de passe",
 		
 		"form.email.isMissing": "Le champ e-mail est vide",
+		"form.email.alreadyTaken": "Email ou login déjà utilisé",
+		"form.email.incorrect": "Veuillez entrer une adresse email correcte",	
+
 		"form.passwd.isMissing": "Le champ mot de passe est vide",
+		"form.passwd.length": "Votre mot de passe doit faire au moins 6 caractères",
+		"form.passwd.mustMatch": "Les mots de passe ne sont pas identiques",
+		
+		"form.passwdConfirmation.isMissing": "Le champ confirmation du mot de passe est vide",
+		"form.passwdConfirmation.length": "Le champ mot de passe doit faire au moins 6 caractères",
+		"form.passwdConfirmation.mustMatch": "Les mots de passe ne sont pas identiques",
+		
 		"form.login.isMissing": "Le champ login est vide",
+		"form.login.alreadyTaken": "Login ou email déjà utilisé",
+		"form.login.length": "Votre login doit faire au moins 5 caractères",		
+
 		"form.firstName.isMissing": "Le champ prénom est vide",
 		"form.lastName.isMissing": "Le champ nom est vide",
-		"form.passwdConfirmation.isMissing": "Le champ confirmation du mot de passe est vide",
 		
 		"form.forgottenpasswd": "Mot de passe oublié ?",
 		"form.signup": "Inscrivez-vous",
@@ -46,11 +58,23 @@
 		"form.passwdConfirmation": "Password confirmation",
 
 		"form.email.isMissing": "E-mail is missing",
+		"form.email.alreadyTaken": "Email or login already taken",
+		"form.email.incorrect": "Please provide a correct email address",
+
 		"form.passwd.isMissing": "Password is missing",
+		"form.passwd.length": "Password must have at least 6 characters",
+		"form.passwd.mustMatch": "Password must match Password confirmation",
+
+		"form.passwdConfirmation.isMissing": "Password confirmation is missing",
+		"form.passwdConfirmation.length": "Password must have at least 6 characters",
+		"form.passwdConfirmation.mustMatch": "Password Confirmatiomn must match Password",
+		
 		"form.login.isMissing": "Login is missing",
+		"form.login.alreadyTaken": "Login or email already taken",
+		"form.login.length": "Login must have at least 5 characters",
+
 		"form.firstName.isMissing": "First name is missing",
 		"form.lastName.isMissing": "Last name is missing",
-		"form.passwdConfirmation.isMissing": "Password confirmation is missing",
 		
 		"form.forgottenpasswd": "Forgotten password?",
 		"form.signup": "Sign up",

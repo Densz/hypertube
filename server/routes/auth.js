@@ -44,21 +44,21 @@ function validateSignUpForm(payload) {
 
 	if (typeof payload.email !== 'string' || !validator.isEmail(payload.email)) {
 		isFormValid = false;
-		errors.email = 'Please provide a correct email address';
+		errors.email = 'form.email.incorrect';
 	}
 	if (typeof payload.password !== 'string' || payload.password.trim().length < 6) {
 		isFormValid = false;
-		errors.passwd = 'Password must have at least 6 characters';
-		errors.passwdConfirm = 'Password must have at least 6 characters'
+		errors.passwd = 'form.passwd.length';
+		errors.passwdConfirm = 'form.passwdConfirmation.length';
 	}
 	if (payload.confirmPassword !== payload.password) {
 		isFormValid = false;
-		errors.passwd = 'Password must match Password confirmation ';
-		errors.passwdConfirm = 'Password confirmation must match Password';
+		errors.passwd = 'form.passwd.mustMatch';
+		errors.passwdConfirm = 'form.passwdConfirmation.mustMatch';
 	}
 	if (typeof payload.login !== 'string' || payload.login.trim().length < 5){
 		isFormValid = false;
-		errors.login = 'Login must have at least 5 characters';
+		errors.login = 'form.login.length';
 	}
 	return {
 		success: isFormValid,
@@ -90,8 +90,7 @@ router.post('/signUp/submit', (req, res, next) => {
 			res.json({ success: false, msg: 'Data base issue' })
 		}
 		if (user) {
-			const msg = 'Failed to add user email or login already taken';
-			res.json({ success: false, errors: { 'email': msg, 'login': msg } });
+			res.json({ success: false, errors: { 'email': 'form.email.alreadyTaken', 'login': 'form.login.alreadyTaken' } });
 		} else {
 			newUser.save((err) => {
 				if (err)
