@@ -28,3 +28,7 @@ body {
 .text-footer:hover {
     text-decoration: none;
 }
+
+.text-footer-language {
+    cursor: pointer;
+}
