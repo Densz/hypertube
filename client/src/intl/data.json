@@ -29,6 +29,9 @@
 		"form.lastName.isMissing": "Le champ nom est vide",
 		
 		"form.forgottenpasswd": "Mot de passe oublié ?",
+
+		"form.resetpasswd.title": "Réinitialiser votre mot de passe",
+
 		"form.signup": "Inscrivez-vous",
 		"form.signup.title": "Inscrivez-vous pour profitez de vos films et séries préférées",
 		"form.signup.createNewAccount": "Créez votre compte",
@@ -47,6 +50,8 @@
 
 		"error.login.invalid": "Le login n'existe pas",
 		"error.password.incorrect": "Le mot de passe est incorrect",
+
+		"info.passwd.updated": "Mot de passe mis à jour",
 
 		"email.sent": "Un email a été envoyé.",
 		"send": "Envoyer",
@@ -119,6 +124,9 @@
 		"form.lastName.isMissing": "Last name is missing",
 		
 		"form.forgottenpasswd": "Forgotten password?",
+
+		"form.resetpasswd.title": "Reset your password",
+
 		"form.signup": "Sign up",
 		"form.signup.title": "Sign up to discover all the new movies and series",
 		"form.signup.createNewAccount": "Create a new account",
@@ -137,6 +145,8 @@
 
 		"error.login.invalid": "Login does not exist",
 		"error.password.incorrect": "Wrong password",
+
+		"info.passwd.updated": "Password updated",
 
 		"email.sent": "Email sent to your inbox.",
 		"send": "Send",
