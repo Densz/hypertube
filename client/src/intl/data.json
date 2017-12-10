@@ -38,6 +38,8 @@
 
 		"form.guestSignup.title": "Finalisez votre inscription pour profiter de toutes les fonctionnalités du site",
 		"form.guestSignup.createNewAccount": "Mettez à jour votre compte",
+
+		"profile.searchBar.placeholder": "",
 		
 		"picture.missingPicture": "Vous devez choisir une photo pour vous inscrire",
 		"picture.invalidExtension": "Extension d'image non pris en charge",
@@ -55,6 +57,7 @@
 
 		"email.sent": "Un email a été envoyé.",
 		"send": "Envoyer",
+		"name": "Nom",
 		"user.notRegistered": "L'utilisateur n'est pas enregistré dans la base de données.",
 
 		"catalog.searchFor": "Recherche par titre de film ou de serie",
@@ -133,10 +136,12 @@
 
 		"form.guestSignup.title": "Complete the form below to fully enjoy the website features",
 		"form.guestSignup.createNewAccount": "Update your infos",
-		
+
 		"picture.missingPicture": "You need to upload a picture to sign up",
 		"picture.invalidExtension": "Wrong file extension",
 		"picture.tooBig": "File too big",
+
+		"profile.searchBar.placeholder": "Search for ...",
 
 		"form.signupwithfacebook": "Sign in with Facebook?",
 		"form.signupwithfortytwo": "Sign in with 42 - Born2Code?",
@@ -150,6 +155,7 @@
 
 		"email.sent": "Email sent to your inbox.",
 		"send": "Send",
+		"name": "Name",
 		"user.notRegistered": "No user registered with this email address.",
 
 		"catalog.searchFor": "Search by Title",
