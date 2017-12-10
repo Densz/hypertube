@@ -39,11 +39,9 @@
 		"form.guestSignup.title": "Finalisez votre inscription pour profiter de toutes les fonctionnalités du site",
 		"form.guestSignup.createNewAccount": "Mettez à jour votre compte",
 
-		"profile.searchBar.placeholder": "",
-		
 		"picture.missingPicture": "Vous devez choisir une photo pour vous inscrire",
 		"picture.invalidExtension": "Extension d'image non pris en charge",
-		"picture.tooBig": "Fichier trop volumineux",
+		"picture.tooBig": "Image trop volumineuse",
 
 		"form.signupwithfacebook": "S'identifier avec Facebook ?",
 		"form.signupwithfortytwo": "S'identifier avec 42 - Born2Code?",
@@ -57,6 +55,7 @@
 
 		"email.sent": "Un email a été envoyé.",
 		"send": "Envoyer",
+		"change": "Changer de ",
 		"name": "Nom",
 		"user.notRegistered": "L'utilisateur n'est pas enregistré dans la base de données.",
 
@@ -95,8 +94,11 @@
 		"catalog.Sport": "Sport",
 		"catalog.Thriller": "Thriller",
 		"catalog.War": "Guerre",
-		"catalog.Western": "Western"
-	},
+		"catalog.Western": "Western",
+
+		"settings.title.main": "Paramètres",
+		"settings.title.user": "Détails d'utilisateur",
+		"settings.title.account": "Détails de compte"},
 	"en": {
 		"form.email": "Email address",
 		"form.signin": "Sign in",
@@ -141,8 +143,6 @@
 		"picture.invalidExtension": "Wrong file extension",
 		"picture.tooBig": "File too big",
 
-		"profile.searchBar.placeholder": "Search for ...",
-
 		"form.signupwithfacebook": "Sign in with Facebook?",
 		"form.signupwithfortytwo": "Sign in with 42 - Born2Code?",
 		"form.signupwithgithub": "Sign in with Github?",
@@ -154,6 +154,7 @@
 		"info.passwd.updated": "Password updated",
 
 		"email.sent": "Email sent to your inbox.",
+		"change": "Change ",
 		"send": "Send",
 		"name": "Name",
 		"user.notRegistered": "No user registered with this email address.",
@@ -193,6 +194,10 @@
 		"catalog.Sport": "Sport",
 		"catalog.Thriller": "Thriller",
 		"catalog.War": "War",
-		"catalog.Western": "Western"
+		"catalog.Western": "Western",
+
+		"settings.title.main": "Settings",
+		"settings.title.user": "User Details",
+		"settings.title.account": "Account Details"
 	}
 }

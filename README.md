@@ -12,7 +12,6 @@
 * Convertir les vidéo MKV
 * Langue traduction - Stockée de base dans la base de données
   * Movie
-  * Profile
   * Settings
 * Vidéo favorite et vidéo à voir plus tard (bonus)
 * Firefox
