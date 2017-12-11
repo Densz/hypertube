@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import DynLabel from '../../General/components/DynLabel';
 import { FormattedMessage } from 'react-intl';
 

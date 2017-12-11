@@ -42,7 +42,6 @@ class RstPwdForm extends Component {
 		}
 		let errorBool = false;
 		if (this.state.email.value === '' || this.state.email.value === undefined) {
-			let title = this.state.email.title.toLowerCase();
 			this.setErrorMessage('email', 'form.email.isMissing');
 			errorBool = true;
 		}

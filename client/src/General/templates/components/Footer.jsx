@@ -11,7 +11,7 @@ class Footer extends Component {
     }
 
     componentDidMount() {
-        document.querySelector('#en').style.borderBottom = '1px solid #67DAF9';    // Remplacer #en par la langue favorite     
+        document.querySelector('#en').style.borderBottom = '2px solid #67DAF9';    // Remplacer #en par la langue favorite     
     }
 
     handleOnClickEvent(e) {
@@ -19,12 +19,12 @@ class Footer extends Component {
         switch(language) {
             case "en": 
                 this.props.changeLngToEn();
-                document.querySelector('#en').style.borderBottom = '1px solid #67DAF9';
+                document.querySelector('#en').style.borderBottom = '2px solid #67DAF9';
                 document.querySelector('#fr').style.borderBottom = '';
                 break;
             case "fr": 
                 this.props.changeLngToFr();
-                document.querySelector('#fr').style.borderBottom = '1px solid #67DAF9';
+                document.querySelector('#fr').style.borderBottom = '2px solid #67DAF9';
                 document.querySelector('#en').style.borderBottom = '';
                 break;
             default : console.log('This language is not supported');
