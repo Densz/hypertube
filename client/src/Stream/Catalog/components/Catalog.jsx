@@ -3,7 +3,7 @@ import Thumbnail from './Thumbnail';
 import { callApi } from '../../../ApiCaller/apiCaller';
 import '../css/catalog.css';
 import InfiniteScroll from 'react-infinite-scroller';
-import CatalogNavigation from './catalogNavigation';
+import CatalogNavigation from './CatalogNavigation';
 
 class Catalog extends Component {
 	constructor(props) {

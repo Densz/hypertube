@@ -5,9 +5,9 @@ import SignUp from "./Form/SignUp/components/SignUp";
 import GuestSignUp from "./Form/SignUp/components/GuestSignUp";
 import Settings from "./UserInfo/Settings/components/Settings";
 import Layout from "./General/templates/components/Layout";
-import Catalog from "./Stream/Catalog/components/catalog";
+import Catalog from "./Stream/Catalog/components/Catalog";
 import Profile from "./UserInfo/Profile/components/Profile";
-import Video from "./Stream/Movie/components/movie";
+import Movie from "./Stream/Movie/components/Movie";
 import { isLogged } from "./ApiCaller/apiCaller";
 
 class Routes extends Component {
@@ -84,7 +84,7 @@ class Routes extends Component {
  								<Route path="/video/:categorie/:imdb" render={(props) => (
 									this.props.isLogged ? 
 									(<Redirect to="/" />) :
-									(<Video subscriber={this.state.subscriber} categorie={props.match.params.categorie} imdb={props.match.params.imdb} />)
+									(<Movie subscriber={this.state.subscriber} categorie={props.match.params.categorie} imdb={props.match.params.imdb} />)
 								)} />
 							</Switch>
 						}
