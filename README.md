@@ -8,7 +8,6 @@
 * https://github.com/yahoo/react-intl/wiki#getting-started 
 
 ## TO DO LIST
-* Changer la couleur de la favicon en #CAF2FD
 * Convertir les vidéo MKV
 * Vidéo favorite et vidéo à voir plus tard (bonus)
 * Firefox
