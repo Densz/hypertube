@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CommentBox from './CommentBox';
 import { callApi } from '../../../ApiCaller/apiCaller';
+import { FormattedMessage } from "react-intl";
 import '../css/movie.css';
 
 class CommentBlock extends Component {
@@ -40,7 +41,7 @@ class CommentBlock extends Component {
 				<div className="col-md-12">
 					<h3>
 						<div className="cast-button comment-title">
-							{this.state.commentNumber} Comment{this.state.commentNumber > 1 ? 's': ''}
+							{this.state.commentNumber} <FormattedMessage id={this.state.commentNumber > 1 ? 'movie.comments' : 'movie.comment'} />
 						</div>
 					</h3>
 					<CommentBox commentsInfo={this.state.comment} postComment={this.handlePostComment} infoUser={this.state.infoUser} subscriber={this.props.subscriber} />

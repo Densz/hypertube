@@ -1,5 +1,6 @@
 {
 	"fr": {
+		"form.add": "Ajouter",
 		"form.email": "Adresse email",
 		"form.signin": "S'identifier",
 		"form.passwd": "Mot de passe",
@@ -96,10 +97,17 @@
 		"catalog.War": "Guerre",
 		"catalog.Western": "Western",
 
+		"movie.links": "Liens",
+		"movie.comment": "Commentaire",
+		"movie.comments": "Commentaires",
+		"movie.noCommentYet.1": "Cette vidéo n'a pas encore de commentaire",
+		"movie.noCommentYet.2": "Ajoutez le votre !",
+
 		"settings.title.main": "Paramètres",
 		"settings.title.user": "Détails d'utilisateur",
 		"settings.title.account": "Détails de compte"},
 	"en": {
+		"form.add": "Add",
 		"form.email": "Email address",
 		"form.signin": "Sign in",
 		"form.passwd": "Password",
@@ -195,6 +203,12 @@
 		"catalog.Thriller": "Thriller",
 		"catalog.War": "War",
 		"catalog.Western": "Western",
+
+		"movie.links": "Links",
+		"movie.comment": "Comment",
+		"movie.comments": "Comments",
+		"movie.noCommentYet.1": "This video doesn't have any comment yet.",
+		"movie.noCommentYet.2": "Add yours !",
 
 		"settings.title.main": "Settings",
 		"settings.title.user": "User Details",

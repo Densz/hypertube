@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { callApi } from '../../../ApiCaller/apiCaller';
 import '../css/movie.css';
+import { FormattedMessage } from 'react-intl';
 
 class LinksAvailable extends Component {
 	constructor(props) {
@@ -118,7 +119,7 @@ class LinksAvailable extends Component {
 			return(
 				<div className="col-md-4">
 					<div>
-						<h3 id="available">Links</h3>
+						<h3 id="available"><FormattedMessage id={'movie.links'} /></h3>
 						<div className="links_available">
 							{ episodes }
 						</div>
