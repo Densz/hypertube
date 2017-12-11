@@ -3,13 +3,14 @@ import { Redirect } from 'react-router-dom'
 import SignInBlock from "./SignInBlock";
 import { callApi } from "../../../ApiCaller/apiCaller";
 import InputForm from "../../../General/components/InputForm";
+import { FormattedMessage } from 'react-intl';
 
 class RstPwdPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			passwd: { title: 'Mot de passe', value: '', error: '' },
-			passwdConfirm: { title: 'Confirmation du mot de passe', value: '', error: '' },
+			passwd: { title: 'form.passwd', value: '', error: '' },
+			passwdConfirm: { title: 'form.passwdConfirmation', value: '', error: '' },
 			rstPwd: false
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,14 +47,14 @@ class RstPwdPage extends Component {
 		let errorBool = false;
 		for (var elem in this.state) {
 			if (this.state[elem].title !== undefined && (this.state[elem].value === '' || this.state[elem].value === undefined)) {
-				let title = this.state[elem].title.toLowerCase();
-				this.setErrorMessage(elem, 'Le champ ' + title + ' est vide.');
+				this.setErrorMessage(elem, this.state[elem].title + '.isMissing');
 				errorBool = true;
 			}
 		}
 		if (!errorBool)
 			callApi('/api/auth/rstPwd', 'post', inputValues)
 			.then((response) => {
+				console.log(response)
 				if (!response.success) {
 					const errRes = response.errors;
 					for (var k in errRes) {
@@ -73,7 +74,7 @@ class RstPwdPage extends Component {
 		}
 		return (
 			<SignInBlock>
-				<h3>Réinitialiser votre mot de passe</h3>
+				<h3><FormattedMessage id={'form.resetpasswd.title'} /></h3>
 				<form onSubmit={this.handleSubmit}>
 					<InputForm
 						containerClass="form-group"
@@ -96,7 +97,7 @@ class RstPwdPage extends Component {
 					/>
 					<br />
 					<button className="login-button" type="submit" name="submit" value="submit">
-						Envoyer
+						<FormattedMessage id={'send'} />
 					</button>
 				</form>
 				<br />

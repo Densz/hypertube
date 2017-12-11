@@ -91,7 +91,9 @@ class SignInForm extends Component {
 			<SignInBlock>
 				<h3><FormattedMessage id={'form.signin'}/></h3>
 			{this.state.rstPwdDone &&
-				<div className="alert alert-info">Mot de passe mis a jour.</div>}
+				<div className="alert alert-info">
+					<FormattedMessage id={'info.passwd.updated'} />
+				</div>}
             <form>
                 <InputForm
                     containerClass="form-group"

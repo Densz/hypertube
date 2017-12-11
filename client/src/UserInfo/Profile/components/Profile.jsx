@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/profile.css';
 import { callApi } from '../../../ApiCaller/apiCaller';
+import { FormattedMessage } from "react-intl";
 
 class Profile extends Component {
 	constructor(props) {
@@ -71,7 +72,7 @@ class Profile extends Component {
 						</div>
 						<div className="row info-profile">
 							<div className="col-sm-12">
-								<label>Name :</label><br/>
+								<label><FormattedMessage id={'name'} /> :</label><br/>
 								<span className="text-value">{this.state.userInfo.firstName} {this.state.userInfo.lastName}</span>
 							</div>
 						</div>

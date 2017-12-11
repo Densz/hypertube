@@ -3,17 +3,18 @@ import validator from 'validator';
 import "../css/settings.css";
 import SettingsItem from './SettingsItem';
 import { callApi, isLogged, callApiUpload } from '../../../ApiCaller/apiCaller';
+import { FormattedMessage } from "react-intl";
 
 class MyProfile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            firstName: {title: 'First Name', value: 'Fake', error: ''},
-            lastName: {title: 'Last Name', value: 'Person', error: ''},
-            email: {title: 'Email', value: 'fake@spam.com', error: ''},
-            login: {title: 'Login', value: 'fakeperson69', error: 'heyyyyy'},
-            passwd: {title: 'Password', value: '**********', error: ''},
-            passwdConfirm: {title: 'Confirm Password', value: '', error: ''},
+            firstName: {title: 'form.firstName', value: 'Fake', error: ''},
+            lastName: {title: 'form.lastName', value: 'Person', error: ''},
+            email: {title: 'form.email', value: 'fake@spam.com', error: ''},
+            login: {title: 'form.login', value: 'fakeperson69', error: 'heyyyyy'},
+            passwd: {title: 'form.passwd', value: '**********', error: ''},
+            passwdConfirm: {title: 'form.passwordConfirmation', value: '', error: ''},
 			picturePath: { value: '/images/heisenberg.png'},
 			pictureError: ''
         };
@@ -32,16 +33,16 @@ class MyProfile extends Component {
 				item = this.state[name];
 			if (value === '' || value === undefined) {
 				errorBool = true;
-				error = "Please enter updated " + item.title.toLowerCase();
+				error = item.title + ".isMissing";
 			} else if (name === 'email') {
 				if (!validator.isEmail(value)) {
 					errorBool = true;
-					error = 'Please provide a correct email address';
+					error = 'form.email.incorrect';
 				}
 			} else if (name === 'passwd') {
 				if (value.trim().length < 6) {
 					errorBool = true;
-					error = 'Password must have at least 6 characters';
+					error = 'form.passwd.length';
 				}
 			}
 			if (errorBool) {
@@ -102,11 +103,11 @@ class MyProfile extends Component {
 		}
 
 		if (pictureFile.size > 3145728) {
-			this.setState({ pictureError: 'Image trop volumineuse' });
+			this.setState({ pictureError: 'picture.tooBig' });
 			errorBool = true;
 		}
 		if (extAllowed.indexOf(extName.toLowerCase()) === -1) {
-			this.setState({ pictureError: 'Extension d\'image non pris en charge' });
+			this.setState({ pictureError: 'picture.invalidExtension' });
 			errorBool = true;
 		}
 		if (!errorBool) {
@@ -162,11 +163,11 @@ class MyProfile extends Component {
                 <div className="container">
 					{this.state.pictureError !== '' &&
 					<div className="alert alert-danger fix-alert-danger">
-						{this.state.pictureError}
+						<FormattedMessage id={this.state.pictureError} />
 					</div>}
 					<div className="col-md-3" />
 					<div className="col-md-9">
-						<h1>Settings</h1>
+						<h1><FormattedMessage id={'settings.title.main'} /></h1>
 					</div>
 					<br/>
 					<div className="row">
@@ -178,30 +179,30 @@ class MyProfile extends Component {
 						<div className="col-md-9">
 							<div className="row account-section">
 								<div className="col-md-3">
-									<h4>User Details</h4>
+									<h4><FormattedMessage id={'settings.title.user'} /></h4>
 								</div>
 								<div className="col-md-9 top-margin">
 									<div className="row form-group align-middle detail-section">
 										<div>
 											<div className="col-md-12" onClick={this.handleClick}>
-												<label>{this.state.login.title} :</label>
+												<label>Login :</label>
 												<div className="text-value">
 													{this.state.login.value}
 												</div>
 											</div>
 										</div>
 									</div>
-									<SettingsItem name='firstName' type='text' capitalize={this.stringCapitalize} title={this.state.firstName.title + ' :'} item={this.state.firstName} submitData={this.submitData} />
-									<SettingsItem name='lastName' type='text' capitalize={this.stringCapitalize} title={this.state.lastName.title + ' :'} item={this.state.lastName} submitData={this.submitData} />
+									<SettingsItem name='firstName' type='text' capitalize={this.stringCapitalize} title={'form.firstName'} item={this.state.firstName} submitData={this.submitData} />
+									<SettingsItem name='lastName' type='text' capitalize={this.stringCapitalize} title={'form.lastName'} item={this.state.lastName} submitData={this.submitData} />
 								</div>
 							</div>
 							<div className="row account-section">
 								<div className="col-md-3">
-									<h4>Account Details</h4>
+									<h4><FormattedMessage id={'settings.title.account'} /></h4>
 								</div>
 								<div className="col-md-9 top-margin">
-									<SettingsItem name='email' type='email' capitalize={this.stringCapitalize} title={this.state.email.title + ' :'} item={this.state.email} submitData={this.submitData} />
-									<SettingsItem name='passwd' type='password' capitalize={this.stringCapitalize} title={this.state.passwd.title + ' :'} item={this.state.passwd} submitData={this.submitData} />
+									<SettingsItem name='email' type='email' capitalize={this.stringCapitalize} title={'form.email'} item={this.state.email} submitData={this.submitData} />
+									<SettingsItem name='passwd' type='password' capitalize={this.stringCapitalize} title={'form.passwd'} item={this.state.passwd} submitData={this.submitData} />
 								</div>
 							</div>
 						</div>

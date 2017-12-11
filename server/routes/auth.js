@@ -224,13 +224,13 @@ router.post('/rstPwd', (req, res, next) => {
 
 	if (typeof passwd !== 'string' || passwd.trim().length < 6) {
 		isFormValid = false;
-		errors.passwd = 'Password must have at least 6 characters';
-		errors.passwdConfirm = 'Password must have at least 6 characters'
+		errors.passwd = 'form.passwd.length';
+		errors.passwdConfirm = 'form.passwdConfirmation.length'
 	}
 	if (passwdConfirm !== passwd) {
 		isFormValid = false;
-		errors.passwd = 'Password must match Password confirmation ';
-		errors.passwdConfirm = 'Password confirmation must match Password';
+		errors.passwd = 'form.passwd.mustMatch';
+		errors.passwdConfirm = 'form.passwdConfirmation.mustMatch';
 	}
 	if (isFormValid) {
 		const value = bcrypt.hashSync(passwd, bcrypt.genSaltSync(8), null);

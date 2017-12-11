@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactTooltip from 'react-tooltip';
+import { FormattedMessage } from "react-intl";
 
 class ProfileItem extends Component {
 	constructor(props) {
@@ -78,7 +79,7 @@ class ProfileItem extends Component {
 					<div className="input-group">
 						<input autoFocus className="form-control" name={this.props.name} onChange={this.handleInput} type={this.state.type.value} value={this.state.tmpValue} placeholder={this.props.item.title} />
 						<span className="input-group-btn">
-							<button onClick={this.handleSubmit} className="btn" type="submit">Change {this.props.item.title}</button>
+							<button onClick={this.handleSubmit} className="btn" type="submit"><FormattedMessage id={'change'} /><FormattedMessage id={this.props.item.title} /></button>
 						</span>
 					</div>
 				</div>
@@ -86,8 +87,8 @@ class ProfileItem extends Component {
 		) : (
 				<div>
 					<div className="col-md-12" onClick={this.handleClick}>
-						<label>{this.props.title}</label>
-						{this.props.item.error && <div className="error-message" >{this.props.item.error}</div>}
+						<label><FormattedMessage id={this.props.title} />{' :'}</label>
+						{this.props.item.error && <div className="error-message" ><FormattedMessage id={this.props.item.error} /></div>}
 						<div className="text-left text-value" data-tip="Click to change">{this.state.value}</div>
 						<ReactTooltip place="right" type="dark" effect="solid" />
 					</div>

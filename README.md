@@ -8,12 +8,9 @@
 * https://github.com/yahoo/react-intl/wiki#getting-started 
 
 ## TO DO LIST
+* Changer la couleur de la favicon en #CAF2FD
 * Convertir les vidéo MKV
 * Langue traduction - Stockée de base dans la base de données
-  * RstPwdPage
   * Movie
-  * Profile
-  * Settings
-* Langue favorite ??
 * Vidéo favorite et vidéo à voir plus tard (bonus)
 * Firefox

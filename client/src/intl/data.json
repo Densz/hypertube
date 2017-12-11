@@ -29,16 +29,19 @@
 		"form.lastName.isMissing": "Le champ nom est vide",
 		
 		"form.forgottenpasswd": "Mot de passe oublié ?",
+
+		"form.resetpasswd.title": "Réinitialiser votre mot de passe",
+
 		"form.signup": "Inscrivez-vous",
 		"form.signup.title": "Inscrivez-vous pour profitez de vos films et séries préférées",
 		"form.signup.createNewAccount": "Créez votre compte",
 
 		"form.guestSignup.title": "Finalisez votre inscription pour profiter de toutes les fonctionnalités du site",
 		"form.guestSignup.createNewAccount": "Mettez à jour votre compte",
-		
+
 		"picture.missingPicture": "Vous devez choisir une photo pour vous inscrire",
 		"picture.invalidExtension": "Extension d'image non pris en charge",
-		"picture.tooBig": "Fichier trop volumineux",
+		"picture.tooBig": "Image trop volumineuse",
 
 		"form.signupwithfacebook": "S'identifier avec Facebook ?",
 		"form.signupwithfortytwo": "S'identifier avec 42 - Born2Code?",
@@ -48,8 +51,12 @@
 		"error.login.invalid": "Le login n'existe pas",
 		"error.password.incorrect": "Le mot de passe est incorrect",
 
+		"info.passwd.updated": "Mot de passe mis à jour",
+
 		"email.sent": "Un email a été envoyé.",
 		"send": "Envoyer",
+		"change": "Changer de ",
+		"name": "Nom",
 		"user.notRegistered": "L'utilisateur n'est pas enregistré dans la base de données.",
 
 		"catalog.searchFor": "Recherche par titre de film ou de serie",
@@ -87,8 +94,11 @@
 		"catalog.Sport": "Sport",
 		"catalog.Thriller": "Thriller",
 		"catalog.War": "Guerre",
-		"catalog.Western": "Western"
-	},
+		"catalog.Western": "Western",
+
+		"settings.title.main": "Paramètres",
+		"settings.title.user": "Détails d'utilisateur",
+		"settings.title.account": "Détails de compte"},
 	"en": {
 		"form.email": "Email address",
 		"form.signin": "Sign in",
@@ -119,13 +129,16 @@
 		"form.lastName.isMissing": "Last name is missing",
 		
 		"form.forgottenpasswd": "Forgotten password?",
+
+		"form.resetpasswd.title": "Reset your password",
+
 		"form.signup": "Sign up",
 		"form.signup.title": "Sign up to discover all the new movies and series",
 		"form.signup.createNewAccount": "Create a new account",
 
 		"form.guestSignup.title": "Complete the form below to fully enjoy the website features",
 		"form.guestSignup.createNewAccount": "Update your infos",
-		
+
 		"picture.missingPicture": "You need to upload a picture to sign up",
 		"picture.invalidExtension": "Wrong file extension",
 		"picture.tooBig": "File too big",
@@ -138,8 +151,12 @@
 		"error.login.invalid": "Login does not exist",
 		"error.password.incorrect": "Wrong password",
 
+		"info.passwd.updated": "Password updated",
+
 		"email.sent": "Email sent to your inbox.",
+		"change": "Change ",
 		"send": "Send",
+		"name": "Name",
 		"user.notRegistered": "No user registered with this email address.",
 
 		"catalog.searchFor": "Search by Title",
@@ -177,6 +194,10 @@
 		"catalog.Sport": "Sport",
 		"catalog.Thriller": "Thriller",
 		"catalog.War": "War",
-		"catalog.Western": "Western"
+		"catalog.Western": "Western",
+
+		"settings.title.main": "Settings",
+		"settings.title.user": "User Details",
+		"settings.title.account": "Account Details"
 	}
 }
