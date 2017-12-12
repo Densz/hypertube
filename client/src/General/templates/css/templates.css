@@ -68,7 +68,7 @@ body {
 }
 
 #sign-in-link:hover {
-    color: #3d84c1
+    color: #3d84c1;
 }
 
 .navbar-bottom {
@@ -134,7 +134,8 @@ body {
 }
 
 .info-guest {
-	height: 100px;
+    height: 100px;
+    z-index: 11;
     top: 58px;
     border: 2px solid #333;
     color: white;

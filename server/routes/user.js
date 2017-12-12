@@ -125,9 +125,7 @@ router.post('/update', async (req, res, next) => {
 
 router.post('/updatePassport', (req, res) => {
 	const data = req.body;
-	console.log(data);
 	for(var key in data) {
-		console.log(key, data[key]);
 		if (key === 'passwd' || key === 'password') {
 			key = 'password';
 			data[key] = bcrypt.hashSync(data[key], bcrypt.genSaltSync(8), null);
@@ -139,6 +137,42 @@ router.post('/updatePassport', (req, res) => {
 		req.user[key] = data[key]
 	}
 	res.json({ success: true, msg: 'Done' });
+});
+
+router.post('/actionUserVideo', (req, res, next) => {
+	if (req.user.login === undefined) {
+		res.json({ success: false, msg: 'user.actionUserVideo' });
+	}
+	if (req.body.dismiss === true) {
+		const key = req.body.key;
+		const value = req.body.value;
+		User.update({login: req.user.login}, {$pull: {[key]: value}}, (err) => {
+			if (err) res.json({ success: false, msg: 'Database issue ' + err });
+			else {
+				const indexVideo = req.user[key].indexOf(value);
+				req.user[key].splice(indexVideo, 1);
+				res.json({ success: true, msg: 'Action dismissed', userInfo: req.user });
+			}
+		})
+	} else {
+		next();
+	}
+});
+
+router.post('/actionUserVideo', (req, res) => {
+	const key = req.body.key;
+	const value = req.body.value;
+	if (key === 'wishList' || key === 'videoLiked') {
+		User.update({login: req.user.login}, {$push: {[key]: value}}, (err, result) => {
+			if (err) res.json({ success: false, msg: 'Database issue ' + err });
+			else {
+				req.user[key].push(value);
+				res.json({ success: true, msg: 'Action performed', userInfo: req.user });
+			}
+		});
+	} else {
+		res.json({ success: false, msg: 'This action doesn\'t exist' });
+	}
 });
 
 module.exports = router;

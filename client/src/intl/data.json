@@ -105,7 +105,13 @@
 
 		"settings.title.main": "Paramètres",
 		"settings.title.user": "Détails d'utilisateur",
-		"settings.title.account": "Détails de compte"},
+		"settings.title.account": "Détails de compte",
+
+		"user.guest.title": "Profil invité",
+		"user.guest.popUp.text": "Pour avoir accès à toutes les fonctionalitées du site créez-vous un compte",
+		"user.guest.popUp.click": "Cliquez ici !",
+		"user.actionUserVideo": "Complétez votre inscription pour avoir accès à cette fonctionalitée"
+	},
 	"en": {
 		"form.add": "Add",
 		"form.email": "Email address",
@@ -212,6 +218,11 @@
 
 		"settings.title.main": "Settings",
 		"settings.title.user": "User Details",
-		"settings.title.account": "Account Details"
+		"settings.title.account": "Account Details",
+
+		"user.guest.title": "Guest profile",
+		"user.guest.popUp.text": "To have a complete access to all fonctionalities complete your subscription",
+		"user.guest.popUp.click": "Click here!",
+		"user.actionUserVideo": "Complete your subscription to have access to this fonctionality"
 	}
 }

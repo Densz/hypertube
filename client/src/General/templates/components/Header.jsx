@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { logOut } from '../../../ApiCaller/apiCaller';
+import { FormattedMessage } from "react-intl";
 
 const InfoGuest = (props) => {
 	return(
 		<div className="info-guest">
 			<img src="/icons/multimedia/cancel.png" alt="cancel" className="close-info-guest" onClick={() => { props.infoGuest(false) }} />
-			<span>{props.guestInfoText}</span><br/>
-			<a href="/guestSignUp">Cliquez ici !</a>
+			<FormattedMessage id={props.guestInfoText} /><br/>
+			<a href="/guestSignUp"><FormattedMessage id={'user.guest.popUp.click'} /></a>
 		</div>
 	);
 }
@@ -40,7 +41,7 @@ const ComponentRendered = (props) => {
 		} else {
 			rendering.push(
 				<p className="navbar-guest-text" key={rendering.length}>
-					Guest Profile
+					<FormattedMessage id={'user.guest.title'} />
 					<img src="/icons/essential/info.png" className="navbar-guest-logo" alt="question-mark" onClick={() => { props.infoGuest(true) }} />
 				</p>
 			);
@@ -58,7 +59,7 @@ class Header extends Component {
 			isLogged: false,
 			infoGuestOn: false,
 			subscriber: this.props.subscriber,
-			guestInfoText: 'Pour avoir accès à toutes les fonctionnalités du site créez-vous un compte'
+			guestInfoText: 'user.guest.popUp.text'
 		}
 		this.handleInfoGuest = this.handleInfoGuest.bind(this);
     }

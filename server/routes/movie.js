@@ -11,10 +11,10 @@ router.get('/', (req, res) => {
 		videoSeenTmp.push(req.query.idMovie);
 		User.update({email: req.user.email}, {videoSeen: videoSeenTmp}, (err) => {
 			if (err) res.json({ success: false, msg: 'Database error ' + err });
-			else res.json({ success: true, msg: 'This movie is now seen !' })
+			else res.json({ success: true, msg: 'This movie is now seen !', userInfo: req.user })
 		});
 	} else {
-		res.json({ success: true, msg: 'Movie already seen' });
+		res.json({ success: true, msg: 'Movie already seen', userInfo: req.user });
 	}
 });
 

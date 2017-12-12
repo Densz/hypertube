@@ -119,7 +119,9 @@ class LinksAvailable extends Component {
 			return(
 				<div className="col-md-4">
 					<div>
-						<h3 id="available"><FormattedMessage id={'movie.links'} /></h3>
+						<h3 id="available">
+							<FormattedMessage id={'movie.links'} />
+						</h3>
 						<div className="links_available">
 							{ episodes }
 						</div>

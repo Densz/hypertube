@@ -10,4 +10,6 @@
 ## TO DO LIST
 * Convertir les vidéo MKV
 * Vidéo favorite et vidéo à voir plus tard (bonus)
+  * Fait pour movie page plus que le front a faire dans la profile page
 * Firefox
+* GuestSignUp - Submit bug parfois probablement asynchronus bug

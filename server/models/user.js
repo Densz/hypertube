@@ -42,6 +42,14 @@ const userSchema = mongoose.Schema({
 	videoSeen: {
 		type: Array,
 		required: false
+	},
+	videoLiked: {
+		type: Array,
+		required: false
+	},
+	wishList: {
+		type: Array,
+		required: false
 	}
 })
 
