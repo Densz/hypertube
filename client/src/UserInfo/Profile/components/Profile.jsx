@@ -78,12 +78,12 @@ class Profile extends Component {
 						</div>
 					</div>
 				</div>
-				<div className="row">
-					<div className="col-sm-6">
-						
+				<div className="row tab-user-action">
+					<div className="col-sm-6" id="wish-list">
+						<h2><FormattedMessage id={'profile.wishList'} /></h2>
 					</div>
-					<div className="col-sm-6">
-						
+					<div className="col-sm-6" id="video-like">
+						<h2><FormattedMessage id={'profile.videoLiked'} /></h2>
 					</div>
 				</div>
 			</div>

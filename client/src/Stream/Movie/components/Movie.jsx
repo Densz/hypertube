@@ -5,7 +5,6 @@ import Description from './Description';
 import LinksAvailable from './LinksAvailable';
 import CommentBlock from './CommentBlock';
 import Cast from './Cast';
-import { FormattedMessage } from 'react-intl';
 
 export default class Movie extends Component {
 	constructor(props) {

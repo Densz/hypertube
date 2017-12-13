@@ -43,3 +43,24 @@
 	padding-right: inherit;
 	width: 100%;
 }
+
+.tab-user-action {
+	margin-top: 100px;
+    position: absolute;
+    width: 100%;
+	bottom: 0;
+	text-align: center;
+    top: 350px;
+	padding-bottom: 50px;
+	border-top: 2px solid grey;
+}
+
+#video-like {
+	border-left: 2px solid grey;
+	height: 100%;
+}
+
+#wish-list {
+	height: 100%;
+	
+}

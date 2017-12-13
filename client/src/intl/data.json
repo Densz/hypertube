@@ -107,6 +107,9 @@
 		"settings.title.user": "Détails d'utilisateur",
 		"settings.title.account": "Détails de compte",
 
+		"profile.videoLiked": "Vidéos favorites",
+		"profile.wishList": "À voir plus tard",
+
 		"user.guest.title": "Profil invité",
 		"user.guest.popUp.text": "Pour avoir accès à toutes les fonctionalitées du site créez-vous un compte",
 		"user.guest.popUp.click": "Cliquez ici !",
@@ -210,6 +213,9 @@
 		"catalog.War": "War",
 		"catalog.Western": "Western",
 
+		"profile.videoLiked": "Favorite video",
+		"profile.wishList": "Watch later",
+		
 		"movie.links": "Links",
 		"movie.comment": "Comment",
 		"movie.comments": "Comments",
