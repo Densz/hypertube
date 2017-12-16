@@ -115,7 +115,6 @@ router.post('/', (req, res) => {
             OpenSubtitles.search({
                 imdbid: req.body.imdb
             }).then(async (subtitles) => {
-                console.log(subtitles);
                 if (subtitles.en || subtitles.fr) {
                     let Eng = undefined;
                     let Fra = undefined;
