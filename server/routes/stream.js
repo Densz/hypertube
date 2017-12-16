@@ -37,13 +37,25 @@ function compareSeeds(a, b) {
 	return (0);
 }
 
-function initiateStream(stream, length, res) {
-	const header = {
-		'Content-Length': length,
-		'Content-Type': 'video/mp4'
-	};
-	res.writeHead(200, header);
-	stream.pipe(res);
+function initiateStream(stream, extension, res) {
+	const converter = ffmpeg()
+	.input(stream)
+	.outputOption('-movflags frag_keyframe+empty_moov')
+	.outputFormat('mp4')
+	.output(res)
+	// .on('codecData', (codecData) => {
+	// 	console.log('fluent-ffmpeg Notice: CodecData:', codecData);
+	// })
+	// .on('start', (cmd) => { console.log('fluent-ffmpeg Notice: Started:', cmd); })
+	// .on('progress', (progress) => { console.log('fluent-ffmpeg Notice: Progress:', progress.timemark, 'converted'); })
+	.on('error', (err, stdout, stderr) => {	});
+	converter.inputFormat(extension.substr(1))
+	.audioCodec('aac')
+	.videoCodec('libx264')
+	.run();
+	res.on('close', () => {
+		converter.kill();
+	});
 }
 
 function sendError(err, res) {
@@ -121,15 +133,16 @@ function streamMkv(stream, res) {
 	.outputOption('-movflags frag_keyframe+empty_moov')
 	.outputFormat('mp4')
 	.output(res)
-	
+	.on('error', (err, stdout, stderr) => { });
 	converter.addOption('-vcodec')
 	.addOption('copy')
 	.addOption('-acodec')
 	.addOption('copy')
 	.run();
 	res.on('close', () => {
+		console.log('converter killed');
 		converter.kill();
-	})					
+	})
 }
 
 router.get('/film/:id/:quality?', async (req, res) => {
@@ -176,7 +189,7 @@ router.get('/film/:id/:quality?', async (req, res) => {
 										if (!err) console.log("Film " + video.file.name + " saved successfully.");
 								});
 							});
-							initiateStream(stream, video.file.length, res);
+							initiateStream(stream, extension, res);
 						}
 					} catch (err) {
 						sendError(err, res);	
@@ -246,7 +259,7 @@ router.get('/series/:id/:season/:episode', async (req, res) => {
 										if (!err) console.log("Episode " + video.file.name + " saved successfully.");
 									});
 							});
-							initiateStream(stream, video.file.length, res);
+							initiateStream(stream, extension, res);
 						}
 					} catch (err) {
 						sendError(err, res);
