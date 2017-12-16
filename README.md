@@ -9,6 +9,8 @@
 
 ## TO DO LIST
 * Convertir les vidéo MKV
+* Sign In: login sensible a la casse ...
+* Sous-titre: checker l'unicode
 * Vidéo favorite et vidéo à voir plus tard (bonus)
   * Fait pour movie page plus que le front a faire dans la profile page
 * Firefox

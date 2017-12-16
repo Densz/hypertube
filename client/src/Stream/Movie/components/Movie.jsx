@@ -31,22 +31,30 @@ export default class Movie extends Component {
 		const bodyStyle = document.body.style;
 		bodyStyle.backgroundColor = '#20232a';
 
-		callApi('/api/movie?idMovie=' + this.props.imdb)
+		callApi("/api/movie/getDataFromDatabase", "post", { imdb: this.props.imdb, categorie: this.props.categorie })
 		.then((response) => {
-			if (response.success) {
-				this.setState({ userInfo: response.userInfo});
-				if (this.state.userInfo.login !== undefined) {
-					if (response.userInfo.videoLiked.indexOf(this.props.imdb) !== -1) {
-						this.changeIcon('videoLiked', '/icons/essential/like-1-filled.png')
-						this.setState({ videoLiked: true });
-					} 
-					if (response.userInfo.wishList.indexOf(this.props.imdb) !== -1) {
-						this.changeIcon('videoLiked', '/icons/essential/checked-1.png')
-						this.setState({ wishList: true });
+			this.setState({
+				movieInfo: response
+			})
+		})
+		.then(() => {
+			callApi('/api/movie?idMovie=' + this.props.imdb)
+			.then((response) => {
+				if (response.success) {
+					this.setState({ userInfo: response.userInfo });
+					if (this.state.userInfo.login !== undefined) {
+						if (response.userInfo.videoLiked.indexOf(this.state.movieInfo.cover_url) !== -1) {
+							this.changeIcon('videoLiked', '/icons/essential/like-1-filled.png')
+							this.setState({ videoLiked: true });
+						} 
+						if (response.userInfo.wishList.indexOf(this.state.movieInfo.cover_url) !== -1) {
+							this.changeIcon('wishList', '/icons/essential/checked-1.png')
+							this.setState({ wishList: true });
+						}
 					}
 				}
-			}
-		});
+			});
+		})
 	}
 	
 	changeIcon(idIcon, iconPath) {
@@ -63,12 +71,6 @@ export default class Movie extends Component {
 	}
 
 	componentWillMount() {
-		callApi("/api/movie/getDataFromDatabase", "post", { imdb: this.props.imdb, categorie: this.props.categorie })
-		.then((response) => {
-			this.setState({
-				movieInfo: response
-			})
-		})
 	}
 
 	ifIsMovieGetQuality(quality) {
@@ -109,7 +111,7 @@ export default class Movie extends Component {
 		const key = event.target.id; 
 		let data = {
 			'key': key,
-			'value': this.props.imdb
+			'value': this.state.movieInfo.cover_url
 		}
 		if (!this.state[key]) {
 			callApi('/api/user/actionUserVideo', 'post', data)
