@@ -168,7 +168,7 @@ export default class Movie extends Component {
 					key="serie"
 					className="embed-responsive-item" 
 					controls poster={this.state.movieInfo.backdrop_path && "https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}
-					src={"http://localhost:3001/api/series/" + this.state.selectedSerie.tvdb_id + "/" + this.state.selectedSerie.season + "/" + this.state.selectedSerie.episode}
+					src={"http://localhost:3001/api/stream/series/" + this.props.imdb + "/" + this.state.selectedSerie.season + "/" + this.state.selectedSerie.episode}
 					type="video/mp4"
 				>
 					{ subtitles }

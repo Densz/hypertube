@@ -95,7 +95,6 @@ router.post('/', (req, res) => {
                 season: req.body.serie.season,
                 episode: req.body.serie.episode
             }).then(async (subtitles) => {
-                console.log(subtitles);
                 if (subtitles.en || subtitles.fr) {
                     let Eng = undefined;
                     let Fra = undefined;
