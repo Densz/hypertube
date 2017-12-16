@@ -8,8 +8,9 @@
 * https://github.com/yahoo/react-intl/wiki#getting-started 
 
 ## TO DO LIST
-* Convertir les vidéo MKV
 * Vidéo favorite et vidéo à voir plus tard (bonus)
   * Fait pour movie page plus que le front a faire dans la profile page
 * Firefox
 * GuestSignUp - Submit bug parfois probablement asynchronus bug
+* GuestSignUp - Error React side (A component is changing a controlled input of type text to be uncontrolled.)
+* Need to protect movie page with redirecting
