@@ -37,7 +37,7 @@ router.post('/getDataFromDatabase', (req, res) => {
 				let returnValue = await addTmdbInfo(result.toJSON(), req.body.imdb);
 				res.json(returnValue);
 			} catch(e) {
-				console.log(e);
+				//console.log(e);
 			}
 		})
 	} else {
@@ -46,7 +46,7 @@ router.post('/getDataFromDatabase', (req, res) => {
 				let returnValue = await addTmdbInfo(result.toJSON(), req.body.imdb);
 				res.json(returnValue);
 			} catch(e) {
-				console.log(e);
+				//console.log(e);
 			}
 		})
 	}

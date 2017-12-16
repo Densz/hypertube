@@ -142,18 +142,19 @@ export default class Movie extends Component {
 		let subtitles = [];
 		if (this.state.subtitlesEn) {
 			subtitles.push(
-				<track key="en" label="English" kind="subtitles" srclang="en" src={ this.state.subtitlesEn }></track>
+				<track key="en" label="English" kind="subtitles" srcLang="en" src={ this.state.subtitlesEn }></track>
 			)
 		}
 		if (this.state.subtitlesFr) {
 			subtitles.push(
-				<track key="fr" label="French" kind="subtitles" srclang="fr" src={ this.state.subtitlesFr }></track>
+				<track key="fr" label="French" kind="subtitles" srcLang="fr" src={ this.state.subtitlesFr }></track>
 			)
 		}
 		if (this.state.qualitySelected){
 			video.push(
 				<video
 					movie="movie"
+					key="movie"
 					className="embed-responsive-item" 
 					controls poster={this.state.movieInfo.backdrop_path && "https://image.tmdb.org/t/p/w1400_and_h450_bestv2/" + this.state.movieInfo.backdrop_path}
 					src={"http://localhost:3001/api/stream/film/" + this.props.imdb + "/" + this.state.qualitySelected}
