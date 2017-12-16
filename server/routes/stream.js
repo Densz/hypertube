@@ -43,11 +43,6 @@ function initiateStream(stream, extension, res) {
 	.outputOption('-movflags frag_keyframe+empty_moov')
 	.outputFormat('mp4')
 	.output(res)
-	// .on('codecData', (codecData) => {
-	// 	console.log('fluent-ffmpeg Notice: CodecData:', codecData);
-	// })
-	// .on('start', (cmd) => { console.log('fluent-ffmpeg Notice: Started:', cmd); })
-	// .on('progress', (progress) => { console.log('fluent-ffmpeg Notice: Progress:', progress.timemark, 'converted'); })
 	.on('error', (err, stdout, stderr) => {	});
 	converter.inputFormat(extension.substr(1))
 	.audioCodec('aac')
