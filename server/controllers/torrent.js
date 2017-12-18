@@ -22,7 +22,7 @@ module.exports = class Torrent {
     onFinished(cb) {
         this.engine.on('idle', () => {
             cb();
-            this.engine.destroy();
+            // this.engine.destroy();
         });
     }
 
@@ -38,8 +38,7 @@ module.exports = class Torrent {
             this.engine.on('ready', () => {
                 files = this.engine.files;
 
-                length = files.length;
-
+				length = files.length;
                 if (length == 0)
                     reject(new Error('Torrent contains no files.'));
 
@@ -48,9 +47,12 @@ module.exports = class Torrent {
 
                 // find largest video file and return it for use
                 files.forEach((file) => {
+					console.log(file.path);
                     let ext = path.extname(file.path)
-                    if (mimeTypes[ext])
-                        resolve({ file: file, ext: ext });
+					if (mimeTypes[ext]) {
+						console.log([ext]);
+						resolve({ file: file, ext: ext });
+					}
                 });
 
                 // throw error if torrent has no video files

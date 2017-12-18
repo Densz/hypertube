@@ -164,26 +164,26 @@ router.get('/film/:id/:quality?', async (req, res) => {
 					try {
 						let video = await torrent.getVideo();
 						let extension = getFileExtension(video.file.name);
-						let stream = video.file.createReadStream();						
-						console.log("Downloading: " + video.file.name);
+						let stream = video.file.createReadStream();
+						console.log("Starting: " + video.file.name);
+						torrent.onFinished(function() {
+							Video.findOneAndUpdate({
+									imdb_id: id,
+									quality: quality
+								}, {
+									imdb_id: id,
+									quality: quality,
+									series: false,
+									hash: hash,
+									last_watched: Date.now()								
+								}, { upsert: true },
+								function (err) {
+									if (!err) console.log("Film " + video.file.name + " saved successfully.");
+							});
+						});
 						if (extension === '.mkv') {
 							streamMkv(stream, res);
 						} else {
-							torrent.onFinished(function() {
-								Video.findOneAndUpdate({
-										imdb_id: id,
-										quality: quality
-									}, {
-										imdb_id: id,
-										quality: quality,
-										series: false,
-										hash: hash,
-										last_watched: Date.now()								
-									}, { upsert: true },
-									function (err) {
-										if (!err) console.log("Film " + video.file.name + " saved successfully.");
-								});
-							});
 							initiateStream(stream, extension, res);
 						}
 					} catch (err) {
@@ -234,26 +234,26 @@ router.get('/series/:id/:season/:episode', async (req, res) => {
 						console.log("Downloading: " + video.file.name);
 						let extension = getFileExtension(video.file.name);
 						let stream = video.file.createReadStream();
+						torrent.onFinished(function () {
+							Video.findOneAndUpdate({
+								imdb_id: id,
+								season: season,
+								episode: episode
+							}, {
+								imdb_id: id,
+								season: season,
+								episode: episode,
+								series: true,
+								hash: hash,
+								last_watched: Date.now()
+							}, { upsert: true },
+							function (err) {
+								if (!err) console.log("Episode " + video.file.name + " saved successfully.");
+							});
+						});
 						if (extension === '.mkv') {
 							streamMkv(stream, res);
 						} else {
-							torrent.onFinished(function () {
-								Video.findOneAndUpdate({
-									imdb_id: id,
-									season: season,
-									episode: episode
-								}, {
-										imdb_id: id,
-										season: season,
-										episode: episode,
-										series: true,
-										hash: hash,
-										last_watched: Date.now()
-									}, { upsert: true },
-									function (err) {
-										if (!err) console.log("Episode " + video.file.name + " saved successfully.");
-									});
-							});
 							initiateStream(stream, extension, res);
 						}
 					} catch (err) {
