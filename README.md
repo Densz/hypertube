@@ -17,3 +17,17 @@
 * GuestSignUp - Submit bug parfois probablement asynchronus bug
 * GuestSignUp - Error React side (A component is changing a controlled input of type text to be uncontrolled.)
 * Need to protect movie page with redirecting
+* mot de passe (sécurisé, un mot de francais courant quelconque ne doit pas être accepté, par exemple) 
+* La section avec le player n'est accessible qu'aux utilisateurs connectés ? 
+* Le lancement d'une video doit lancer le téléchargement de la video sur le serveur via le protocole BitTorrent. Dès que la lecture intégrale ininterrompue est possible, le player commence à streamer la video. 
+
+## BONUS
+* Traduction du site - checked
+* Google Auth
+* Steam Auth
+* Twitch Auth
+* Github Auth - checked
+* 720p 1080p
+
+## Link 
+* https://www.npmjs.com/package/node-schedule

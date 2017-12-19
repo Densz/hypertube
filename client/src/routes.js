@@ -8,6 +8,7 @@ import Layout from "./General/templates/components/Layout";
 import Catalog from "./Stream/Catalog/components/Catalog";
 import Profile from "./UserInfo/Profile/components/Profile";
 import Movie from "./Stream/Movie/components/Movie";
+import NotFound from "./notFound";
 import { isLogged } from "./ApiCaller/apiCaller";
 
 class Routes extends Component {
@@ -78,14 +79,15 @@ class Routes extends Component {
 										( <Redirect to="/" /> ) : 
 										( <Catalog /> )
 								)} />
-								<Route path="/resetPassword/:id?" render={(props) => (
-								<SignIn checkIfIsLogged={this.checkIfIsLogged} idResetPassword={props.match.params.id} />
-								)}/>
- 								<Route path="/video/:categorie/:imdb" render={(props) => (
-									this.props.isLogged ? 
+								<Route path="/video/:categorie/:imdb" render={(props) => (
+									!this.state.isLogged ? 
 									(<Redirect to="/" />) :
 									(<Movie subscriber={this.state.subscriber} categorie={props.match.params.categorie} imdb={props.match.params.imdb} />)
 								)} />
+								<Route path="/resetPassword/:id?" render={(props) => (
+								<SignIn checkIfIsLogged={this.checkIfIsLogged} idResetPassword={props.match.params.id} />
+								)}/>
+								<Route path="*" component={ NotFound } />
 							</Switch>
 						}
                     </div>
