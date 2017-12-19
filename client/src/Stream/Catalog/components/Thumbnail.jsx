@@ -8,8 +8,6 @@ class ThumbnailEztv extends Component {
 		};
 		this.showInfo = this.showInfo.bind(this);
 		this.hideInfo = this.hideInfo.bind(this);
-		// this.title = (this.props.infos.title_english.length > 10) ? (this.props.infos.title_english.substring(0, 9) + '...') : (this.props.infos.title_english);
-		// this.title = (this.props.infos.title_english);
 	}
 
 	showInfo() {

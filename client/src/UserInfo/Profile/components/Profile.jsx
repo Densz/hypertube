@@ -24,7 +24,15 @@ class Profile extends Component {
 			if (response.success) {
 				this.setState({userInfo: response.data})
 			}
-		});
+		})
+		// .then(() => {
+		// 	console.log('test')
+		// 	const coverArray = { coverArray: this.state.userInfo.wishList};
+		// 	callApi('/api/movie/getInfoMovie', 'post', coverArray)
+		// 	.then((resp) => {
+		// 		console.log(resp);
+		// 	})
+		// });
 	}
 
 	handleUpdateSearch(event, whitebox) {
@@ -36,11 +44,31 @@ class Profile extends Component {
 					whitebox = [];
 				}
 			}
-		})
+		});
 	}
 
 	render() {
 		let whitebox = [];
+		// let wishList =[];
+		// let videoLiked =[];
+		// if (this.state.userInfo.wishList !== undefined) {
+		// 	this.state.userInfo.wishList.map((elem, index) => {
+		// 		wishList.push(	
+		// 			<div>
+		// 				<img src={elem} />
+		// 			</div >
+		// 		);
+		// 	})
+		// }
+		// if (this.state.userInfo.videoLiked !== undefined) {
+		// 	this.state.userInfo.videoLiked.map((elem, index) => {
+		// 		videoLiked.push(
+		// 			<div>
+		// 				<img src={elem} />
+		// 			</div >
+		// 		);
+		// 	})
+		// }
 		this.state.resultSearch.forEach((elem, index) => {
 			whitebox.push(<div key={index} ><a href={"/profile?login=" + elem.login}>{elem.firstName} {elem.lastName} ({elem.login})</a></div>)
 		})
@@ -78,14 +106,24 @@ class Profile extends Component {
 						</div>
 					</div>
 				</div>
-				<div className="row tab-user-action">
+				{/* <div className="row tab-user-action">
 					<div className="col-sm-6" id="wish-list">
 						<h2><FormattedMessage id={'profile.wishList'} /></h2>
+						{this.state.userInfo.wishList.length > 0 &&
+							<div className="wishList">
+								{wishList}
+							</div>
+						}
 					</div>
 					<div className="col-sm-6" id="video-like">
 						<h2><FormattedMessage id={'profile.videoLiked'} /></h2>
+						{this.state.userInfo.videoLiked.length > 0 &&
+							<div className="videoLiked">
+								{videoLiked}
+							</div>
+						}
 					</div>
-				</div>
+				</div> */}
 			</div>
 		);
 	}
