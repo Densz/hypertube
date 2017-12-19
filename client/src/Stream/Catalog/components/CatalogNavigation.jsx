@@ -68,40 +68,96 @@ class CatalogNavigation extends Component {
 						<div className="form-group">
 						<label className="blue-font"><FormattedMessage id="catalog.sortBy"/></label>
 							<select className="form-control black" id="sortBy" onChange={this.changeSelectInput}>
-								<option value="rating"><FormattedMessage id="catalog.note"/></option>
-								<option value="year"><FormattedMessage id="catalog.releasedDate"/></option>
-								<option value="title"><FormattedMessage id="catalog.title"/></option>
+								<FormattedMessage id="catalog.note" children={
+									(formatedMessage) => <option value="rating">{formatedMessage}</option>
+								}/>
+								<FormattedMessage id="catalog.releasedDate" children={
+									(formatedMessage) => <option value="year">{formatedMessage}</option>
+								}/>
+								<FormattedMessage id="catalog.title" children={
+									(formatedMessage) => <option value="title">{formatedMessage}</option>
+								}/>
 							</select>
 						</div>
 					</div>
 					<div className="col-sm-3">
 						<label className="blue-font">Genre</label>
 						<select className="form-control black" id="genre" name="Genre" onChange={this.changeSelectInput}>
-							<option value="all"><FormattedMessage id="catalog.All"/></option>
-							<option value="Action"><FormattedMessage id="catalog.Action"/></option>
-							<option value="Adventure"><FormattedMessage id="catalog.Adventure"/></option>
-							<option value="Animation"><FormattedMessage id="catalog.Animation"/></option>
-							<option value="Biography"><FormattedMessage id="catalog.Biography"/></option>
-							<option value="Comedy"><FormattedMessage id="catalog.Comedy"/></option>
-							<option value="Crime"><FormattedMessage id="catalog.Crime"/></option>
-							<option value="Documentary"><FormattedMessage id="catalog.Documentary"/></option>
-							<option value="Drama"><FormattedMessage id="catalog.Drama"/></option>
-							<option value="Family"><FormattedMessage id="catalog.Family"/></option>
-							<option value="Fantasy"><FormattedMessage id="catalog.Fantasy"/></option>
-							<option value="Film-Noir"><FormattedMessage id="catalog.Film-Noir"/></option>
-							<option value="History"><FormattedMessage id="catalog.History"/></option>
-							<option value="Horror"><FormattedMessage id="catalog.Horror"/></option>
-							<option value="Music"><FormattedMessage id="catalog.Music"/></option>
-							<option value="Musical"><FormattedMessage id="catalog.Musical"/></option>
-							<option value="Mystery"><FormattedMessage id="catalog.Mystery"/></option>
-							<option value="News"><FormattedMessage id="catalog.News"/></option>
-							<option value="Romance"><FormattedMessage id="catalog.Romance"/></option>
-							<option value="Sci-Fi"><FormattedMessage id="catalog.Sci-Fi"/></option>
-							<option value="Short"><FormattedMessage id="catalog.Short"/></option>
-							<option value="Sport"><FormattedMessage id="catalog.Sport"/></option>
-							<option value="Thriller"><FormattedMessage id="catalog.Thriller"/></option>
-							<option value="War"><FormattedMessage id="catalog.War"/></option>
-							<option value="Western"><FormattedMessage id="catalog.Western"/></option>
+							<FormattedMessage id="catalog.All" children={
+								(formatedMessage) => <option value="all">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Action" children={
+								(formatedMessage) => <option value="Action">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Adventure" children={
+								(formatedMessage) => <option value="Adventure">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Animation" children={
+								(formatedMessage) => <option value="Animation">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Biography" children={
+								(formatedMessage) => <option value="Biography">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Comedy" children={
+								(formatedMessage) => <option value="Comedy">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Crime" children={
+								(formatedMessage) => <option value="Crime">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Documentary" children={
+								(formatedMessage) => <option value="Documentary">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Drama" children={
+								(formatedMessage) => <option value="Drama">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Family" children={
+								(formatedMessage) => <option value="Family">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Fantasy" children={
+								(formatedMessage) => <option value="Fantasy">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Film-Noir" children={
+								(formatedMessage) => <option value="Film-Noir">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.History" children={
+								(formatedMessage) => <option value="History">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Horror" children={
+								(formatedMessage) => <option value="Horror">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Music" children={
+								(formatedMessage) => <option value="Music">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Musical" children={
+								(formatedMessage) => <option value="Musical">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Mystery" children={
+								(formatedMessage) => <option value="Mystery">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.News" children={
+								(formatedMessage) => <option value="News">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Romance" children={
+								(formatedMessage) => <option value="Romance">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Sci-Fi" children={
+								(formatedMessage) => <option value="Sci-Fi">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Short" children={
+								(formatedMessage) => <option value="Short">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Sport" children={
+								(formatedMessage) => <option value="Sport">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Thriller" children={
+								(formatedMessage) => <option value="Thriller">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.War" children={
+								(formatedMessage) => <option value="War">{formatedMessage}</option>
+							}/>
+							<FormattedMessage id="catalog.Western" children={
+								(formatedMessage) => <option value="Western">{formatedMessage}</option>
+							}/>
 						</select>
 					</div>
 					<div className="col-sm-3"></div>

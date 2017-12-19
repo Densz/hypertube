@@ -13,6 +13,7 @@
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "express-session": "^1.15.6",
+    "fluent-ffmpeg": "^2.1.2",
     "jade": "~1.11.0",
     "moment": "^2.19.2",
     "mongoose": "^4.12.3",

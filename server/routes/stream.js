@@ -10,6 +10,7 @@ const torrentOptions = require('../config/torrent');
 const fs = require('fs');
 const path = require('path');
 const parseTorrent = require('parse-torrent');
+const ffmpeg = require('fluent-ffmpeg');
 
 function getHash(magnet) {
 	let info = parseTorrent(magnet);
@@ -36,13 +37,20 @@ function compareSeeds(a, b) {
 	return (0);
 }
 
-function initiateStream(stream, length, res) {
-	const header = {
-		'Content-Length': length,
-		'Content-Type': 'video/mp4'
-	};
-	res.writeHead(200, header);
-	stream.pipe(res);
+function initiateStream(stream, extension, res) {
+	const converter = ffmpeg()
+	.input(stream)
+	.outputOption('-movflags frag_keyframe+empty_moov')
+	.outputFormat('mp4')
+	.output(res)
+	.on('error', (err, stdout, stderr) => {	});
+	converter.inputFormat(extension.substr(1))
+	.audioCodec('aac')
+	.videoCodec('libx264')
+	.run();
+	res.on('close', () => {
+		converter.kill();
+	});
 }
 
 function sendError(err, res) {
@@ -108,19 +116,41 @@ function findEpisode(id, seasonNum, episodeNum) {
 	});
 }
 
+function getFileExtension(string) {
+	let extension = string.match(/.*(\..+?)$/);
+	console.log(extension[1]);
+	return extension[1].toLowerCase();
+}
+
+function streamMkv(stream, res) {
+	const converter = ffmpeg()
+	.input(stream)
+	.outputOption('-movflags frag_keyframe+empty_moov')
+	.outputFormat('mp4')
+	.output(res)
+	.on('error', (err, stdout, stderr) => { });
+	converter.addOption('-vcodec')
+	.addOption('copy')
+	.addOption('-acodec')
+	.addOption('copy')
+	.run();
+	res.on('close', () => {
+		console.log('converter killed');
+		converter.kill();
+	})
+}
+
 router.get('/film/:id/:quality?', async (req, res) => {
 	let id = req.params.id,
 		quality = req.params.quality || "",
 		hash = false;
 
 	console.log("IMDB ID: " + id + ", Quality: " + quality);
-	
 	if (id) {
 		try {
 			hash = await getFilm(id, quality);
 			console.log("Film already downloaded, hash: " + hash);
 		} catch(err) {
-			// console.log(err);
 			try {
 				hash = await findFilm(id, quality);
 			} catch (err) {
@@ -133,8 +163,9 @@ router.get('/film/:id/:quality?', async (req, res) => {
 					let torrent = new Torrent(hash);
 					try {
 						let video = await torrent.getVideo();
+						let extension = getFileExtension(video.file.name);
 						let stream = video.file.createReadStream();
-						console.log("Downloading: " + video.file.name);
+						console.log("Starting: " + video.file.name);
 						torrent.onFinished(function() {
 							Video.findOneAndUpdate({
 									imdb_id: id,
@@ -150,18 +181,22 @@ router.get('/film/:id/:quality?', async (req, res) => {
 									if (!err) console.log("Film " + video.file.name + " saved successfully.");
 							});
 						});
-						initiateStream(stream, video.file.length, res);
+						if (extension === '.mkv') {
+							streamMkv(stream, res);
+						} else {
+							initiateStream(stream, extension, res);
+						}
 					} catch (err) {
 						sendError(err, res);	
-						return;											
+						return;
 					}
 				} catch (err) {
 					sendError(err, res);
-					return;					
+					return;
 				}
 			} else {
 				sendError(new Error("Unable to find torrent for this film."), res);
-				return;				
+				return;
 			}				
 		}
 	} else {
@@ -197,6 +232,7 @@ router.get('/series/:id/:season/:episode', async (req, res) => {
 					try {
 						let video = await torrent.getVideo();
 						console.log("Downloading: " + video.file.name);
+						let extension = getFileExtension(video.file.name);
 						let stream = video.file.createReadStream();
 						torrent.onFinished(function () {
 							Video.findOneAndUpdate({
@@ -204,18 +240,22 @@ router.get('/series/:id/:season/:episode', async (req, res) => {
 								season: season,
 								episode: episode
 							}, {
-									imdb_id: id,
-									season: season,
-									episode: episode,
-									series: true,
-									hash: hash,
-									last_watched: Date.now()
-								}, { upsert: true },
-								function (err) {
-									if (!err) console.log("Episode " + video.file.name + " saved successfully.");
-								});
+								imdb_id: id,
+								season: season,
+								episode: episode,
+								series: true,
+								hash: hash,
+								last_watched: Date.now()
+							}, { upsert: true },
+							function (err) {
+								if (!err) console.log("Episode " + video.file.name + " saved successfully.");
+							});
 						});
-						initiateStream(stream, video.file.length, res);
+						if (extension === '.mkv') {
+							streamMkv(stream, res);
+						} else {
+							initiateStream(stream, extension, res);
+						}
 					} catch (err) {
 						sendError(err, res);
 						return;
