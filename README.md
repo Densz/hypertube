@@ -8,12 +8,9 @@
 * https://github.com/yahoo/react-intl/wiki#getting-started 
 
 ## TO DO LIST
-<<<<<<< HEAD
 * Convertir les vidéo MKV
 * Sign In: login sensible a la casse ...
 * Sous-titre: checker l'unicode
-=======
->>>>>>> b9930d8201eb7ba77077144cc8e9534f4eac30c6
 * Vidéo favorite et vidéo à voir plus tard (bonus)
   * Fait pour movie page plus que le front a faire dans la profile page
 * Firefox
