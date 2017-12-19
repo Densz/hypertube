@@ -45,8 +45,9 @@
 		"picture.tooBig": "Image trop volumineuse",
 
 		"form.signupwithfacebook": "S'identifier avec Facebook ?",
-		"form.signupwithfortytwo": "S'identifier avec 42 - Born2Code?",
+		"form.signupwithfortytwo": "S'identifier avec 42 - Born2Code ?",
 		"form.signupwithgithub": "S'identifier avec Github ?",
+		"form.signupwithgoogle": "S'identifier avec Google ?",
 		"form.firstvisit": "Première visite sur Hypertube ?",
 
 		"error.login.invalid": "Le login n'existe pas",
@@ -163,6 +164,7 @@
 		"form.signupwithfacebook": "Sign in with Facebook?",
 		"form.signupwithfortytwo": "Sign in with 42 - Born2Code?",
 		"form.signupwithgithub": "Sign in with Github?",
+		"form.signupwithgoogle": "Sign in with Google?",		
 		"form.firstvisit": "First visit on Hypertube?",
 
 		"error.login.invalid": "Login does not exist",

@@ -11,5 +11,9 @@ module.exports = {
 	githubApi: {
 		clientID: '2c3cac4bc098a169e05c',
 		clientSecret: 'cbf83108b5735134a501f0592f537b1515c79e58'
+	},
+	googleApi: {
+		clientID: '801086557387-sb7vgk4d0pdmt5s8ik45n4dqb8940qld.apps.googleusercontent.com',
+		clientSecret: 'Tdp7qrd9BWtazvHUxFNXajnl'
 	}
 }

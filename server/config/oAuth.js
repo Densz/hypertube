@@ -2,8 +2,40 @@ const fbStrategy = require('passport-facebook').Strategy;
 const ftStrategy = require('passport-42').Strategy;
 const ghStrategy = require('passport-github').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
+const gleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const config = require('./config');
 const User = require('../models/user');
+
+const SCOPE = ['https://www.googleapis.com/auth/gmail.readonly'];
+
+const googleStrategy = new gleStrategy({
+		clientID: config.googleApi.clientID,
+		clientSecret: config.googleApi.clientSecret,
+		callbackURL: '/api/login/google/callback',
+		// scope: SCOPE,
+	}, (accessToken, refreshToken, profile, done) => {
+		console.log('====================================');
+		console.log(profile.emails[0].value);
+		console.log('====================================');
+		User.findOne({ $or: [{ googleId: profile.id }, { email: profile.emails[0].value }] }, (err, user) => {
+			if (err) { return done(err) };
+			if (!user) {
+				user = new User({
+					firstName: profile.name.givenName,
+					lastName: profile.name.familyName,
+					email: profile.emails[0].value,
+					googleId : profile.id
+				})
+				user.save(function (err) {
+					if (err) { console.log(err) };
+					return done(err, user);
+				})
+			} else {
+				return done(err, user);
+			}
+		})
+	}
+);
 
 const githubStrategy = new ghStrategy({
 		clientID: config.githubApi.clientID,
@@ -116,5 +148,6 @@ module.exports = {
 	facebookStrategy: facebookStrategy,
 	fortytwoStrategy: fortytwoStrategy,
 	githubStrategy: githubStrategy,
-	localStrategy: localStrategy
+	localStrategy: localStrategy,
+	googleStrategy: googleStrategy
 }
