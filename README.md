@@ -23,11 +23,11 @@
 
 ## BONUS
 * Traduction du site - checked
-* Google Auth
+* Google Auth - checked
 * Steam Auth
 * Twitch Auth
 * Github Auth - checked
-* 720p 1080p
+* 720p 1080p - checked
 
 ## Link 
 * https://www.npmjs.com/package/node-schedule
