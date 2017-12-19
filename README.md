@@ -24,8 +24,7 @@
 ## BONUS
 * Traduction du site - checked
 * Google Auth - checked
-* Steam Auth
-* Twitch Auth
+* Twitch Auth - checked
 * Github Auth - checked
 * 720p 1080p
 
