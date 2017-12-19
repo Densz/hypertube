@@ -139,6 +139,10 @@ class SignInForm extends Component {
 			<img src="/images/google.png" className="oAuth-logo" alt="google" />&nbsp;&nbsp;
 			<a href="http://localhost:3001/api/login/google" className="oAuth-text">
 				<FormattedMessage id={'form.signupwithgoogle'} />
+			</a><br/>
+			<img src="/images/kappa.png" alt="twich" className="oAuth-logo"/>&nbsp;&nbsp;
+			<a href="http://localhost:3001/api/login/twitch" className="oAuth-text">
+				<FormattedMessage id={'form.signupwithtwitch'} />
 			</a>
 			<hr/>
             <p>
