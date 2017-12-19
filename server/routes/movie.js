@@ -110,4 +110,79 @@ router.post('/getEpisodes', (req, res) => {
 	})
 });
 
+const getInfoYify = (cover) => {
+	return new Promise((res, rej) => {
+		let ret = {};
+		Yify.findOne({cover_url: cover}, {imdb_id: 1}, (err, result) => {
+			if (err) rej({success: false, error: err});
+			else if (result) {
+				ret.imdb_id = result.imdb_id;
+				ret.categorie = 'movies';
+				ret.cover_url = cover;
+				res({ success: true, ret: ret });
+			}
+			else {
+				res({ success: false, error: 'This cover is\'nt in the db' });
+			}
+		});
+	})
+}
+
+const getInfoEztv = (cover) => {
+	return new Promise((res, rej) => {
+		let ret = {};
+		Eztv.findOne({ cover_url: cover }, { imdb_id: 1 }, (err, result) => {
+			if (err) rej({ success: false, error: err });
+			else if (result) {
+				ret.imdb_id = result.imdb_id;
+				ret.categorie = 'tv_shows';
+				ret.cover_url = cover;
+				res({ success: true, ret: ret });
+			}
+			else {
+				res({ success: false, error: 'This cover is\'nt in the db' });
+			}
+		});
+	})
+}
+
+const foreachArray = (coverArray, ret) => {
+	return new Promise((res, rej) => {
+		coverArray.forEach((elem, index) => {
+			if (elem.indexOf('yts') !== -1) {
+				getInfoYify(elem)
+				.then((response) => {
+					if (!response.success) rej({ success: false, msg: 'Database fail ' + response.error });
+					else {
+						ret.push(response.ret);
+						if (coverArray.length - 1 === index)
+							res({ success: true, data: ret });
+					}
+				});
+			} else {
+				getInfoEztv(elem)
+				.then((response) => {
+					if (!response.success) rej({ success: false, msg: 'Database fail ' + response.error });
+					else {
+						ret.push(response.ret);
+						if (coverArray.length - 1 === index)
+							res({ success: true, data: ret });
+					}
+				})
+			}
+		});
+	})
+}
+
+router.post('/getInfoMovie', async (req, res) => {
+	const coverArray = req.body.coverArray;
+	let ret = [];
+	ret = await foreachArray(coverArray, ret);
+	if (ret.success) {
+		res.json({ success: true, data: ret });
+	} else {
+		res.json({ success: false, msg: ret.msg });
+	}
+});
+
 module.exports = router;
