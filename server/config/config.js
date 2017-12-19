@@ -15,5 +15,9 @@ module.exports = {
 	googleApi: {
 		clientID: '801086557387-sb7vgk4d0pdmt5s8ik45n4dqb8940qld.apps.googleusercontent.com',
 		clientSecret: 'Tdp7qrd9BWtazvHUxFNXajnl'
+	},
+	twitchApi: {
+		clientID: 'fqwfl6syu65b1gr3ydxrb5ezdqgj19',
+		clientSecret: '2akcv93n34mno6h9g5dnozlapmehxs'
 	}
 }

@@ -23,7 +23,14 @@ const subtitles = require('./routes/subtitles');
 const maintenance = require('./controllers/maintenance');
 
 // Import Strategies
-import { facebookStrategy, fortytwoStrategy, localStrategy, githubStrategy, googleStrategy } from './config/oAuth';
+import { 
+	facebookStrategy,
+	fortytwoStrategy,
+	localStrategy,
+	githubStrategy,
+	googleStrategy,
+	twitchStrategy
+} from './config/oAuth';
 // Import test
 const User = require('./models/user');
 
@@ -32,6 +39,7 @@ passport.use(facebookStrategy);
 passport.use(googleStrategy);
 passport.use(fortytwoStrategy);
 passport.use(localStrategy);
+passport.use(twitchStrategy);
 
 passport.serializeUser(function(user, done) {
 	done(null, user);
@@ -77,20 +85,19 @@ app.get('/api/loginFailure', (req, res) => {
 // Authentication Routes using Passport
 app.post('/api/login', passport.authenticate('local',  { failureRedirect: '/api/loginFailure', failureFlash: true }), function(req, res) {
 	res.json({success: true, msg: 'Login succesfully done'})
-})
+});
 app.get('/api/login/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 app.get('/api/login/facebookCallback', passport.authenticate('facebook', { failureRedirect: '/' }), function(req, res) {
 	res.redirect('http://localhost:3000/catalog');
-})
+});
 app.get('/api/login/fortytwo', passport.authenticate('42'));
 app.get('/api/login/fortytwoCallback', passport.authenticate('42', { failureRedirect: '/' }), function(req, res) {
 	res.redirect('http://localhost:3000/catalog');
-})
+});
 app.get('/api/login/github', passport.authenticate('github'));
 app.get('/api/login/github/callback', passport.authenticate('github', { failureRedirect: '/' }), function(req, res) {
 	res.redirect('http://localhost:3000/catalog');
 });
-
 app.get('/api/login/google', passport.authenticate('google', { scope: 
 	['https://www.googleapis.com/auth/plus.login',
 	 'https://www.googleapis.com/auth/plus.profile.emails.read'] }
@@ -98,7 +105,10 @@ app.get('/api/login/google', passport.authenticate('google', { scope:
 app.get('/api/login/google/callback', passport.authenticate('google', { failureRedirect: '/' }), function(req, res) {
 	res.redirect('http://localhost:3000/catalog');
 });
-
+app.get('/api/login/twitch', passport.authenticate('twitch'));
+app.get('/api/login/twitch/callback', passport.authenticate('twitch', { failureRedirect: '/' }), function(req, res) {
+	res.redirect('http://localhost:3000/catalog');
+});
 app.use(function() {
 	setInterval(maintenance.removeOld, 86400000);
 });
