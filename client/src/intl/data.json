@@ -48,6 +48,7 @@
 		"form.signupwithfortytwo": "S'identifier avec 42 - Born2Code ?",
 		"form.signupwithgithub": "S'identifier avec Github ?",
 		"form.signupwithgoogle": "S'identifier avec Google ?",
+		"form.signupwithtwitch": "S'identifier avec Twitch ?",
 		"form.firstvisit": "Première visite sur Hypertube ?",
 
 		"error.login.invalid": "Le login n'existe pas",
@@ -164,7 +165,8 @@
 		"form.signupwithfacebook": "Sign in with Facebook?",
 		"form.signupwithfortytwo": "Sign in with 42 - Born2Code?",
 		"form.signupwithgithub": "Sign in with Github?",
-		"form.signupwithgoogle": "Sign in with Google?",		
+		"form.signupwithgoogle": "Sign in with Google?",
+		"form.signupwithtwitch": "Sign in with Twitch?",
 		"form.firstvisit": "First visit on Hypertube?",
 
 		"error.login.invalid": "Login does not exist",

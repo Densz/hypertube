@@ -43,6 +43,10 @@ const userSchema = mongoose.Schema({
 		type: String,
 		require: false
 	},
+	twitchId: {
+		type: String,
+		require: false
+	},
 	videoSeen: {
 		type: Array,
 		required: false

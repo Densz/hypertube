@@ -3,20 +3,40 @@ const ftStrategy = require('passport-42').Strategy;
 const ghStrategy = require('passport-github').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const gleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const kappaStrategy = require('passport-twitch').Strategy;
 const config = require('./config');
 const User = require('../models/user');
 
-const SCOPE = ['https://www.googleapis.com/auth/gmail.readonly'];
+const twitchStrategy = new kappaStrategy({
+		clientID: config.twitchApi.clientID,
+		clientSecret: config.twitchApi.clientSecret,
+		callbackURL: '/api/login/twitch/callback',
+		scope: "user_read"
+	}, (accessToken, refreshToken, profile, done) => {
+		console.log(profile);
+		User.findOne({ $or: [{ twitchId: profile.id }, { email: profile.email }] }, (err, user) => {
+			if (err) { return done(err) };
+			if (!user) {
+				user = new User({
+					email: profile.email,
+					twitchId: profile.id
+				})
+				user.save(function (err) {
+					if (err) { console.log(err) };
+					return done(err, user);
+				})
+			} else {
+				return done(err, user);
+			}
+		})
+	}
+)
 
 const googleStrategy = new gleStrategy({
 		clientID: config.googleApi.clientID,
 		clientSecret: config.googleApi.clientSecret,
-		callbackURL: '/api/login/google/callback',
-		// scope: SCOPE,
+		callbackURL: '/api/login/google/callback'
 	}, (accessToken, refreshToken, profile, done) => {
-		console.log('====================================');
-		console.log(profile.emails[0].value);
-		console.log('====================================');
 		User.findOne({ $or: [{ googleId: profile.id }, { email: profile.emails[0].value }] }, (err, user) => {
 			if (err) { return done(err) };
 			if (!user) {
@@ -149,5 +169,6 @@ module.exports = {
 	fortytwoStrategy: fortytwoStrategy,
 	githubStrategy: githubStrategy,
 	localStrategy: localStrategy,
-	googleStrategy: googleStrategy
+	googleStrategy: googleStrategy,
+	twitchStrategy: twitchStrategy
 }

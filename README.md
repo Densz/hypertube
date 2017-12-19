@@ -23,7 +23,7 @@
 
 ## BONUS
 * Traduction du site - checked
-* Google Auth
+* Google Auth - checked
 * Steam Auth
 * Twitch Auth
 * Github Auth - checked
