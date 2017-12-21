@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', (req, res, next) => {
-  res.json({ title: 'Express ta soeur' });
+  res.json({ title: 'Index page' });
 });
 
 router.post('/', (req, res, next) => {

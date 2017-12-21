@@ -93,7 +93,7 @@ const localStrategy = new LocalStrategy({
 		passwordField: 'password'
 	},
 	function(username, password, done) {
-	  User.findOne({ login: username }, function(err, user) {
+	  User.findOne({ login: username.toLowerCase() }, function(err, user) {
 		if (err) { return done(err); }
 		if (!user) {
 			return done(null, false, { message: 'Incorrect username.' });

@@ -8,21 +8,16 @@
 * https://github.com/yahoo/react-intl/wiki#getting-started 
 
 ## TO DO LIST
-* Convertir les vidéo MKV
-* Sign In: login sensible a la casse ...
-* Sous-titre: checker l'unicode
-* Vidéo favorite et vidéo à voir plus tard (bonus)
-  * Fait pour movie page plus que le front a faire dans la profile page
-* Firefox
+* Firefox - Problem logout
 * GuestSignUp - Submit bug parfois probablement asynchronus bug
 * GuestSignUp - Error React side (A component is changing a controlled input of type text to be uncontrolled.)
-* Need to protect movie page with redirecting
 * mot de passe (sécurisé, un mot de francais courant quelconque ne doit pas être accepté, par exemple) 
-* La section avec le player n'est accessible qu'aux utilisateurs connectés ? 
-* Le lancement d'une video doit lancer le téléchargement de la video sur le serveur via le protocole BitTorrent. Dès que la lecture intégrale ininterrompue est possible, le player commence à streamer la video. 
+* Le lancement d'une video doit lancer le téléchargement de la video sur le serveur via le protocole BitTorrent. Dès que la lecture intégrale ininterrompue est possible, le player commence à streamer la video.
+* Vidéo favorite et vidéo à voir plus tard (bonus)
+	* Fait pour movie page plus que le front a faire dans la profile page
 
 ## BONUS
-* Traduction du site - checked
+* Traduction du site - checked 
 * Google Auth - checked
 * Twitch Auth - checked
 * Github Auth - checked
