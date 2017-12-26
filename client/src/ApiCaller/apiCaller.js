@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const callApi = (url, method = 'get', params = undefined) => {
 	return new Promise((res, rej) => {
 		let json = {
@@ -42,7 +44,15 @@ const logOut = () => {
 			res(response.json());
 		})
 		.catch((error) => {
-			rej(error);
+			axios.get('/api/auth/signOut')
+			.then((response) => { 
+				// console.log(response)
+				res(response.json());
+			})
+			.catch((error) => {
+				console.log('axios logout');
+				// console.log(error);
+			})
 		});
 	});
 };

@@ -12,43 +12,7 @@ const InfoGuest = (props) => {
 	);
 }
 
-const ComponentRendered = (props) => {
-    let rendering = [];
-    if (props.signInButton) {
-        rendering.push(
-			<a href="/" key={rendering.length}>
-				<img src="/icons/interface/login.png" alt="logout" className="navbar-logo log-logo" />
-			</a>
-		);
-	}
-	if (props.isLogged) {
-		rendering.push(
-			<a href="/" key={rendering.length}>
-				<img src="/icons/interface/logout.png" className="navbar-logo log-logo" alt="hypertube" onClick={logOut} />
-			</a >
-		);
-		if (props.subscriber) {
-			rendering.push(
-				<a href="/settings" key={rendering.length}>
-					<img src="/icons/multimedia/settings.png" className="navbar-logo" alt="hypertube" />
-				</a >
-			);
-			rendering.push(
-				<a href={"/profile?login=" + props.userInfo.login} key={rendering.length}>
-					<img src="/icons/multimedia/avatar.png" className="navbar-logo" alt="hypertube" />
-				</a >
-			)
-		} else {
-			rendering.push(
-				<p className="navbar-guest-text" key={rendering.length}>
-					<FormattedMessage id={'user.guest.title'} />
-					<img src="/icons/essential/info.png" className="navbar-guest-logo" alt="question-mark" onClick={() => { props.infoGuest(true) }} />
-				</p>
-			);
-		}
-    }
-    return rendering;
-};
+
 
 class Header extends Component {
     constructor(props) {
@@ -108,7 +72,49 @@ class Header extends Component {
 		}
 	}
 
+	logOut() {
+		logOut().then((response) => { console.log(response) })
+	}
+
     render() {
+		const ComponentRendered = (props) => {
+			let rendering = [];
+			if (props.signInButton) {
+				rendering.push(
+					<a href="/" key={rendering.length}>
+						<img src="/icons/interface/login.png" alt="logout" className="navbar-logo log-logo" />
+					</a>
+				);
+			}
+			if (props.isLogged) {
+				rendering.push(
+					<a href="/" key={rendering.length}>
+						<img src="/icons/interface/logout.png" className="navbar-logo log-logo" alt="hypertube" onClick={this.logOut} />
+					</a >
+				);
+				if (props.subscriber) {
+					rendering.push(
+						<a href="/settings" key={rendering.length}>
+							<img src="/icons/multimedia/settings.png" className="navbar-logo" alt="hypertube" />
+						</a >
+					);
+					rendering.push(
+						<a href={"/profile?login=" + props.userInfo.login} key={rendering.length}>
+							<img src="/icons/multimedia/avatar.png" className="navbar-logo" alt="hypertube" />
+						</a >
+					)
+				} else {
+					rendering.push(
+						<p className="navbar-guest-text" key={rendering.length}>
+							<FormattedMessage id={'user.guest.title'} />
+							<img src="/icons/essential/info.png" className="navbar-guest-logo" alt="question-mark" onClick={() => { props.infoGuest(true) }} />
+						</p>
+					);
+				}
+			}
+			return rendering;
+		};
+
         return(
             <nav className="navbar">
 				<a href="/">
