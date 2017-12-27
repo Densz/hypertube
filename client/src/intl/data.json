@@ -14,11 +14,11 @@
 		"form.email.incorrect": "Veuillez entrer une adresse email correcte",	
 
 		"form.passwd.isMissing": "Le champ mot de passe est vide",
-		"form.passwd.length": "Votre mot de passe doit faire au moins 6 caractères",
+		"form.passwd.length": "Votre mot de passe doit faire au moins 6 caractères, avoir 1 nombre et 1 lettre",
 		"form.passwd.mustMatch": "Les mots de passe ne sont pas identiques",
 		
 		"form.passwdConfirmation.isMissing": "Le champ confirmation du mot de passe est vide",
-		"form.passwdConfirmation.length": "Le champ mot de passe doit faire au moins 6 caractères",
+		"form.passwdConfirmation.length": "Le champ mot de passe doit faire au moins 6 caractères, avoir 1 nombre et 1 lettre",
 		"form.passwdConfirmation.mustMatch": "Les mots de passe ne sont pas identiques",
 		
 		"form.login.isMissing": "Le champ login est vide",
@@ -132,11 +132,11 @@
 		"form.email.incorrect": "Please provide a correct email address",
 
 		"form.passwd.isMissing": "Password is missing",
-		"form.passwd.length": "Password must have at least 6 characters",
+		"form.passwd.length": "Password must have at least 6 characters, with 1 number and 1 letter",
 		"form.passwd.mustMatch": "Password must match Password confirmation",
 
 		"form.passwdConfirmation.isMissing": "Password confirmation is missing",
-		"form.passwdConfirmation.length": "Password must have at least 6 characters",
+		"form.passwdConfirmation.length": "Password must have at least 6 characters, with 1 number and 1 letter",
 		"form.passwdConfirmation.mustMatch": "Password Confirmatiomn must match Password",
 		
 		"form.login.isMissing": "Login is missing",

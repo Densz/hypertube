@@ -62,7 +62,7 @@ class Routes extends Component {
 								<Route path="/guestSignUp" render={() => (
 									!this.state.isLogged || this.state.subscriber ?
 										( <Redirect to="/" />) :
-										( <GuestSignUp checkIfIsLogged={this.checkIfIsLogged} />)
+										( <GuestSignUp checkIfIsLogged={this.checkIfIsLogged} /> )
 								)} />
 								<Route path="/settings" render={() => (
 									!this.state.isLogged  || !this.state.subscriber ?
@@ -71,8 +71,8 @@ class Routes extends Component {
 								)} />
 								<Route path="/profile" render={() => (
 									!this.state.isLogged || !this.state.subscriber ?
-										(<Redirect to="/" />) :
-										(<Profile userInfo={this.state.infos} />)
+										( <Redirect to="/" /> ) :
+										( <Profile userInfo={this.state.infos} /> )
 								)} />
 								<Route path="/catalog" render={() => (
 									!this.state.isLogged ?
@@ -80,12 +80,12 @@ class Routes extends Component {
 										( <Catalog /> )
 								)} />
 								<Route path="/video/:categorie/:imdb" render={(props) => (
-									!this.state.isLogged ? 
-									(<Redirect to="/" />) :
-									(<Movie subscriber={this.state.subscriber} categorie={props.match.params.categorie} imdb={props.match.params.imdb} />)
+									!this.state.isLogged ?
+									( <Redirect to="/" /> ) :
+									( <Movie subscriber={this.state.subscriber} categorie={props.match.params.categorie} imdb={props.match.params.imdb} /> )
 								)} />
 								<Route path="/resetPassword/:id?" render={(props) => (
-								<SignIn checkIfIsLogged={this.checkIfIsLogged} idResetPassword={props.match.params.id} />
+									<SignIn checkIfIsLogged={this.checkIfIsLogged} idResetPassword={props.match.params.id} />
 								)}/>
 								<Route path="*" component={ NotFound } />
 							</Switch>
