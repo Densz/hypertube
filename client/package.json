@@ -4,6 +4,7 @@
   "proxy": "http://localhost:3001/",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
     "create-torrent": "^3.29.2",
     "rc-slider": "^8.4.0",
     "react": "^16.1.0",
