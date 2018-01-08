@@ -84,7 +84,7 @@ router.post('/update', async (req, res, next) => {
 		await checkNewEmail(value)
 		.then((response) => {
 			if (!response.success) {
-				res.json({success: false, msg: 'form.email.alreadyTakens', oldValue: { name: 'email', value: req.user.email } });
+				res.json({success: false, msg: 'form.email.alreadyTaken', oldValue: { name: 'email', value: req.user.email } });
 			} else {
 				const set = {[key]: value};
 				User.update({ _id: req.user._id }, {$set: set }, (err, result) => {

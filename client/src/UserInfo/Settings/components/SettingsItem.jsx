@@ -77,7 +77,7 @@ class ProfileItem extends Component {
 			<div>
 				<div className="col-md-12" tabIndex="1" >
 					<div className="input-group">
-						<input autoFocus className="form-control" name={this.props.name} onChange={this.handleInput} type={this.state.type.value} value={this.state.tmpValue} placeholder={this.props.item.title} />
+						<input autoFocus className="form-control" name={this.props.name} onChange={this.handleInput} type={this.state.type.value} value={this.state.tmpValue} />
 						<span className="input-group-btn">
 							<button onClick={this.handleSubmit} className="btn" type="submit"><FormattedMessage id={'change'} /><FormattedMessage id={this.props.item.title} /></button>
 						</span>
