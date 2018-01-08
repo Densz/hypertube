@@ -40,9 +40,9 @@ class MyProfile extends Component {
 					error = 'form.email.incorrect';
 				}
 			} else if (name === 'passwd') {
-				if (value.trim().length < 6) {
+				if (!value.match((/^(?=.*\d)(?=.*[a-z])[0-9a-zA-Z]{6,}$/))) {
 					errorBool = true;
-					error = 'form.passwd.length';
+					error = 'form.passwd.length'; 
 				}
 			}
 			if (errorBool) {

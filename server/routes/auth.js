@@ -41,7 +41,6 @@ const upload = multer({
 function validateSignUpForm(payload) {
 	const errors = {};
 	let isFormValid = true;
-	console.log(payload.password.match((/^(?=.*\d)(?=.*[a-z])[0-9a-zA-Z]{6,}$/)))
 	if (typeof payload.email !== 'string' || !validator.isEmail(payload.email)) {
 		isFormValid = false;
 		errors.email = 'form.email.incorrect';
