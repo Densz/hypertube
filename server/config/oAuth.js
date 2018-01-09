@@ -64,13 +64,13 @@ const githubStrategy = new ghStrategy({
 		profileFields: ['id', 'first_name', 'last_name'],
 		scope: ['user:email']
 	}, (accessToken, refreshToken, profile, done) => {
-		User.findOne({ $or: [{ githubId: profile._json.id }, { email: profile._json.email }] }, function (err, user) {
+		let indexPrimary = -1;
+		profile.emails.forEach((elem, index) => {
+			if (elem.primary === true) indexPrimary = index;
+		});
+		User.findOne({ $or: [{ githubId: profile._json.id }, { email: profile.emails[indexPrimary].value }] }, function (err, user) {
 			if (err) { return done(err) }
 			if (!user) {
-				let indexPrimary = -1;
-				profile.emails.forEach((elem, index) => {
-					if (elem.primary === true) indexPrimary = index;
-				});
 				user = new User({
 					firstName: profile._json.first_name,
 					lastName: profile._json.last_name,
