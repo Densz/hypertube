@@ -238,7 +238,7 @@ class SignUp extends Component {
 										<InputForm
 											containerClass="form-group col-md-6"
 											textValue={this.state.lastName.title}
-											value={this.state.lastName.value}
+											value={this.state.lastName.value ? this.state.lastName.value : ''}
 											type="text"
 											inputClass={this.state.lastName.error ? "form-control error" : "form-control"}
 											name="lastName"
@@ -248,7 +248,7 @@ class SignUp extends Component {
 										<InputForm
 											containerClass="form-group col-md-6"
 											textValue={this.state.firstName.title}
-											value={this.state.firstName.value}
+											value={this.state.firstName.value ? this.state.firstName.value : ''}
 											type="text"
 											inputClass={this.state.firstName.error ? "form-control error" : "form-control"}
 											name="firstName"
