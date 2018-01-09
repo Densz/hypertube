@@ -8,7 +8,7 @@ class RstPwdForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: {title: 'E-mail', value: '', error: ''},
+			email: {title: 'form.email', value: '', error: ''},
 			done: ''
 		};
 		this.updateInputValue = this.updateInputValue.bind(this);
@@ -49,7 +49,7 @@ class RstPwdForm extends Component {
 			callApi('/api/auth/sendEmail', 'post', inputValues)
 			.then((response) => {
 				if (!response.success) {
-					this.setErrorMessage('email', (response.guest ? "user.guest" : 'user.notRegistered'));
+					this.setErrorMessage('email', (response.guest ? "user.guest.title" : 'user.notRegistered'));
 					errorBool = true;
 				}
 				else {

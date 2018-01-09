@@ -147,28 +147,40 @@ router.get('/signOut', (req, res, next) => {
 	res.json({success: true, msg: 'User disconnected'})
 });
 
+const shouldRemovePicture = (login) => {
+	return new Promise((res, rej) => {
+		User.findOne({ login: login }, (err, user) => {
+			if (err) {
+				rej(err)
+			} else if (user) {
+				if (user !== undefined && user.picturePath !== undefined) {
+					user.removeFile('../client/public/' + user.picturePath);
+				}
+				res(true);
+			}
+		});
+	});
+}
+
 router.post('/updatePicture', function (req, res) {
-	upload(req, res, (err) => {
+	upload(req, res, async (err) => {
 		if (err) {
 			res.json({ success: false, msg: 'Upload failed' + err });
 		} else {
-			User.findOne({ login: req.body.login}, (err, user) => {
-				if (err) {
-					res.json({success: false, msg: 'Fail database' + err });
-				} else if (user) {
-					if (user !== undefined && user.picturePath !== undefined) {
-						user.removeFile('../client/public/' + user.picturePath);
+			try {
+				await shouldRemovePicture(req.body.login.toLowerCase())
+				const namePic = '/uploads/' + req.file.filename;
+				User.update({ login: req.body.login.toLowerCase() }, { $set: { picturePath: namePic }}, (err) => {
+					if (err) {
+						res.json({success: false, msg: 'Fail database ' + err});
+					} else {
+						res.json({success: true, msg: 'Image uploaded', namePic: namePic });
 					}
-				}
-			});
-			const namePic = '/uploads/' + req.file.filename;
-			User.update({ login: req.body.login.toLowerCase() }, { $set: { picturePath: namePic }}, (err) => {
-				if (err) {
-					res.json({success: false, msg: 'Fail database ' + err});
-				} else {
-					res.json({success: true, msg: 'Image uploaded', namePic: namePic });
-				}
-			})
+				})
+			} catch(err) {
+				console.log('ERROR');
+				res.json({ success: false, msg: 'Fail Database ' + err });
+			}
 		}
 	});
 });

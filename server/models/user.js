@@ -29,23 +29,23 @@ const userSchema = mongoose.Schema({
 	},
 	facebookId: {
 		type: String,
-		require: false
+		required: false
 	},
 	fortytwoId: {
 		type: String,
-		require: false
+		required: false
 	},
 	githubId: {
 		type: String,
-		require: false
+		required: false
 	},
 	googleId: {
 		type: String,
-		require: false
+		required: false
 	},
 	twitchId: {
 		type: String,
-		require: false
+		required: false
 	},
 	videoSeen: {
 		type: Array,
