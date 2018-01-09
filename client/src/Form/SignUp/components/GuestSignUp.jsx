@@ -39,8 +39,6 @@ class SignUp extends Component {
 	}
 
 	updateBackData(data, cb) {
-		console.log('test');
-		console.log(data);
 		callApi('/api/user/updatePassport', 'post', data)
 			.then((response) => {
 				if (response.success) {

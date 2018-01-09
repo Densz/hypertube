@@ -2,7 +2,7 @@
 * Ce projet vous propose de créer une application web permettant à un utilisateur de rechercher et visionner des vidéos. Le lecteur sera directement intégré au site, et les vidéos seront téléchargées au travers du protocole BitTorrent.
 
 ## TO DO LIST
-* Github login, previous page got 500
+* Commentaires - Image par default avant reload quand post
 
 ## BONUS
 * Traduction du site - checked 

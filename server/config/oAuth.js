@@ -13,7 +13,6 @@ const twitchStrategy = new kappaStrategy({
 		callbackURL: '/api/login/twitch/callback',
 		scope: "user_read"
 	}, (accessToken, refreshToken, profile, done) => {
-		console.log(profile);
 		User.findOne({ $or: [{ twitchId: profile.id }, { email: profile.email }] }, (err, user) => {
 			if (err) { return done(err) };
 			if (!user) {

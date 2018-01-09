@@ -233,7 +233,7 @@ router.post('/rstPwd', (req, res, next) => {
 	let isFormValid = true;
 	const errors = {};
 
-	if (typeof passwd !== 'string' || passwd.trim().length < 6) {
+	if (typeof passwd !== 'string' || !passwd.match((/^(?=.*\d)(?=.*[a-z])[0-9a-zA-Z]{6,}$/))) {
 		isFormValid = false;
 		errors.passwd = 'form.passwd.length';
 		errors.passwdConfirm = 'form.passwdConfirmation.length'
