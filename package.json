@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "* Ce projet vous propose de créer une application web permettant à un utilisateur de rechercher et visionner des vidéos. Le lecteur sera directement intégré au site, et les vidéos seront téléchargées au travers du protocole BitTorrent.",
   "dependencies": {
+    "babel-eslint": "^8.2.1",
     "jscs": "^3.0.7",
     "multer": "^1.3.0",
     "parse-torrent": "^5.8.3",
