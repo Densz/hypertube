@@ -38,23 +38,49 @@ function compareSeeds(a, b) {
 }
 
 function initiateStream(stream, extension, res) {
-	const converter = ffmpeg()
-	.input(stream)
-	.outputOption('-movflags frag_keyframe+empty_moov')
-	.outputFormat('mp4')
-	.output(res)
-	.on('error', (err, stdout, stderr) => {	});
-	converter.inputFormat(extension.substr(1))
-	.audioCodec('aac')
-	.videoCodec('libx264')
-	.run();
-	res.on('close', () => {
-		converter.kill();
-	});
+	try {
+		const converter = ffmpeg()
+		.input(stream)
+		.outputOption('-movflags frag_keyframe+empty_moov')
+		.outputFormat('mp4')
+		.output(res)
+		.on('error', (err, stdout, stderr) => {	});
+		converter.inputFormat(extension.substr(1))
+		.audioCodec('aac')
+		.videoCodec('libx264')
+		.run();
+		res.on('close', () => {
+			converter.kill();
+		});
+	} catch(e) {
+		sendError(new Error('Unable to torrent for this video.'), res);
+	}
+}
+
+function streamMkv(stream, res) {
+	try {
+		const converter = ffmpeg()
+		.input(stream)
+		.outputOption('-movflags frag_keyframe+empty_moov')
+		.outputFormat('mp4')
+		.output(res)
+		.on('error', (err, stdout, stderr) => { });
+		converter.addOption('-vcodec')
+		.addOption('copy')
+		.addOption('-acodec')
+		.addOption('copy')
+		.run();
+		res.on('close', () => {
+			console.log('converter killed');
+			converter.kill();
+		})
+	} catch(e) {
+		sendError(new Error('Unable to torrent for this video.'), res);
+	}
 }
 
 function sendError(err, res) {
-	console.error(err);
+	// console.error(err);
 	res.status(204);
 	res.send(err);
 }
@@ -122,24 +148,6 @@ function getFileExtension(string) {
 	return extension[1].toLowerCase();
 }
 
-function streamMkv(stream, res) {
-	const converter = ffmpeg()
-	.input(stream)
-	.outputOption('-movflags frag_keyframe+empty_moov')
-	.outputFormat('mp4')
-	.output(res)
-	.on('error', (err, stdout, stderr) => { });
-	converter.addOption('-vcodec')
-	.addOption('copy')
-	.addOption('-acodec')
-	.addOption('copy')
-	.run();
-	res.on('close', () => {
-		console.log('converter killed');
-		converter.kill();
-	})
-}
-
 router.get('/film/:id/:quality?', async (req, res) => {
 	let id = req.params.id,
 		quality = req.params.quality || "",
@@ -155,7 +163,6 @@ router.get('/film/:id/:quality?', async (req, res) => {
 			try {
 				hash = await findFilm(id, quality);
 			} catch (err) {
-				sendError(err, res);
 				return;
 			}
 		} finally {
@@ -188,7 +195,8 @@ router.get('/film/:id/:quality?', async (req, res) => {
 								initiateStream(stream, extension, res);
 							}
 						});
-					} catch (err) {
+					} 
+					catch (err) {
 						sendError(err, res);	
 						return;
 					}
@@ -223,8 +231,6 @@ router.get('/series/:id/:season/:episode', async (req, res) => {
 			try {
 				hash = await findEpisode(id, season, episode);
 			} catch(err) {
-				console.log(err);
-				sendError(err, res);
 				return;
 			}
 		} finally {
@@ -254,12 +260,12 @@ router.get('/series/:id/:season/:episode', async (req, res) => {
 							function (err) {
 								if (!err) console.log("Episode " + video.file.name + " saved successfully.");
 							});
-							if (extension === '.mkv') {
-								streamMkv(stream, res);
-							} else {
-								initiateStream(stream, extension, res);
-							}
 						});
+								if (extension === '.mkv') {
+									streamMkv(stream, res);
+								} else {
+									initiateStream(stream, extension, res);
+								}
 					} catch (err) {
 						sendError(err, res);
 						return;
