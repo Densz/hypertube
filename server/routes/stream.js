@@ -145,6 +145,7 @@ router.get('/film/:id/:quality?', async (req, res) => {
 		quality = req.params.quality || "",
 		hash = false;
 
+	res.connection.setTimeout(0);
 	console.log("IMDB ID: " + id + ", Quality: " + quality);
 	if (id) {
 		try {
@@ -167,6 +168,7 @@ router.get('/film/:id/:quality?', async (req, res) => {
 						let stream = video.file.createReadStream();
 						console.log("Starting: " + video.file.name);
 						torrent.onFinished(function() {
+							console.log("Video finished downloading")
 							Video.findOneAndUpdate({
 									imdb_id: id,
 									quality: quality
@@ -180,12 +182,12 @@ router.get('/film/:id/:quality?', async (req, res) => {
 								function (err) {
 									if (!err) console.log("Film " + video.file.name + " saved successfully.");
 							});
+							if (extension === '.mkv') {
+								streamMkv(stream, res);
+							} else {
+								initiateStream(stream, extension, res);
+							}
 						});
-						if (extension === '.mkv') {
-							streamMkv(stream, res);
-						} else {
-							initiateStream(stream, extension, res);
-						}
 					} catch (err) {
 						sendError(err, res);	
 						return;
@@ -211,8 +213,9 @@ router.get('/series/:id/:season/:episode', async (req, res) => {
 		episode = Number(req.params.episode),
 		hash = false;
 
-		console.log("ID: " + id + ", Season: " + season + " Episode: " + episode);
-
+	console.log("ID: " + id + ", Season: " + season + " Episode: " + episode);
+	res.connection.setTimeout(0);
+	
 	if (id && !isNaN(season) && !isNaN(episode)) {
 		try {
 			hash = await getEpisode(id, season, episode);
@@ -235,6 +238,7 @@ router.get('/series/:id/:season/:episode', async (req, res) => {
 						let extension = getFileExtension(video.file.name);
 						let stream = video.file.createReadStream();
 						torrent.onFinished(function () {
+							console.log("Video finished downloading")
 							Video.findOneAndUpdate({
 								imdb_id: id,
 								season: season,
@@ -250,12 +254,12 @@ router.get('/series/:id/:season/:episode', async (req, res) => {
 							function (err) {
 								if (!err) console.log("Episode " + video.file.name + " saved successfully.");
 							});
+							if (extension === '.mkv') {
+								streamMkv(stream, res);
+							} else {
+								initiateStream(stream, extension, res);
+							}
 						});
-						if (extension === '.mkv') {
-							streamMkv(stream, res);
-						} else {
-							initiateStream(stream, extension, res);
-						}
 					} catch (err) {
 						sendError(err, res);
 						return;

@@ -6,9 +6,12 @@ const path = require('path');
 module.exports = class Torrent {
     constructor(magnet) {
         this.engine = ts(magnet, options);
-        // this.engine.on('download', function(pieceIndex) {
-        //     console.log("Piece " + pieceIndex + " downloaded.");
-        // });
+        this.engine.on('download', this.showProgress);
+    }
+
+    showProgress(pieceIndex) {
+        console.log("Piece " + pieceIndex + " downloaded.");
+        console.log(this.swarm.downloaded + '/' + this.torrent.length + ' (' + parseInt((this.swarm.downloaded / this.torrent.length) * 100) + '%)');
     }
 
     static compareSize(a, b) {
@@ -50,7 +53,7 @@ module.exports = class Torrent {
 					console.log(file.path);
                     let ext = path.extname(file.path)
 					if (mimeTypes[ext]) {
-						console.log([ext]);
+                        console.log([ext]);
 						resolve({ file: file, ext: ext });
 					}
                 });
