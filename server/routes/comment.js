@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Comment = require('../models/comment');
 const moment = require('moment');
+const User = require('../models/user');
 const fs = require('fs');
 
 const pictureExists = (result) => {
@@ -17,6 +18,16 @@ const pictureExists = (result) => {
 		res(result);
 	})
 }
+
+router.get('/getPicturePoster', (req, res) => {
+	User.find({login: req.query.loginComment}, {picturePath: 1}, (err, user) =>{
+		if (err) res.json({success: false, msg: 'Fail from database ' + err});
+		if (user) res.json({success: true, picture: user[0].picturePath});
+		else {
+			res.json({success: false, msg: 'User not found'});
+		}
+	});
+});
 
 router.get('/getComments', (req, res) => {
 	Comment.find({idMovie: req.query.idMovie}, async (err, result) => {

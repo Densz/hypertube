@@ -2,10 +2,20 @@ import React, { Component } from 'react';
 import '../css/movie.css';
 import CommentItem from './CommentItem';
 import { FormattedMessage } from "react-intl";
+import { callApi } from "../../../ApiCaller/apiCaller";
 
 const CommentList = (props) => {
 	let commentNodes = [];
-	props.comments.forEach((elem, index) => {
+	props.comments.forEach(async (elem, index) => {
+		callApi('/api/comment/getPicturePoster?loginComment=' + elem.login)
+		.then((res) => {
+			if (res.success) {
+				elem.picturePoster = res.picture;
+			} else {
+				console.log(res.msg);
+				elem.picturePoster = '/images/heisenberg.png';
+			}
+		});
 		if (index > 0) {
 			commentNodes.unshift(<hr className="hr_cast_item" key={"hr." + index} />);
 		}
