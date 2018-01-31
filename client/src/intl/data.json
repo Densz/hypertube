@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "fr": {
       "form.email": "Addresse email",
       "form.signin": "S'identifier",
@@ -18,3 +19,242 @@
       "form.firstvisite": "First visit on Hypertube?"      
     }
   }
+=======
+	"fr": {
+		"form.add": "Ajouter",
+		"form.email": "Adresse email",
+		"form.signin": "S'identifier",
+		"form.passwd": "Mot de passe",
+		"form.login": "Login",
+		"form.firstName": "Prénom",
+		"form.lastName": "Nom",
+		"form.passwdConfirmation": "Confirmation du mot de passe",
+		
+		"form.email.isMissing": "Le champ e-mail est vide",
+		"form.email.alreadyTaken": "Email ou login déjà utilisé",
+		"form.email.incorrect": "Veuillez entrer une adresse email correcte",	
+
+		"form.passwd.isMissing": "Le champ mot de passe est vide",
+		"form.passwd.length": "Votre mot de passe doit faire au moins 6 caractères, avoir 1 nombre et 1 lettre",
+		"form.passwd.mustMatch": "Les mots de passe ne sont pas identiques",
+		
+		"form.passwdConfirmation.isMissing": "Le champ confirmation du mot de passe est vide",
+		"form.passwdConfirmation.length": "Le champ mot de passe doit faire au moins 6 caractères, avoir 1 nombre et 1 lettre",
+		"form.passwdConfirmation.mustMatch": "Les mots de passe ne sont pas identiques",
+		
+		"form.login.isMissing": "Le champ login est vide",
+		"form.login.alreadyTaken": "Login ou email déjà utilisé",
+		"form.guestLogin.alreadyTaken": "Login déjà utilisé",
+		"form.login.length": "Votre login doit faire au moins 5 caractères",		
+
+		"form.firstName.isMissing": "Le champ prénom est vide",
+		"form.lastName.isMissing": "Le champ nom est vide",
+		
+		"form.forgottenpasswd": "Mot de passe oublié ?",
+
+		"form.resetpasswd.title": "Réinitialiser votre mot de passe",
+
+		"form.signup": "Inscrivez-vous",
+		"form.signup.title": "Inscrivez-vous pour profitez de vos films et séries préférées",
+		"form.signup.createNewAccount": "Créez votre compte",
+
+		"form.guestSignup.title": "Finalisez votre inscription pour profiter de toutes les fonctionnalités du site",
+		"form.guestSignup.createNewAccount": "Mettez à jour votre compte",
+
+		"picture.missingPicture": "Vous devez choisir une photo pour vous inscrire",
+		"picture.invalidExtension": "Extension d'image non pris en charge",
+		"picture.tooBig": "Image trop volumineuse",
+
+		"form.signupwithfacebook": "S'identifier avec Facebook ?",
+		"form.signupwithfortytwo": "S'identifier avec 42 - Born2Code ?",
+		"form.signupwithgithub": "S'identifier avec Github ?",
+		"form.signupwithgoogle": "S'identifier avec Google ?",
+		"form.signupwithtwitch": "S'identifier avec Twitch ?",
+		"form.firstvisit": "Première visite sur Hypertube ?",
+
+		"error.login.invalid": "Le login n'existe pas",
+		"error.password.incorrect": "Le mot de passe est incorrect",
+
+		"info.passwd.updated": "Mot de passe mis à jour",
+
+		"email.sent": "Un email a été envoyé.",
+		"send": "Envoyer",
+		"change": "Changer de ",
+		"name": "Nom",
+		"user.notRegistered": "L'utilisateur n'est pas enregistré dans la base de données.",
+
+		"catalog.searchFor": "Recherche par titre de film ou de serie",
+		"catalog.sortBy": "Filtre",
+		"catalog.year": "Année de production",
+		"catalog.imdbRating": "Score IMDB",
+		"catalog.movies": "Films",
+		"catalog.go": "C'est parti !",
+
+		"catalog.note": "Note",
+		"catalog.releasedDate": "Date de sortie",
+		"catalog.title": "Titre du film",
+
+		"catalog.All": "Tous",
+		"catalog.Action": "Action",
+		"catalog.Adventure": "Aventure",
+		"catalog.Animation": "Animation",
+		"catalog.Biography": "Biographie",
+		"catalog.Comedy": "Comédie",
+		"catalog.Crime": "Crime",
+		"catalog.Documentary": "Documentaire",
+		"catalog.Drama": "Drame",
+		"catalog.Family": "Familial",
+		"catalog.Fantasy": "Fantastique",
+		"catalog.Film-Noir": "Film-Noir",
+		"catalog.History": "Histoire",
+		"catalog.Horror": "Horreur",
+		"catalog.Music": "Musique",
+		"catalog.Musical": "Musical",
+		"catalog.Mystery": "Mystère",
+		"catalog.News": "News",
+		"catalog.Romance": "Romantique",
+		"catalog.Sci-Fi": "Science-Fiction",
+		"catalog.Short": "Court",
+		"catalog.Sport": "Sport",
+		"catalog.Thriller": "Thriller",
+		"catalog.War": "Guerre",
+		"catalog.Western": "Western",
+
+		"movie.links": "Liens",
+		"movie.comment": "Commentaire",
+		"movie.comments": "Commentaires",
+		"movie.noCommentYet.1": "Cette vidéo n'a pas encore de commentaire",
+		"movie.noCommentYet.2": "Ajoutez le votre !",
+
+		"settings.title.main": "Paramètres",
+		"settings.title.user": "Détails d'utilisateur",
+		"settings.title.account": "Détails de compte",
+
+		"profile.videoLiked": "Vidéos favorites",
+		"profile.wishList": "À voir plus tard",
+
+		"user.guest.title": "Profil invité",
+		"user.guest.popUp.text": "Pour avoir accès à toutes les fonctionalitées du site créez-vous un compte",
+		"user.guest.popUp.click": "Cliquez ici !",
+		"user.actionUserVideo": "Complétez votre inscription pour avoir accès à cette fonctionalitée"
+	},
+	"en": {
+		"form.add": "Add",
+		"form.email": "Email address",
+		"form.signin": "Sign in",
+		"form.passwd": "Password",
+		"form.login": "Login",
+		"form.firstName": "First name",
+		"form.lastName": "Last name",
+		"form.passwdConfirmation": "Password confirmation",
+
+		"form.email.isMissing": "E-mail is missing",
+		"form.email.alreadyTaken": "Email or login already taken",
+		"form.email.incorrect": "Please provide a correct email address",
+
+		"form.passwd.isMissing": "Password is missing",
+		"form.passwd.length": "Password must have at least 6 characters, with 1 number and 1 letter",
+		"form.passwd.mustMatch": "Password must match Password confirmation",
+
+		"form.passwdConfirmation.isMissing": "Password confirmation is missing",
+		"form.passwdConfirmation.length": "Password must have at least 6 characters, with 1 number and 1 letter",
+		"form.passwdConfirmation.mustMatch": "Password Confirmatiomn must match Password",
+		
+		"form.login.isMissing": "Login is missing",
+		"form.login.alreadyTaken": "Login or email already taken",
+		"form.login.length": "Login must have at least 5 characters",
+		"form.guestLogin.alreadyTaken": "Login already used",
+		
+		"form.firstName.isMissing": "First name is missing",
+		"form.lastName.isMissing": "Last name is missing",
+		
+		"form.forgottenpasswd": "Forgotten password?",
+
+		"form.resetpasswd.title": "Reset your password",
+
+		"form.signup": "Sign up",
+		"form.signup.title": "Sign up to discover all the new movies and series",
+		"form.signup.createNewAccount": "Create a new account",
+
+		"form.guestSignup.title": "Complete the form below to fully enjoy the website features",
+		"form.guestSignup.createNewAccount": "Update your infos",
+
+		"picture.missingPicture": "You need to upload a picture to sign up",
+		"picture.invalidExtension": "Wrong file extension",
+		"picture.tooBig": "File too big",
+
+		"form.signupwithfacebook": "Sign in with Facebook?",
+		"form.signupwithfortytwo": "Sign in with 42 - Born2Code?",
+		"form.signupwithgithub": "Sign in with Github?",
+		"form.signupwithgoogle": "Sign in with Google?",
+		"form.signupwithtwitch": "Sign in with Twitch?",
+		"form.firstvisit": "First visit on Hypertube?",
+
+		"error.login.invalid": "Login does not exist",
+		"error.password.incorrect": "Wrong password",
+
+		"info.passwd.updated": "Password updated",
+
+		"email.sent": "Email sent to your inbox.",
+		"change": "Change ",
+		"send": "Send",
+		"name": "Name",
+		"user.notRegistered": "No user registered with this email address.",
+
+		"catalog.searchFor": "Search by Title",
+		"catalog.sortBy": "Order by",
+		"catalog.year": "Year of Production",
+		"catalog.imdbRating": "IMDB Rating",
+		"catalog.movies": "Movies",
+		"catalog.go": "Go!",
+
+		"catalog.note": "Rating",
+		"catalog.releasedDate": "Released date",
+		"catalog.title": "Title",
+
+		"catalog.All": "All",
+		"catalog.Action": "Action",
+		"catalog.Adventure": "Adventure",
+		"catalog.Animation": "Animation",
+		"catalog.Biography": "Biography",
+		"catalog.Comedy": "Comedy",
+		"catalog.Crime": "Crime",
+		"catalog.Documentary": "Documentary",
+		"catalog.Drama": "Drama",
+		"catalog.Family": "Family",
+		"catalog.Fantasy": "Fantasy",
+		"catalog.Film-Noir": "Film-Noir",
+		"catalog.History": "History",
+		"catalog.Horror": "Horror",
+		"catalog.Music": "Music",
+		"catalog.Musical": "Musical",
+		"catalog.Mystery": "Mystery",
+		"catalog.News": "News",
+		"catalog.Romance": "Romance",
+		"catalog.Sci-Fi": "Sci-Fi",
+		"catalog.Short": "Short",
+		"catalog.Sport": "Sport",
+		"catalog.Thriller": "Thriller",
+		"catalog.War": "War",
+		"catalog.Western": "Western",
+
+		"profile.videoLiked": "Favorite video",
+		"profile.wishList": "Watch later",
+		
+		"movie.links": "Links",
+		"movie.comment": "Comment",
+		"movie.comments": "Comments",
+		"movie.noCommentYet.1": "This video doesn't have any comment yet.",
+		"movie.noCommentYet.2": "Add yours !",
+
+		"settings.title.main": "Settings",
+		"settings.title.user": "User Details",
+		"settings.title.account": "Account Details",
+
+		"user.guest.title": "Guest profile",
+		"user.guest.popUp.text": "To have a complete access to all fonctionalities complete your subscription",
+		"user.guest.popUp.click": "Click here!",
+		"user.actionUserVideo": "Complete your subscription to have access to this fonctionality"
+	}
+}
+>>>>>>> origin/master

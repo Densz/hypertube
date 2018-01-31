@@ -1,0 +1,66 @@
+.search-row {
+	height: 75px;
+}
+
+.search-container {
+	margin-top: 20px;
+}
+
+.profile-page-picture {
+	width: 175px;
+	height: 175px;
+}
+
+.profile-box-picture {
+	text-align: center;
+}
+
+.info-profile {
+	font-size: 20px;
+	margin-top: 30px;
+}
+
+.whiteBox {
+	width: 100%;
+	max-height: 200px;
+	background-color: white;
+	border-radius: 4px;
+    border: 1px solid #ccc;
+}
+@media(max-width: 768px) {
+	.width-text-value {
+		text-align: center;
+	}
+}
+
+.whiteBox a {
+	margin: 2%;
+}
+
+.search-box {
+	z-index: 1;
+	position: absolute;
+	padding-right: inherit;
+	width: 100%;
+}
+
+.tab-user-action {
+	margin-top: 100px;
+    position: absolute;
+    width: 100%;
+	bottom: 0;
+	text-align: center;
+    top: 350px;
+	padding-bottom: 50px;
+	border-top: 2px solid grey;
+}
+
+#video-like {
+	border-left: 2px solid grey;
+	height: 100%;
+}
+
+#wish-list {
+	height: 100%;
+	
+}

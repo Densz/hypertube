@@ -1,0 +1,197 @@
+.movie-details-block {
+	color:white;
+	margin-top: 30px;
+}
+
+.movie-title {
+	color: white;
+}
+
+.MovieInfos {
+	margin-top: 50px;
+}
+
+#available {
+	margin-top: 32px;
+}
+
+.img-thumbnail {
+	width: 250px;
+}
+
+.links_available {
+    min-width: 100%;
+    height: 275px;
+	background-color: #16181D;
+	padding: 20px;
+    overflow: auto;
+}
+
+.coverImg {
+	text-align: center;
+}
+
+.GenreStyle {
+	font-size: 20px;
+}
+
+.comment-block {
+	margin: 5%;
+	padding: 3%;;
+	min-height: 300px;
+	color: white;
+	/* background-color: #21242b; */
+}
+
+.cast-box {
+	max-height: 584px;
+	background-color: rgba(0, 0, 0, 0.3);
+	overflow: auto;
+	padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.cast-button {
+	display: inline;
+	margin-left: -10px;
+	padding: 7px;
+	padding-left: 30px;
+	padding-right: 30px;
+	cursor: pointer;
+}
+
+.staff {
+	margin-left: 0px;
+}
+
+.selected-people {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.comment-box {
+	min-height: 200px;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.comment-block h3 {
+	margin-left: 10px;
+}
+
+.empty-box {
+	text-align: center;
+	padding-top: 5%;
+	font-size: 20px;
+}
+
+.input-group {
+	padding-right: 5%;
+	padding-left: 5%;
+}
+
+.imdb_rating {
+	font-size: 20px;
+}
+
+.embed-responsive-item {
+	background-color: black;
+}
+
+.hr_cast_item {
+	width: 80%;
+	border-top: 1px solid rgb(61, 61, 61);
+}
+
+.img_cast_item {
+    width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-left: 30px;
+}
+
+.cast-infos {
+	margin-top: 10px;
+}
+
+.infos-people {
+	margin-top: 20px;
+}
+
+.season-button {
+    display: inline-block;
+    width: 85px;
+	font-size: 15px;
+	text-align: center;
+	cursor: pointer;
+	height: 25px;
+}
+
+.selected {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.episode_div {
+	cursor: pointer;
+	height: 35px;
+}
+
+.episode_div_selected {
+	cursor: pointer;
+	height: 35px;
+	color: #81D8F5;
+}
+
+.comment-title { 
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.comment-exists {
+	padding-bottom: 20px;
+	padding-top: 30px;
+}
+
+.post-date {
+	color: darkslategrey;
+}
+
+.post-login {
+	margin-top: 0px;
+}
+
+@media(max-width: 768px) {
+	.img_cast_item {
+		margin-left: 0px;
+	}
+	.cast_item {
+		text-align: center;
+	}
+}
+
+.row-action-movie {
+	z-index: 10;
+	position: fixed;
+	float: right;
+    right: 1%;
+    display: -webkit-box;
+
+}
+
+.add-wish-list {
+	background-image: url('/icons/essential/add-2.png');
+	height: 25px;
+	width: 25px;
+    background-size: contain;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+.add-like {
+	background-image: url('/icons/essential/like-1.png');
+	height: 25px;
+	width: 25px;
+    background-size: contain;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	margin-right: 10px;
+}

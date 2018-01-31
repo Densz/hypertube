@@ -1,0 +1,44 @@
+label {
+	margin-bottom: 0px;
+}
+
+.error-message {
+	color: red;
+	font-size: 11px;
+}
+
+.account-section {
+    border-top: 1px solid #999;
+}
+
+.detail-section {
+    height: 3em;
+    display: flex;
+    align-items: center;
+}
+
+.text-left {
+    cursor: pointer;
+}
+
+.picture-box {
+	cursor: pointer;
+	width: 142px;
+	height: 142px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-bottom: 10px;
+}
+
+.top-margin {
+	margin-top: 10px;
+}
+
+.text-value {
+	margin-left: 10px;
+}
+
+.fix-alert-danger {
+	margin-bottom: 0px;
+	margin-top: 20px;
+}

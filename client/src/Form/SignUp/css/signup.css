@@ -1,0 +1,53 @@
+#file {
+	display: none;
+}
+
+.form-right {
+	padding-right: 0px;
+}
+
+.block-container .container {
+    width: 65%;
+}
+
+.error {
+	border: 1px solid #b92d2b;
+	/* background-color: rgba(255, 0, 0, 0.08); */
+}
+
+.form-error-message {
+    color: red;
+    font-size: 11px;
+    margin-left: 10px;
+    position: absolute;
+}
+
+.form-row .row {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.upload-container {
+	text-align: center;
+	width: 110px;
+	margin: auto;
+	height: 150px;
+	border: 4px solid #ffffff;
+	cursor: pointer;
+}
+
+.profile-picture {
+	cursor: pointer;
+	width: 102px;
+	height: 142px;
+	object-fit: cover;
+}
+
+.error-msg-picture {
+	top: 90%;
+    left: 50%;
+    position: absolute;
+    font-size: 11px;
+    margin-left: -60px;
+    color: red;
+}

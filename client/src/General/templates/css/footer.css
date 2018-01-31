@@ -1,0 +1,35 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100%;
+    padding-bottom: 50px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: #21242b;
+    color: white;
+    margin-top: 30px;
+    z-index: 1000;
+    border-top-style: solid;
+    border-top-color: #383A40;
+}
+
+.text-footer {
+    color: #67DAF9;
+    padding-top: 13px;
+}
+
+.text-footer:hover {
+    text-decoration: none;
+}
+
+.text-footer-language {
+    cursor: pointer;
+}

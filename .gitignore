@@ -52,11 +52,32 @@ typings/
 *.tgz
 
 # Yarn Integrity file
+yarn.lock
 .yarn-integrity
 
 # dotenv environment variables file
 .env
 
+<<<<<<< HEAD
 # Visual Studio Code
 .vscode
 .DS_Store
+=======
+#.vscode
+.vscode
+db
+.idea
+*.DS_store*
+database
+.DS_Store
+server/config/mlab.js
+test.js
+test.mp4
+server/torrent
+client/public/uploads/*.jpg
+client/public/uploads/*.png
+client/public/uploads/*.gif
+client/public/uploads/*.jpeg
+client/public/subtitles/*.vtt
+redux.js
+>>>>>>> origin/master

@@ -1,0 +1,52 @@
+.login-button {
+    width: 100%;
+    border-radius: unset;
+    background-color: #20232a;
+    color: #67DAF9;
+    height: 50px;
+    font-size: 19px;
+    border: 3px solid #20232a;
+    transition: color .5s;
+}
+
+.login-button:hover {
+    color: #3d84c1;
+}
+
+.oAuth-logo {
+	height: 20px;
+}
+.oAuth-text {
+	font-size: 11px;
+}
+
+  .form-box {
+    margin-top: 30px;
+    background-color: #f3f3f3;
+    display: block;
+    padding: 35px;
+  }
+
+  .input-empty {
+    position: relative;
+    display: block;
+    padding-left: 1em;
+    transform: translateY(2em);
+    transform-origin: left center;
+    opacity: .5;  
+    transition: transform .2s, opacity .2s;
+    pointer-events: none;
+    margin-bottom: 0;  
+  }
+  
+  .input-filled {
+    transform-origin: left;
+    transform: translateY(-0.2em) scale(.75, .75);
+    transition: transform .2s, opacity .2s;  
+    opacity: .8;
+    margin-bottom: 0;
+  }
+
+  .link-reset-password {
+	  cursor: pointer;
+  }

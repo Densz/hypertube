@@ -1,9 +1,10 @@
 # Hypertube
 * Ce projet vous propose de créer une application web permettant à un utilisateur de rechercher et visionner des vidéos. Le lecteur sera directement intégré au site, et les vidéos seront téléchargées au travers du protocole BitTorrent.
 
-# Create React App with Server
-* https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/
+## TO DO LIST
+* Commentaires - Image par default avant reload quand post
 
+<<<<<<< HEAD
 # International App by Yahoo
 * https://github.com/yahoo/react-intl/wiki#getting-started 
 
@@ -2171,3 +2172,16 @@ To resolve this:
 ## Something Missing?
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
+=======
+## BONUS
+* Traduction du site - checked 
+* Google Auth - checked
+* Twitch Auth - checked
+* Github Auth - checked
+* 720p 1080p - checked
+* Vidéo favorite et vidéo à voir plus tard (bonus)
+	* Fait pour movie page plus que le front a faire dans la profile page
+
+## Link 
+* https://www.npmjs.com/package/node-schedule
+>>>>>>> origin/master
