@@ -1,4 +1,0 @@
-1st Step
-
-Lets write the components first without any Redux inside
-Stateless components unless we need to use local state or the lifecycle methods.
