@@ -14,10 +14,12 @@ const counter = (state = 0, action) => {
 
 const store = createStore(counter)
 
+// => EMIT an ACTION with Dispatch
 // console.log(store.getState());
 // store.dispatch({ type: 'DECREMENT' })
 // console.log(store.getState());
-// Function that is called everytime an action is dispatched
+
+// => Function that is called everytime an action is dispatched
 // store.subscribe(() => {
 // 	document.body.innerHTML = store.getState();
 // })
