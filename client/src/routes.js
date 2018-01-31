@@ -8,7 +8,8 @@ import Layout from "./General/templates/components/Layout";
 import Catalog from "./Stream/Catalog/components/Catalog";
 import Profile from "./UserInfo/Profile/components/Profile";
 import Movie from "./Stream/Movie/components/Movie";
-import Redux from "./Redux"
+import Redux from "./Redux/Redux";
+import Todolist from "./Redux/Todolist";
 import NotFound from "./notFound";
 import { isLogged } from "./ApiCaller/apiCaller";
 
@@ -56,6 +57,7 @@ class Routes extends Component {
 										( <Redirect to="/catalog" /> )
 								)} />
 								<Route path="/redux" render={() => (<Redux />)} />
+								<Route path="/todolist" render={() => (<Todolist />)} />
 								<Route path="/signUp" render={() => (
 									!this.state.isLogged ?
 										( <SignUp checkIfIsLogged={this.checkIfIsLogged} /> ) :
