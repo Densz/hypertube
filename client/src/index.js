@@ -9,9 +9,11 @@ import localeData from './intl/data.json';
 import './General/templates/css/index.css';
 
 // Redux
+// for the moment we are not using combine reducers
+import reducers from './reducers/showOAuth';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-// let store = createStore(todoApp);
+let store = createStore(reducers);
 
 addLocaleData([...en, ...fr]);
 const language = (navigator.languages && navigator.languages[0]) || navigator.language || navigator.userLanguage;
@@ -22,6 +24,16 @@ class Index extends Component {
 		this.state = {
 			messages: localeData["en"],
 		}
+	}
+
+	componentDidMount(){
+		this.unsubscribe = store.subscribe(() => 
+			this.forceUpdate()
+		)
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
 	}
 
 	changeLangToFr = () => {
@@ -38,11 +50,11 @@ class Index extends Component {
 
     render() {
         return (
-			{/*<Provider store={store}>*/}
+			<Provider store={store}>
 				<IntlProvider locale={language} messages={this.state.messages}>
 					<Routes changeLngToFr={this.changeLangToFr} changeLngToEn={this.changeLangToEn} />
 				</IntlProvider>
-			{/*</Provider>*/}
+			</Provider>
         );
     }
 }

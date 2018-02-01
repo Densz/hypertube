@@ -13,6 +13,10 @@ import Todolist from "./Redux/Todolist";
 import NotFound from "./notFound";
 import { isLogged } from "./ApiCaller/apiCaller";
 
+// TEST IMPORTING REDUX
+// Connect the store the components below
+import { connect } from 'react-redux';
+
 class Routes extends Component {
 	constructor(props) {
 		super(props);
@@ -47,6 +51,16 @@ class Routes extends Component {
 				changeLngToFr={this.props.changeLngToFr}
 				changeLngToEn={this.props.changeLngToEn}
 			>
+				<div>
+					<h1>Whatever in it</h1>
+					<p>{this.props.toggle}</p>
+					<button onClick={() => { 
+						this.props.onClickToggleOn()
+					}}>ON</button>
+					<button onClick={() => { 
+						this.props.onClickToggleOff()
+					}}>OFF</button>
+				</div>
                 <Router>
                     <div>
 						{ this.state && this.state.isFetching &&
@@ -100,5 +114,22 @@ class Routes extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+	return { ...state }
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		onClickToggleOn: function() {
+			dispatch({ type: 'TOGGLE_ON' })
+		},
+		onClickToggleOff: function() {
+			dispatch({ type: 'TOGGLE_OFF' })
+		}
+	}
+}
+
+Routes = connect(mapStateToProps, mapDispatchToProps)(Routes)
 
 export default Routes;
