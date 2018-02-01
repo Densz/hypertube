@@ -6,6 +6,8 @@
   "dependencies": {
     "axios": "^0.17.1",
     "create-torrent": "^3.29.2",
+    "fetch": "^1.1.0",
+    "node-fetch": "^1.7.3",
     "rc-slider": "^8.4.0",
     "react": "^16.1.0",
     "react-addons-css-transition-group": "^15.6.2",
@@ -13,9 +15,12 @@
     "react-facebook-login": "^3.6.2",
     "react-infinite-scroller": "^1.1.1",
     "react-intl": "^2.4.0",
+    "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
     "react-tooltip": "^3.4.0",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "request-promise-native": "^1.0.5",
     "stylish": "^1.0.0",
     "validator": "^9.1.1"
