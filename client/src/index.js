@@ -13,7 +13,7 @@ import './General/templates/css/index.css';
 import reducers from './reducers/showOAuth';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-let store = createStore(reducers);
+let store = createStore(reducers, { toggle: "c'est la valeur initial" });
 
 addLocaleData([...en, ...fr]);
 const language = (navigator.languages && navigator.languages[0]) || navigator.language || navigator.userLanguage;
