@@ -8,6 +8,11 @@ import fr from 'react-intl/locale-data/fr';
 import localeData from './intl/data.json';
 import './General/templates/css/index.css';
 
+// Redux
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+// let store = createStore(todoApp);
+
 addLocaleData([...en, ...fr]);
 const language = (navigator.languages && navigator.languages[0]) || navigator.language || navigator.userLanguage;
 
@@ -33,9 +38,11 @@ class Index extends Component {
 
     render() {
         return (
-			<IntlProvider locale={language} messages={this.state.messages}>
-				<Routes changeLngToFr={this.changeLangToFr} changeLngToEn={this.changeLangToEn} />
-			</IntlProvider>
+			{/*<Provider store={store}>*/}
+				<IntlProvider locale={language} messages={this.state.messages}>
+					<Routes changeLngToFr={this.changeLangToFr} changeLngToEn={this.changeLangToEn} />
+				</IntlProvider>
+			{/*</Provider>*/}
         );
     }
 }
