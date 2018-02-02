@@ -25,16 +25,17 @@ class Index extends Component {
 			messages: localeData["en"],
 		}
 	}
+	
+	// Not necessary
+	// componentDidMount(){
+	// 	this.unsubscribe = store.subscribe(() => 
+	// 		this.forceUpdate()
+	// 	)
+	// }
 
-	componentDidMount(){
-		this.unsubscribe = store.subscribe(() => 
-			this.forceUpdate()
-		)
-	}
-
-	componentWillUnmount() {
-		this.unsubscribe();
-	}
+	// componentWillUnmount() {
+	// 	this.unsubscribe();
+	// }
 
 	changeLangToFr = () => {
 		this.setState({
